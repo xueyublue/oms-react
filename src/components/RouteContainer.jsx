@@ -1,30 +1,30 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import * as Constants from "../util/constants";
-import Dashboard from "./../pages/dashboard";
-import InstanceDetails from "./../pages/instance/details";
+import Dashboard from "../pages/dashboard";
+import InstanceDetails from "../pages/instance/details";
 import SgaConfigurations from "../pages/instance/sga";
-import Banners from "./../pages/instance/banners";
-import ResourceLimit from "./../pages/instance/resourcelimit";
-import Parameters from "./../pages/instance/parameters";
-import Sessions from "./../pages/performance/session";
-import Tablespace from "./../pages/space/tablespace";
-import TopTables from "./../pages/space/toptables";
-import TopIndexes from "./../pages/space/topindexes";
-import TableRecords from "./../pages/space/tablerecords";
-import Profiles from "./../pages/user/profiles";
-import Roles from "./../pages/user/roles";
-import RolePrivileges from "./../pages/user/roleprivileges";
-import Users from "./../pages/user/users";
-import UserPrivileges from "./../pages/user/userprivileges";
-import Login from "./../pages/login";
+import Banners from "../pages/instance/banners";
+import ResourceLimit from "../pages/instance/resourcelimit";
+import Parameters from "../pages/instance/parameters";
+import Sessions from "../pages/performance/session";
+import Tablespace from "../pages/space/tablespace";
+import TopTables from "../pages/space/toptables";
+import TopIndexes from "../pages/space/topindexes";
+import TableRecords from "../pages/space/tablerecords";
+import Profiles from "../pages/user/profiles";
+import Roles from "../pages/user/roles";
+import RolePrivileges from "../pages/user/roleprivileges";
+import Users from "../pages/user/users";
+import UserPrivileges from "../pages/user/userprivileges";
+import Login from "../pages/login";
 import Settings from "../pages/settings";
 import Profile from "../pages/profile";
 
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-const PageContainer = () => {
+const RouteContainer = () => {
   return (
     <Switch>
       <Route exact path="/" component={Dashboard} />
@@ -52,4 +52,4 @@ const PageContainer = () => {
   );
 };
 
-export default PageContainer;
+export default RouteContainer;

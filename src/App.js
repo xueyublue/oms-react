@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import AppBar from "./components/AppBar";
 import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
-import PageContainer from "./components/PageContainer";
+import RouteContainer from "./components/RouteContainer";
 
 const { Content } = Layout;
 
@@ -21,7 +21,7 @@ function App() {
     return (
       <Layout className="site-layout" style={{ minHeight: "100vh" }}>
         <Content className="site-layout-background" style={{ padding: 8 }}>
-          <PageContainer />
+          <RouteContainer />
         </Content>
         <AppFooter />
       </Layout>
@@ -40,7 +40,7 @@ function App() {
             minHeight: 650,
           }}
         >
-          <PageContainer />
+          <RouteContainer />
         </Content>
         <AppFooter />
       </Layout>

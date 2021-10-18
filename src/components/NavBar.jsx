@@ -4,13 +4,7 @@ import { useLocation } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Switch } from "antd";
 import { MdDarkMode } from "react-icons/md";
-import {
-  FcComboChart,
-  FcMindMap,
-  FcBusinessman,
-  FcOrgUnit,
-  FcDatabase,
-} from "react-icons/fc";
+import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase } from "react-icons/fc";
 
 import * as Constants from "../util/constants";
 import { Link } from "react-router-dom";
@@ -28,8 +22,7 @@ const NavBar = () => {
   if (pathname !== selectedKeys) setSelectedKeys(pathname);
   if (!openKeys && pathname) {
     const lastIndex = pathname.lastIndexOf("/");
-    if (lastIndex !== 0)
-      setOpenKeys(pathname.substr(0, pathname.lastIndexOf("/")));
+    if (lastIndex !== 0) setOpenKeys(pathname.substr(0, pathname.lastIndexOf("/")));
   }
 
   const siderStyle = darkMode
@@ -51,7 +44,7 @@ const NavBar = () => {
 
   return (
     <Sider style={siderStyle} width={220}>
-      <div className="logo">
+      <div style={{ height: "32px", margin: "16px", textAlign: "center" }}>
         <img src={logo} alt="me" style={{ height: 32, width: 180 }} />
       </div>
       <Menu
@@ -71,18 +64,11 @@ const NavBar = () => {
           }
         }}
       >
-        <Menu.Item
-          key={Constants.ROUTE_DASHBORAD}
-          icon={<FcOrgUnit size={20} />}
-        >
+        <Menu.Item key={Constants.ROUTE_DASHBORAD} icon={<FcOrgUnit size={20} />}>
           <Link to={Constants.ROUTE_DASHBORAD}>Dashboard</Link>
         </Menu.Item>
 
-        <SubMenu
-          key="/instance"
-          icon={<FcMindMap size={20} />}
-          title="Instance"
-        >
+        <SubMenu key="/instance" icon={<FcMindMap size={20} />} title="Instance">
           <Menu.Item key={Constants.ROUTE_INSTANCE_DETAILS}>
             <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
           </Menu.Item>
@@ -93,20 +79,14 @@ const NavBar = () => {
             <Link to={Constants.ROUTE_INSTANCE_BANNERS}>Banners</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
-            <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
-              Resource Limit
-            </Link>
+            <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>Resource Limit</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_PARAMETERS}>
             <Link to={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Link>
           </Menu.Item>
         </SubMenu>
 
-        <SubMenu
-          key="/performance"
-          icon={<FcComboChart size={20} />}
-          title="Performance"
-        >
+        <SubMenu key="/performance" icon={<FcComboChart size={20} />} title="Performance">
           <Menu.Item key={Constants.ROUTE_PERFORMANCE_SESSION}>
             <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
           </Menu.Item>
@@ -135,17 +115,13 @@ const NavBar = () => {
             <Link to={Constants.ROUTE_USER_ROLES}>Roles</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
-            <Link to={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
-              Role Privileges
-            </Link>
+            <Link to={Constants.ROUTE_USER_ROLE_PRIVILEGES}>Role Privileges</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_USERS}>
             <Link to={Constants.ROUTE_USER_USERS}>Users</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_USER_PRIVILEGES}>
-            <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>
-              User Privileges
-            </Link>
+            <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>User Privileges</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
