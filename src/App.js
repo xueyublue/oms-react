@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import AppBar from "./components/AppBar";
 import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
+import PageContainer from "./components/PageContainer";
 
 import "./App.css";
 import "./styles/global.css";
@@ -16,7 +17,6 @@ const { Content } = Layout;
 
 function App() {
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
-
   const { pathname } = useLocation();
   if (pathname === "/login" && !pageWithoutNavigation)
     setPageWithoutNavigation(true);
@@ -38,7 +38,9 @@ function App() {
             padding: 8,
             minHeight: 650,
           }}
-        ></Content>
+        >
+          <PageContainer />
+        </Content>
         <AppFooter />
       </Layout>
     </Layout>

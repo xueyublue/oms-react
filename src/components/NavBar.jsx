@@ -13,7 +13,7 @@ import {
 } from "react-icons/fc";
 
 import * as Constants from "../util/constants";
-import { Route, Switch as ReactSwitch } from "react-router-dom";
+import { Route, Link, Switch as ReactSwitch } from "react-router-dom";
 import logolight from "../logo-light.png";
 import logodark from "../logo-dark.png";
 
@@ -75,7 +75,7 @@ const NavBar = () => {
           key={Constants.ROUTE_DASHBORAD}
           icon={<FcOrgUnit size={20} />}
         >
-          <Route href={Constants.ROUTE_DASHBORAD}>Dashboard</Route>
+          <Link to={Constants.ROUTE_DASHBORAD}>Dashboard</Link>
         </Menu.Item>
 
         <SubMenu
@@ -84,7 +84,7 @@ const NavBar = () => {
           title="Instance"
         >
           <Menu.Item key={Constants.ROUTE_INSTANCE_DETAILS}>
-            <Route href={Constants.ROUTE_INSTANCE_DETAILS}>Details</Route>
+            <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_SGA}>
             <Route href={Constants.ROUTE_INSTANCE_SGA}>SGA</Route>

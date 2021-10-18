@@ -1,4 +1,4 @@
-import Router from "next/router";
+import { useHistory } from "react-router-dom";
 import { List, Card, Tag } from "antd";
 import {
   CheckCircleOutlined,
@@ -9,6 +9,7 @@ import * as Constants from "../util/constants";
 const Dashboard = () => {
   const tagStyle = { fontSize: 14, padding: 5, width: "100%" };
   const tagStyle2 = { fontSize: 14, padding: 5, width: "46%" };
+  const history = useHistory();
 
   const data = [
     {
@@ -27,7 +28,7 @@ const Dashboard = () => {
         </Tag>
       ),
       handleClick: () => {
-        Router.push(Constants.ROUTE_INSTANCE_SGA);
+        history.push(Constants.ROUTE_INSTANCE_SGA);
       },
     },
     {
@@ -43,7 +44,7 @@ const Dashboard = () => {
         </div>
       ),
       handleClick: () => {
-        Router.push(Constants.ROUTE_PERFORMANCE_SESSION);
+        history.push(Constants.ROUTE_PERFORMANCE_SESSION);
       },
     },
     {
@@ -59,7 +60,7 @@ const Dashboard = () => {
         </div>
       ),
       handleClick: () => {
-        Router.push(Constants.ROUTE_SPACE_TABLESPACE);
+        history.push(Constants.ROUTE_SPACE_TABLESPACE);
       },
     },
     {
@@ -75,7 +76,7 @@ const Dashboard = () => {
         </div>
       ),
       handleClick: () => {
-        Router.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
+        history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
       },
     },
     {
