@@ -10,7 +10,11 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = (values) => {
-    if (values.username === "oms" && values.password === "oms") history.push("/dashboard");
+    if (values.username === "oms" && values.password === "oms") {
+      localStorage.setItem("oms-userid", "oms");
+      localStorage.setItem("oms-password", "oms");
+      history.push("/dashboard");
+    }
   };
 
   return (

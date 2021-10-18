@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { Layout } from "antd";
 import "antd/dist/antd.css";
@@ -12,10 +12,21 @@ import RouteContainer from "./components/RouteContainer";
 const { Content } = Layout;
 
 function App() {
+  const history = useHistory();
+  const userId = localStorage.getItem("oms-userid");
+  const password = localStorage.getItem("oms-password");
+  // const sessionExpiry = localStorage.getItem("oms-session-expiry");
+
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
   if (pathname === "/login" && !pageWithoutNavigation) setPageWithoutNavigation(true);
   if (pathname !== "/login" && pageWithoutNavigation) setPageWithoutNavigation(false);
+
+  if (pathname !== "/login") {
+    if (!userId || !password) {
+      history.push("/login");
+    }
+  }
 
   if (pageWithoutNavigation)
     return (
