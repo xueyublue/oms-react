@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Progress } from "antd";
 import { Pie } from "react-chartjs-2";
+import axios from "axios";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
+import ApiCallFailed from "../../components/ApiCallFailed";
 
 const columns = [
   {
@@ -39,15 +41,22 @@ const columns = [
 ];
 
 const SgaConfigurations = () => {
+  const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://10.33.1.168:8099/wse/restapi/oms/instance/sgaconfig");
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/instance/sgaconfig`);
+        setData(response.data);
+        setIsLoading(false);
+        setIsError(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+        if (!isError) setIsError(true);
+      }
     }
     setTimeout(() => {
       fetchData();
@@ -55,6 +64,7 @@ const SgaConfigurations = () => {
   }, []);
 
   if (isLoading) return <Loading />;
+  if (isError) return <ApiCallFailed />;
 
   message.info(`${data.table.length} records found.`);
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, message } from "antd";
 import axios from "axios";
-import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
+import ApiCallFailed from "../../components/ApiCallFailed";
 
 const columns = [
   {
