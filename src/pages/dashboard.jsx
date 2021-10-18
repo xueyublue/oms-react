@@ -3,6 +3,10 @@ import { List, Card, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Constants from "../util/constants";
 
+
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Dashboard = () => {
   const tagStyle = { fontSize: 14, padding: 5, width: "100%" };
   const tagStyle2 = { fontSize: 14, padding: 5, width: "46%" };

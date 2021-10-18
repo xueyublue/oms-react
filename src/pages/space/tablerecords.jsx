@@ -51,6 +51,9 @@ const getDistinctOwners = (data) => {
   return ["All", ...new Set(owners)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const TableRecords = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

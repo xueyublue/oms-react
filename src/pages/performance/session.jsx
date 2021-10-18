@@ -107,6 +107,9 @@ const getDistinctUserNames = (data) => {
   return ["All", ...new Set(usernames)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Sessions = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

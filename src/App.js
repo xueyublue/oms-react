@@ -11,6 +11,9 @@ import RouteContainer from "./components/RouteContainer";
 
 const { Content } = Layout;
 
+//-------------------------------------------------------------
+// COMPONENT START
+//-------------------------------------------------------------
 function App() {
   const history = useHistory();
   const userId = localStorage.getItem("oms-userid");

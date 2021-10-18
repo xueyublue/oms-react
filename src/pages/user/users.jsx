@@ -82,6 +82,9 @@ const getDistinctStatus = (data) => {
   return ["All", ...new Set(statusList)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Users = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

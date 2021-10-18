@@ -27,6 +27,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Roles = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);

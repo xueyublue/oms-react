@@ -40,6 +40,9 @@ const getDistinctProfiles = (data) => {
   return ["All", ...new Set(profiles)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Profiles = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

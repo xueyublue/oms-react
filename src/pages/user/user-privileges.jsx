@@ -34,6 +34,9 @@ const getDistinctUserNames = (data) => {
   return ["All", ...new Set(userNameList)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const UserPrivileges = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

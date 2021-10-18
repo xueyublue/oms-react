@@ -17,6 +17,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const InstanceDetails = () => {
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);

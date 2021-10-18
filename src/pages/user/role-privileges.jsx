@@ -34,6 +34,9 @@ const getDistinctRoles = (data) => {
   return ["All", ...new Set(roleList)];
 };
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const RolePrivileges = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

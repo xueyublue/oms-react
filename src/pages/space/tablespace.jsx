@@ -103,6 +103,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Tablespace = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);

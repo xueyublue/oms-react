@@ -75,6 +75,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Parameters = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);

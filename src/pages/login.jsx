@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 import styles from "./login.module.css";
 import loginlogo from "../logo-login.png";
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Login = () => {
   const history = useHistory();
 

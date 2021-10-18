@@ -40,6 +40,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const SgaConfigurations = () => {
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);

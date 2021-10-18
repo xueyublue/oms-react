@@ -10,6 +10,9 @@ const columns = [
   },
 ];
 
+//-------------------------------------------------------------
+// PAGE START
+//-------------------------------------------------------------
 const Banners = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
