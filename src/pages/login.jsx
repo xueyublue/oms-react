@@ -3,7 +3,7 @@ import { Form, Button, Input, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 
-import styles from "./login.css";
+import styles from "./login.module.css";
 import loginlogo from "../logo-login.png";
 
 const Login = () => {

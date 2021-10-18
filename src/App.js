@@ -9,27 +9,31 @@ import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
 import PageContainer from "./components/PageContainer";
 
-import "./App.css";
 import "./styles/global.css";
-import "./index.css";
 
 const { Content } = Layout;
 
 function App() {
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
-  if (pathname === "/login" && !pageWithoutNavigation)
-    setPageWithoutNavigation(true);
-  if (pathname !== "/login" && pageWithoutNavigation)
-    setPageWithoutNavigation(false);
+  console.log(pathname);
+  if (pathname === "/login" && !pageWithoutNavigation) setPageWithoutNavigation(true);
+  if (pathname !== "/login" && pageWithoutNavigation) setPageWithoutNavigation(false);
+
+  if (pageWithoutNavigation)
+    return (
+      <Layout className="site-layout" style={{ minHeight: "100vh" }}>
+        <Content className="site-layout-background" style={{ padding: 8 }}>
+          <PageContainer />
+        </Content>
+        <AppFooter />
+      </Layout>
+    );
 
   return (
     <Layout>
       <NavBar />
-      <Layout
-        className="site-layout"
-        style={{ marginLeft: 220, minHeight: "100vh" }}
-      >
+      <Layout className="site-layout" style={{ marginLeft: 220, minHeight: "100vh" }}>
         <AppBar pageName={RouteToPageName("")} />
         <Content
           className="site-layout-background"
