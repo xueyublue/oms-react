@@ -1,0 +1,8 @@
+{
+    "/wse/restapi/oms/instance/*": "/$1",
+    "/wse/restapi/oms/performance/*": "/$1",
+    "/wse/restapi/oms/space/*": "/$1",
+    "/wse/restapi/oms/user/*": "/$1",
+    "/wse/restapi/oms/*": "/$1"
+  }
+  
