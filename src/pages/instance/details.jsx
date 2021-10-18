@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message } from "antd";
+import axios from "axios";
+import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 
 const columns = [
@@ -16,15 +18,22 @@ const columns = [
 ];
 
 const InstanceDetails = () => {
+  const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/instance/details`);
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/instance/details`);
+        setData(response.data);
+        setIsLoading(false);
+        setIsError(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+        if (!isError) setIsError(true);
+      }
     }
     setTimeout(() => {
       fetchData();
@@ -32,6 +41,7 @@ const InstanceDetails = () => {
   }, []);
 
   if (isLoading) return <Loading />;
+  if (isError) return <ApiCallFailed />;
 
   message.info(`${data.length} records found.`);
 
