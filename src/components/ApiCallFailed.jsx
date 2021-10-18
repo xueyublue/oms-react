@@ -1,5 +1,8 @@
 import { Result, Button } from "antd";
 
+//-------------------------------------------------------------
+// COMPONENT START
+//-------------------------------------------------------------
 const ApiCallFailed = () => {
   return (
     <Result

@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button, Input, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { ROUTE_DASHBORAD } from "./../util/constants";
 
 import styles from "./login.module.css";
 import loginlogo from "../logo-login.png";
@@ -14,9 +15,9 @@ const Login = () => {
 
   const onFinish = (values) => {
     if (values.username === "oms" && values.password === "oms") {
-      localStorage.setItem("oms-userid", "oms");
-      localStorage.setItem("oms-password", "oms");
-      history.push("/dashboard");
+      localStorage.setItem("oms-userid", values.username);
+      localStorage.setItem("oms-password", values.password);
+      history.push(ROUTE_DASHBORAD);
     }
   };
 

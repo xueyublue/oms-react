@@ -8,6 +8,7 @@ import AppBar from "./components/AppBar";
 import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
 import RouteContainer from "./components/RouteContainer";
+import { ROUTE_LOGIN } from "./util/constants";
 
 const { Content } = Layout;
 
@@ -22,17 +23,19 @@ function App() {
 
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
-  if (pathname === "/login" && !pageWithoutNavigation) setPageWithoutNavigation(true);
-  if (pathname !== "/login" && pageWithoutNavigation) setPageWithoutNavigation(false);
+  if (pathname === ROUTE_LOGIN && !pageWithoutNavigation) setPageWithoutNavigation(true);
+  if (pathname !== ROUTE_LOGIN && pageWithoutNavigation) setPageWithoutNavigation(false);
 
-  if (pathname !== "/login") {
+  // validate User ID and Password for non-login pages
+  if (pathname !== ROUTE_LOGIN) {
     if (!userId || !password) {
       localStorage.removeItem("oms-userid");
       localStorage.removeItem("oms-password");
-      history.push("/login");
+      history.push(ROUTE_LOGIN);
     }
   }
 
+  // no navigation bars for login pages
   if (pageWithoutNavigation)
     return (
       <Layout className="site-layout" style={{ minHeight: "100vh" }}>

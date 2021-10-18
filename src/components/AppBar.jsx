@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Layout, Row, Col, Button, Dropdown, Menu, Modal, Badge, Alert } from "antd";
 import { UserOutlined, BellOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { FcBusinessman, FcSettings } from "react-icons/fc";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { useHistory } from "react-router-dom";
-
 import * as Constants from "../util/constants";
 
 const { Header } = Layout;
 
+//-------------------------------------------------------------
+// COMPONENT START
+//-------------------------------------------------------------
 const AppBar = ({ pageName }) => {
   const [logoutModalVisiable, setLogoutModalVisiable] = useState(false);
   const history = useHistory();

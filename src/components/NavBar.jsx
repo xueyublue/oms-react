@@ -14,6 +14,9 @@ import logodark from "../logo-dark.png";
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
+//-------------------------------------------------------------
+// COMPONENT START
+//-------------------------------------------------------------
 const NavBar = () => {
   const [selectedKeys, setSelectedKeys] = useState("dashboard");
   const [openKeys, setOpenKeys] = useState(null);
