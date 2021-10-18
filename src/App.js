@@ -14,7 +14,6 @@ const { Content } = Layout;
 function App() {
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
-  console.log(pathname);
   if (pathname === "/login" && !pageWithoutNavigation) setPageWithoutNavigation(true);
   if (pathname !== "/login" && pageWithoutNavigation) setPageWithoutNavigation(false);
 
@@ -32,7 +31,7 @@ function App() {
     <Layout>
       <NavBar />
       <Layout className="site-layout" style={{ marginLeft: 220, minHeight: "100vh" }}>
-        <AppBar pageName={RouteToPageName("")} />
+        <AppBar pageName={RouteToPageName(pathname)} />
         <Content
           className="site-layout-background"
           style={{
