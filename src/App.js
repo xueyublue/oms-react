@@ -24,6 +24,8 @@ function App() {
 
   if (pathname !== "/login") {
     if (!userId || !password) {
+      localStorage.removeItem("oms-userid");
+      localStorage.removeItem("oms-password");
       history.push("/login");
     }
   }

@@ -76,6 +76,8 @@ const AppBar = ({ pageName }) => {
         visible={logoutModalVisiable}
         onOk={() => {
           setLogoutModalVisiable(false);
+          localStorage.removeItem("oms-userid");
+          localStorage.removeItem("oms-password");
           history.push(Constants.ROUTE_LOGIN);
         }}
         onCancel={() => setLogoutModalVisiable(false)}
