@@ -10,7 +10,11 @@ const columns = [
     key: "id",
     width: 60,
     align: "center",
-    render: (text) => <a style={{ color: "#1890FF" }}>{text}</a>,
+    render: (text) => (
+      <a style={{ color: "#1890FF" }} href="/">
+        {text}
+      </a>
+    ),
     sorter: (a, b) => a.id - b.id,
   },
   {

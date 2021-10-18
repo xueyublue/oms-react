@@ -7,7 +7,6 @@ import styles from "./login.css";
 import loginlogo from "../logo-login.png";
 
 const Login = () => {
-  const [form] = Form.useForm();
   const history = useHistory();
 
   const onFinish = (values) => {
@@ -16,7 +15,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginbox}>
-      <img src={loginlogo} className={styles.loginlogo}></img>
+      <img src={loginlogo} alt="logo" className={styles.loginlogo}></img>
       <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
         <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" size="large" />
@@ -33,7 +32,7 @@ const Login = () => {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <a className={styles.loginformforgot} href="">
+          <a className={styles.loginformforgot} href="/">
             Forgot password
           </a>
         </Form.Item>
