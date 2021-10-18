@@ -1,20 +1,6 @@
 import React, { useState } from "react";
-import {
-  Layout,
-  Row,
-  Col,
-  Button,
-  Dropdown,
-  Menu,
-  Modal,
-  Badge,
-  Alert,
-} from "antd";
-import {
-  UserOutlined,
-  BellOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import { Layout, Row, Col, Button, Dropdown, Menu, Modal, Badge, Alert } from "antd";
+import { UserOutlined, BellOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { FcBusinessman, FcSettings } from "react-icons/fc";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
@@ -43,11 +29,7 @@ const AppBar = ({ pageName }) => {
         />
       </Menu.Item>
       <Menu.Item key="2">
-        <Alert
-          message="Host CPU usage more than 80%. Please take necessary actions."
-          type="warning"
-          showIcon
-        />
+        <Alert message="Host CPU usage more than 80%. Please take necessary actions." type="warning" showIcon />
       </Menu.Item>
       <Menu.Item key="3">
         <Alert message="The setting was made." type="success" showIcon />

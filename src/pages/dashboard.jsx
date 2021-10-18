@@ -1,9 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { List, Card, Tag } from "antd";
-import {
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
-} from "@ant-design/icons";
+import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Constants from "../util/constants";
 
 const Dashboard = () => {
@@ -82,11 +79,7 @@ const Dashboard = () => {
     {
       title: "Alerts",
       content: (
-        <Tag
-          icon={<ExclamationCircleOutlined />}
-          color="error"
-          style={tagStyle}
-        >
+        <Tag icon={<ExclamationCircleOutlined />} color="error" style={tagStyle}>
           4 Alerts
         </Tag>
       ),
@@ -107,11 +100,7 @@ const Dashboard = () => {
       dataSource={data}
       renderItem={(item) => (
         <List.Item>
-          <Card
-            title={item.title}
-            onClick={item.handleClick}
-            style={{ textAlign: "center" }}
-          >
+          <Card title={item.title} onClick={item.handleClick} style={{ textAlign: "center" }}>
             {item.content}
           </Card>
         </List.Item>

@@ -9,8 +9,6 @@ import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
 import PageContainer from "./components/PageContainer";
 
-import "./styles/global.css";
-
 const { Content } = Layout;
 
 function App() {
