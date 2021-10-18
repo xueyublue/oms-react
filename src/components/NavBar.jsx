@@ -13,7 +13,7 @@ import {
 } from "react-icons/fc";
 
 import * as Constants from "../util/constants";
-import { Route, Link, Switch as ReactSwitch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logolight from "../logo-light.png";
 import logodark from "../logo-dark.png";
 
@@ -87,18 +87,18 @@ const NavBar = () => {
             <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_SGA}>
-            <Route href={Constants.ROUTE_INSTANCE_SGA}>SGA</Route>
+            <Link to={Constants.ROUTE_INSTANCE_SGA}>SGA</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_BANNERS}>
-            <Route href={Constants.ROUTE_INSTANCE_BANNERS}>Banners</Route>
+            <Link to={Constants.ROUTE_INSTANCE_BANNERS}>Banners</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
-            <Route href={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
+            <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
               Resource Limit
-            </Route>
+            </Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_PARAMETERS}>
-            <Route href={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Route>
+            <Link to={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Link>
           </Menu.Item>
         </SubMenu>
 
@@ -108,46 +108,44 @@ const NavBar = () => {
           title="Performance"
         >
           <Menu.Item key={Constants.ROUTE_PERFORMANCE_SESSION}>
-            <Route href={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Route>
+            <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
           </Menu.Item>
         </SubMenu>
 
         <SubMenu key="/space" icon={<FcDatabase size={20} />} title="Space">
           <Menu.Item key={Constants.ROUTE_SPACE_TABLESPACE}>
-            <Route href={Constants.ROUTE_SPACE_TABLESPACE}>Tablespace</Route>
+            <Link to={Constants.ROUTE_SPACE_TABLESPACE}>Tablespace</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_SPACE_TOP_TABLES}>
-            <Route href={Constants.ROUTE_SPACE_TOP_TABLES}>Top Tables</Route>
+            <Link to={Constants.ROUTE_SPACE_TOP_TABLES}>Top Tables</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_SPACE_TOP_INDEXES}>
-            <Route href={Constants.ROUTE_SPACE_TOP_INDEXES}>Top Indexes</Route>
+            <Link to={Constants.ROUTE_SPACE_TOP_INDEXES}>Top Indexes</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_SPACE_TABLE_RECORDS}>
-            <Route href={Constants.ROUTE_SPACE_TABLE_RECORDS}>
-              Table Records
-            </Route>
+            <Link to={Constants.ROUTE_SPACE_TABLE_RECORDS}>Table Records</Link>
           </Menu.Item>
         </SubMenu>
 
         <SubMenu key="/user" icon={<FcBusinessman size={20} />} title="User">
           <Menu.Item key={Constants.ROUTE_USER_PROFILES}>
-            <Route href={Constants.ROUTE_USER_PROFILES}>Profiles</Route>
+            <Link to={Constants.ROUTE_USER_PROFILES}>Profiles</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_ROLES}>
-            <Route href={Constants.ROUTE_USER_ROLES}>Roles</Route>
+            <Link to={Constants.ROUTE_USER_ROLES}>Roles</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
-            <Route href={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
+            <Link to={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
               Role Privileges
-            </Route>
+            </Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_USERS}>
-            <Route href={Constants.ROUTE_USER_USERS}>Users</Route>
+            <Link to={Constants.ROUTE_USER_USERS}>Users</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_USER_PRIVILEGES}>
-            <Route href={Constants.ROUTE_USER_USER_PRIVILEGES}>
+            <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>
               User Privileges
-            </Route>
+            </Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
