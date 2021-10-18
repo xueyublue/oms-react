@@ -62,7 +62,7 @@ const TableRecords = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/instance/tablerecords`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/instance/tablerecords`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

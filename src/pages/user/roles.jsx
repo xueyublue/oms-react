@@ -35,7 +35,7 @@ const Roles = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/user/roles`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/user/roles`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

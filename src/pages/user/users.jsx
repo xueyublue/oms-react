@@ -93,7 +93,7 @@ const Users = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/user/users`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/user/users`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

@@ -44,7 +44,7 @@ const PageContainer = () => {
       <Route exact path={Constants.ROUTE_USER_ROLES} component={Roles} />
       <Route exact path={Constants.ROUTE_USER_ROLE_PRIVILEGES} component={RolePrivileges} />
       <Route exact path={Constants.ROUTE_USER_USERS} component={Users} />
-      <Route exact path={Constants.ROUTE_USER_PROFILES} component={UserPrivileges} />
+      <Route exact path={Constants.ROUTE_USER_USER_PRIVILEGES} component={UserPrivileges} />
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
       <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />

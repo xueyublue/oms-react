@@ -48,7 +48,7 @@ const TopTables = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/space/toptables`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/space/toptables`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

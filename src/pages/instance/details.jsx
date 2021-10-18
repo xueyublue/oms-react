@@ -21,9 +21,7 @@ const InstanceDetails = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        `http://localhost:8099/wse/restapi/oms/instance/details`
-      );
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/instance/details`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

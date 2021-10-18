@@ -51,7 +51,7 @@ const Profiles = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/user/profiles`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/user/profiles`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

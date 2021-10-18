@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Form, Progress, message, Tag } from "antd";
+import { Table, Progress, message, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
@@ -109,7 +109,7 @@ const Tablespace = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ROOT_URL}/space/tablespace`);
+      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/space/tablespace`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);
