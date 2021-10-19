@@ -11,7 +11,7 @@ import Sessions from "../pages/performance/session";
 import Tablespace from "../pages/space/tablespace";
 import TopTables from "../pages/space/top-tables";
 import TopIndexes from "../pages/space/top-indexes";
-import TableRecords from "../pages/space/tablerecords";
+import TableRecords from "../pages/space/table-records";
 import Profiles from "../pages/user/profiles";
 import Roles from "../pages/user/roles";
 import RolePrivileges from "../pages/user/role-privileges";
