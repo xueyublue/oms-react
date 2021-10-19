@@ -30,7 +30,7 @@ const RouteContainer = () => {
     <Switch>
       <Route exact path="/" component={Dashboard} />
       <Route exact path="/home" component={Dashboard} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path={Constants.ROUTE_DASHBORAD} component={Dashboard} />
       <Route exact path={Constants.ROUTE_INSTANCE_DETAILS} component={InstanceDetails} />
       <Route exact path={Constants.ROUTE_INSTANCE_SGA} component={SgaConfigurations} />
       <Route exact path={Constants.ROUTE_INSTANCE_BANNERS} component={Banners} />
