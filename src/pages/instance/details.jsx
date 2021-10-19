@@ -22,31 +22,28 @@ const columns = [
 // PAGE START
 //-------------------------------------------------------------
 const InstanceDetails = () => {
-  const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         const response = await axios.get(`${baseUrl}/instance/details`);
         setData(response.data);
         setIsLoading(false);
-        setIsError(false);
       } catch (error) {
         setData(null);
         setIsLoading(false);
-        if (!isError) setIsError(true);
       }
-    }
+    };
     setTimeout(() => {
       fetchData();
     }, 1000);
-  }, [baseUrl, isError]);
+  }, [baseUrl]);
 
   if (isLoading) return <Loading />;
-  if (isError) return <ApiCallFailed />;
+  if (!data) return <ApiCallFailed />;
 
   message.info(`${data.length} records found.`);
 
