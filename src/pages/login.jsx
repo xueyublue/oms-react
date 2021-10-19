@@ -14,9 +14,9 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = (values) => {
-    if (values.username === "oms" && values.password === "oms") {
-      localStorage.setItem("oms-userid", values.username);
-      localStorage.setItem("oms-password", values.password);
+    if (values.userid === "oms" && values.password === "oms") {
+      localStorage.setItem("oms-userid", values.userid);
+      localStorage.setItem("oms-username", "DMS IS Team DEV");
       history.push(ROUTE_DASHBORAD);
     }
   };
@@ -25,8 +25,8 @@ const Login = () => {
     <div className={styles.loginbox}>
       <img src={loginlogo} alt="logo" className={styles.loginlogo}></img>
       <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
-        <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" size="large" />
+        <Form.Item name="userid" rules={[{ required: true, message: "Please input your User ID!" }]}>
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="User ID" size="large" />
         </Form.Item>
         <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
           <Input

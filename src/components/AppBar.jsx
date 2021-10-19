@@ -68,7 +68,7 @@ const AppBar = ({ pageName }) => {
           </Dropdown>
           <Dropdown overlay={userMenu}>
             <Button type="text" icon={<UserOutlined />}>
-              DMS IS Team DEV
+              {localStorage.getItem("oms-username")}
             </Button>
           </Dropdown>
         </Col>
@@ -79,7 +79,7 @@ const AppBar = ({ pageName }) => {
         onOk={() => {
           setLogoutModalVisiable(false);
           localStorage.removeItem("oms-userid");
-          localStorage.removeItem("oms-password");
+          localStorage.removeItem("oms-username");
           history.push(Constants.ROUTE_LOGIN);
         }}
         onCancel={() => setLogoutModalVisiable(false)}
