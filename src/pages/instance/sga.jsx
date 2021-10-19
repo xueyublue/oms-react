@@ -82,6 +82,7 @@ const SgaConfigurations = () => {
           bordered
           size="small"
           pagination={{ pageSize: 15, position: ["none"] }}
+          rowKey="name"
         />
       </div>
       <div style={{ height: "500" }}>

@@ -88,6 +88,7 @@ const ResourceLimit = () => {
           },
         }}
         scroll={{ x: 1300 }}
+        rowKey="resourceName"
       />
     </div>
   );

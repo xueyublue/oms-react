@@ -41,6 +41,7 @@ const Banners = () => {
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
+        rowKey="banner"
       />
     </div>
   );

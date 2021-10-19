@@ -120,6 +120,7 @@ const Parameters = () => {
           },
         }}
         scroll={{ x: 1700, y: 700 }}
+        rowKey="name"
       />
     </div>
   );
