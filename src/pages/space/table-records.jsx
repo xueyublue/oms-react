@@ -75,7 +75,7 @@ const TableRecords = () => {
     setTimeout(() => {
       fetchData();
     }, 1000);
-  }, []);
+  }, [baseUrl]);
 
   if (isLoading) return <Loading />;
 

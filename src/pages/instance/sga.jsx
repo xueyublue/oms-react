@@ -66,7 +66,7 @@ const SgaConfigurations = () => {
     setTimeout(() => {
       fetchData();
     }, 1000);
-  }, []);
+  }, [baseUrl, isError]);
 
   if (isLoading) return <Loading />;
   if (isError) return <ApiCallFailed />;

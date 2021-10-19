@@ -29,7 +29,7 @@ const Banners = () => {
     setTimeout(() => {
       fetchData();
     }, 1000);
-  }, []);
+  }, [baseUrl]);
 
   if (isLoading) return <Loading />;
 
