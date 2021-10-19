@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, message, Tag } from "antd";
 import Loading from "../../components/Loading";
+import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
   {
@@ -35,10 +36,11 @@ const Roles = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/user/roles`);
+      const response = await fetch(`${baseUrl}/user/roles`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

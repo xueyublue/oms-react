@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, message, Tag } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import Loading from "../../components/Loading";
+import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
   {
@@ -120,10 +121,11 @@ const Sessions = () => {
   const userNameList = getDistinctUserNames(data);
   const [status, setStatus] = useState("All");
   const [userName, setUserName] = useState("All");
+  const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/sessions`);
+      const response = await fetch(`${baseUrl}/sessions`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, message, Tag } from "antd";
 import Loading from "../../components/Loading";
+import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
   {
@@ -45,10 +46,11 @@ const UserPrivileges = () => {
   const [pageSize, setPageSize] = useState(15);
   const userNameList = getDistinctUserNames(data);
   const [userName, setUserName] = useState("All");
+  const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/user/userprivileges`);
+      const response = await fetch(`${baseUrl}/user/userprivileges`);
       const result = await response.json();
       setData(result);
       setIsLoading(false);
