@@ -23,6 +23,7 @@ export const ROUTE_USER_USER_PRIVILEGES = "/user/userprivileges";
 export const ROUTE_PROFILE = "/profile";
 export const ROUTE_SETTINGS = "/settings";
 export const ROUTE_LOGIN = "/login";
+export const ROUTE_NOT_FOUND = "/not-found";
 
 export const RouteToPageName = (route) => {
   if (!route) return "";

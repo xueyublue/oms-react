@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import * as Constants from "../util/constants";
 import Dashboard from "../pages/dashboard";
 import InstanceDetails from "../pages/instance/details";
@@ -20,6 +20,7 @@ import UserPrivileges from "../pages/user/user-privileges";
 import Login from "../pages/login";
 import Settings from "../pages/settings";
 import Profile from "../pages/profile";
+import NotFound from "./../pages/not-found";
 
 //-------------------------------------------------------------
 // COMPONENT START
@@ -48,6 +49,8 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
       <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />
+      <Route exact path={Constants.ROUTE_NOT_FOUND} component={NotFound} />
+      <Redirect to={Constants.ROUTE_NOT_FOUND} />
     </Switch>
   );
 };
