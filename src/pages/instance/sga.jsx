@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, message, Progress } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
+import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
   {
@@ -47,11 +48,12 @@ const SgaConfigurations = () => {
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/instance/sgaconfig`);
+        const response = await axios.get(`${baseUrl}/instance/sgaconfig`);
         setData(response.data);
         setIsLoading(false);
         setIsError(false);

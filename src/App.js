@@ -9,6 +9,7 @@ import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
 import RouteContainer from "./components/RouteContainer";
 import { ROUTE_LOGIN } from "./util/constants";
+import { BackendAPIProvider } from "./context/BackendAPIContext";
 
 const { Content } = Layout;
 
@@ -38,32 +39,36 @@ function App() {
   // no navigation bars for login pages
   if (pageWithoutNavigation)
     return (
-      <Layout className="site-layout" style={{ minHeight: "100vh" }}>
-        <Content className="site-layout-background" style={{ padding: 8 }}>
-          <RouteContainer />
-        </Content>
-        <AppFooter />
-      </Layout>
+      <BackendAPIProvider>
+        <Layout className="site-layout" style={{ minHeight: "100vh" }}>
+          <Content className="site-layout-background" style={{ padding: 8 }}>
+            <RouteContainer />
+          </Content>
+          <AppFooter />
+        </Layout>
+      </BackendAPIProvider>
     );
 
   return (
-    <Layout>
-      <NavBar />
-      <Layout className="site-layout" style={{ marginLeft: 220, minHeight: "100vh" }}>
-        <AppBar pageName={RouteToPageName(pathname)} />
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: "8px 8px",
-            padding: 8,
-            minHeight: 650,
-          }}
-        >
-          <RouteContainer />
-        </Content>
-        <AppFooter />
+    <BackendAPIProvider>
+      <Layout>
+        <NavBar />
+        <Layout className="site-layout" style={{ marginLeft: 220, minHeight: "100vh" }}>
+          <AppBar pageName={RouteToPageName(pathname)} />
+          <Content
+            className="site-layout-background"
+            style={{
+              margin: "8px 8px",
+              padding: 8,
+              minHeight: 650,
+            }}
+          >
+            <RouteContainer />
+          </Content>
+          <AppFooter />
+        </Layout>
       </Layout>
-    </Layout>
+    </BackendAPIProvider>
   );
 }
 

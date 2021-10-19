@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table, message } from "antd";
 import axios from "axios";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
+import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
   {
@@ -24,11 +25,12 @@ const InstanceDetails = () => {
   const [isError, setIsError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/instance/details`);
+        const response = await axios.get(`${baseUrl}/instance/details`);
         setData(response.data);
         setIsLoading(false);
         setIsError(false);

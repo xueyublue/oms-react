@@ -20,7 +20,7 @@ import UserPrivileges from "../pages/user/user-privileges";
 import Login from "../pages/login";
 import Settings from "../pages/settings";
 import Profile from "../pages/profile";
-import NotFound from "./../pages/not-found";
+import NotFound from "../pages/not-found";
 
 //-------------------------------------------------------------
 // COMPONENT START
