@@ -3,7 +3,6 @@ import { List, Card, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Constants from "../util/constants";
 
-
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
@@ -49,6 +48,14 @@ const Dashboard = () => {
       },
     },
     {
+      title: "Alerts",
+      content: (
+        <Tag icon={<ExclamationCircleOutlined />} color="error" style={tagStyle}>
+          4 Alerts
+        </Tag>
+      ),
+    },
+    {
       title: "Tablespace Occupancy",
       content: (
         <div>
@@ -80,14 +87,6 @@ const Dashboard = () => {
         history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
       },
     },
-    {
-      title: "Alerts",
-      content: (
-        <Tag icon={<ExclamationCircleOutlined />} color="error" style={tagStyle}>
-          4 Alerts
-        </Tag>
-      ),
-    },
   ];
 
   return (
@@ -95,11 +94,11 @@ const Dashboard = () => {
       grid={{
         gutter: 16,
         xs: 1,
-        sm: 2,
+        sm: 1,
         md: 2,
-        lg: 4,
-        xl: 4,
-        xxl: 6,
+        lg: 3,
+        xl: 3,
+        xxl: 4,
       }}
       dataSource={data}
       renderItem={(item) => (
