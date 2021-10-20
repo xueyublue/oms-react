@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, message, Tag } from "antd";
+import { Table, Progress, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
+import ApiCallFailed from "../../components/ApiCallFailed";
 
 const columns = [
   {
@@ -113,20 +116,25 @@ const Tablespace = () => {
   const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`${baseUrl}/space/tablespace`);
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
-    }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/space/tablespace`);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+      }
+    };
     setTimeout(() => {
       fetchData();
     }, 1000);
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
+  if (!data) return <ApiCallFailed />;
 
-  message.info(`${data.length} records found.`);
+  toast.info(`${data.length} records found.`);
 
   return (
     <div>
@@ -137,6 +145,7 @@ const Tablespace = () => {
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
         scroll={{ x: 1300 }}
+        rowKey="name"
       />
     </div>
   );

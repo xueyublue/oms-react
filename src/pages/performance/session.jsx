@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, message, Tag } from "antd";
+import { Table, Form, Button, Select, Tag } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
+import axios from "axios";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
+import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
 const columns = [
@@ -124,23 +127,29 @@ const Sessions = () => {
   const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`${baseUrl}/sessions`);
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
-    }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/sessions`);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+      }
+    };
     setTimeout(() => {
       fetchData();
     }, 1000);
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
+  if (!data) return <ApiCallFailed />;
+
+  toast.info(`${data.length} records found.`);
 
   const filteredData = data
     .filter((row) => (userName === "All" ? true : row.userName === userName))
     .filter((row) => (status === "All" ? true : row.status === status));
-  message.info(`${data.length} records found.`);
 
   return (
     <div>
@@ -203,6 +212,7 @@ const Sessions = () => {
           },
         }}
         scroll={{ x: 1300 }}
+        rowKey="id"
       />
     </div>
   );
