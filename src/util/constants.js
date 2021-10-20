@@ -19,6 +19,8 @@ export const ROUTE_USER_ROLES = "/user/roles";
 export const ROUTE_USER_ROLE_PRIVILEGES = "/user/roleprivileges";
 export const ROUTE_USER_USERS = "/user/users";
 export const ROUTE_USER_USER_PRIVILEGES = "/user/userprivileges";
+// admin
+export const ROUTE_ADMIN_SQL_WORKBENCH = "/admin/sqlwoekbench";
 // others
 export const ROUTE_PROFILE = "/profile";
 export const ROUTE_SETTINGS = "/settings";

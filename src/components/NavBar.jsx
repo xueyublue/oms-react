@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Switch } from "antd";
 import { MdDarkMode } from "react-icons/md";
-import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase } from "react-icons/fc";
+import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase, FcServices } from "react-icons/fc";
 
 import * as Constants from "../util/constants";
 import { Link } from "react-router-dom";
@@ -125,6 +125,11 @@ const NavBar = () => {
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_USER_USER_PRIVILEGES}>
             <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>User Privileges</Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="/admin" icon={<FcServices size={20} />} title="Admin">
+          <Menu.Item key={Constants.ROUTE_ADMIN_SQL_WORKBENCH}>
+            <Link to={Constants.ROUTE_ADMIN_SQL_WORKBENCH}>SQL Workbench</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
