@@ -25,6 +25,7 @@ export const ROUTE_ADMIN_SQL_WORKBENCH = "/admin/sql-workbench";
 export const ROUTE_PROFILE = "/profile";
 export const ROUTE_SETTINGS = "/settings";
 export const ROUTE_LOGIN = "/login";
+export const ROUTE_ABOUT = "/about";
 export const ROUTE_NOT_FOUND = "/not-found";
 
 export const RouteToPageName = (route) => {
@@ -48,5 +49,6 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_ADMIN_SQL_WORKBENCH) return "SQL Workbench";
   else if (route === ROUTE_PROFILE) return "Profile";
   else if (route === ROUTE_SETTINGS) return "Settings";
+  else if (route === ROUTE_ABOUT) return "About";
   return "";
 };

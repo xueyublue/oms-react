@@ -22,6 +22,7 @@ import Settings from "../pages/settings";
 import Profile from "../pages/profile";
 import NotFound from "../pages/not-found";
 import SQLWorkbench from "../pages/admin/sql-workbench";
+import About from "./../pages/about";
 
 //-------------------------------------------------------------
 // COMPONENT START
@@ -51,6 +52,7 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
       <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />
+      <Route exact path={Constants.ROUTE_ABOUT} component={About} />
       <Route exact path={Constants.ROUTE_NOT_FOUND} component={NotFound} />
       <Redirect to={Constants.ROUTE_NOT_FOUND} />
     </Switch>
