@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, message, Progress } from "antd";
+import { Table, Progress } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -71,7 +72,7 @@ const SgaConfigurations = () => {
   if (isLoading) return <Loading />;
   if (isError) return <ApiCallFailed />;
 
-  message.info(`${data.table.length} records found.`);
+  toast.info(`${data.length} records found.`);
 
   return (
     <div>

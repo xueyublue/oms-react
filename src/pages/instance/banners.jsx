@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table } from "antd";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
@@ -32,6 +33,8 @@ const Banners = () => {
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
+
+  toast.info(`${data.length} records found.`);
 
   return (
     <div>

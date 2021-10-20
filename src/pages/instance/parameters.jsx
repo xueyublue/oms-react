@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, message, Tag } from "antd";
+import { Table, Tag } from "antd";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
@@ -100,7 +101,7 @@ const Parameters = () => {
 
   if (isLoading) return <Loading />;
 
-  message.info(`${data.length} records found.`);
+  toast.info(`${data.length} records found.`);
 
   return (
     <div>

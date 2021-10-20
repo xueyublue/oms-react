@@ -10,6 +10,8 @@ import { RouteToPageName } from "./util/constants";
 import RouteContainer from "./components/RouteContainer";
 import { ROUTE_LOGIN } from "./util/constants";
 import { BackendAPIProvider } from "./context/BackendAPIContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Content } = Layout;
 
@@ -64,6 +66,7 @@ function App() {
             }}
           >
             <RouteContainer />
+            <ToastContainer position="top-center" hideProgressBar closeOnClick autoClose={3000} />
           </Content>
           <AppFooter />
         </Layout>

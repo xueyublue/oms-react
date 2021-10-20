@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, message } from "antd";
+import { Table } from "antd";
 import axios from "axios";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -45,7 +46,7 @@ const InstanceDetails = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
 
-  message.info(`${data.length} records found.`);
+  toast.info(`${data.length} records found.`);
 
   return (
     <div>
