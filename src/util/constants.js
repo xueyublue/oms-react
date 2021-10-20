@@ -4,23 +4,23 @@ export const ROUTE_DASHBORAD = "/dashboard";
 export const ROUTE_INSTANCE_DETAILS = "/instance/details";
 export const ROUTE_INSTANCE_SGA = "/instance/sga";
 export const ROUTE_INSTANCE_BANNERS = "/instance/banners";
-export const ROUTE_INSTANCE_RESOURCE_LIMIT = "/instance/resourcelimit";
+export const ROUTE_INSTANCE_RESOURCE_LIMIT = "/instance/resource-limit";
 export const ROUTE_INSTANCE_PARAMETERS = "/instance/parameters";
 // performance
 export const ROUTE_PERFORMANCE_SESSION = "/performance/session";
 // space
 export const ROUTE_SPACE_TABLESPACE = "/space/tablespace";
-export const ROUTE_SPACE_TOP_TABLES = "/space/toptables";
-export const ROUTE_SPACE_TOP_INDEXES = "/space/topindexes";
-export const ROUTE_SPACE_TABLE_RECORDS = "/space/tablerecords";
+export const ROUTE_SPACE_TOP_TABLES = "/space/top-tables";
+export const ROUTE_SPACE_TOP_INDEXES = "/space/top-indexes";
+export const ROUTE_SPACE_TABLE_RECORDS = "/space/table-records";
 // user
 export const ROUTE_USER_PROFILES = "/user/profiles";
 export const ROUTE_USER_ROLES = "/user/roles";
-export const ROUTE_USER_ROLE_PRIVILEGES = "/user/roleprivileges";
+export const ROUTE_USER_ROLE_PRIVILEGES = "/user/role-privileges";
 export const ROUTE_USER_USERS = "/user/users";
-export const ROUTE_USER_USER_PRIVILEGES = "/user/userprivileges";
+export const ROUTE_USER_USER_PRIVILEGES = "/user/user-privileges";
 // admin
-export const ROUTE_ADMIN_SQL_WORKBENCH = "/admin/sqlwoekbench";
+export const ROUTE_ADMIN_SQL_WORKBENCH = "/admin/sql-workbench";
 // others
 export const ROUTE_PROFILE = "/profile";
 export const ROUTE_SETTINGS = "/settings";
@@ -45,6 +45,7 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_USER_ROLE_PRIVILEGES) return "Role Privileges";
   else if (route === ROUTE_USER_USERS) return "Users";
   else if (route === ROUTE_USER_USER_PRIVILEGES) return "User Privileges";
+  else if (route === ROUTE_ADMIN_SQL_WORKBENCH) return "SQL Workbench";
   else if (route === ROUTE_PROFILE) return "Profile";
   else if (route === ROUTE_SETTINGS) return "Settings";
   return "";

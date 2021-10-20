@@ -11,7 +11,7 @@ const { Header } = Layout;
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-const AppBar = ({ pageName }) => {
+const AppBar = ({ icon, pageName }) => {
   const [logoutModalVisiable, setLogoutModalVisiable] = useState(false);
   const history = useHistory();
 
