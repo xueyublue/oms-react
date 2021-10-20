@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, message, Tag } from "antd";
+import { Table, Form, Button, Select, Tag } from "antd";
+import axios from "axios";
+import { toast } from "react-toastify";
+import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
@@ -49,21 +52,27 @@ const UserPrivileges = () => {
   const { baseUrl } = useContext(BackendAPIContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`${baseUrl}/user/userprivileges`);
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
-    }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/user/userprivileges`);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+      }
+    };
     setTimeout(() => {
       fetchData();
     }, 1000);
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
+  if (!data) return <ApiCallFailed />;
+
+  toast.info(`${data.length} records found.`);
 
   const filteredData = data.filter((row) => (userName === "All" ? true : row.userName === userName));
-  message.info(`${data.length} records found.`);
 
   return (
     <div>
@@ -110,6 +119,7 @@ const UserPrivileges = () => {
           },
         }}
         scroll={{ x: 1000 }}
+        rowKey="privilege"
       />
     </div>
   );
