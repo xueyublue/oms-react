@@ -7,8 +7,8 @@ import * as Constants from "../util/constants";
 // PAGE START
 //-------------------------------------------------------------
 const Dashboard = () => {
-  const tagStyle = { fontSize: 14, padding: 5, width: "100%" };
-  const tagStyle2 = { fontSize: 14, padding: 5, width: "46%" };
+  const tagStyle = { fontSize: 16, padding: 6, width: "100%" };
+  const tagStyle2 = { fontSize: 16, padding: 6, width: "46%" };
   const history = useHistory();
 
   const data = [
