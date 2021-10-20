@@ -9,6 +9,7 @@ import * as Constants from "../util/constants";
 const Dashboard = () => {
   const tagStyle = { fontSize: 16, padding: 6, width: "100%" };
   const tagStyle2 = { fontSize: 16, padding: 6, width: "46%" };
+  const tagStyle3 = { fontSize: 16, padding: 6, width: "30%" };
   const history = useHistory();
 
   const data = [
@@ -80,6 +81,41 @@ const Dashboard = () => {
           </Tag>
           <Tag color="error" style={tagStyle2}>
             36 High
+          </Tag>
+        </div>
+      ),
+      handleClick: () => {
+        history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
+      },
+    },
+    {
+      title: "Host Resource",
+      content: (
+        <div>
+          <Tag color="success" style={tagStyle2}>
+            CPU 16%
+          </Tag>
+          <Tag color="success" style={tagStyle2}>
+            RAM 76%
+          </Tag>
+        </div>
+      ),
+      handleClick: () => {
+        history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
+      },
+    },
+    {
+      title: "Host Storage",
+      content: (
+        <div>
+          <Tag color="success" style={tagStyle3}>
+            E: 46%
+          </Tag>
+          <Tag color="success" style={tagStyle3}>
+            F: 7%
+          </Tag>
+          <Tag color="success" style={tagStyle3}>
+            G: 12%
           </Tag>
         </div>
       ),
