@@ -119,7 +119,7 @@ const UserPrivileges = () => {
           },
         }}
         scroll={{ x: 1000 }}
-        rowKey="privilege"
+        rowKey={(item) => `${item.userName}${item.privilege}`}
       />
     </div>
   );

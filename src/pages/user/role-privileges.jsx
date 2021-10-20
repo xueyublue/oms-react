@@ -118,7 +118,7 @@ const RolePrivileges = () => {
           },
         }}
         scroll={{ x: 1000 }}
-        rowKey="privilege"
+        rowKey={(item) => `${item.role}${item.privilege}`}
       />
     </div>
   );
