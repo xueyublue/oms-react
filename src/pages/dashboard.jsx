@@ -7,9 +7,9 @@ import * as Constants from "../util/constants";
 // PAGE START
 //-------------------------------------------------------------
 const Dashboard = () => {
-  const tagStyle = { fontSize: 16, padding: 6, width: "100%" };
-  const tagStyle2 = { fontSize: 16, padding: 6, width: "46%" };
-  const tagStyle3 = { fontSize: 16, padding: 6, width: "30%" };
+  const tagStyle = { fontSize: 14, padding: 6, width: "100%" };
+  const tagStyle2 = { fontSize: 14, padding: 6, width: "46%" };
+  const tagStyle3 = { fontSize: 14, padding: 6, width: "30%" };
   const history = useHistory();
 
   const data = [
@@ -128,7 +128,7 @@ const Dashboard = () => {
   return (
     <List
       grid={{
-        gutter: 8,
+        gutter: 16,
         xs: 1,
         sm: 1,
         md: 2,
