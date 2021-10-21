@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Tag } from "antd";
+import { Table, Progress, Tag, Button, Form, Tooltip } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FcSynchronize, FcDownload, FcUndo } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -114,30 +116,60 @@ const Tablespace = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const [form] = Form.useForm();
+
+  const fetchData = async () => {
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/space/tablespace`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/space/tablespace`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
-    setTimeout(() => {
-      fetchData();
-    }, 1000);
+    fetchData();
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-
   toast.info(`${data.length} records found.`);
 
   return (
     <div>
+      <Form form={form} layout={"inline"} size={"middle"}>
+        <Form.Item />
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={22} />}
+                onClick={() => {
+                  setIsLoading(true);
+                  fetchData();
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcDownload size={22} />}
+                onClick={() => {
+                  console.log("Export button clicked");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
+      </Form>
       <Table
         columns={columns}
         dataSource={data}

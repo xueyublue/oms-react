@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
+import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FcSynchronize, FcDownload, FcUndo } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -126,27 +128,29 @@ const Sessions = () => {
   const [userName, setUserName] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/sessions`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
     setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, [baseUrl]);
+      axios
+        .get(`${baseUrl}/sessions`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-
   toast.info(`${data.length} records found.`);
-
   const filteredData = data
     .filter((row) => (userName === "All" ? true : row.userName === userName))
     .filter((row) => (status === "All" ? true : row.status === status));
@@ -185,15 +189,37 @@ const Sessions = () => {
         </Form.Item>
         <Form.Item>
           <Button
-            type="primary"
             onClick={() => {
               setStatus("All");
               setUserName("All");
             }}
           >
-            CLEAR
+            <FcUndo size={22} />
           </Button>
         </Form.Item>
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={22} />}
+                onClick={() => {
+                  setIsLoading(true);
+                  fetchData();
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcDownload size={22} />}
+                onClick={() => {
+                  console.log("Export button clicked/");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
       </Form>
       <Table
         style={{ marginTop: 10 }}

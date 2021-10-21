@@ -40,8 +40,8 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_INSTANCE_PARAMETERS} component={Parameters} />
       <Route exact path={Constants.ROUTE_PERFORMANCE_SESSION} component={Sessions} />
       <Route exact path={Constants.ROUTE_SPACE_TABLESPACE} component={Tablespace} />
-      <Route exact path={Constants.ROUTE_SPACE_TOP_TABLES} component={TopIndexes} />
-      <Route exact path={Constants.ROUTE_SPACE_TOP_INDEXES} component={TopTables} />
+      <Route exact path={Constants.ROUTE_SPACE_TOP_TABLES} component={TopTables} />
+      <Route exact path={Constants.ROUTE_SPACE_TOP_INDEXES} component={TopIndexes} />
       <Route exact path={Constants.ROUTE_SPACE_TABLE_RECORDS} component={TableRecords} />
       <Route exact path={Constants.ROUTE_USER_PROFILES} component={Profiles} />
       <Route exact path={Constants.ROUTE_USER_ROLES} component={Roles} />

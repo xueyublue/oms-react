@@ -3,7 +3,6 @@ import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FcUndo, FcSearch, FcSynchronize, FcDownload } from "react-icons/fc";
-
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -116,7 +115,6 @@ const TableRecords = () => {
         <Form.Item>
           <Tooltip placement="right" title="Clear">
             <Button
-              type="default"
               onClick={() => {
                 setOwner("All");
               }}
