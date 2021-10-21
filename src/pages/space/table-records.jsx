@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
+import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FcUndo, FcSearch, FcSynchronize, FcExport } from "react-icons/fc";
+
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -94,7 +96,7 @@ const TableRecords = () => {
   return (
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Owner" style={{ width: 300 }}>
+        <Form.Item label="Owner" style={{ width: 200 }}>
           <Select
             value={owner}
             onChange={(value) => {
@@ -109,15 +111,48 @@ const TableRecords = () => {
           </Select>
         </Form.Item>
         <Form.Item>
-          <Button
-            type="primary"
-            onClick={() => {
-              setOwner("All");
-            }}
-          >
-            CLEAR
-          </Button>
+          <Tooltip placement="right" title="Clear">
+            <Button
+              type="default"
+              onClick={() => {
+                setOwner("All");
+              }}
+            >
+              <FcUndo size={20} />
+            </Button>
+          </Tooltip>
         </Form.Item>
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Search">
+              <Button
+                type="text"
+                icon={<FcSearch size={20} />}
+                onClick={() => {
+                  console.log("Search button clicked/");
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={20} />}
+                onClick={() => {
+                  console.log("Refresh button clicked/");
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcExport size={20} />}
+                onClick={() => {
+                  console.log("Export button clicked/");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
       </Form>
       <Table
         style={{ marginTop: 10 }}
