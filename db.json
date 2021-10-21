@@ -2,7 +2,7 @@
   "dashboard": {
     "instanceStatus": "Online",
     "sga": 56,
-    "session": {
+    "sessions": {
       "active": 57,
       "inactive": 13
     },

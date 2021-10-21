@@ -64,10 +64,10 @@ const Dashboard = () => {
       content: (
         <div>
           <Tag color="success" style={tagStyle2}>
-            {data.session.active} Active
+            {data.sessions.active} Active
           </Tag>
           <Tag color="warning" style={tagStyle2}>
-            {data.session.inactive} Inactive
+            {data.sessions.inactive} Inactive
           </Tag>
         </div>
       ),
