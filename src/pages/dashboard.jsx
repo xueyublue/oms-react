@@ -19,7 +19,7 @@ const Dashboard = () => {
   const tagStyle2 = { fontSize: 14, padding: 6, width: "46%" };
   const tagStyle3 = { fontSize: 14, padding: 6, width: "30%" };
   const history = useHistory();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,7 +51,11 @@ const Dashboard = () => {
     {
       title: "SGA Occupancy",
       content: (
-        <Tag icon={<CheckCircleOutlined />} color="success" style={tagStyle}>
+        <Tag
+          icon={data.sga >= 80 ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
+          color={data.sga >= 80 ? "error" : "success"}
+          style={tagStyle}
+        >
           {data.sga}%
         </Tag>
       ),
@@ -66,7 +70,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.sessions.active} Active
           </Tag>
-          <Tag color="warning" style={tagStyle2}>
+          <Tag color={data.sessions.inactive == 0 ? "success" : "warning"} style={tagStyle2}>
             {data.sessions.inactive} Inactive
           </Tag>
         </div>
@@ -78,7 +82,11 @@ const Dashboard = () => {
     {
       title: "Alerts",
       content: (
-        <Tag icon={<ExclamationCircleOutlined />} color="error" style={tagStyle}>
+        <Tag
+          icon={data.alerts == 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+          color={data.alerts == 0 ? "success" : "error"}
+          style={tagStyle}
+        >
           {data.alerts} Alerts
         </Tag>
       ),
@@ -90,7 +98,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.tablespace.normal} Normal
           </Tag>
-          <Tag color="error" style={tagStyle2}>
+          <Tag color={data.tablespace.high == 0 ? "success" : "error"} style={tagStyle2}>
             {data.tablespace.high} High
           </Tag>
         </div>
@@ -106,7 +114,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.tableRecords.normal} Normal
           </Tag>
-          <Tag color="error" style={tagStyle2}>
+          <Tag color={data.tableRecords.high == 0 ? "success" : "error"} style={tagStyle2}>
             {data.tableRecords.high} High
           </Tag>
         </div>
@@ -119,10 +127,10 @@ const Dashboard = () => {
       title: "Host Resource",
       content: (
         <div>
-          <Tag color="success" style={tagStyle2}>
+          <Tag color={data.hostResource.cpu >= 80 ? "error" : "success"} style={tagStyle2}>
             CPU {data.hostResource.cpu}%
           </Tag>
-          <Tag color="success" style={tagStyle2}>
+          <Tag color={data.hostResource.ram >= 80 ? "error" : "success"} style={tagStyle2}>
             RAM {data.hostResource.ram}%
           </Tag>
         </div>
@@ -136,7 +144,7 @@ const Dashboard = () => {
       content: (
         <div>
           {data.hostStorage.map((item) => (
-            <Tag color="success" style={tagStyle3}>
+            <Tag color={item.occupancy >= 80 ? "error" : "success"} style={tagStyle3}>
               {item.driveLetter} {item.occupancy}%
             </Tag>
           ))}

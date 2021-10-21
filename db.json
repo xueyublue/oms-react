@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "instanceStatus": "Online",
-    "sga": 56,
+    "sga": 84,
     "sessions": {
       "active": 57,
       "inactive": 13
@@ -20,9 +20,9 @@
       "ram": 78
     },
     "hostStorage": [
-      { "driveLetter": "E:", "occupancy": 68 },
-      { "driveLetter": "F:", "occupancy": 14 },
-      { "driveLetter": "G:", "occupancy": 7 }
+      { "driveLetter": "C:", "occupancy": 86 },
+      { "driveLetter": "E:", "occupancy": 14 },
+      { "driveLetter": "F:", "occupancy": 7 }
     ]
   },
   "details": [
