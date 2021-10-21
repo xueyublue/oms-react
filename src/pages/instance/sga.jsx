@@ -3,7 +3,7 @@ import { Table, Progress, Form, Button, Tooltip } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize, FcExport } from "react-icons/fc";
+import { FcSynchronize, FcDownload } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -91,7 +91,7 @@ const SgaConfigurations = () => {
             <Tooltip placement="bottom" title="Export">
               <Button
                 type="text"
-                icon={<FcExport size={22} />}
+                icon={<FcDownload size={22} />}
                 onClick={() => {
                   console.log("Export button clicked/");
                 }}

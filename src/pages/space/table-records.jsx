@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcUndo, FcSearch, FcSynchronize, FcExport } from "react-icons/fc";
+import { FcUndo, FcSearch, FcSynchronize, FcDownload } from "react-icons/fc";
 
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
@@ -131,6 +131,7 @@ const TableRecords = () => {
                 onClick={() => {
                   console.log("Search button clicked/");
                 }}
+                hidden
               />
             </Tooltip>
             <Tooltip placement="bottom" title="Refresh">
@@ -148,7 +149,7 @@ const TableRecords = () => {
             <Tooltip placement="bottom" title="Export">
               <Button
                 type="text"
-                icon={<FcExport size={22} />}
+                icon={<FcDownload size={22} />}
                 onClick={() => {
                   console.log("Export button clicked/");
                 }}

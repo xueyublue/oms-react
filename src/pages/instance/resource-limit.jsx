@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form, Button, Tooltip } from "antd";
 import { toast } from "react-toastify";
-import { FcSynchronize, FcExport } from "react-icons/fc";
-
+import { FcSynchronize, FcDownload } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
@@ -92,7 +91,7 @@ const ResourceLimit = () => {
             <Tooltip placement="bottom" title="Export">
               <Button
                 type="text"
-                icon={<FcExport size={22} />}
+                icon={<FcDownload size={22} />}
                 onClick={() => {
                   console.log("Export button clicked/");
                 }}
