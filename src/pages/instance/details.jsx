@@ -6,6 +6,7 @@ import { FcSynchronize, FcDownload } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -29,21 +30,25 @@ const InstanceDetails = () => {
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/instance/details`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
     setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, [baseUrl]);
+      axios
+        .get(`${baseUrl}/instance/details`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); //! eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;

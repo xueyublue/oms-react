@@ -8,6 +8,7 @@ import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -69,22 +70,26 @@ const TableRecords = () => {
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+
   const fetchData = async () => {
-    try {
-      const response = await axios.get(`${baseUrl}/space/tablerecords`);
-      setData(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      setData(null);
-      setIsLoading(false);
-    }
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/space/tablerecords`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      fetchData();
-    }, 500);
-  }, [baseUrl]);
+    fetchData();
+  }, [baseUrl]); //! eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
@@ -140,9 +145,7 @@ const TableRecords = () => {
                 icon={<FcSynchronize size={22} />}
                 onClick={() => {
                   setIsLoading(true);
-                  setTimeout(() => {
-                    fetchData();
-                  }, 1000);
+                  fetchData();
                 }}
               />
             </Tooltip>

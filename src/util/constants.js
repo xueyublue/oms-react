@@ -27,7 +27,7 @@ export const ROUTE_SETTINGS = "/settings";
 export const ROUTE_LOGIN = "/login";
 export const ROUTE_ABOUT = "/about";
 export const ROUTE_NOT_FOUND = "/not-found";
-
+// route to page name
 export const RouteToPageName = (route) => {
   if (!route) return "";
   else if (route === ROUTE_DASHBORAD) return "Dashboard";
@@ -52,3 +52,6 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_ABOUT) return "About";
   return "";
 };
+
+//! API fetch wait time, this is used to display load indicator for better user experience.
+export const API_FETCH_WAIT = 500;
