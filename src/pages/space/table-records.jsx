@@ -118,7 +118,7 @@ const TableRecords = () => {
                 setOwner("All");
               }}
             >
-              <FcUndo size={20} />
+              <FcUndo size={22} />
             </Button>
           </Tooltip>
         </Form.Item>
@@ -127,7 +127,7 @@ const TableRecords = () => {
             <Tooltip placement="bottom" title="Search">
               <Button
                 type="text"
-                icon={<FcSearch size={20} />}
+                icon={<FcSearch size={22} />}
                 onClick={() => {
                   console.log("Search button clicked/");
                 }}
@@ -136,7 +136,7 @@ const TableRecords = () => {
             <Tooltip placement="bottom" title="Refresh">
               <Button
                 type="text"
-                icon={<FcSynchronize size={20} />}
+                icon={<FcSynchronize size={22} />}
                 onClick={() => {
                   console.log("Refresh button clicked/");
                 }}
@@ -145,7 +145,7 @@ const TableRecords = () => {
             <Tooltip placement="bottom" title="Export">
               <Button
                 type="text"
-                icon={<FcExport size={20} />}
+                icon={<FcExport size={22} />}
                 onClick={() => {
                   console.log("Export button clicked/");
                 }}

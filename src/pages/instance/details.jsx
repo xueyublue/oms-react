@@ -59,7 +59,7 @@ const InstanceDetails = () => {
             <Tooltip placement="bottom" title="Refresh">
               <Button
                 type="text"
-                icon={<FcSynchronize size={20} />}
+                icon={<FcSynchronize size={22} />}
                 onClick={() => {
                   console.log("Refresh button clicked/");
                 }}
@@ -68,7 +68,7 @@ const InstanceDetails = () => {
             <Tooltip placement="bottom" title="Export">
               <Button
                 type="text"
-                icon={<FcExport size={20} />}
+                icon={<FcExport size={22} />}
                 onClick={() => {
                   console.log("Export button clicked/");
                 }}
