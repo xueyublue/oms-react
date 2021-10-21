@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Tag } from "antd";
+import { Table, Tag, Form, Button, Tooltip } from "antd";
 import { toast } from "react-toastify";
+import { FcSynchronize, FcExport } from "react-icons/fc";
+
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 
@@ -54,6 +56,7 @@ const ResourceLimit = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     async function fetchData() {
@@ -73,6 +76,31 @@ const ResourceLimit = () => {
 
   return (
     <div>
+      <Form form={form} layout={"inline"} size={"middle"}>
+        <Form.Item />
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={22} />}
+                onClick={() => {
+                  console.log("Refresh button clicked/");
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcExport size={22} />}
+                onClick={() => {
+                  console.log("Export button clicked/");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
+      </Form>
       <Table
         columns={columns}
         dataSource={data}

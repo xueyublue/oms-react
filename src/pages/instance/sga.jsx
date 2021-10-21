@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress } from "antd";
+import { Table, Progress, Form, Button, Tooltip } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FcSynchronize, FcExport } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -49,6 +50,7 @@ const SgaConfigurations = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,6 +75,31 @@ const SgaConfigurations = () => {
 
   return (
     <div>
+      <Form form={form} layout={"inline"} size={"middle"}>
+        <Form.Item />
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={22} />}
+                onClick={() => {
+                  console.log("Refresh button clicked/");
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcExport size={22} />}
+                onClick={() => {
+                  console.log("Export button clicked/");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
+      </Form>
       <div style={{ width: 800 }}>
         <Table
           columns={columns}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
+import { Table, Form, Button, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSearch, FcSynchronize, FcExport } from "react-icons/fc";
+import { FcSynchronize, FcExport } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
