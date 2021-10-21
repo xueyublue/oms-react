@@ -48,11 +48,10 @@ const InstanceDetails = () => {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]); //! eslint-disable-line react-hooks/exhaustive-deps
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-
   toast.info(`${data.length} records found.`);
 
   return (
@@ -66,7 +65,8 @@ const InstanceDetails = () => {
                 type="text"
                 icon={<FcSynchronize size={22} />}
                 onClick={() => {
-                  console.log("Refresh button clicked/");
+                  setIsLoading(true);
+                  fetchData();
                 }}
               />
             </Tooltip>

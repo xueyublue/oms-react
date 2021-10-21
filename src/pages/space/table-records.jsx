@@ -89,13 +89,11 @@ const TableRecords = () => {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]); //! eslint-disable-line react-hooks/exhaustive-deps
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-
   toast.info(`${data.length} records found.`);
-
   const filteredData = data.filter((row) => (owner === "All" ? true : row.owner === owner));
 
   return (

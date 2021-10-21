@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form, Button, Tooltip } from "antd";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { FcSynchronize, FcDownload } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -57,20 +59,27 @@ const ResourceLimit = () => {
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`${baseUrl}/instance/resourcelimit`);
-      const result = await response.json();
-      setData(result);
-      setIsLoading(false);
-    }
+  const fetchData = async () => {
     setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, [baseUrl]);
+      axios
+        .get(`${baseUrl}/instance/resourcelimit`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
-
   toast.info(`${data.length} records found.`);
 
   return (
@@ -84,7 +93,8 @@ const ResourceLimit = () => {
                 type="text"
                 icon={<FcSynchronize size={22} />}
                 onClick={() => {
-                  console.log("Refresh button clicked/");
+                  setIsLoading(true);
+                  fetchData();
                 }}
               />
             </Tooltip>
