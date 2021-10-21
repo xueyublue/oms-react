@@ -70,7 +70,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.sessions.active} Active
           </Tag>
-          <Tag color={data.sessions.inactive == 0 ? "success" : "warning"} style={tagStyle2}>
+          <Tag color={data.sessions.inactive === 0 ? "success" : "warning"} style={tagStyle2}>
             {data.sessions.inactive} Inactive
           </Tag>
         </div>
@@ -83,8 +83,8 @@ const Dashboard = () => {
       title: "Alerts",
       content: (
         <Tag
-          icon={data.alerts == 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
-          color={data.alerts == 0 ? "success" : "error"}
+          icon={data.alerts === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+          color={data.alerts === 0 ? "success" : "error"}
           style={tagStyle}
         >
           {data.alerts} Alerts
@@ -98,7 +98,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.tablespace.normal} Normal
           </Tag>
-          <Tag color={data.tablespace.high == 0 ? "success" : "error"} style={tagStyle2}>
+          <Tag color={data.tablespace.high === 0 ? "success" : "error"} style={tagStyle2}>
             {data.tablespace.high} High
           </Tag>
         </div>
@@ -114,7 +114,7 @@ const Dashboard = () => {
           <Tag color="success" style={tagStyle2}>
             {data.tableRecords.normal} Normal
           </Tag>
-          <Tag color={data.tableRecords.high == 0 ? "success" : "error"} style={tagStyle2}>
+          <Tag color={data.tableRecords.high === 0 ? "success" : "error"} style={tagStyle2}>
             {data.tableRecords.high} High
           </Tag>
         </div>
