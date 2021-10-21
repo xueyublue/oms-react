@@ -69,21 +69,21 @@ const TableRecords = () => {
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/space/tablerecords`);
+      setData(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setData(null);
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/space/tablerecords`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
     setTimeout(() => {
       fetchData();
-    }, 1000);
+    }, 500);
   }, [baseUrl]);
 
   if (isLoading) return <Loading />;
@@ -138,7 +138,10 @@ const TableRecords = () => {
                 type="text"
                 icon={<FcSynchronize size={22} />}
                 onClick={() => {
-                  console.log("Refresh button clicked/");
+                  setIsLoading(true);
+                  setTimeout(() => {
+                    fetchData();
+                  }, 1000);
                 }}
               />
             </Tooltip>
