@@ -1,4 +1,30 @@
 {
+  "dashboard": {
+    "instanceStatus": "Online",
+    "sga": 56,
+    "session": {
+      "active": 57,
+      "inactive": 13
+    },
+    "alerts": 2,
+    "tablespace": {
+      "normal": 8,
+      "high": 2
+    },
+    "tableRecords": {
+      "normal": 1574,
+      "high": 36
+    },
+    "hostResource": {
+      "cpu": 18,
+      "ram": 78
+    },
+    "hostStorage": [
+      { "driveLetter": "E:", "occupancy": 68 },
+      { "driveLetter": "F:", "occupancy": 14 },
+      { "driveLetter": "G:", "occupancy": 7 }
+    ]
+  },
   "details": [
     {
       "key": "instanceName",

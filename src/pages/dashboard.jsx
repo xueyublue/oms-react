@@ -1,23 +1,50 @@
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { List, Card, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import axios from "axios";
+import Loading from "../components/Loading";
+import ApiCallFailed from "../components/ApiCallFailed";
+import { BackendAPIContext } from "../context/BackendAPIContext";
 import * as Constants from "../util/constants";
 
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
   const tagStyle = { fontSize: 14, padding: 6, width: "100%" };
   const tagStyle2 = { fontSize: 14, padding: 6, width: "46%" };
   const tagStyle3 = { fontSize: 14, padding: 6, width: "30%" };
   const history = useHistory();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/dashboard`);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setData(null);
+        setIsLoading(false);
+      }
+    };
+    setTimeout(() => {
+      fetchData();
+    }, 1000);
+  }, [baseUrl]);
 
-  const data = [
+  if (isLoading) return <Loading />;
+  if (!data) return <ApiCallFailed />;
+
+  const dataSource = [
     {
       title: "Instance Status",
       content: (
         <Tag icon={<CheckCircleOutlined />} color="success" style={tagStyle}>
-          Running
+          {data.instanceStatus}
         </Tag>
       ),
     },
@@ -25,7 +52,7 @@ const Dashboard = () => {
       title: "SGA Occupancy",
       content: (
         <Tag icon={<CheckCircleOutlined />} color="success" style={tagStyle}>
-          45%
+          {data.sga}%
         </Tag>
       ),
       handleClick: () => {
@@ -37,10 +64,10 @@ const Dashboard = () => {
       content: (
         <div>
           <Tag color="success" style={tagStyle2}>
-            57 Active
+            {data.session.active} Active
           </Tag>
           <Tag color="warning" style={tagStyle2}>
-            13 Inactive
+            {data.session.inactive} Inactive
           </Tag>
         </div>
       ),
@@ -52,7 +79,7 @@ const Dashboard = () => {
       title: "Alerts",
       content: (
         <Tag icon={<ExclamationCircleOutlined />} color="error" style={tagStyle}>
-          4 Alerts
+          {data.alerts} Alerts
         </Tag>
       ),
     },
@@ -61,10 +88,10 @@ const Dashboard = () => {
       content: (
         <div>
           <Tag color="success" style={tagStyle2}>
-            8 Normal
+            {data.tablespace.normal} Normal
           </Tag>
           <Tag color="error" style={tagStyle2}>
-            2 High
+            {data.tablespace.high} High
           </Tag>
         </div>
       ),
@@ -77,10 +104,10 @@ const Dashboard = () => {
       content: (
         <div>
           <Tag color="success" style={tagStyle2}>
-            1574 Normal
+            {data.tableRecords.normal} Normal
           </Tag>
           <Tag color="error" style={tagStyle2}>
-            36 High
+            {data.tableRecords.high} High
           </Tag>
         </div>
       ),
@@ -93,10 +120,10 @@ const Dashboard = () => {
       content: (
         <div>
           <Tag color="success" style={tagStyle2}>
-            CPU 16%
+            CPU {data.hostResource.cpu}%
           </Tag>
           <Tag color="success" style={tagStyle2}>
-            RAM 76%
+            RAM {data.hostResource.ram}%
           </Tag>
         </div>
       ),
@@ -108,15 +135,11 @@ const Dashboard = () => {
       title: "Host Storage",
       content: (
         <div>
-          <Tag color="success" style={tagStyle3}>
-            E: 46%
-          </Tag>
-          <Tag color="success" style={tagStyle3}>
-            F: 7%
-          </Tag>
-          <Tag color="success" style={tagStyle3}>
-            G: 12%
-          </Tag>
+          {data.hostStorage.map((item) => (
+            <Tag color="success" style={tagStyle3}>
+              {item.driveLetter} {item.occupancy}%
+            </Tag>
+          ))}
         </div>
       ),
       handleClick: () => {
@@ -136,7 +159,7 @@ const Dashboard = () => {
         xl: 3,
         xxl: 4,
       }}
-      dataSource={data}
+      dataSource={dataSource}
       renderItem={(item) => (
         <List.Item>
           <Card title={item.title} onClick={item.handleClick} style={{ textAlign: "center" }}>
