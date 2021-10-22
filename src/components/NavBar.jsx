@@ -5,7 +5,6 @@ import "antd/dist/antd.css";
 import { Layout, Menu, Switch } from "antd";
 import { MdDarkMode } from "react-icons/md";
 import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase, FcServices } from "react-icons/fc";
-
 import * as Constants from "../util/constants";
 import { Link } from "react-router-dom";
 import logolight from "../logo-light.png";
@@ -24,8 +23,9 @@ const NavBar = () => {
   const { pathname } = useLocation();
   if (pathname !== selectedKeys) setSelectedKeys(pathname);
   if (!openKeys && pathname) {
-    const lastIndex = pathname.lastIndexOf("/");
-    if (lastIndex !== 0) setOpenKeys(pathname.substr(0, pathname.lastIndexOf("/")));
+    const newPathName = pathname.slice(Constants.ROUTE_ROOT.length);
+    const lastIndex = newPathName.lastIndexOf("/");
+    if (lastIndex !== 0) setOpenKeys(newPathName.substr(0, lastIndex));
   }
 
   const siderStyle = darkMode
