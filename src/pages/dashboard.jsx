@@ -149,7 +149,7 @@ const Dashboard = () => {
       content: (
         <div>
           {data.hostStorage.map((item) => (
-            <Tag color={item.occupancy >= 80 ? "error" : "success"} style={tagStyle3}>
+            <Tag color={item.occupancy >= 80 ? "error" : "success"} style={tagStyle3} key={item.driveLetter}>
               {item.driveLetter} {item.occupancy}%
             </Tag>
           ))}
