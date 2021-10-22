@@ -74,7 +74,7 @@ const TopIndexes = () => {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]);
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;

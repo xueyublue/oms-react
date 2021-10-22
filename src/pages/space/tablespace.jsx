@@ -3,7 +3,7 @@ import { Table, Progress, Tag, Button, Form, Tooltip } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize, FcDownload, FcUndo } from "react-icons/fc";
+import { FcSynchronize, FcDownload } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -136,7 +136,7 @@ const Tablespace = () => {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]);
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
