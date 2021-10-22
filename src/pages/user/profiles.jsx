@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
+import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FcUndo, FcSynchronize, FcDownload } from "react-icons/fc";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "../../util/constants";
 
 const columns = [
   {
@@ -57,27 +59,29 @@ const Profiles = () => {
   const [profile, setProfile] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/user/profiles`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
     setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, [baseUrl]);
+      axios
+        .get(`${baseUrl}/user/profiles`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-
   toast.info(`${data.length} records found.`);
-
   const filteredData = data.filter((row) => (profile === "All" ? true : row.profile === profile));
 
   return (
@@ -99,14 +103,36 @@ const Profiles = () => {
         </Form.Item>
         <Form.Item>
           <Button
-            type="primary"
             onClick={() => {
               setProfile("All");
             }}
           >
-            CLEAR
+            <FcUndo size={22} />
           </Button>
         </Form.Item>
+        <div style={{ position: "absolute", right: 0 }}>
+          <Form.Item>
+            <Tooltip placement="bottom" title="Refresh">
+              <Button
+                type="text"
+                icon={<FcSynchronize size={22} />}
+                onClick={() => {
+                  setIsLoading(true);
+                  fetchData();
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title="Export">
+              <Button
+                type="text"
+                icon={<FcDownload size={22} />}
+                onClick={() => {
+                  console.log("Export button clicked");
+                }}
+              />
+            </Tooltip>
+          </Form.Item>
+        </div>
       </Form>
       <Table
         style={{ marginTop: 10 }}
