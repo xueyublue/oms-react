@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import * as Constants from "../util/constants";
+import { API_FETCH_WAIT } from "../util/constants";
 
 //-------------------------------------------------------------
 // PAGE START
@@ -17,24 +18,28 @@ const Dashboard = () => {
   const { baseUrl } = useContext(BackendAPIContext);
   const tagStyle = { fontSize: 14, padding: 6, width: "100%" };
   const tagStyle2 = { fontSize: 14, padding: 6, width: "46%" };
-  const tagStyle3 = { fontSize: 14, padding: 6, width: "30%" };
+  const tagStyle3 = { fontSize: 14, padding: 6, width: "31%" };
   const history = useHistory();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/dashboard`);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setData(null);
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
     setTimeout(() => {
-      fetchData();
-    }, 1000);
-  }, [baseUrl]);
+      axios
+        .get(`${baseUrl}/dashboard`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
