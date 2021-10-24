@@ -40,7 +40,7 @@ const Dashboard = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, 10000);
+    }, 1000);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
