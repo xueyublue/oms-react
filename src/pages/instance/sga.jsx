@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form } from "antd";
+import { Table, Progress, Form, Row, Col } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    width: 300,
+    width: 250,
   },
   {
     title: "Size",
@@ -101,39 +101,41 @@ const SgaConfigurations = () => {
           </Form.Item>
         </div>
       </Form>
-      <div style={{ width: 800 }}>
-        <Table
-          columns={columns}
-          dataSource={data.table}
-          bordered
-          size="small"
-          pagination={{ pageSize: 15, position: ["none"] }}
-          rowKey="name"
-        />
-      </div>
-      <div style={{ height: "500" }}>
-        <Pie
-          data={{
-            labels: data.chart.name,
-            datasets: [
-              {
-                data: data.chart.data,
-                backgroundColor: data.chart.backgroundColor,
-              },
-            ],
-          }}
-          options={{
-            title: { display: false, text: "SGA Configuration (" + data.maxSgaSize + "MB In Total)" },
-            maintainAspectRatio: false,
-            scales: {
-              yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
-            },
-            legend: { position: "right" },
-          }}
-          height={300}
-          width={600}
-        />
-      </div>
+      <Row>
+        <Col lg={24} xl={12}>
+          <Table
+            columns={columns}
+            dataSource={data.table}
+            bordered
+            size="small"
+            pagination={{ pageSize: 15, position: ["none"] }}
+            rowKey="name"
+          />
+        </Col>
+        <Col lg={24} xl={12}>
+          <div style={{ height: "400px", width: "500px", marginLeft: 40 }}>
+            <Pie
+              data={{
+                labels: data.chart.name,
+                datasets: [
+                  {
+                    data: data.chart.data,
+                    backgroundColor: data.chart.backgroundColor,
+                  },
+                ],
+              }}
+              options={{
+                title: { display: true, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
+                },
+                legend: { position: "right" },
+              }}
+            />
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };
