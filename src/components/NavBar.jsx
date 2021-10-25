@@ -17,7 +17,7 @@ const { Sider } = Layout;
 // COMPONENT START
 //-------------------------------------------------------------
 const NavBar = () => {
-  const [selectedKeys, setSelectedKeys] = useState("dashboard");
+  const [selectedKeys, setSelectedKeys] = useState(Constants.ROUTE_DASHBORAD);
   const [openKeys, setOpenKeys] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const { pathname } = useLocation();
@@ -54,7 +54,7 @@ const NavBar = () => {
         theme={menuTheme}
         mode="inline"
         selectedKeys={[selectedKeys]}
-        defaultSelectedKeys={["dashboard"]}
+        defaultSelectedKeys={[Constants.ROUTE_DASHBORAD]}
         openKeys={[openKeys]}
         onClick={(e) => {
           setSelectedKeys(e.key);
@@ -63,7 +63,7 @@ const NavBar = () => {
           if (oKeys.length >= 1) {
             setOpenKeys(oKeys[oKeys.length - 1]);
           } else {
-            setOpenKeys("dashboard");
+            setOpenKeys(Constants.ROUTE_DASHBORAD);
           }
         }}
       >
