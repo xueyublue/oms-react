@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form, Button, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize, FcDownload } from "react-icons/fc";
+import { FcSynchronize } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
+import ExportButton from "../../components/ExportButton";
+import { getCsvHeaders } from "../../util/util";
 
 const columns = [
   {
@@ -124,15 +126,13 @@ const Parameters = () => {
                 }}
               />
             </Tooltip>
-            <Tooltip placement="bottom" title="Export">
-              <Button
-                type="text"
-                icon={<FcDownload size={22} />}
-                onClick={() => {
-                  console.log("Export button clicked/");
-                }}
-              />
-            </Tooltip>
+            <ExportButton
+              csvReport={{
+                data: data,
+                headers: getCsvHeaders(columns),
+                filename: "OMS_Parameters.csv",
+              }}
+            />
           </Form.Item>
         </div>
       </Form>

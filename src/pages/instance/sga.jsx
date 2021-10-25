@@ -3,12 +3,14 @@ import { Table, Progress, Form, Button, Tooltip } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize, FcDownload } from "react-icons/fc";
+import { FcSynchronize } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
+import ExportButton from "../../components/ExportButton";
+import { getCsvHeaders } from "../../util/util";
 
 const columns = [
   {
@@ -93,15 +95,13 @@ const SgaConfigurations = () => {
                 }}
               />
             </Tooltip>
-            <Tooltip placement="bottom" title="Export">
-              <Button
-                type="text"
-                icon={<FcDownload size={22} />}
-                onClick={() => {
-                  console.log("Export button clicked/");
-                }}
-              />
-            </Tooltip>
+            <ExportButton
+              csvReport={{
+                data: data.table,
+                headers: getCsvHeaders(columns),
+                filename: "OMS_SGA.csv",
+              }}
+            />
           </Form.Item>
         </div>
       </Form>
