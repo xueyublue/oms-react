@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form, Button, Tooltip } from "antd";
+import { Table, Progress, Form } from "antd";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
+import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 
@@ -85,16 +85,12 @@ const SgaConfigurations = () => {
         <Form.Item />
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <Tooltip placement="bottom" title="Refresh">
-              <Button
-                type="text"
-                icon={<FcSynchronize size={22} />}
-                onClick={() => {
-                  setIsLoading(true);
-                  fetchData();
-                }}
-              />
-            </Tooltip>
+            <RefreshButton
+              onClick={() => {
+                setIsLoading(true);
+                fetchData();
+              }}
+            />
             <ExportButton
               csvReport={{
                 data: data.table,

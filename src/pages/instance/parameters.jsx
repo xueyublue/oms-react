@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Tag, Form, Button, Tooltip } from "antd";
+import { Table, Tag, Form } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcSynchronize } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
+import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 
@@ -116,16 +116,12 @@ const Parameters = () => {
         <Form.Item />
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <Tooltip placement="bottom" title="Refresh">
-              <Button
-                type="text"
-                icon={<FcSynchronize size={22} />}
-                onClick={() => {
-                  setIsLoading(true);
-                  fetchData();
-                }}
-              />
-            </Tooltip>
+            <RefreshButton
+              onClick={() => {
+                setIsLoading(true);
+                fetchData();
+              }}
+            />
             <ExportButton
               csvReport={{
                 data: data,
