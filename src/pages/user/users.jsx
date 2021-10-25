@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
+import { Table, Form, Button, Select, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcUndo, FcSynchronize, FcDownload } from "react-icons/fc";
+import { FcUndo } from "react-icons/fc";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
+import RefreshButton from "../../components/RefreshButton";
+import ExportButton from "../../components/ExportButton";
+import { getCsvHeaders } from "../../util/util";
 
 const columns = [
   {
@@ -154,25 +157,19 @@ const Users = () => {
         </Form.Item>
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <Tooltip placement="bottom" title="Refresh">
-              <Button
-                type="text"
-                icon={<FcSynchronize size={22} />}
-                onClick={() => {
-                  setIsLoading(true);
-                  fetchData();
-                }}
-              />
-            </Tooltip>
-            <Tooltip placement="bottom" title="Export">
-              <Button
-                type="text"
-                icon={<FcDownload size={22} />}
-                onClick={() => {
-                  console.log("Export button clicked");
-                }}
-              />
-            </Tooltip>
+            <RefreshButton
+              onClick={() => {
+                setIsLoading(true);
+                fetchData();
+              }}
+            />
+            <ExportButton
+              csvReport={{
+                data: data,
+                headers: getCsvHeaders(columns),
+                filename: "OMS_Users.csv",
+              }}
+            />
           </Form.Item>
         </div>
       </Form>

@@ -2,12 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { FcUndo, FcSearch, FcSynchronize, FcDownload } from "react-icons/fc";
+import { FcUndo } from "react-icons/fc";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
+import RefreshButton from "../../components/RefreshButton";
+import ExportButton from "../../components/ExportButton";
+import { getCsvHeaders } from "../../util/util";
 
 const columns = [
   {
@@ -113,7 +116,7 @@ const TableRecords = () => {
           </Select>
         </Form.Item>
         <Form.Item>
-          <Tooltip placement="right" title="Clear">
+          <Tooltip placement="right" title="CLEAR">
             <Button
               onClick={() => {
                 setOwner("All");
@@ -125,35 +128,19 @@ const TableRecords = () => {
         </Form.Item>
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <Tooltip placement="bottom" title="Search">
-              <Button
-                type="text"
-                icon={<FcSearch size={22} />}
-                onClick={() => {
-                  console.log("Search button clicked/");
-                }}
-                hidden
-              />
-            </Tooltip>
-            <Tooltip placement="bottom" title="Refresh">
-              <Button
-                type="text"
-                icon={<FcSynchronize size={22} />}
-                onClick={() => {
-                  setIsLoading(true);
-                  fetchData();
-                }}
-              />
-            </Tooltip>
-            <Tooltip placement="bottom" title="Export">
-              <Button
-                type="text"
-                icon={<FcDownload size={22} />}
-                onClick={() => {
-                  console.log("Export button clicked/");
-                }}
-              />
-            </Tooltip>
+            <RefreshButton
+              onClick={() => {
+                setIsLoading(true);
+                fetchData();
+              }}
+            />
+            <ExportButton
+              csvReport={{
+                data: data,
+                headers: getCsvHeaders(columns),
+                filename: "OMS_TableRecords.csv",
+              }}
+            />
           </Form.Item>
         </div>
       </Form>
