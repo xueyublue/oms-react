@@ -78,8 +78,8 @@ const UserPrivileges = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.length} records found.`);
   const filteredData = data.filter((row) => (userName === "All" ? true : row.userName === userName));
+  toast.info(`${filteredData.length} records found.`);
 
   return (
     <div>
