@@ -17,21 +17,22 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    width: 120,
+    width: 200,
     sorter: (a, b) => a.name > b.name,
+    fixed: "left",
   },
   {
     title: "Path",
     dataIndex: "path",
     key: "path",
-    width: 200,
+    width: 400,
     sorter: (a, b) => a.path > b.path,
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
-    width: 80,
+    width: 100,
     align: "center",
     render: (status) => (
       <Tag
