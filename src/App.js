@@ -2,7 +2,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { Layout } from "antd";
 import "antd/dist/antd.css";
-
+import { withStyles } from "@mui/styles";
 import NavBar from "./components/NavBar";
 import AppBar from "./components/AppBar";
 import AppFooter from "./components/AppFooter";
@@ -12,18 +12,40 @@ import { ROUTE_LOGIN } from "./util/constants";
 import { BackendAPIProvider } from "./context/BackendAPIContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import classNames from "classnames";
 
 const { Content } = Layout;
 
 //-------------------------------------------------------------
+// STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    background: "#fff",
+  },
+  main: {
+    marginLeft: 220,
+    minHeight: "100vh",
+  },
+  container: {
+    margin: "8px 8px",
+    padding: 8,
+    minHeight: 650,
+  },
+  loginContainer: {
+    minHeight: "100vh",
+    padding: 8,
+  },
+};
+
+//-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-function App() {
+function App({ classes }) {
+  console.log(classes);
   const history = useHistory();
   const userId = localStorage.getItem("oms-userid");
   const username = localStorage.getItem("oms-username");
-  // const sessionExpiry = localStorage.getItem("oms-session-expiry");
-
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
   if (pathname === ROUTE_LOGIN && !pageWithoutNavigation) setPageWithoutNavigation(true);
@@ -42,8 +64,8 @@ function App() {
   if (pageWithoutNavigation)
     return (
       <BackendAPIProvider>
-        <Layout className="site-layout" style={{ minHeight: "100vh" }}>
-          <Content className="site-layout-background" style={{ padding: 8 }}>
+        <Layout className="site-layout">
+          <Content className={classNames("site-layout-background", classes.loginContainer)}>
             <RouteContainer />
           </Content>
           <AppFooter />
@@ -53,18 +75,11 @@ function App() {
 
   return (
     <BackendAPIProvider>
-      <Layout>
+      <Layout className="site-layout">
         <NavBar />
-        <Layout className="site-layout" style={{ marginLeft: 220, minHeight: "100vh" }}>
+        <Layout className={classes.main}>
           <AppBar pageName={RouteToPageName(pathname)} />
-          <Content
-            className="site-layout-background"
-            style={{
-              margin: "8px 8px",
-              padding: 8,
-              minHeight: 650,
-            }}
-          >
+          <Content className={classNames("site-layout-background", classes.container)}>
             <RouteContainer />
             <ToastContainer position="top-center" hideProgressBar closeOnClick autoClose={3000} />
           </Content>
@@ -75,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default withStyles(styles)(App);
