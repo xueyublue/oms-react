@@ -81,7 +81,7 @@ const columns = [
     title: "Auto Extend?",
     dataIndex: "autoExtensible",
     key: "autoExtensible",
-    width: 100,
+    width: 110,
     align: "center",
     render: (autoExtensible) => (
       <Tag color={autoExtensible === "Yes" ? "green" : "volcano"} key={autoExtensible}>
@@ -93,7 +93,7 @@ const columns = [
     title: "Next Extend (MB)",
     dataIndex: "nextExtend",
     key: "nextExtend",
-    width: 140,
+    width: 130,
     align: "right",
     render: (value) => formatNumberWithCommas(value),
   },
@@ -172,7 +172,7 @@ const Tablespace = () => {
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1500 }}
         rowKey="name"
       />
     </div>
