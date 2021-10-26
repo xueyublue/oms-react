@@ -121,7 +121,7 @@ const ResourceLimit = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1000 }}
         rowKey="resourceName"
       />
     </div>

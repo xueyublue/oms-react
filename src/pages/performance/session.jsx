@@ -234,7 +234,7 @@ const Sessions = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1500 }}
         rowKey="id"
       />
     </div>

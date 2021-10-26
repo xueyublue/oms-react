@@ -160,7 +160,7 @@ const TableRecords = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 /*, y: 620 */ }}
+        scroll={{ x: 1000 /*, y: 620 */ }}
         rowKey="tableName"
       />
     </div>

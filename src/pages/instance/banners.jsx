@@ -77,6 +77,7 @@ const Banners = () => {
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
+        scroll={{ x: 600 }}
         rowKey="banner"
       />
     </div>

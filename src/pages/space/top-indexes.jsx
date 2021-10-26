@@ -144,7 +144,7 @@ const TopIndexes = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 /*, y: 620 */ }}
+        scroll={{ x: 800 /*, y: 620 */ }}
         rowKey="segmentName"
       />
     </div>

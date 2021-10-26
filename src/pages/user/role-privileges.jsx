@@ -141,7 +141,7 @@ const RolePrivileges = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1000 }}
+        scroll={{ x: 900 }}
         rowKey={(item) => `${item.role}${item.privilege}`}
       />
     </div>

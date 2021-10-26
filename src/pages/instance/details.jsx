@@ -84,6 +84,7 @@ const InstanceDetails = () => {
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
+        scroll={{ x: 700 }}
         rowKey="name"
       />
     </div>

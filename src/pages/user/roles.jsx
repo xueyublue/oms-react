@@ -107,7 +107,7 @@ const Roles = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 700 }}
         rowKey="role"
       />
     </div>

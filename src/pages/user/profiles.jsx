@@ -147,7 +147,7 @@ const Profiles = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 800 }}
         rowKey="resourceName"
       />
     </div>
