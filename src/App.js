@@ -8,7 +8,7 @@ import AppBar from "./components/AppBar";
 import AppFooter from "./components/AppFooter";
 import { RouteToPageName } from "./util/constants";
 import RouteContainer from "./components/RouteContainer";
-import { ROUTE_LOGIN } from "./util/constants";
+import { ROUTE_LOGIN, ROUTE_DASHBORAD, ROUTE_ROOT } from "./util/constants";
 import { BackendAPIProvider } from "./context/BackendAPIContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,6 +58,12 @@ function App({ classes }) {
       localStorage.removeItem("oms-username");
       history.push(ROUTE_LOGIN);
     }
+  }
+
+  // redirect routes to dashbaord
+  if (pathname === "/" || pathname === ROUTE_ROOT || pathname === `${ROUTE_ROOT}/home`) {
+    history.push(ROUTE_DASHBORAD);
+    return null;
   }
 
   // no navigation bars for login pages
