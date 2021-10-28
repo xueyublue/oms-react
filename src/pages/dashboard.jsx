@@ -143,38 +143,6 @@ const Dashboard = ({ classes }) => {
   if (!data) return <ApiCallFailed />;
   const listDataSource = buildListDataSource(data, history);
 
-  const hostResourceChartData = {
-    labels: data.hostResource.label,
-    datasets: [
-      {
-        label: "CPU",
-        data: data.hostResource.cpu,
-        fill: false,
-        borderColor: "rgb(36, 209, 209)",
-        tension: 0.3,
-      },
-      {
-        label: "RAM",
-        data: data.hostResource.ram,
-        fill: false,
-        borderColor: "rgb(75, 122, 192)",
-        tension: 0.3,
-      },
-    ],
-  };
-
-  const tablespaceChartData = {
-    labels: data.tablespace.label,
-    datasets: [
-      {
-        data: data.tablespace.data,
-        borderColor: "rgb(36, 209, 209)",
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
-        tension: 0.1,
-      },
-    ],
-  };
-
   return (
     <div className={classes.root}>
       <List
@@ -198,10 +166,14 @@ const Dashboard = ({ classes }) => {
       />
       <Row>
         <Col xl={24} xxl={12}>
-          <HostResourceLineChart data={hostResourceChartData} />
+          <HostResourceLineChart
+            labels={data.hostResource.label}
+            cpu={data.hostResource.cpu}
+            ram={data.hostResource.ram}
+          />
         </Col>
         <Col xl={24} xxl={12}>
-          <TablespaceBarChart data={tablespaceChartData} />
+          <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
         </Col>
       </Row>
     </div>
