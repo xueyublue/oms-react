@@ -4,7 +4,7 @@ import { List, Card, Tag, Row, Col } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { withStyles } from "@mui/styles";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
@@ -174,12 +174,12 @@ const Dashboard = ({ classes }) => {
   if (!data) return <ApiCallFailed />;
   const listDataSource = buildListDataSource(data, history);
 
-  const chartData = {
-    labels: ["16:30:00", "16:30:05", "16:30:10", "16:30:15", "16:30:20", "16:30:25"],
+  const hostResourceChartData = {
+    labels: ["5 minutes", "", "", "", "", "now"],
     datasets: [
       {
         label: "CPU",
-        data: [5, 15, 6, 18, 22, 4],
+        data: [5, 15, 6, 18, 4, 11],
         fill: false,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.1,
@@ -189,6 +189,19 @@ const Dashboard = ({ classes }) => {
         data: [85, 80, 65, 72, 66, 55],
         fill: false,
         borderColor: "rgb(75, 122, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const tablespaceChartData = {
+    labels: ["INDX", "INDX_LARGE", "STATSPACK", "SYSAUX", "SYSTEM", "UNDOTBS", "WCS", "WCS_INDEX", "WMS", "WMS_LARGE"],
+    datasets: [
+      {
+        label: "",
+        data: [5, 15, 6, 18, 4, 11, 88, 12, 44, 22],
+        borderColor: "rgb(36, 209, 209)",
+        backgroundColor: "rgba(54, 162, 235, 0.5)",
         tension: 0.1,
       },
     ],
@@ -219,8 +232,9 @@ const Dashboard = ({ classes }) => {
         <Col md={24} xl={12}>
           <Line
             type="line"
-            data={chartData}
+            data={hostResourceChartData}
             options={{
+              title: { display: true, text: "Host System Resource Monitoring" },
               scales: {
                 y: { beginAtZero: true, max: 100 },
                 yAxes: [
@@ -234,18 +248,19 @@ const Dashboard = ({ classes }) => {
                 ],
               },
               legend: {
-                position: "top",
+                position: "right",
               },
             }}
           />
         </Col>
         <Col md={24} xl={12}>
-          <Line
-            type="line"
-            data={chartData}
+          <Bar
+            type="bar"
+            data={tablespaceChartData}
             options={{
+              title: { display: true, text: "ORACLE Tablespace Occupancy" },
               scales: {
-                y: { beginAtZero: true },
+                y: { beginAtZero: true, max: 100 },
                 yAxes: [
                   {
                     ticks: {
@@ -255,6 +270,9 @@ const Dashboard = ({ classes }) => {
                     },
                   },
                 ],
+              },
+              legend: {
+                display: false,
               },
             }}
           />

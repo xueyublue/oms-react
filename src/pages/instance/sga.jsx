@@ -113,7 +113,7 @@ const SgaConfigurations = () => {
           />
         </Col>
         <Col lg={24} xl={12}>
-          <div style={{ height: "400px", width: "500px", marginLeft: 40 }}>
+          <div style={{ height: "400px", width: "100%" }}>
             <Pie
               data={{
                 labels: data.chart.name,
