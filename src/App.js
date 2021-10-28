@@ -42,7 +42,6 @@ const styles = {
 // COMPONENT START
 //-------------------------------------------------------------
 function App({ classes }) {
-  console.log(classes);
   const history = useHistory();
   const userId = localStorage.getItem("oms-userid");
   const username = localStorage.getItem("oms-username");
