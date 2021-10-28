@@ -143,31 +143,30 @@ const Dashboard = ({ classes }) => {
   const listDataSource = buildListDataSource(data, history);
 
   const hostResourceChartData = {
-    labels: ["5 minutes", "", "", "", "", "now"],
+    labels: data.hostResource.label,
     datasets: [
       {
         label: "CPU",
-        data: [5, 15, 6, 18, 4, 11],
+        data: data.hostResource.cpu,
         fill: false,
         borderColor: "rgb(36, 209, 209)",
-        tension: 0.1,
+        tension: 0.3,
       },
       {
         label: "RAM",
-        data: [85, 80, 65, 72, 66, 55],
+        data: data.hostResource.ram,
         fill: false,
         borderColor: "rgb(75, 122, 192)",
-        tension: 0.1,
+        tension: 0.3,
       },
     ],
   };
 
   const tablespaceChartData = {
-    labels: ["INDX", "INDX_LARGE", "STATSPACK", "SYSAUX", "SYSTEM", "UNDOTBS", "WCS", "WCS_INDEX", "WMS", "WMS_LARGE"],
+    labels: data.tablespace.label,
     datasets: [
       {
-        label: "",
-        data: [5, 15, 6, 18, 4, 11, 88, 12, 44, 22],
+        data: data.tablespace.data,
         borderColor: "rgb(36, 209, 209)",
         backgroundColor: "rgba(54, 162, 235, 0.5)",
         tension: 0.1,

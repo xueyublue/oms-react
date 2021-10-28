@@ -8,16 +8,28 @@
     },
     "alerts": 2,
     "tablespace": {
-      "normal": 8,
-      "high": 2
+      "label": [
+        "INDX",
+        "INDX_LARGE",
+        "STATSPACK",
+        "SYSAUX",
+        "SYSTEM",
+        "UNDOTBS",
+        "WCS",
+        "WCS_INDEX",
+        "WMS",
+        "WMS_LARGE"
+      ],
+      "data": [5, 15, 6, 18, 4, 11, 88, 12, 44, 22]
     },
     "tableRecords": {
       "normal": 1574,
       "high": 36
     },
     "hostResource": {
-      "cpu": 18,
-      "ram": 78
+      "label": ["60s", "", "", "", "", "", "", "", "", "", "", "0"],
+      "cpu": [5, 15, 6, 18, 4, 22, 5, 15, 6, 18, 4, 22],
+      "ram": [85, 80, 65, 72, 66, 55, 85, 80, 65, 72, 66, 55]
     },
     "hostStorage": [
       { "driveLetter": "C:", "occupancy": 86 },
