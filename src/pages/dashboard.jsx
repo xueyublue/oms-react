@@ -57,14 +57,14 @@ const Dashboard = ({ classes }) => {
       <DashboardCards data={data} />
       <Row>
         <Col xl={24} xxl={12}>
+          <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+        </Col>
+        <Col xl={24} xxl={12}>
           <HostResourceLineChart
             labels={data.hostResource.label}
             cpu={data.hostResource.cpu}
             ram={data.hostResource.ram}
           />
-        </Col>
-        <Col xl={24} xxl={12}>
-          <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
         </Col>
       </Row>
       <Row>
