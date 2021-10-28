@@ -84,7 +84,7 @@ const UserPrivileges = () => {
   return (
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="User Name" style={{ width: 240 }}>
+        <Form.Item label="User Name" style={{ width: 300 }}>
           <Select
             value={userName}
             onChange={(value) => {

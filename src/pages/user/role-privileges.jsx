@@ -84,7 +84,7 @@ const RolePrivileges = () => {
   return (
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Role Name" style={{ width: 240 }}>
+        <Form.Item label="Role Name" style={{ width: 350 }}>
           <Select
             value={role}
             onChange={(value) => {
