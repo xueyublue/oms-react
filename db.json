@@ -35,7 +35,37 @@
       { "driveLetter": "C:", "occupancy": 86 },
       { "driveLetter": "E:", "occupancy": 14 },
       { "driveLetter": "F:", "occupancy": 7 }
-    ]
+    ],
+    "sgaconfig": {
+      "maxSgaSize": 5120.0,
+      "chart": {
+        "name": [
+          "Buffer Cache Size",
+          "Free SGA Memory Available",
+          "Shared Pool Size",
+          "Redo Buffers",
+          "Startup overhead in Shared Pool",
+          "Shared IO Pool Size",
+          "Java Pool Size",
+          "Large Pool Size",
+          "Granule Size",
+          "Fixed SGA Size"
+        ],
+        "data": [2432.0, 1328.0, 1024.0, 279.38, 264.12, 128.0, 32.0, 16.0, 16.0, 8.63],
+        "backgroundColor": [
+          "rgba(0, 0, 0, 0.4)",
+          "rgba(255, 99, 132, 0.4)",
+          "rgba(54, 162, 235, 0.4)",
+          "rgba(75, 192, 192, 0.4)",
+          "rgba(153, 102, 255, 0.4)",
+          "rgba(255, 159, 24, 0.4)",
+          "rgba(177, 100, 14, 0.4)",
+          "rgba(221, 159, 94, 0.4)",
+          "rgba(255, 206, 86, 0.4)",
+          "rgba(10, 159, 66, 0.4)"
+        ]
+      }
+    }
   },
   "sgaconfig": {
     "maxSgaSize": 5120.0,

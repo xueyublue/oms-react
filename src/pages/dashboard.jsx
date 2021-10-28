@@ -9,6 +9,7 @@ import { API_FETCH_WAIT } from "../util/constants";
 import HostResourceLineChart from "../components/chart/HostResourceLineChart";
 import TablespaceBarChart from "../components/chart/TablespaceBarChart";
 import DashboardCards from "../components/DashoardCards";
+import SgaPieChart from "../components/chart/SgaPieChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -64,6 +65,13 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col xl={24} xxl={12}>
           <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+        </Col>
+      </Row>
+      <Row>
+        <Col xl={24} xxl={12}>
+          <div style={{ height: "300px", width: "100%" }}>
+            <SgaPieChart data={data.sgaconfig} legendPosition="right" />
+          </div>
         </Col>
       </Row>
     </div>

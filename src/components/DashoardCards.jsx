@@ -7,9 +7,9 @@ import * as Constants from "../util/constants";
 //-------------------------------------------------------------
 //* UTILS
 //-------------------------------------------------------------
-const tagStyle = { fontSize: "1rem", padding: 10, width: "100%" };
-const tagStyle2 = { fontSize: "1rem", padding: 10, width: "48%" };
-const tagStyle3 = { fontSize: "1rem", padding: 10, width: "31%" };
+const tagStyle = { fontSize: "1rem", padding: 8, width: "100%" };
+const tagStyle2 = { fontSize: "1rem", padding: 8, width: "48%" };
+const tagStyle3 = { fontSize: "1rem", padding: 8, width: "31%" };
 
 const buildDataSource = (data, history) => [
   {
