@@ -19,8 +19,8 @@ const styles = {
 };
 
 const tagStyle = { fontSize: "1rem", padding: 10, width: "100%" };
-const tagStyle2 = { fontSize: "1rem", padding: 10, width: "48.3%" };
-const tagStyle3 = { fontSize: "1rem", padding: 10, width: "31.5%" };
+const tagStyle2 = { fontSize: "1rem", padding: 10, width: "48%" };
+const tagStyle3 = { fontSize: "1rem", padding: 10, width: "31%" };
 const buildListDataSource = (data, history) => [
   {
     title: "Instance Status",
@@ -183,8 +183,8 @@ const Dashboard = ({ classes }) => {
           xs: 1,
           sm: 1,
           md: 2,
-          lg: 3,
-          xl: 3,
+          lg: 2,
+          xl: 2,
           xxl: 3,
         }}
         dataSource={listDataSource}
@@ -197,7 +197,7 @@ const Dashboard = ({ classes }) => {
         )}
       />
       <Row>
-        <Col md={24} xl={12}>
+        <Col xl={24} xxl={12}>
           <Line
             type="line"
             data={hostResourceChartData}
@@ -221,7 +221,7 @@ const Dashboard = ({ classes }) => {
             }}
           />
         </Col>
-        <Col md={24} xl={12}>
+        <Col xl={24} xxl={12}>
           <Bar
             type="bar"
             data={tablespaceChartData}
