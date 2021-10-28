@@ -18,9 +18,9 @@ const styles = {
   root: {},
 };
 
-const tagStyle = { fontSize: "1rem", padding: 6, width: "100%" };
-const tagStyle2 = { fontSize: "1rem", padding: 6, width: "46%" };
-const tagStyle3 = { fontSize: "1rem", padding: 6, width: "31%" };
+const tagStyle = { fontSize: "1rem", padding: 10, width: "100%" };
+const tagStyle2 = { fontSize: "1rem", padding: 10, width: "48.3%" };
+const tagStyle3 = { fontSize: "1rem", padding: 10, width: "31.5%" };
 const buildListDataSource = (data, history) => [
   {
     title: "Instance Status",
@@ -46,6 +46,18 @@ const buildListDataSource = (data, history) => [
     },
   },
   {
+    title: "Alerts",
+    content: (
+      <Tag
+        icon={data.alerts === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+        color={data.alerts === 0 ? "success" : "error"}
+        style={tagStyle}
+      >
+        {data.alerts} Alerts
+      </Tag>
+    ),
+  },
+  {
     title: "Sessions",
     content: (
       <div>
@@ -62,34 +74,6 @@ const buildListDataSource = (data, history) => [
     },
   },
   {
-    title: "Alerts",
-    content: (
-      <Tag
-        icon={data.alerts === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
-        color={data.alerts === 0 ? "success" : "error"}
-        style={tagStyle}
-      >
-        {data.alerts} Alerts
-      </Tag>
-    ),
-  },
-  {
-    title: "Tablespace Occupancy",
-    content: (
-      <div>
-        <Tag color="success" style={tagStyle2}>
-          {data.tablespace.normal} Normal
-        </Tag>
-        <Tag color={data.tablespace.high === 0 ? "success" : "error"} style={tagStyle2}>
-          {data.tablespace.high} High
-        </Tag>
-      </div>
-    ),
-    handleClick: () => {
-      history.push(Constants.ROUTE_SPACE_TABLESPACE);
-    },
-  },
-  {
     title: "Table Records",
     content: (
       <div>
@@ -98,22 +82,6 @@ const buildListDataSource = (data, history) => [
         </Tag>
         <Tag color={data.tableRecords.high === 0 ? "success" : "error"} style={tagStyle2}>
           {data.tableRecords.high} High
-        </Tag>
-      </div>
-    ),
-    handleClick: () => {
-      history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
-    },
-  },
-  {
-    title: "Host Resource",
-    content: (
-      <div>
-        <Tag color={data.hostResource.cpu >= 80 ? "error" : "success"} style={tagStyle2}>
-          CPU {data.hostResource.cpu}%
-        </Tag>
-        <Tag color={data.hostResource.ram >= 80 ? "error" : "success"} style={tagStyle2}>
-          RAM {data.hostResource.ram}%
         </Tag>
       </div>
     ),
@@ -217,7 +185,7 @@ const Dashboard = ({ classes }) => {
           md: 2,
           lg: 3,
           xl: 3,
-          xxl: 4,
+          xxl: 3,
         }}
         dataSource={listDataSource}
         renderItem={(item) => (
