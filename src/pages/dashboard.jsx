@@ -4,12 +4,13 @@ import { List, Card, Tag, Row, Col } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { withStyles } from "@mui/styles";
-import { Line, Bar } from "react-chartjs-2";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import * as Constants from "../util/constants";
 import { API_FETCH_WAIT } from "../util/constants";
+import HostResourceLineChart from "../components/chart/HostResourceLineChart";
+import TablespaceBarChart from "../components/chart/TablespaceBarChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -197,52 +198,10 @@ const Dashboard = ({ classes }) => {
       />
       <Row>
         <Col xl={24} xxl={12}>
-          <Line
-            type="line"
-            data={hostResourceChartData}
-            options={{
-              title: { display: true, text: "Host System Resource Monitoring" },
-              scales: {
-                y: { beginAtZero: true, max: 100 },
-                yAxes: [
-                  {
-                    ticks: {
-                      min: 0,
-                      max: 100,
-                      stepSize: 20,
-                    },
-                  },
-                ],
-              },
-              legend: {
-                position: "right",
-              },
-            }}
-          />
+          <HostResourceLineChart data={hostResourceChartData} />
         </Col>
         <Col xl={24} xxl={12}>
-          <Bar
-            type="bar"
-            data={tablespaceChartData}
-            options={{
-              title: { display: true, text: "ORACLE Tablespace Occupancy" },
-              scales: {
-                y: { beginAtZero: true, max: 100 },
-                yAxes: [
-                  {
-                    ticks: {
-                      min: 0,
-                      max: 100,
-                      stepSize: 20,
-                    },
-                  },
-                ],
-              },
-              legend: {
-                display: false,
-              },
-            }}
-          />
+          <TablespaceBarChart data={tablespaceChartData} />
         </Col>
       </Row>
     </div>

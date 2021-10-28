@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Progress, Form, Row, Col } from "antd";
-import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { formatNumberWithCommas } from "../../util/util";
@@ -11,6 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import SgaPieChart from "../../components/chart/SgaPieChart";
 
 const columns = [
   {
@@ -114,25 +114,7 @@ const SgaConfigurations = () => {
         </Col>
         <Col lg={24} xl={12}>
           <div style={{ height: "400px", width: "100%" }}>
-            <Pie
-              data={{
-                labels: data.chart.name,
-                datasets: [
-                  {
-                    data: data.chart.data,
-                    backgroundColor: data.chart.backgroundColor,
-                  },
-                ],
-              }}
-              options={{
-                title: { display: true, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
-                maintainAspectRatio: false,
-                scales: {
-                  yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
-                },
-                legend: { position: "right" },
-              }}
-            />
+            <SgaPieChart data={data} legendPosition="right" />
           </div>
         </Col>
       </Row>
