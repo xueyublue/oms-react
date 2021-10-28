@@ -1,6 +1,9 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
+//-------------------------------------------------------------
+//* COMPONENT START
+//-------------------------------------------------------------
 function TablespaceBarChart({ labels, data }) {
   return (
     <Bar

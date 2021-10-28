@@ -1,6 +1,9 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
+//-------------------------------------------------------------
+//* COMPONENT START
+//-------------------------------------------------------------
 function SgaPieChart({ data, legendPosition }) {
   return (
     <Pie

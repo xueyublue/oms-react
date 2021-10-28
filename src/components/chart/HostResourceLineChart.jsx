@@ -1,6 +1,9 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
+//-------------------------------------------------------------
+//* COMPONENT START
+//-------------------------------------------------------------
 function HostResourceLineChart({ labels, cpu, ram }) {
   return (
     <Line
