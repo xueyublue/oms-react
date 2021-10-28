@@ -222,7 +222,19 @@ const Dashboard = ({ classes }) => {
             data={chartData}
             options={{
               scales: {
-                y: { beginAtZero: true },
+                y: { beginAtZero: true, max: 100 },
+                yAxes: [
+                  {
+                    ticks: {
+                      min: 0,
+                      max: 100,
+                      stepSize: 20,
+                    },
+                  },
+                ],
+              },
+              legend: {
+                position: "top",
               },
             }}
           />
@@ -234,6 +246,15 @@ const Dashboard = ({ classes }) => {
             options={{
               scales: {
                 y: { beginAtZero: true },
+                yAxes: [
+                  {
+                    ticks: {
+                      min: 0,
+                      max: 100,
+                      stepSize: 20,
+                    },
+                  },
+                ],
               },
             }}
           />
