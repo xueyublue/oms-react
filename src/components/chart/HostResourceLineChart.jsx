@@ -16,23 +16,26 @@ function HostResourceLineChart({ labels, cpu, ram }) {
             data: cpu,
             fill: false,
             borderColor: "rgb(36, 209, 209)",
-            tension: 0.1,
+            tension: 0.3,
           },
           {
             label: "RAM",
             data: ram,
             fill: false,
             borderColor: "rgb(75, 122, 192)",
-            tension: 0.1,
+            tension: 0.3,
           },
         ],
       }}
       options={{
         plugins: {
-          title: { display: true, text: "Host CPU/RAM Monitoring" },
+          title: { display: true, text: "Host CPU/RAM (every 5s)" },
           legend: {
             position: "right",
           },
+        },
+        animation: {
+          duration: 500,
         },
         maintainAspectRatio: false,
         scales: {
