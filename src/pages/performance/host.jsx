@@ -56,7 +56,7 @@ function Host({ classes }) {
   return (
     <div className={classes.root}>
       <Row>
-        <Col xxl={24}>
+        <Col lg={24} xl={24} xxl={24}>
           <div className={classes.chartContainer}>
             <HostResourceLineChart
               labels={data.hostResource.time}
