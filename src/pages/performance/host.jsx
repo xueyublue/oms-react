@@ -48,7 +48,7 @@ function Host({ classes }) {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, API_FETCH_WAIT);
+    }, API_FETCH_WAIT * 5);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
