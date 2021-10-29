@@ -22,7 +22,7 @@ function TablespaceSizeBarChart({ labels, data }) {
       }}
       options={{
         plugins: {
-          title: { display: true, text: "ORACLE Tablespace Total Size" },
+          title: { display: true, text: "Tablespace Total Size" },
           legend: {
             display: false,
           },

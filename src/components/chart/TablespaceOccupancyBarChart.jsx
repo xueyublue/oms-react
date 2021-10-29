@@ -22,7 +22,7 @@ function TablespaceOccupancyBarChart({ labels, data }) {
       }}
       options={{
         plugins: {
-          title: { display: true, text: "ORACLE Tablespace Occupancy" },
+          title: { display: true, text: "Tablespace Occupancy" },
           legend: {
             display: false,
           },

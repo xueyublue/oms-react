@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Tag, Form } from "antd";
+import { Table, Progress, Tag, Form, Row, Col } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { withStyles } from "@mui/styles";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -11,6 +12,8 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import TablespaceSizeBarChart from "./../../components/chart/TablespaceSizeBarChart";
+import TablespaceOccupancyBarChart from "./../../components/chart/TablespaceOccupancyBarChart";
 
 const columns = [
   {
@@ -111,11 +114,21 @@ const columns = [
     width: 120,
   },
 ];
+//-------------------------------------------------------------
+// STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {},
+  chartContainer: {
+    height: "330px",
+    width: "100%",
+  },
+};
 
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const Tablespace = () => {
+const Tablespace = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
@@ -176,8 +189,20 @@ const Tablespace = () => {
         scroll={{ x: 1500 }}
         rowKey="name"
       />
+      <Row>
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
+            <TablespaceOccupancyBarChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
+          </div>
+        </Col>
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
+            <TablespaceSizeBarChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-export default Tablespace;
+export default withStyles(styles)(Tablespace);
