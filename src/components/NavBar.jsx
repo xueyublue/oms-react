@@ -51,7 +51,7 @@ const NavBar = () => {
         <img src={logo} alt="me" style={{ height: 32, width: 180 }} />
       </div>
       <Menu
-        style={{ border: "0px solid white" }}
+        style={{ borderRight: "1px solid white" }}
         theme={menuTheme}
         mode="inline"
         selectedKeys={[selectedKeys]}
