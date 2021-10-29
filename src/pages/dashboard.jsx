@@ -7,9 +7,10 @@ import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../util/constants";
 import HostResourceLineChart from "../components/chart/HostResourceLineChart";
-import TablespaceBarChart from "../components/chart/TablespaceBarChart";
+import TablespaceOccupancyBarChart from "../components/chart/TablespaceOccupancyBarChart";
 import DashboardCards from "../components/DashoardCards";
 import SgaPieChart from "../components/chart/SgaPieChart";
+import TablespaceSizeBarChart from "./../components/chart/TablespaceSizeBarChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -17,7 +18,7 @@ import SgaPieChart from "../components/chart/SgaPieChart";
 const styles = {
   root: {},
   chartContainer: {
-    height: "300px",
+    height: "330px",
     width: "100%",
   },
 };
@@ -49,7 +50,7 @@ const Dashboard = ({ classes }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, API_FETCH_WAIT);
+    }, 5000);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -62,7 +63,10 @@ const Dashboard = ({ classes }) => {
       <Row>
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+            <TablespaceOccupancyBarChart
+              labels={data.tablespace.occupancyChart.name}
+              data={data.tablespace.occupancyChart.data}
+            />
           </div>
         </Col>
         <Col lg={24} xl={24} xxl={12}>
@@ -78,12 +82,15 @@ const Dashboard = ({ classes }) => {
       <Row>
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+            <TablespaceSizeBarChart
+              labels={data.tablespace.totalSizeChart.name}
+              data={data.tablespace.totalSizeChart.data}
+            />
           </div>
         </Col>
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaPieChart data={data.sgaconfig} legendPosition="right" />
+            <SgaPieChart data={data.sgaConfig} legendPosition="right" />
           </div>
         </Col>
       </Row>

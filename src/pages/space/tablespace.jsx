@@ -143,7 +143,7 @@ const Tablespace = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.length} records found.`);
+  toast.info(`${data.table.length} records found.`);
 
   return (
     <div>
@@ -159,7 +159,7 @@ const Tablespace = () => {
             />
             <ExportButton
               csvReport={{
-                data: data,
+                data: data.table,
                 headers: getCsvHeaders(columns),
                 filename: "OMS_Tablespace.csv",
               }}
@@ -169,7 +169,7 @@ const Tablespace = () => {
       </Form>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={data.table}
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}

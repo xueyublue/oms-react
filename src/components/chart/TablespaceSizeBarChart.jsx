@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TablespaceBarChart({ labels, data }) {
+function TablespaceSizeBarChart({ labels, data }) {
   return (
     <Bar
       type="bar"
@@ -22,7 +22,7 @@ function TablespaceBarChart({ labels, data }) {
       }}
       options={{
         plugins: {
-          title: { display: true, text: "ORACLE Tablespace Occupancy" },
+          title: { display: true, text: "ORACLE Tablespace Total Size" },
           legend: {
             display: false,
           },
@@ -30,13 +30,11 @@ function TablespaceBarChart({ labels, data }) {
         maintainAspectRatio: false,
         indexAxis: "y",
         scales: {
-          x: { beginAtZero: true, max: 100 },
+          x: { beginAtZero: true, max: data[0] },
           xAxes: [
             {
               ticks: {
                 min: 0,
-                max: 100,
-                stepSize: 20,
               },
             },
           ],
@@ -46,4 +44,4 @@ function TablespaceBarChart({ labels, data }) {
   );
 }
 
-export default TablespaceBarChart;
+export default TablespaceSizeBarChart;

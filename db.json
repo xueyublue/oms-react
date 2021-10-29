@@ -1,26 +1,220 @@
 {
   "dashboard": {
     "instanceStatus": "Online",
-    "sga": 84,
     "sessions": {
       "active": 57,
       "inactive": 13
     },
     "alerts": 2,
     "tablespace": {
-      "label": [
-        "INDX",
-        "INDX_LARGE",
-        "STATSPACK",
-        "SYSAUX",
-        "SYSTEM",
-        "UNDOTBS",
-        "WCS",
-        "WCS_INDEX",
-        "WMS",
-        "WMS_LARGE"
+      "table": [
+        {
+          "name": "SYSAUX",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYSAUXORCL.ORA",
+          "status": "Online",
+          "size": 1740,
+          "freeSize": 158,
+          "occupancy": 91,
+          "autoExtensible": "Yes",
+          "nextExtend": 20.0,
+          "contents": "Permanent",
+          "allocationType": "System"
+        },
+        {
+          "name": "WMS_HISTORY",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_HISTORY.DBF",
+          "status": "Online",
+          "size": 3072,
+          "freeSize": 300,
+          "occupancy": 90,
+          "autoExtensible": "Yes",
+          "nextExtend": 100.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "WMS_TRANSACTIONAL",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_TRANSACTIONAL.DBF",
+          "status": "Online",
+          "size": 1520,
+          "freeSize": 238,
+          "occupancy": 84,
+          "autoExtensible": "Yes",
+          "nextExtend": 20.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "WMS_EVENTHISTORY",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_EVENTHISTORY.DBF",
+          "status": "Online",
+          "size": 8048,
+          "freeSize": 2000,
+          "occupancy": 75,
+          "autoExtensible": "Yes",
+          "nextExtend": 100.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "WMS_INDX_LARGE",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX_LARGE.DBF",
+          "status": "Online",
+          "size": 1024,
+          "freeSize": 254,
+          "occupancy": 75,
+          "autoExtensible": "Yes",
+          "nextExtend": 20.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "WMS_INDX_EVENTHISTORY",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX_EVENTHISTORY.DBF",
+          "status": "Online",
+          "size": 20048,
+          "freeSize": 6000,
+          "occupancy": 70,
+          "autoExtensible": "Yes",
+          "nextExtend": 100.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "CMN_TRANSACTIONAL",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\CMN_TRANSACTIONAL.DBF",
+          "status": "Online",
+          "size": 2048,
+          "freeSize": 780,
+          "occupancy": 62,
+          "autoExtensible": "Yes",
+          "nextExtend": 50.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "WMS_INDX",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX.DBF",
+          "status": "Online",
+          "size": 310,
+          "freeSize": 117,
+          "occupancy": 62,
+          "autoExtensible": "Yes",
+          "nextExtend": 10.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "SYSTEM",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYSORCL.ORA",
+          "status": "Online",
+          "size": 800,
+          "freeSize": 329,
+          "occupancy": 59,
+          "autoExtensible": "Yes",
+          "nextExtend": 10.0,
+          "contents": "Permanent",
+          "allocationType": "System"
+        },
+        {
+          "name": "INDX",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\INDX.DBF",
+          "status": "Online",
+          "size": 1520,
+          "freeSize": 680,
+          "occupancy": 55,
+          "autoExtensible": "Yes",
+          "nextExtend": 20.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "UNDOTBS",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\UNDOTBSORCL.ORA",
+          "status": "Online",
+          "size": 1500,
+          "freeSize": 1473,
+          "occupancy": 2,
+          "autoExtensible": "Yes",
+          "nextExtend": 20.0,
+          "contents": "Undo",
+          "allocationType": "System"
+        },
+        {
+          "name": "AGC_TRANSACTIONAL",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\AGC_TRANSACTIONAL.DBF",
+          "status": "Online",
+          "size": 300,
+          "freeSize": 299,
+          "occupancy": 1,
+          "autoExtensible": "Yes",
+          "nextExtend": 10.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "CMN_HISTORY",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\CMN_HISTORY.DBF",
+          "status": "Online",
+          "size": 3000,
+          "freeSize": 2980,
+          "occupancy": 1,
+          "autoExtensible": "Yes",
+          "nextExtend": 100.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        },
+        {
+          "name": "STATSPACK",
+          "path": "E:\\ORACLE\\ORADATA\\ORCL\\STATSPACK.DBF",
+          "status": "Online",
+          "size": 100,
+          "freeSize": 99,
+          "occupancy": 1,
+          "autoExtensible": "Yes",
+          "nextExtend": 50.0,
+          "contents": "Permanent",
+          "allocationType": "Uniform"
+        }
       ],
-      "data": [5, 15, 6, 18, 4, 11, 88, 12, 44, 22]
+      "occupancyChart": {
+        "name": [
+          "SYSAUX",
+          "WMS_HISTORY",
+          "WMS_TRANSACTIONAL",
+          "WMS_EVENTHISTORY",
+          "WMS_INDX_LARGE",
+          "WMS_INDX_EVENTHISTORY",
+          "CMN_TRANSACTIONAL",
+          "WMS_INDX",
+          "SYSTEM",
+          "INDX",
+          "UNDOTBS",
+          "AGC_TRANSACTIONAL",
+          "CMN_HISTORY",
+          "STATSPACK"
+        ],
+        "data": [91, 90, 84, 75, 75, 70, 62, 62, 59, 55, 2, 1, 1, 1]
+      },
+      "totalSizeChart": {
+        "name": [
+          "WMS_INDX_EVENTHISTORY",
+          "WMS_EVENTHISTORY",
+          "WMS_HISTORY",
+          "CMN_HISTORY",
+          "CMN_TRANSACTIONAL",
+          "SYSAUX",
+          "WMS_TRANSACTIONAL",
+          "INDX",
+          "UNDOTBS",
+          "WMS_INDX_LARGE",
+          "SYSTEM",
+          "WMS_INDX",
+          "AGC_TRANSACTIONAL",
+          "STATSPACK"
+        ],
+        "data": [20048, 8048, 3072, 3000, 2048, 1740, 1520, 1520, 1500, 1024, 800, 310, 300, 100]
+      }
     },
     "tableRecords": {
       "normal": 1574,
@@ -196,128 +390,216 @@
       "value": 70
     }
   ],
-  "tablespace": [
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 182,
-      "name": "INDX",
-      "nextExtend": 20.0,
-      "occupancy": 27,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\INDX_01.DBF",
-      "size": 250,
-      "status": "Online"
+  "tablespace": {
+    "table": [
+      {
+        "name": "SYSAUX",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYSAUXORCL.ORA",
+        "status": "Online",
+        "size": 1740,
+        "freeSize": 158,
+        "occupancy": 91,
+        "autoExtensible": "Yes",
+        "nextExtend": 20.0,
+        "contents": "Permanent",
+        "allocationType": "System"
+      },
+      {
+        "name": "WMS_HISTORY",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_HISTORY.DBF",
+        "status": "Online",
+        "size": 3072,
+        "freeSize": 300,
+        "occupancy": 90,
+        "autoExtensible": "Yes",
+        "nextExtend": 100.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "WMS_TRANSACTIONAL",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_TRANSACTIONAL.DBF",
+        "status": "Online",
+        "size": 1520,
+        "freeSize": 238,
+        "occupancy": 84,
+        "autoExtensible": "Yes",
+        "nextExtend": 20.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "WMS_EVENTHISTORY",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_EVENTHISTORY.DBF",
+        "status": "Online",
+        "size": 8048,
+        "freeSize": 2000,
+        "occupancy": 75,
+        "autoExtensible": "Yes",
+        "nextExtend": 100.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "WMS_INDX_LARGE",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX_LARGE.DBF",
+        "status": "Online",
+        "size": 1024,
+        "freeSize": 254,
+        "occupancy": 75,
+        "autoExtensible": "Yes",
+        "nextExtend": 20.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "WMS_INDX_EVENTHISTORY",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX_EVENTHISTORY.DBF",
+        "status": "Online",
+        "size": 20048,
+        "freeSize": 6000,
+        "occupancy": 70,
+        "autoExtensible": "Yes",
+        "nextExtend": 100.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "CMN_TRANSACTIONAL",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\CMN_TRANSACTIONAL.DBF",
+        "status": "Online",
+        "size": 2048,
+        "freeSize": 780,
+        "occupancy": 62,
+        "autoExtensible": "Yes",
+        "nextExtend": 50.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "WMS_INDX",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_INDX.DBF",
+        "status": "Online",
+        "size": 310,
+        "freeSize": 117,
+        "occupancy": 62,
+        "autoExtensible": "Yes",
+        "nextExtend": 10.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "SYSTEM",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYSORCL.ORA",
+        "status": "Online",
+        "size": 800,
+        "freeSize": 329,
+        "occupancy": 59,
+        "autoExtensible": "Yes",
+        "nextExtend": 10.0,
+        "contents": "Permanent",
+        "allocationType": "System"
+      },
+      {
+        "name": "INDX",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\INDX.DBF",
+        "status": "Online",
+        "size": 1520,
+        "freeSize": 680,
+        "occupancy": 55,
+        "autoExtensible": "Yes",
+        "nextExtend": 20.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "UNDOTBS",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\UNDOTBSORCL.ORA",
+        "status": "Online",
+        "size": 1500,
+        "freeSize": 1473,
+        "occupancy": 2,
+        "autoExtensible": "Yes",
+        "nextExtend": 20.0,
+        "contents": "Undo",
+        "allocationType": "System"
+      },
+      {
+        "name": "AGC_TRANSACTIONAL",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\AGC_TRANSACTIONAL.DBF",
+        "status": "Online",
+        "size": 300,
+        "freeSize": 299,
+        "occupancy": 1,
+        "autoExtensible": "Yes",
+        "nextExtend": 10.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "CMN_HISTORY",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\CMN_HISTORY.DBF",
+        "status": "Online",
+        "size": 3000,
+        "freeSize": 2980,
+        "occupancy": 1,
+        "autoExtensible": "Yes",
+        "nextExtend": 100.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      },
+      {
+        "name": "STATSPACK",
+        "path": "E:\\ORACLE\\ORADATA\\ORCL\\STATSPACK.DBF",
+        "status": "Online",
+        "size": 100,
+        "freeSize": 99,
+        "occupancy": 1,
+        "autoExtensible": "Yes",
+        "nextExtend": 50.0,
+        "contents": "Permanent",
+        "allocationType": "Uniform"
+      }
+    ],
+    "occupancyChart": {
+      "name": [
+        "SYSAUX",
+        "WMS_HISTORY",
+        "WMS_TRANSACTIONAL",
+        "WMS_EVENTHISTORY",
+        "WMS_INDX_LARGE",
+        "WMS_INDX_EVENTHISTORY",
+        "CMN_TRANSACTIONAL",
+        "WMS_INDX",
+        "SYSTEM",
+        "INDX",
+        "UNDOTBS",
+        "AGC_TRANSACTIONAL",
+        "CMN_HISTORY",
+        "STATSPACK"
+      ],
+      "data": [91, 90, 84, 75, 75, 70, 62, 62, 59, 55, 2, 1, 1, 1]
     },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 580,
-      "name": "INDX_LARGE",
-      "nextExtend": 20.0,
-      "occupancy": 3,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\INDX_LARGE_01.DBF",
-      "size": 600,
-      "status": "Online"
-    },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 490,
-      "name": "STATSPACK",
-      "nextExtend": 0.01,
-      "occupancy": 2,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\STATSPACK_01.DBF",
-      "size": 500,
-      "status": "Online"
-    },
-    {
-      "allocationType": "System",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 61,
-      "name": "SYSAUX",
-      "nextExtend": 20.0,
-      "occupancy": 90,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYSAUXORCL.ORA",
-      "size": 600,
-      "status": "Online"
-    },
-    {
-      "allocationType": "System",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 172,
-      "name": "SYSTEM",
-      "nextExtend": 10.0,
-      "occupancy": 71,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\SYS1ORCL.ORA",
-      "size": 600,
-      "status": "Online"
-    },
-    {
-      "allocationType": "System",
-      "autoExtensible": "Yes",
-      "contents": "Undo",
-      "freeSize": 1981,
-      "name": "UNDOTBS",
-      "nextExtend": 20.0,
-      "occupancy": 1,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\UNDOTBS1.ORA",
-      "size": 2000,
-      "status": "Online"
-    },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 116,
-      "name": "WCS",
-      "nextExtend": 20.0,
-      "occupancy": 23,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\WCS_01.DBF",
-      "size": 150,
-      "status": "Online"
-    },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 24,
-      "name": "WCS_INDEX",
-      "nextExtend": 20.0,
-      "occupancy": 52,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\WCS_INDEX_01.DBF",
-      "size": 50,
-      "status": "Online"
-    },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "No",
-      "contents": "Permanent",
-      "freeSize": 568,
-      "name": "WMS",
-      "nextExtend": 20.0,
-      "occupancy": 19,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_01.DBF",
-      "size": 700,
-      "status": "Offline"
-    },
-    {
-      "allocationType": "Uniform",
-      "autoExtensible": "Yes",
-      "contents": "Permanent",
-      "freeSize": 600,
-      "name": "WMS_LARGE",
-      "nextExtend": 20.0,
-      "occupancy": 88,
-      "path": "E:\\ORACLE\\ORADATA\\ORCL\\WMS_LARGE_01.DBF",
-      "size": 4980,
-      "status": "Online"
+    "totalSizeChart": {
+      "name": [
+        "WMS_INDX_EVENTHISTORY",
+        "WMS_EVENTHISTORY",
+        "WMS_HISTORY",
+        "CMN_HISTORY",
+        "CMN_TRANSACTIONAL",
+        "SYSAUX",
+        "WMS_TRANSACTIONAL",
+        "INDX",
+        "UNDOTBS",
+        "WMS_INDX_LARGE",
+        "SYSTEM",
+        "WMS_INDX",
+        "AGC_TRANSACTIONAL",
+        "STATSPACK"
+      ],
+      "data": [20048, 8048, 3072, 3000, 2048, 1740, 1520, 1520, 1500, 1024, 800, 310, 300, 100]
     }
-  ],
+  },
   "toptables": [
     {
       "owner": "WMS",
