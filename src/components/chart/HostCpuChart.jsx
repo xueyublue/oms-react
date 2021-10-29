@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
+function HostCpuChart({ labels, cpu }) {
   const data = {
     labels: labels,
     datasets: [
@@ -15,20 +15,13 @@ function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
       },
-      {
-        label: "RAM",
-        data: ram,
-        fill: true,
-        borderColor: "rgb(75, 122, 192)",
-        tension: 0.3,
-      },
     ],
   };
   const options = {
     plugins: {
-      title: { display: true, text: "Host CPU/RAM (every 5s)" },
+      title: { display: true, text: "Host CPU (every 5s)" },
       legend: {
-        position: legendPosition,
+        display: false,
       },
     },
     animation: {
@@ -51,4 +44,4 @@ function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
   return <Line type="line" data={data} options={options} />;
 }
 
-export default HostCpuAndRamChart;
+export default HostCpuChart;

@@ -7,10 +7,10 @@ import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../util/constants";
 import HostCpuAndRamChart from "../components/chart/HostCpuAndRamChart";
-import TablespaceOccupancyBarChart from "../components/chart/TablespaceOccupancyBarChart";
+import TablespaceOccupancyChart from "../components/chart/TablespaceOccupancyChart";
 import DashboardCards from "../components/DashoardCards";
-import SgaDoughnutChart from "../components/chart/SgaDoughnutChart";
-import TablespaceSizeBarChart from "./../components/chart/TablespaceSizeBarChart";
+import SgaChart from "../components/chart/SgaChart";
+import TablespaceSizeChart from "./../components/chart/TablespaceSizeChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -63,7 +63,7 @@ const Dashboard = ({ classes }) => {
       <Row>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceOccupancyBarChart
+            <TablespaceOccupancyChart
               labels={data.tablespace.occupancyChart.name}
               data={data.tablespace.occupancyChart.data}
             />
@@ -83,7 +83,7 @@ const Dashboard = ({ classes }) => {
       <Row>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceSizeBarChart
+            <TablespaceSizeChart
               labels={data.tablespace.totalSizeChart.name}
               data={data.tablespace.totalSizeChart.data}
             />
@@ -91,7 +91,7 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaDoughnutChart data={data.sgaConfig} legendPosition="right" />
+            <SgaChart data={data.sgaConfig} legendPosition="right" />
           </div>
         </Col>
       </Row>

@@ -7,8 +7,8 @@ import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
 import { BackendAPIContext } from "./../../context/BackendAPIContext";
 import HostCpuAndRamChart from "../../components/chart/HostCpuAndRamChart";
-import HostRamLineChart from "./../../components/chart/HostRamLineChart";
-import HostCpuLineChart from "./../../components/chart/HostCpuLineChart";
+import HostRamChart from "./../../components/chart/HostRamChart";
+import HostCpuChart from "./../../components/chart/HostCpuChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -70,12 +70,12 @@ function Host({ classes }) {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <HostCpuLineChart labels={data.hostResource.time} cpu={data.hostResource.cpu} />
+            <HostCpuChart labels={data.hostResource.time} cpu={data.hostResource.cpu} />
           </div>
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <HostRamLineChart labels={data.hostResource.time} ram={data.hostResource.ram} />
+            <HostRamChart labels={data.hostResource.time} ram={data.hostResource.ram} />
           </div>
         </Col>
       </Row>

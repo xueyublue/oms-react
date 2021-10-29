@@ -12,8 +12,8 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
-import TablespaceSizeBarChart from "./../../components/chart/TablespaceSizeBarChart";
-import TablespaceOccupancyBarChart from "./../../components/chart/TablespaceOccupancyBarChart";
+import TablespaceSizeChart from "./../../components/chart/TablespaceSizeChart";
+import TablespaceOccupancyChart from "./../../components/chart/TablespaceOccupancyChart";
 
 const columns = [
   {
@@ -192,12 +192,12 @@ const Tablespace = ({ classes }) => {
       <Row>
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceOccupancyBarChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
+            <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
           </div>
         </Col>
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
-            <TablespaceSizeBarChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
+            <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
           </div>
         </Col>
       </Row>
