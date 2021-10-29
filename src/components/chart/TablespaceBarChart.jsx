@@ -13,17 +13,25 @@ function TablespaceBarChart({ labels, data }) {
         datasets: [
           {
             data: data,
-            borderColor: "rgb(36, 209, 209)",
             backgroundColor: "rgba(54, 162, 235, 0.5)",
             tension: 0.1,
+            borderColor: "rgba(36, 209, 209, 0.8)",
+            borderWidth: 1,
           },
         ],
       }}
       options={{
-        title: { display: true, text: "ORACLE Tablespace Occupancy" },
+        plugins: {
+          title: { display: true, text: "ORACLE Tablespace Occupancy" },
+          legend: {
+            display: false,
+          },
+        },
+        maintainAspectRatio: false,
+        indexAxis: "y",
         scales: {
-          y: { beginAtZero: true, max: 100 },
-          yAxes: [
+          x: { beginAtZero: true, max: 100 },
+          xAxes: [
             {
               ticks: {
                 min: 0,
@@ -32,9 +40,6 @@ function TablespaceBarChart({ labels, data }) {
               },
             },
           ],
-        },
-        legend: {
-          display: false,
         },
       }}
     />

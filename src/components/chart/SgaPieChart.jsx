@@ -17,12 +17,14 @@ function SgaPieChart({ data, legendPosition }) {
         ],
       }}
       options={{
-        title: { display: true, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
+        plugins: {
+          title: { display: true, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
+          legend: { position: legendPosition },
+        },
         maintainAspectRatio: false,
         scales: {
           yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
         },
-        legend: { position: legendPosition },
       }}
     />
   );

@@ -28,7 +28,13 @@ function HostResourceLineChart({ labels, cpu, ram }) {
         ],
       }}
       options={{
-        title: { display: true, text: "Host System Resource Monitoring" },
+        plugins: {
+          title: { display: true, text: "Host System Resource Monitoring" },
+          legend: {
+            position: "right",
+          },
+        },
+        maintainAspectRatio: false,
         scales: {
           y: { beginAtZero: true, max: 100 },
           yAxes: [
@@ -40,9 +46,6 @@ function HostResourceLineChart({ labels, cpu, ram }) {
               },
             },
           ],
-        },
-        legend: {
-          position: "right",
         },
       }}
     />

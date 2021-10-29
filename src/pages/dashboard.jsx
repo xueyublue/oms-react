@@ -16,6 +16,10 @@ import SgaPieChart from "../components/chart/SgaPieChart";
 //-------------------------------------------------------------
 const styles = {
   root: {},
+  chartContainer: {
+    height: "300px",
+    width: "100%",
+  },
 };
 
 //-------------------------------------------------------------
@@ -56,20 +60,29 @@ const Dashboard = ({ classes }) => {
     <div className={classes.root}>
       <DashboardCards data={data} />
       <Row>
-        <Col xl={24} xxl={12}>
-          <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
+            <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+          </div>
         </Col>
-        <Col xl={24} xxl={12}>
-          <HostResourceLineChart
-            labels={data.hostResource.label}
-            cpu={data.hostResource.cpu}
-            ram={data.hostResource.ram}
-          />
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
+            <HostResourceLineChart
+              labels={data.hostResource.label}
+              cpu={data.hostResource.cpu}
+              ram={data.hostResource.ram}
+            />
+          </div>
         </Col>
       </Row>
       <Row>
-        <Col xl={24} xxl={12}>
-          <div style={{ height: "300px", width: "100%" }}>
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
+            <TablespaceBarChart labels={data.tablespace.label} data={data.tablespace.data} />
+          </div>
+        </Col>
+        <Col lg={24} xl={24} xxl={12}>
+          <div className={classes.chartContainer}>
             <SgaPieChart data={data.sgaconfig} legendPosition="right" />
           </div>
         </Col>
