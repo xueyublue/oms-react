@@ -10,7 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
-import SgaPieChart from "../../components/chart/SgaPieChart";
+import SgaDoughnutChart from "../../components/chart/SgaDoughnutChart";
 
 const columns = [
   {
@@ -114,7 +114,7 @@ const SgaConfigurations = () => {
         </Col>
         <Col lg={24} xl={12}>
           <div style={{ height: "400px", width: "100%" }}>
-            <SgaPieChart data={data} legendPosition="right" />
+            <SgaDoughnutChart data={data} legendPosition="right" />
           </div>
         </Col>
       </Row>

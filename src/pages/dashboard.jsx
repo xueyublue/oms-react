@@ -9,7 +9,7 @@ import { API_FETCH_WAIT } from "../util/constants";
 import HostResourceLineChart from "../components/chart/HostResourceLineChart";
 import TablespaceOccupancyBarChart from "../components/chart/TablespaceOccupancyBarChart";
 import DashboardCards from "../components/DashoardCards";
-import SgaPieChart from "../components/chart/SgaPieChart";
+import SgaDoughnutChart from "../components/chart/SgaDoughnutChart";
 import TablespaceSizeBarChart from "./../components/chart/TablespaceSizeBarChart";
 
 //-------------------------------------------------------------
@@ -90,7 +90,7 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaPieChart data={data.sgaConfig} legendPosition="right" />
+            <SgaDoughnutChart data={data.sgaConfig} legendPosition="right" />
           </div>
         </Col>
       </Row>

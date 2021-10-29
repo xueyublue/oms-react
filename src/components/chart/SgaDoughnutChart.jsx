@@ -1,12 +1,12 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SgaPieChart({ data, legendPosition }) {
+function SgaDoughnutChart({ data, legendPosition }) {
   return (
-    <Pie
+    <Doughnut
       data={{
         labels: data.chart.name,
         datasets: [
@@ -30,4 +30,4 @@ function SgaPieChart({ data, legendPosition }) {
   );
 }
 
-export default SgaPieChart;
+export default SgaDoughnutChart;
