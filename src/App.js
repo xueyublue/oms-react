@@ -28,7 +28,7 @@ const styles = {
     minHeight: "100vh",
   },
   container: {
-    margin: "8px 8px",
+    margin: "4px 4px",
     padding: 8,
     minHeight: 650,
   },
