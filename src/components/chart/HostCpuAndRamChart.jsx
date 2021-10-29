@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostResourceLineChart({ labels, cpu, ram }) {
+function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
   return (
     <Line
       type="line"
@@ -31,7 +31,7 @@ function HostResourceLineChart({ labels, cpu, ram }) {
         plugins: {
           title: { display: true, text: "Host CPU/RAM (every 5s)" },
           legend: {
-            position: "right",
+            position: legendPosition,
           },
         },
         animation: {
@@ -55,4 +55,4 @@ function HostResourceLineChart({ labels, cpu, ram }) {
   );
 }
 
-export default HostResourceLineChart;
+export default HostCpuAndRamChart;

@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../util/constants";
-import HostResourceLineChart from "../components/chart/HostResourceLineChart";
+import HostCpuAndRamChart from "../components/chart/HostCpuAndRamChart";
 import TablespaceOccupancyBarChart from "../components/chart/TablespaceOccupancyBarChart";
 import DashboardCards from "../components/DashoardCards";
 import SgaDoughnutChart from "../components/chart/SgaDoughnutChart";
@@ -71,10 +71,11 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <HostResourceLineChart
+            <HostCpuAndRamChart
               labels={data.hostResource.time}
               cpu={data.hostResource.cpu}
               ram={data.hostResource.ram}
+              legendPosition="right"
             />
           </div>
         </Col>

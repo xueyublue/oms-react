@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
 import { BackendAPIContext } from "./../../context/BackendAPIContext";
-import HostResourceLineChart from "../../components/chart/HostResourceLineChart";
+import HostCpuAndRamChart from "../../components/chart/HostCpuAndRamChart";
 import HostRamLineChart from "./../../components/chart/HostRamLineChart";
 import HostCpuLineChart from "./../../components/chart/HostCpuLineChart";
 
@@ -60,10 +60,11 @@ function Host({ classes }) {
       <Row>
         <Col lg={24} xl={24} xxl={24}>
           <div className={classes.chartContainer}>
-            <HostResourceLineChart
+            <HostCpuAndRamChart
               labels={data.hostResource.time}
               cpu={data.hostResource.cpu}
               ram={data.hostResource.ram}
+              legendPosition="top"
             />
           </div>
         </Col>
