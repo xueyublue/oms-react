@@ -49,7 +49,7 @@ const buildDataSource = (data, history) => [
     ),
   },
   {
-    title: "Host Storage",
+    title: "Host Storage Occupancy",
     content: (
       <div>
         {data.hostStorage.map((item) => (

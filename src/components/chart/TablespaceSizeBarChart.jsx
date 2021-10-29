@@ -29,7 +29,7 @@ function TablespaceSizeBarChart({ labels, data }) {
       }}
       options={{
         plugins: {
-          title: { display: true, text: "Tablespace Total Size" },
+          title: { display: true, text: "Tablespace Total Size (MB)" },
           legend: {
             display: false,
           },
