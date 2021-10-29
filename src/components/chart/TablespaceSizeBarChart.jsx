@@ -5,6 +5,13 @@ import { Bar } from "react-chartjs-2";
 //* COMPONENT START
 //-------------------------------------------------------------
 function TablespaceSizeBarChart({ labels, data }) {
+  let bgColors = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i] >= 10240) bgColors[i] = "rgba(255, 178, 195, 0.8)";
+    else if (data[i] >= 1024) bgColors[i] = "rgba(253, 211, 153, 0.8)";
+    else bgColors[i] = "rgba(54, 162, 235, 0.8)";
+  }
+
   return (
     <Bar
       type="bar"
@@ -13,10 +20,10 @@ function TablespaceSizeBarChart({ labels, data }) {
         datasets: [
           {
             data: data,
-            backgroundColor: "rgba(54, 162, 235, 0.5)",
+            backgroundColor: bgColors,
             tension: 0.1,
-            borderColor: "rgba(36, 209, 209, 0.8)",
-            borderWidth: 1,
+            // borderColor: "rgba(36, 209, 209, 0.8)",
+            // borderWidth: 1,
           },
         ],
       }}

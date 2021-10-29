@@ -5,6 +5,12 @@ import { Bar } from "react-chartjs-2";
 //* COMPONENT START
 //-------------------------------------------------------------
 function TablespaceOccupancyBarChart({ labels, data }) {
+  let bgColors = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i] >= 80) bgColors[i] = "rgba(255, 178, 195, 0.8)";
+    else bgColors[i] = "rgba(54, 162, 235, 0.8)";
+  }
+
   return (
     <Bar
       type="bar"
@@ -13,10 +19,10 @@ function TablespaceOccupancyBarChart({ labels, data }) {
         datasets: [
           {
             data: data,
-            backgroundColor: "rgba(54, 162, 235, 0.5)",
+            backgroundColor: bgColors,
             tension: 0.1,
-            borderColor: "rgba(36, 209, 209, 0.8)",
-            borderWidth: 1,
+            // borderColor: "rgba(54, 162, 235, 0.5)",
+            // borderWidth: 1,
           },
         ],
       }}
