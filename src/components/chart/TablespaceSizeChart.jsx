@@ -43,7 +43,7 @@ function TablespaceSizeChart({ labels, data }) {
       ],
     },
   };
-  return <Bar type="bar" data={dataSource} options={options} />;
+  return <Bar data={dataSource} options={options} />;
 }
 
 export default TablespaceSizeChart;

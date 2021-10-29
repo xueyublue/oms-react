@@ -48,7 +48,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
       ],
     },
   };
-  return <Line type="line" data={data} options={options} />;
+  return <Line data={data} options={options} />;
 }
 
 export default HostCpuAndRamChart;

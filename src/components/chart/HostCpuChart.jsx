@@ -41,7 +41,7 @@ function HostCpuChart({ labels, cpu }) {
       ],
     },
   };
-  return <Line type="line" data={data} options={options} />;
+  return <Line data={data} options={options} />;
 }
 
 export default HostCpuChart;
