@@ -50,7 +50,7 @@ const Dashboard = ({ classes }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, 5000);
+    }, API_FETCH_WAIT);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -72,7 +72,7 @@ const Dashboard = ({ classes }) => {
         <Col lg={24} xl={24} xxl={12}>
           <div className={classes.chartContainer}>
             <HostResourceLineChart
-              labels={data.hostResource.label}
+              labels={data.hostResource.time}
               cpu={data.hostResource.cpu}
               ram={data.hostResource.ram}
             />

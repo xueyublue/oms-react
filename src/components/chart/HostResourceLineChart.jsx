@@ -16,14 +16,14 @@ function HostResourceLineChart({ labels, cpu, ram }) {
             data: cpu,
             fill: false,
             borderColor: "rgb(36, 209, 209)",
-            tension: 0.3,
+            tension: 0.1,
           },
           {
             label: "RAM",
             data: ram,
             fill: false,
             borderColor: "rgb(75, 122, 192)",
-            tension: 0.3,
+            tension: 0.1,
           },
         ],
       }}
