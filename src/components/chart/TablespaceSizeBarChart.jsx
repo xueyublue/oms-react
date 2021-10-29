@@ -7,9 +7,9 @@ import { Bar } from "react-chartjs-2";
 function TablespaceSizeBarChart({ labels, data }) {
   let bgColors = [];
   for (let i = 0; i < data.length; i++) {
-    if (data[i] >= 10240) bgColors[i] = "rgba(255, 178, 195, 0.8)";
-    else if (data[i] >= 1024) bgColors[i] = "rgba(253, 211, 153, 0.8)";
-    else bgColors[i] = "rgba(54, 162, 235, 0.8)";
+    if (data[i] >= 20480) bgColors[i] = "rgba(255, 178, 195, 0.8)";
+    else if (data[i] >= 10240) bgColors[i] = "rgba(253, 211, 153, 0.8)";
+    else bgColors[i] = "rgba(36, 209, 209, 0.8)";
   }
 
   return (

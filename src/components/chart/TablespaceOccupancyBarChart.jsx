@@ -8,7 +8,7 @@ function TablespaceOccupancyBarChart({ labels, data }) {
   let bgColors = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i] >= 80) bgColors[i] = "rgba(255, 178, 195, 0.8)";
-    else bgColors[i] = "rgba(54, 162, 235, 0.8)";
+    else bgColors[i] = "rgba(36, 209, 209, 0.8)";
   }
 
   return (
