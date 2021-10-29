@@ -51,6 +51,7 @@ const NavBar = () => {
         <img src={logo} alt="me" style={{ height: 32, width: 180 }} />
       </div>
       <Menu
+        style={{ border: "0px solid white" }}
         theme={menuTheme}
         mode="inline"
         selectedKeys={[selectedKeys]}
@@ -94,7 +95,7 @@ const NavBar = () => {
             <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_PERFORMANCE_HOST}>
-            <Link to={Constants.ROUTE_PERFORMANCE_HOST}>Host</Link>
+            <Link to={Constants.ROUTE_PERFORMANCE_HOST}>Host Resource</Link>
           </Menu.Item>
         </SubMenu>
 

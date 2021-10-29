@@ -27,8 +27,11 @@ const styles = {
     marginLeft: 220,
     minHeight: "100vh",
   },
+  appbar: {
+    margin: "0 5px",
+  },
   container: {
-    margin: "4px 4px",
+    margin: "5px",
     padding: 8,
     minHeight: 650,
   },
@@ -83,7 +86,9 @@ function App({ classes }) {
       <Layout className="site-layout">
         <NavBar />
         <Layout className={classes.main}>
-          <AppBar pageName={RouteToPageName(pathname)} />
+          <div className={classes.appbar}>
+            <AppBar pageName={RouteToPageName(pathname)} />
+          </div>
           <Content className={classNames("site-layout-background", classes.container)}>
             <RouteContainer />
             <ToastContainer position="top-center" hideProgressBar closeOnClick autoClose={3000} />
