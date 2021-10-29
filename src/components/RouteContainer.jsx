@@ -23,6 +23,7 @@ import Profile from "../pages/profile";
 import NotFound from "../pages/not-found";
 import SQLWorkbench from "../pages/admin/sql-workbench";
 import About from "./../pages/about";
+import host from "../pages/performance/host";
 
 //-------------------------------------------------------------
 // COMPONENT START
@@ -39,6 +40,7 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT} component={ResourceLimit} />
       <Route exact path={Constants.ROUTE_INSTANCE_PARAMETERS} component={Parameters} />
       <Route exact path={Constants.ROUTE_PERFORMANCE_SESSION} component={Sessions} />
+      <Route exact path={Constants.ROUTE_PERFORMANCE_HOST} component={host} />
       <Route exact path={Constants.ROUTE_SPACE_TABLESPACE} component={Tablespace} />
       <Route exact path={Constants.ROUTE_SPACE_TOP_TABLES} component={TopTables} />
       <Route exact path={Constants.ROUTE_SPACE_TOP_INDEXES} component={TopIndexes} />

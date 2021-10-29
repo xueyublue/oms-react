@@ -29,7 +29,7 @@ function HostResourceLineChart({ labels, cpu, ram }) {
       }}
       options={{
         plugins: {
-          title: { display: true, text: "Host System Resource Monitoring" },
+          title: { display: true, text: "Host CPU/RAM Monitoring" },
           legend: {
             position: "right",
           },

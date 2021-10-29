@@ -93,6 +93,9 @@ const NavBar = () => {
           <Menu.Item key={Constants.ROUTE_PERFORMANCE_SESSION}>
             <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
           </Menu.Item>
+          <Menu.Item key={Constants.ROUTE_PERFORMANCE_HOST}>
+            <Link to={Constants.ROUTE_PERFORMANCE_HOST}>Host</Link>
+          </Menu.Item>
         </SubMenu>
 
         <SubMenu key="/space" icon={<FcDatabase size={20} />} title="Space">

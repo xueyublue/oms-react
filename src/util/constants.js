@@ -10,6 +10,7 @@ export const ROUTE_INSTANCE_RESOURCE_LIMIT = `${ROUTE_ROOT}/instance/resource-li
 export const ROUTE_INSTANCE_PARAMETERS = `${ROUTE_ROOT}/instance/parameters`;
 // performance
 export const ROUTE_PERFORMANCE_SESSION = `${ROUTE_ROOT}/performance/session`;
+export const ROUTE_PERFORMANCE_HOST = `${ROUTE_ROOT}/performance/host`;
 // space
 export const ROUTE_SPACE_TABLESPACE = `${ROUTE_ROOT}/space/tablespace`;
 export const ROUTE_SPACE_TOP_TABLES = `${ROUTE_ROOT}/space/top-tables`;
@@ -39,6 +40,7 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_INSTANCE_RESOURCE_LIMIT) return "Resource Limit";
   else if (route === ROUTE_INSTANCE_PARAMETERS) return "Instance Parameters";
   else if (route === ROUTE_PERFORMANCE_SESSION) return "Session";
+  else if (route === ROUTE_PERFORMANCE_HOST) return "Host";
   else if (route === ROUTE_SPACE_TABLESPACE) return "Tablespace";
   else if (route === ROUTE_SPACE_TOP_TABLES) return "Top Tables";
   else if (route === ROUTE_SPACE_TOP_INDEXES) return "Top Indexes";
