@@ -7,6 +7,8 @@ import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
 import { BackendAPIContext } from "./../../context/BackendAPIContext";
 import HostResourceLineChart from "../../components/chart/HostResourceLineChart";
+import HostRamLineChart from "./../../components/chart/HostRamLineChart";
+import HostCpuLineChart from "./../../components/chart/HostCpuLineChart";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -63,6 +65,16 @@ function Host({ classes }) {
               cpu={data.hostResource.cpu}
               ram={data.hostResource.ram}
             />
+          </div>
+        </Col>
+        <Col lg={24} xl={12} xxl={12}>
+          <div className={classes.chartContainer}>
+            <HostCpuLineChart labels={data.hostResource.time} cpu={data.hostResource.cpu} />
+          </div>
+        </Col>
+        <Col lg={24} xl={12} xxl={12}>
+          <div className={classes.chartContainer}>
+            <HostRamLineChart labels={data.hostResource.time} ram={data.hostResource.ram} />
           </div>
         </Col>
       </Row>

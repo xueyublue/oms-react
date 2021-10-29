@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostRamLineChart({ labels, ram }) {
+function HostCpuLineChart({ labels, cpu }) {
   return (
     <Line
       type="line"
@@ -12,17 +12,17 @@ function HostRamLineChart({ labels, ram }) {
         labels: labels,
         datasets: [
           {
-            label: "RAM",
-            data: ram,
+            label: "CPU",
+            data: cpu,
             fill: true,
-            borderColor: "rgb(75, 122, 192)",
+            borderColor: "rgb(36, 209, 209)",
             tension: 0.3,
           },
         ],
       }}
       options={{
         plugins: {
-          title: { display: true, text: "Host RAM (every 5s)" },
+          title: { display: true, text: "Host CPU (every 5s)" },
           legend: {
             display: false,
           },
@@ -48,4 +48,4 @@ function HostRamLineChart({ labels, ram }) {
   );
 }
 
-export default HostRamLineChart;
+export default HostCpuLineChart;
