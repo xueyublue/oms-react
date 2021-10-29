@@ -8,8 +8,8 @@ import * as Constants from "../util/constants";
 //* UTILS
 //-------------------------------------------------------------
 const tagStyle = { fontSize: "1rem", padding: 4, width: "100%" };
-const tagStyle2 = { fontSize: "1rem", padding: 4, width: "48%" };
-const tagStyle3 = { fontSize: "1rem", padding: 4, width: "31%" };
+const tagStyle2 = { fontSize: "1rem", padding: 4, width: "45%" };
+const tagStyle3 = { fontSize: "1rem", padding: 4, width: "30%" };
 
 const buildDataSource = (data, history) => [
   {
@@ -17,33 +17,6 @@ const buildDataSource = (data, history) => [
     content: (
       <Tag icon={<CheckCircleOutlined />} color="success" style={tagStyle}>
         {data.instanceStatus}
-      </Tag>
-    ),
-  },
-  {
-    title: "SGA Occupancy",
-    content: (
-      <Tag
-        icon={data.sga >= 80 ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
-        color={data.sga >= 80 ? "error" : "success"}
-        style={tagStyle}
-      >
-        {data.sga}%
-      </Tag>
-    ),
-    handleClick: () => {
-      history.push(Constants.ROUTE_INSTANCE_SGA);
-    },
-  },
-  {
-    title: "Alerts",
-    content: (
-      <Tag
-        icon={data.alerts === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
-        color={data.alerts === 0 ? "success" : "error"}
-        style={tagStyle}
-      >
-        {data.alerts} Alerts
       </Tag>
     ),
   },
@@ -64,20 +37,16 @@ const buildDataSource = (data, history) => [
     },
   },
   {
-    title: "Table Records",
+    title: "Alerts",
     content: (
-      <div>
-        <Tag color="success" style={tagStyle2}>
-          {data.tableRecords.normal} Normal
-        </Tag>
-        <Tag color={data.tableRecords.high === 0 ? "success" : "error"} style={tagStyle2}>
-          {data.tableRecords.high} High
-        </Tag>
-      </div>
+      <Tag
+        icon={data.alerts === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+        color={data.alerts === 0 ? "success" : "error"}
+        style={tagStyle}
+      >
+        {data.alerts} Alerts
+      </Tag>
     ),
-    handleClick: () => {
-      history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
-    },
   },
   {
     title: "Host Storage",
@@ -90,9 +59,6 @@ const buildDataSource = (data, history) => [
         ))}
       </div>
     ),
-    handleClick: () => {
-      history.push(Constants.ROUTE_SPACE_TABLE_RECORDS);
-    },
   },
 ];
 
@@ -108,10 +74,10 @@ function DashboardCards({ data }) {
         gutter: 16,
         xs: 1,
         sm: 1,
-        md: 2,
-        lg: 2,
+        md: 1,
+        lg: 1,
         xl: 2,
-        xxl: 3,
+        xxl: 4,
       }}
       dataSource={buildDataSource(data, history)}
       renderItem={(item) => (

@@ -18,7 +18,7 @@ import TablespaceSizeBarChart from "./../components/chart/TablespaceSizeBarChart
 const styles = {
   root: {},
   chartContainer: {
-    height: "330px",
+    height: "340px",
     width: "100%",
   },
 };
@@ -61,7 +61,7 @@ const Dashboard = ({ classes }) => {
     <div className={classes.root}>
       <DashboardCards data={data} />
       <Row>
-        <Col lg={24} xl={24} xxl={12}>
+        <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
             <TablespaceOccupancyBarChart
               labels={data.tablespace.occupancyChart.name}
@@ -69,7 +69,7 @@ const Dashboard = ({ classes }) => {
             />
           </div>
         </Col>
-        <Col lg={24} xl={24} xxl={12}>
+        <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
             <HostResourceLineChart
               labels={data.hostResource.time}
@@ -80,7 +80,7 @@ const Dashboard = ({ classes }) => {
         </Col>
       </Row>
       <Row>
-        <Col lg={24} xl={24} xxl={12}>
+        <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
             <TablespaceSizeBarChart
               labels={data.tablespace.totalSizeChart.name}
@@ -88,7 +88,7 @@ const Dashboard = ({ classes }) => {
             />
           </div>
         </Col>
-        <Col lg={24} xl={24} xxl={12}>
+        <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
             <SgaPieChart data={data.sgaConfig} legendPosition="right" />
           </div>
