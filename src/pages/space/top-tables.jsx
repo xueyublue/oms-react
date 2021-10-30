@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag } from "antd";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { FcUndo } from "react-icons/fc";
+import { useSnackbar } from "notistack";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -58,6 +58,7 @@ const TopTables = () => {
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -82,7 +83,7 @@ const TopTables = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (owner === "All" ? true : row.owner === owner));
-  toast.info(`${filteredData.length} records found.`);
+  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
 
   return (
     <div>

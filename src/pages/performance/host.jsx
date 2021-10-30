@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { withStyles } from "@mui/styles";
 import { Row, Col } from "antd";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
@@ -25,9 +26,11 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 function Host({ classes }) {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -54,6 +57,14 @@ function Host({ classes }) {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
+  //* display snackbar only one time to inform the refresh interval
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar("Host Resource loaded, refresh interval: 5 seconds.", {
+      variant: "success",
+      autoHideDuration: 5000,
+    });
+  }
 
   return (
     <div className={classes.root}>

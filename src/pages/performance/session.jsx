@@ -157,7 +157,7 @@ const Sessions = () => {
   const filteredData = data
     .filter((row) => (userName === "All" ? true : row.userName === userName))
     .filter((row) => (status === "All" ? true : row.status === status));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "success" });
+  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
 
   return (
     <div>

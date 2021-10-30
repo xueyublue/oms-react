@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Progress, Tag, Form, Row, Col } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
@@ -146,6 +146,7 @@ const Tablespace = ({ classes }) => {
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -169,7 +170,7 @@ const Tablespace = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.table.length} records found.`);
+  enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
   const count = countHighOccupancy(data.table);
 
   return (

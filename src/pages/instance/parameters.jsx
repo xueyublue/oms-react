@@ -109,7 +109,7 @@ const Parameters = () => {
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
-  enqueueSnackbar(`${data.length} records found.`, { variant: "success" });
+  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
 
   return (
     <div>

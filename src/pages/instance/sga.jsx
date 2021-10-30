@@ -95,7 +95,7 @@ const SgaConfigurations = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.table.length} records found.`, { variant: "success" });
+  enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
 
   return (
     <div>
