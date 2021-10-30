@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-
-import "antd/dist/antd.css";
 import { Layout, Menu, Switch } from "antd";
 import { MdDarkMode } from "react-icons/md";
 import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase, FcServices } from "react-icons/fc";

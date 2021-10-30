@@ -2,15 +2,46 @@ import React from "react";
 import { Form, Button, Input, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import { ROUTE_DASHBORAD } from "./../util/constants";
-
-import styles from "./login.module.css";
 import loginlogo from "../logo-login.png";
 
 //-------------------------------------------------------------
-// PAGE START
+//* STYLES START
 //-------------------------------------------------------------
-const Login = () => {
+const styles = {
+  root: {
+    width: "400px",
+    height: "460px",
+    borderRadius: "10px",
+    background: "rgba(0, 0, 0, 0.05)",
+    color: "#fff",
+    top: "50%",
+    left: "50%",
+    position: "absolute",
+    transform: "translate(-50%, -50%)",
+    boxSizing: "border-box",
+    padding: "70px 30px",
+  },
+  logo: {
+    width: "220px",
+    height: "40px",
+    position: "absolute",
+    top: "15px",
+    left: "calc(50% - 110px)",
+  },
+  forgetPassord: {
+    float: "right",
+  },
+  loginButton: {
+    width: "100%",
+  },
+};
+
+//-------------------------------------------------------------
+//* PAGE START
+//-------------------------------------------------------------
+const Login = ({ classes }) => {
   const history = useHistory();
 
   const onFinish = (values) => {
@@ -22,8 +53,8 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.loginbox}>
-      <img src={loginlogo} alt="logo" className={styles.loginlogo}></img>
+    <div className={classes.root}>
+      <img src={loginlogo} alt="logo" className={classes.logo}></img>
       <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
         <Form.Item name="userid" rules={[{ required: true, message: "Please input your User ID!" }]}>
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="User ID" size="large" />
@@ -40,12 +71,12 @@ const Login = () => {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <a className={styles.loginformforgot} href="/">
+          <a className={classes.forgetPassord} href="/">
             Forgot password
           </a>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className={styles.loginformbutton} size="large">
+          <Button type="primary" htmlType="submit" className={classes.loginButton} size="large">
             LOGIN
           </Button>
         </Form.Item>
@@ -54,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withStyles(styles)(Login);
