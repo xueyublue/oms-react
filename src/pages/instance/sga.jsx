@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form, Row, Col } from "antd";
+import { Table, Progress, Form, Row, Col, Tag } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -94,7 +95,11 @@ const SgaConfigurations = ({ classes }) => {
   return (
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item />
+        <Form.Item>
+          <Tag icon={<ExclamationCircleOutlined />} color={"geekblue"} style={{ fontSize: "1rem", padding: "4px" }}>
+            System Global Area (SGA): {data.maxSgaSize} MB in total.
+          </Tag>
+        </Form.Item>
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
             <RefreshButton

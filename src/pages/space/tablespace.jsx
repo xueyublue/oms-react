@@ -114,6 +114,15 @@ const columns = [
     width: 120,
   },
 ];
+
+const countHighOccupancy = (data) => {
+  let count = 0;
+  data.map((item) => {
+    if (item.occupancy >= 80) count++;
+  });
+  return count;
+};
+
 //-------------------------------------------------------------
 // STYLES START
 //-------------------------------------------------------------
@@ -157,11 +166,22 @@ const Tablespace = ({ classes }) => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   toast.info(`${data.table.length} records found.`);
+  const count = countHighOccupancy(data.table);
 
   return (
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item />
+        <Form.Item>
+          <Tag
+            icon={count === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+            color={count === 0 ? "green" : "volcano"}
+            style={{ fontSize: "1rem", padding: "4px" }}
+          >
+            {count === 0
+              ? `All tablespace occupancy are normal. No action required.`
+              : `There are ${count} tablespace occupancy more than 80%. Manual extension might required.`}
+          </Tag>
+        </Form.Item>
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
             <RefreshButton
