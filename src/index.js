@@ -13,10 +13,11 @@ ReactDOM.render(
   // <React.StrictMode>
   <BrowserRouter>
     <SnackbarProvider
+      dense={true}
       maxSnack={3}
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
+        vertical: "top",
+        horizontal: "center",
       }}
       autoHideDuration={3000}
     >
