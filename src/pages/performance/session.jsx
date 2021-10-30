@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { FcUndo } from "react-icons/fc";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -11,6 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import { useSnackbar } from "notistack";
 
 const columns = [
   {
@@ -130,6 +130,7 @@ const Sessions = () => {
   const [status, setStatus] = useState("All");
   const [userName, setUserName] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -156,7 +157,7 @@ const Sessions = () => {
   const filteredData = data
     .filter((row) => (userName === "All" ? true : row.userName === userName))
     .filter((row) => (status === "All" ? true : row.status === status));
-  toast.info(`${filteredData.length} records found.`);
+  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "success" });
 
   return (
     <div>
