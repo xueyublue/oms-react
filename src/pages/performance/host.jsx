@@ -6,9 +6,9 @@ import Loading from "../../components/Loading";
 import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
 import { BackendAPIContext } from "./../../context/BackendAPIContext";
-import HostCpuAndRamChart from "../../components/chart/HostCpuAndRamChart";
-import HostRamChart from "./../../components/chart/HostRamChart";
-import HostCpuChart from "./../../components/chart/HostCpuChart";
+import HostCpuAndRamChart from "./../../chart/HostCpuAndRamChart";
+import HostCpuChart from "./../../chart/HostCpuChart";
+import HostRamChart from "./../../chart/HostRamChart";
 
 //-------------------------------------------------------------
 // STYLES START

@@ -6,11 +6,11 @@ import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../util/constants";
-import HostCpuAndRamChart from "../components/chart/HostCpuAndRamChart";
-import TablespaceOccupancyChart from "../components/chart/TablespaceOccupancyChart";
+import HostCpuAndRamChart from "../chart/HostCpuAndRamChart";
+import TablespaceOccupancyChart from "../chart/TablespaceOccupancyChart";
 import DashboardCards from "../components/DashoardCards";
-import SgaChart from "../components/chart/SgaChart";
-import TablespaceSizeChart from "./../components/chart/TablespaceSizeChart";
+import SgaChart from "../chart/SgaChart";
+import TablespaceSizeChart from "../chart/TablespaceSizeChart";
 
 //-------------------------------------------------------------
 // STYLES START

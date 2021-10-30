@@ -10,7 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
-import SgaChart from "../../components/chart/SgaChart";
+import SgaChart from "../../chart/SgaChart";
 
 const columns = [
   {
