@@ -25,13 +25,6 @@ const columns = [
     fixed: "left",
   },
   {
-    title: "Path",
-    dataIndex: "path",
-    key: "path",
-    width: 400,
-    sorter: (a, b) => a.path > b.path,
-  },
-  {
     title: "Status",
     dataIndex: "status",
     key: "status",
@@ -46,6 +39,13 @@ const columns = [
         {status}
       </Tag>
     ),
+  },
+  {
+    title: "Path",
+    dataIndex: "path",
+    key: "path",
+    width: 400,
+    sorter: (a, b) => a.path > b.path,
   },
   {
     title: "Size (MB)",

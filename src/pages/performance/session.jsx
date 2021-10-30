@@ -17,7 +17,7 @@ const columns = [
     title: "ID",
     dataIndex: "id",
     key: "id",
-    width: 60,
+    width: 50,
     align: "center",
     render: (text) => (
       <a style={{ color: "#1890FF" }} href="/">
@@ -25,6 +25,7 @@ const columns = [
       </a>
     ),
     sorter: (a, b) => a.id - b.id,
+    fixed: "left",
   },
   {
     title: "Serial #",
@@ -32,6 +33,8 @@ const columns = [
     key: "serialNo",
     width: 80,
     sorter: (a, b) => a.serialNo - b.serialNo,
+    fixed: "left",
+    align: "center",
   },
   {
     title: "Status",
@@ -47,6 +50,8 @@ const columns = [
         {status}
       </Tag>
     ),
+    fixed: "left",
+    align: "center",
   },
   {
     title: "Type",
@@ -70,13 +75,13 @@ const columns = [
     title: "Machine",
     dataIndex: "machine",
     key: "machine",
-    width: 100,
+    width: 150,
   },
   {
     title: "Terminal",
     dataIndex: "terminal",
     key: "terminal",
-    width: 100,
+    width: 150,
   },
   {
     title: "Program",
@@ -235,7 +240,7 @@ const Sessions = () => {
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1500 }}
+        scroll={{ x: 1600 }}
         rowKey="id"
       />
     </div>
