@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Layout, Menu, Switch } from "antd";
 import { MdDarkMode } from "react-icons/md";
 import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase, FcServices } from "react-icons/fc";
+import { withStyles } from "@mui/styles";
 import * as Constants from "../util/constants";
 import { Link } from "react-router-dom";
 import logolight from "../logo-light.png";
@@ -12,9 +13,14 @@ const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = { root: {} };
+
+//-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-const NavBar = () => {
+const NavBar = ({ classes }) => {
   const [selectedKeys, setSelectedKeys] = useState(Constants.ROUTE_DASHBORAD);
   const [openKeys, setOpenKeys] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
@@ -49,7 +55,11 @@ const NavBar = () => {
         <img src={logo} alt="me" style={{ height: 32, width: 180 }} />
       </div>
       <Menu
-        style={{ borderRight: "1px solid white" }}
+        style={
+          darkMode
+            ? { borderRight: "1px solid #011528", transition: "0.5s" }
+            : { borderRight: "1px solid white", transition: "0.5s" }
+        }
         theme={menuTheme}
         mode="inline"
         selectedKeys={[selectedKeys]}
@@ -148,4 +158,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withStyles(styles)(NavBar);
