@@ -82,7 +82,13 @@ function DashboardCards({ data }) {
       dataSource={buildDataSource(data, history)}
       renderItem={(item) => (
         <List.Item>
-          <Card title={item.title} onClick={item.handleClick} style={{ textAlign: "center" }}>
+          <Card
+            title={item.title}
+            onClick={item.handleClick}
+            style={{ textAlign: "center" }}
+            headStyle={{ border: "1px solid lightgray", backgroundColor: "rgba(230, 247, 255, 1.0)" }}
+            bodyStyle={{ border: "1px solid lightgray", backgroundColor: "rgba(230, 247, 255, 0.6)" }}
+          >
             {item.content}
           </Card>
         </List.Item>
