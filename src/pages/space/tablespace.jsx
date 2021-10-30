@@ -132,6 +132,10 @@ const styles = {
     height: "370px",
     width: "100%",
   },
+  tag: {
+    fontSize: "1rem",
+    padding: "4px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -173,9 +177,9 @@ const Tablespace = ({ classes }) => {
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item>
           <Tag
+            className={classes.tag}
             icon={count === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
             color={count === 0 ? "green" : "volcano"}
-            style={{ fontSize: "1rem", padding: "4px" }}
           >
             {count === 0
               ? `All tablespace occupancy are normal. No action required.`

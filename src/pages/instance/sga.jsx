@@ -57,6 +57,10 @@ const styles = {
     height: "300px",
     width: "100%",
   },
+  tag: {
+    fontSize: "1rem",
+    padding: "4px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -96,7 +100,7 @@ const SgaConfigurations = ({ classes }) => {
     <div>
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item>
-          <Tag icon={<ExclamationCircleOutlined />} color={"geekblue"} style={{ fontSize: "1rem", padding: "4px" }}>
+          <Tag className={classes.tag} icon={<ExclamationCircleOutlined />} color={"geekblue"}>
             System Global Area (SGA): {data.maxSgaSize} MB in total.
           </Tag>
         </Form.Item>
