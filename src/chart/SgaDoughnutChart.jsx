@@ -4,7 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SgaChart({ data, titleDisplay }) {
+function SgaDoughnutChart({ data, titleDisplay }) {
   const dataSource = {
     labels: data.chart.name,
     datasets: [
@@ -27,4 +27,4 @@ function SgaChart({ data, titleDisplay }) {
   return <Doughnut data={dataSource} options={options} />;
 }
 
-export default SgaChart;
+export default SgaDoughnutChart;

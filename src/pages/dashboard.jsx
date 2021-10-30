@@ -9,7 +9,7 @@ import { API_FETCH_WAIT } from "../util/constants";
 import HostCpuAndRamChart from "../chart/HostCpuAndRamChart";
 import TablespaceOccupancyChart from "../chart/TablespaceOccupancyChart";
 import DashboardCards from "../components/DashoardCards";
-import SgaChart from "../chart/SgaChart";
+import SgaDoughnutChart from "../chart/SgaDoughnutChart";
 import TablespaceSizeChart from "../chart/TablespaceSizeChart";
 
 //-------------------------------------------------------------
@@ -91,7 +91,7 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaChart data={data.sgaConfig} titleDisplay />
+            <SgaDoughnutChart data={data.sgaConfig} titleDisplay />
           </div>
         </Col>
       </Row>

@@ -10,7 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
-import SgaChart from "../../chart/SgaChart";
+import SgaDoughnutChart from "../../chart/SgaDoughnutChart";
 import SgaBarChart from "./../../chart/SgaBarChart";
 import { withStyles } from "@mui/styles";
 
@@ -133,7 +133,7 @@ const SgaConfigurations = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaChart data={data} />
+            <SgaDoughnutChart data={data} />
           </div>
         </Col>
       </Row>
