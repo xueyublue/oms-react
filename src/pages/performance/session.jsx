@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tabs } from "antd";
+import { Table, Form, Button, Select, Tag, Tabs, Row, Col } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
+import { withStyles } from "@mui/styles";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -11,6 +12,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import { useSnackbar } from "notistack";
+import SessionChart from "../../chart/SessionChart";
 
 const columns = [
   {
@@ -124,9 +126,20 @@ const getDistinctUserNames = (data) => {
 const TabPane = Tabs.TabPane;
 
 //-------------------------------------------------------------
-// PAGE START
+//* STYLES START
 //-------------------------------------------------------------
-const Sessions = () => {
+const styles = {
+  root: {},
+  chartContainer: {
+    height: "600px",
+    width: "100%",
+  },
+};
+
+//-------------------------------------------------------------
+//* PAGE START
+//-------------------------------------------------------------
+const Sessions = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -167,7 +180,7 @@ const Sessions = () => {
   enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
 
   return (
-    <div>
+    <div className={classes.root}>
       <Tabs type="card">
         <TabPane
           tab={
@@ -265,11 +278,17 @@ const Sessions = () => {
           }
           key="monitoring"
         >
-          Add chart here.
+          <Row>
+            <Col lg={24} xl={24} xxl={24}>
+              <div className={classes.chartContainer}>
+                <SessionChart />
+              </div>
+            </Col>
+          </Row>
         </TabPane>
       </Tabs>
     </div>
   );
 };
 
-export default Sessions;
+export default withStyles(styles)(Sessions);
