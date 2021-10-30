@@ -1,30 +1,34 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SgaChart({ data, titleDisplay }) {
+function SgaBarChart({ data, titleDisplay }) {
   const dataSource = {
     labels: data.chart.name,
     datasets: [
       {
         data: data.chart.data,
         backgroundColor: data.chart.backgroundColor,
+        tension: 0.1,
       },
     ],
   };
   const options = {
     plugins: {
       title: { display: titleDisplay, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
-      legend: { position: "right" },
+      legend: {
+        display: false,
+      },
     },
     maintainAspectRatio: false,
+    indexAxis: "y",
     scales: {
-      yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
+      x: { beginAtZero: true, max: data.chart.data[0] },
     },
   };
-  return <Doughnut data={dataSource} options={options} />;
+  return <Bar data={dataSource} options={options} />;
 }
 
-export default SgaChart;
+export default SgaBarChart;

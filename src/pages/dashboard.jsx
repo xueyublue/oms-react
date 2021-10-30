@@ -91,7 +91,7 @@ const Dashboard = ({ classes }) => {
         </Col>
         <Col lg={24} xl={12} xxl={12}>
           <div className={classes.chartContainer}>
-            <SgaChart data={data.sgaConfig} legendPosition="right" />
+            <SgaChart data={data.sgaConfig} titleDisplay />
           </div>
         </Col>
       </Row>

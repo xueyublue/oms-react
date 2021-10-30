@@ -11,6 +11,8 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import SgaChart from "../../chart/SgaChart";
+import SgaBarChart from "./../../chart/SgaBarChart";
+import { withStyles } from "@mui/styles";
 
 const columns = [
   {
@@ -45,11 +47,21 @@ const columns = [
     sorter: (a, b) => a.percentage - b.percentage,
   },
 ];
+//-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {},
+  chartContainer: {
+    height: "300px",
+    width: "100%",
+  },
+};
 
 //-------------------------------------------------------------
-// PAGE START
+//* PAGE START
 //-------------------------------------------------------------
-const SgaConfigurations = () => {
+const SgaConfigurations = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
@@ -102,7 +114,7 @@ const SgaConfigurations = () => {
         </div>
       </Form>
       <Row>
-        <Col lg={24} xl={12}>
+        <Col lg={24} xl={24}>
           <Table
             columns={columns}
             dataSource={data.table}
@@ -112,9 +124,16 @@ const SgaConfigurations = () => {
             rowKey="name"
           />
         </Col>
-        <Col lg={24} xl={12}>
-          <div style={{ height: "400px", width: "100%" }}>
-            <SgaChart data={data} legendPosition="right" />
+      </Row>
+      <Row>
+        <Col lg={24} xl={12} xxl={12}>
+          <div className={classes.chartContainer}>
+            <SgaBarChart data={data} />
+          </div>
+        </Col>
+        <Col lg={24} xl={12} xxl={12}>
+          <div className={classes.chartContainer}>
+            <SgaChart data={data} />
           </div>
         </Col>
       </Row>
@@ -122,4 +141,4 @@ const SgaConfigurations = () => {
   );
 };
 
-export default SgaConfigurations;
+export default withStyles(styles)(SgaConfigurations);
