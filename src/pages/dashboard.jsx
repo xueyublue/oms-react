@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Row, Col } from "antd";
 import axios from "axios";
 import { withStyles } from "@mui/styles";
+import { useSnackbar } from "notistack";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
@@ -27,9 +28,11 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 const Dashboard = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -55,7 +58,21 @@ const Dashboard = ({ classes }) => {
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
-  if (!data) return <ApiCallFailed />;
+  if (!data) {
+    enqueueSnackbar("Failed to connect backend services. Please check the network connection.", {
+      variant: "error",
+      autoHideDuration: 5000,
+    });
+    return <ApiCallFailed />;
+  }
+  //* display snackbar only one time to inform the refresh interval
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar("Dashboard loaded, refresh interval: 5 seconds.", {
+      variant: "success",
+      autoHideDuration: 5000,
+    });
+  }
 
   return (
     <div className={classes.root}>
