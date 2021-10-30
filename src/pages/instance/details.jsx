@@ -9,6 +9,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import AppSnackbar from "./../../components/AppSnackbar";
 
 const columns = [
   {
@@ -54,10 +55,10 @@ const InstanceDetails = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.length} records found.`);
 
   return (
     <div>
+      <AppSnackbar message={`${data.length} records found.`} />
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item />
         <div style={{ position: "absolute", right: 0 }}>
