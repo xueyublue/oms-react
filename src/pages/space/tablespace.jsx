@@ -120,7 +120,7 @@ const columns = [
 const styles = {
   root: {},
   chartContainer: {
-    height: "400px",
+    height: "370px",
     width: "100%",
   },
 };
