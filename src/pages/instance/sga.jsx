@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Progress, Form, Row, Col, Tag } from "antd";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useSnackbar } from "notistack";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
@@ -71,6 +71,7 @@ const SgaConfigurations = ({ classes }) => {
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -94,7 +95,7 @@ const SgaConfigurations = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.table.length} records found.`);
+  enqueueSnackbar(`${data.table.length} records found.`, { variant: "success" });
 
   return (
     <div>

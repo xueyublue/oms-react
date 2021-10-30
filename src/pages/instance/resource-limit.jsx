@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form } from "antd";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useSnackbar } from "notistack";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
@@ -60,6 +60,7 @@ const ResourceLimit = () => {
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -82,7 +83,7 @@ const ResourceLimit = () => {
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
-  toast.info(`${data.length} records found.`);
+  enqueueSnackbar(`${data.length} records found.`, { variant: "success" });
 
   return (
     <div>
