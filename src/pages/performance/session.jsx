@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
-import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
+import { Table, Form, Button, Select, Tag, Tabs } from "antd";
+import { CheckCircleOutlined, ClockCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import Loading from "../../components/Loading";
@@ -121,6 +121,8 @@ const getDistinctUserNames = (data) => {
   return ["All", ...new Set(usernames)];
 };
 
+const TabPane = Tabs.TabPane;
+
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
@@ -166,83 +168,106 @@ const Sessions = () => {
 
   return (
     <div>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Status">
-          <Select
-            value={status}
-            onChange={(value) => {
-              setStatus(value);
+      <Tabs type="card">
+        <TabPane
+          tab={
+            <span>
+              <TableOutlined />
+              Table
+            </span>
+          }
+          key="table"
+        >
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item label="Status">
+              <Select
+                value={status}
+                onChange={(value) => {
+                  setStatus(value);
+                }}
+                style={{ width: 100 }}
+              >
+                {statusList.map((status) => (
+                  <Select.Option value={status} key={status}>
+                    {status}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="User Name" style={{ width: 200 }}>
+              <Select
+                value={userName}
+                onChange={(value) => {
+                  setUserName(value);
+                }}
+              >
+                {userNameList.map((username) => (
+                  <Select.Option value={username} key={username}>
+                    {username}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <Button
+                onClick={() => {
+                  setStatus("All");
+                  setUserName("All");
+                }}
+              >
+                <FcUndo size={22} />
+              </Button>
+            </Form.Item>
+            <div style={{ position: "absolute", right: 0 }}>
+              <Form.Item>
+                <RefreshButton
+                  onClick={() => {
+                    setIsLoading(true);
+                    fetchData();
+                  }}
+                />
+                <ExportButton
+                  csvReport={{
+                    data: data,
+                    headers: getCsvHeaders(columns),
+                    filename: "OMS_Sessions.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            style={{ marginTop: 10 }}
+            columns={columns}
+            dataSource={filteredData}
+            bordered
+            size="small"
+            pagination={{
+              page: page,
+              pageSize: pageSize,
+              position: ["bottomRight"],
+              pageSizeOptions: [10, 15, 30, 100, 500],
+              onChange: (p, size) => {
+                setPage(p);
+                setPageSize(size);
+              },
             }}
-            style={{ width: 100 }}
-          >
-            {statusList.map((status) => (
-              <Select.Option value={status} key={status}>
-                {status}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item label="User Name" style={{ width: 200 }}>
-          <Select
-            value={userName}
-            onChange={(value) => {
-              setUserName(value);
-            }}
-          >
-            {userNameList.map((username) => (
-              <Select.Option value={username} key={username}>
-                {username}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item>
-          <Button
-            onClick={() => {
-              setStatus("All");
-              setUserName("All");
-            }}
-          >
-            <FcUndo size={22} />
-          </Button>
-        </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
-          <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-              }}
-            />
-            <ExportButton
-              csvReport={{
-                data: data,
-                headers: getCsvHeaders(columns),
-                filename: "OMS_Sessions.csv",
-              }}
-            />
-          </Form.Item>
-        </div>
-      </Form>
-      <Table
-        style={{ marginTop: 10 }}
-        columns={columns}
-        dataSource={filteredData}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [10, 15, 30, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1600 }}
-        rowKey="id"
-      />
+            scroll={{ x: 1600 }}
+            rowKey="id"
+          />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <DashboardOutlined />
+              Monitoring
+            </span>
+          }
+          key="monitoring"
+        >
+          Add chart here.
+        </TabPane>
+      </Tabs>
     </div>
   );
 };

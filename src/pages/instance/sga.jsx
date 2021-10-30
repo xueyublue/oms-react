@@ -59,7 +59,7 @@ const styles = {
   },
   tag: {
     fontSize: "1rem",
-    padding: "4px",
+    padding: "5px",
   },
 };
 

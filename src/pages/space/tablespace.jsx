@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Tag, Form, Row, Col } from "antd";
-import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { Table, Progress, Tag, Form, Row, Col, Tabs } from "antd";
+import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -123,18 +123,20 @@ const countHighOccupancy = (data) => {
   return count;
 };
 
+const TabPane = Tabs.TabPane;
+
 //-------------------------------------------------------------
 // STYLES START
 //-------------------------------------------------------------
 const styles = {
   root: {},
   chartContainer: {
-    height: "370px",
+    height: "350px",
     width: "100%",
   },
   tag: {
     fontSize: "1rem",
-    padding: "4px",
+    padding: "5px",
   },
 };
 
@@ -175,57 +177,79 @@ const Tablespace = ({ classes }) => {
 
   return (
     <div>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item>
-          <Tag
-            className={classes.tag}
-            icon={count === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
-            color={count === 0 ? "green" : "volcano"}
-          >
-            {count === 0
-              ? `All tablespace occupancy are normal. No action required.`
-              : `There are ${count} tablespace occupancy more than 80%. Manual extension might required.`}
-          </Tag>
-        </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
-          <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-              }}
-            />
-            <ExportButton
-              csvReport={{
-                data: data.table,
-                headers: getCsvHeaders(columns),
-                filename: "OMS_Tablespace.csv",
-              }}
-            />
-          </Form.Item>
-        </div>
-      </Form>
-      <Table
-        columns={columns}
-        dataSource={data.table}
-        bordered
-        size="small"
-        pagination={{ pageSize: 15, position: ["none"] }}
-        scroll={{ x: 1500 }}
-        rowKey="name"
-      />
-      <Row>
-        <Col lg={24} xl={24} xxl={12}>
-          <div className={classes.chartContainer}>
-            <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
-          </div>
-        </Col>
-        <Col lg={24} xl={24} xxl={12}>
-          <div className={classes.chartContainer}>
-            <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
-          </div>
-        </Col>
-      </Row>
+      <Tabs type="card">
+        <TabPane
+          tab={
+            <span>
+              <TableOutlined />
+              Table
+            </span>
+          }
+          key="table"
+        >
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item>
+              <Tag
+                className={classes.tag}
+                icon={count === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+                color={count === 0 ? "green" : "volcano"}
+              >
+                {count === 0
+                  ? `All tablespace occupancy are normal. No action required.`
+                  : `There are ${count} tablespace occupancy more than 80%. Manual extension might required.`}
+              </Tag>
+            </Form.Item>
+            <div style={{ position: "absolute", right: 0 }}>
+              <Form.Item>
+                <RefreshButton
+                  onClick={() => {
+                    setIsLoading(true);
+                    fetchData();
+                  }}
+                />
+                <ExportButton
+                  csvReport={{
+                    data: data.table,
+                    headers: getCsvHeaders(columns),
+                    filename: "OMS_Tablespace.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            columns={columns}
+            dataSource={data.table}
+            bordered
+            size="small"
+            pagination={{ pageSize: 15, position: ["none"] }}
+            scroll={{ x: 1500 }}
+            rowKey="name"
+          />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <AreaChartOutlined />
+              Chart
+            </span>
+          }
+          key="chart"
+        >
+          <Row>
+            <Col lg={24} xl={24} xxl={24}>
+              <div className={classes.chartContainer}>
+                <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
+              </div>
+            </Col>
+            <Col lg={24} xl={24} xxl={24}>
+              <div className={classes.chartContainer}>
+                <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
+              </div>
+            </Col>
+          </Row>
+        </TabPane>
+      </Tabs>
     </div>
   );
 };
