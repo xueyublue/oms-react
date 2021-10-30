@@ -1,8 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { List, Card, Tag } from "antd";
+import { withStyles } from "@mui/styles";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import * as Constants from "../util/constants";
+
+//-------------------------------------------------------------
+//* STYLES
+//-------------------------------------------------------------
+const styles = {
+  root: {},
+};
 
 //-------------------------------------------------------------
 //* UTILS
@@ -65,7 +73,7 @@ const buildDataSource = (data, history) => [
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function DashboardCards({ data }) {
+function DashboardCards({ classes, data }) {
   const history = useHistory();
 
   return (
@@ -97,4 +105,4 @@ function DashboardCards({ data }) {
   );
 }
 
-export default DashboardCards;
+export default withStyles(styles)(DashboardCards);
