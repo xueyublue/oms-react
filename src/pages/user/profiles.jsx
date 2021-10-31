@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag } from "antd";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { FcUndo } from "react-icons/fc";
+import { useSnackbar } from "notistack";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
+import { getCsvHeaders } from "../../util/util";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
-import { getCsvHeaders } from "../../util/util";
 
 const columns = [
   {
@@ -61,6 +61,7 @@ const Profiles = () => {
   const profileList = getDistinctProfiles(data);
   const [profile, setProfile] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -85,7 +86,7 @@ const Profiles = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (profile === "All" ? true : row.profile === profile));
-  toast.info(`${filteredData.length} records found.`);
+  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
 
   return (
     <div>

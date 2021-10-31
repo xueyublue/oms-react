@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form } from "antd";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useSnackbar } from "notistack";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -45,6 +45,7 @@ const Roles = () => {
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -68,7 +69,7 @@ const Roles = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  toast.info(`${data.length} records found.`);
+  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
 
   return (
     <div>

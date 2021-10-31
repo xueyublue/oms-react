@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { FcUndo } from "react-icons/fc";
+import { useSnackbar } from "notistack";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -103,6 +103,7 @@ const Users = () => {
   const statusList = getDistinctStatus(data);
   const [status, setStatus] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -127,7 +128,7 @@ const Users = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (status === "All" ? true : row.accountStatus === status));
-  toast.info(`${filteredData.length} records found.`);
+  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
 
   return (
     <div>
