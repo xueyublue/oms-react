@@ -10,8 +10,6 @@ import { RouteToPageName } from "./util/constants";
 import RouteContainer from "./components/RouteContainer";
 import { ROUTE_LOGIN, ROUTE_DASHBORAD, ROUTE_ROOT } from "./util/constants";
 import { BackendAPIProvider } from "./context/BackendAPIContext";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import classNames from "classnames";
 
 const { Content } = Layout;
@@ -91,7 +89,6 @@ function App({ classes }) {
           </div>
           <Content className={classNames("site-layout-background", classes.container)}>
             <RouteContainer />
-            <ToastContainer position="top-center" hideProgressBar closeOnClick autoClose={3000} />
           </Content>
           <AppFooter />
         </Layout>
