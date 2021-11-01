@@ -102,7 +102,7 @@ function SessionChart({ type }) {
     plugins: {
       title: { display: true, text: "Sessions (every 10s)" },
       legend: {
-        position: "right",
+        position: "top",
       },
     },
     stepped: true,
