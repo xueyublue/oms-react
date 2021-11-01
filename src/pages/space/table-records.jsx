@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tooltip } from "antd";
+import { Table, Form, Button, Select, Tag, Tabs, Row, Col, Tooltip } from "antd";
+import { TableOutlined, AimOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { FcUndo } from "react-icons/fc";
+import { withStyles } from "@mui/styles";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -11,6 +13,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import TableRecordsChart from "../../chart/TableRecordsChart";
 
 const columns = [
   {
@@ -33,12 +36,10 @@ const columns = [
     width: 200,
     sorter: (a, b) => a.totalRecords - b.totalRecords,
     render: (value) => {
-      let style = "green";
+      let style = "default";
       if (value === 0) style = "default";
-      else if (value < 1000) style = "green";
       else if (value < 10000) style = "green";
-      else if (value < 1000000) style = "gold";
-      else style = "magenta";
+      else style = "gold";
       return (
         <Tag color={style} key={value}>
           {formatNumberWithCommas(value)}
@@ -60,10 +61,23 @@ const getDistinctOwners = (data) => {
   return ["All", ...new Set(owners)];
 };
 
+const TabPane = Tabs.TabPane;
+
+//-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {},
+  chartContainer: {
+    height: "710px",
+    width: "100%",
+  },
+};
+
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const TableRecords = () => {
+const TableRecords = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -101,71 +115,100 @@ const TableRecords = () => {
 
   return (
     <div>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Owner" style={{ width: 200 }}>
-          <Select
-            value={owner}
-            onChange={(value) => {
-              setOwner(value);
+      <Tabs type="card">
+        <TabPane
+          tab={
+            <span>
+              <TableOutlined />
+              Table
+            </span>
+          }
+          key="table"
+        >
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item label="Owner" style={{ width: 200 }}>
+              <Select
+                value={owner}
+                onChange={(value) => {
+                  setOwner(value);
+                }}
+              >
+                {ownerList.map((owner) => (
+                  <Select.Option value={owner} key={owner}>
+                    {owner}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <Tooltip placement="right" title="CLEAR">
+                <Button
+                  onClick={() => {
+                    setOwner("All");
+                  }}
+                >
+                  <FcUndo size={22} />
+                </Button>
+              </Tooltip>
+            </Form.Item>
+            <div style={{ position: "absolute", right: 0 }}>
+              <Form.Item>
+                <RefreshButton
+                  onClick={() => {
+                    setIsLoading(true);
+                    fetchData();
+                  }}
+                />
+                <ExportButton
+                  csvReport={{
+                    data: data,
+                    headers: getCsvHeaders(columns),
+                    filename: "OMS_TableRecords.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            style={{ marginTop: 10 }}
+            columns={columns}
+            dataSource={filteredData}
+            bordered
+            size="small"
+            pagination={{
+              page: page,
+              pageSize: pageSize,
+              position: ["bottomRight"],
+              pageSizeOptions: [10, 15, 30, 100, 500],
+              onChange: (p, size) => {
+                setPage(p);
+                setPageSize(size);
+              },
             }}
-          >
-            {ownerList.map((owner) => (
-              <Select.Option value={owner} key={owner}>
-                {owner}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item>
-          <Tooltip placement="right" title="CLEAR">
-            <Button
-              onClick={() => {
-                setOwner("All");
-              }}
-            >
-              <FcUndo size={22} />
-            </Button>
-          </Tooltip>
-        </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
-          <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-              }}
-            />
-            <ExportButton
-              csvReport={{
-                data: data,
-                headers: getCsvHeaders(columns),
-                filename: "OMS_TableRecords.csv",
-              }}
-            />
-          </Form.Item>
-        </div>
-      </Form>
-      <Table
-        style={{ marginTop: 10 }}
-        columns={columns}
-        dataSource={filteredData}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [10, 15, 30, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1000 /*, y: 620 */ }}
-        rowKey="tableName"
-      />
+            scroll={{ x: 1000 /*, y: 620 */ }}
+            rowKey="tableName"
+          />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <AimOutlined />
+              Top 30 Tables
+            </span>
+          }
+          key="chart"
+        >
+          <Row>
+            <Col lg={24} xl={24} xxl={24}>
+              <div className={classes.chartContainer}>
+                <TableRecordsChart data={data} limit={30} />
+              </div>
+            </Col>
+          </Row>
+        </TabPane>
+      </Tabs>
     </div>
   );
 };
 
-export default TableRecords;
+export default withStyles(styles)(TableRecords);

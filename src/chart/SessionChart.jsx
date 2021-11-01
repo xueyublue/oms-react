@@ -5,7 +5,6 @@ import { useSnackbar } from "notistack";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
-import { API_FETCH_WAIT } from "../util/constants";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -69,27 +68,27 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
 
   let maxValue = 100;
   if (data) maxValue = getMaxValue(data.total);
-
+  const { labels, total, active, inactive } = data;
   const dataSource = {
-    labels: data.time,
+    labels: labels,
     datasets: [
       {
         label: "Total",
-        data: data.total,
+        data: total,
         fill: true,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
       },
       {
         label: "Active",
-        data: data.active,
+        data: active,
         fill: true,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
       },
       {
         label: "Inactive",
-        data: data.inactive,
+        data: inactive,
         fill: true,
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
