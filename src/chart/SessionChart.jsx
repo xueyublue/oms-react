@@ -22,7 +22,7 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionChart({ type }) {
+function SessionChart({ titleDisplay, legendPosition }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -48,7 +48,7 @@ function SessionChart({ type }) {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, API_FETCH_WAIT * 5);
+    }, API_FETCH_WAIT);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -100,9 +100,9 @@ function SessionChart({ type }) {
   };
   const options = {
     plugins: {
-      title: { display: false, text: "Sessions (every 10s)" },
+      title: { display: titleDisplay, text: "Sessions (every 10s)" },
       legend: {
-        position: "top",
+        position: legendPosition === null ? "top" : legendPosition,
       },
     },
     stepped: true,

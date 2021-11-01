@@ -29,7 +29,7 @@ const buildDataSource = (data, history) => [
     ),
   },
   {
-    title: "Sessions",
+    title: `Sessions (${data.sessions.active + data.sessions.inactive})`,
     content: (
       <div>
         <Tag color={data.sessions.active === 0 ? "success" : "warning"} style={tagStyle2}>
