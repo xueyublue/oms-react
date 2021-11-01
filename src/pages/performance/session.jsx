@@ -140,6 +140,7 @@ const styles = {
 //* PAGE START
 //-------------------------------------------------------------
 const Sessions = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -178,7 +179,11 @@ const Sessions = ({ classes }) => {
   const filteredData = data
     .filter((row) => (userName === "All" ? true : row.userName === userName))
     .filter((row) => (status === "All" ? true : row.status === status));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div className={classes.root}>
@@ -198,6 +203,7 @@ const Sessions = ({ classes }) => {
                 value={status}
                 onChange={(value) => {
                   setStatus(value);
+                  setPageLoad(false);
                 }}
                 style={{ width: 100 }}
               >
@@ -213,6 +219,7 @@ const Sessions = ({ classes }) => {
                 value={userName}
                 onChange={(value) => {
                   setUserName(value);
+                  setPageLoad(false);
                 }}
               >
                 {userNameList.map((username) => (
@@ -227,6 +234,7 @@ const Sessions = ({ classes }) => {
                 onClick={() => {
                   setStatus("All");
                   setUserName("All");
+                  setPageLoad(false);
                 }}
               >
                 <FcUndo size={22} />

@@ -146,6 +146,7 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 const Tablespace = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
@@ -175,7 +176,11 @@ const Tablespace = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
+  }
   const count = countHighOccupancy(data.table);
 
   return (
