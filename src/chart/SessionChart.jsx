@@ -22,7 +22,7 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionChart({ titleDisplay, legendPosition }) {
+function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -50,7 +50,7 @@ function SessionChart({ titleDisplay, legendPosition }) {
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading withinComponent />;
   if (!data) {
     enqueueSnackbar("Failed to connect backend services. Please check the network connection.", {
       variant: "error",

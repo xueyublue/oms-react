@@ -9,14 +9,14 @@ const styles = {
     position: "absolute",
     left: "50%",
     top: "50%",
-    marginLeft: "110px",
+    marginLeft: ({ withinComponent }) => (withinComponent ? "0" : "110px"),
   },
 };
 
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-const Loading = ({ classes }) => {
+const Loading = ({ classes, withinComponent }) => {
   return (
     <div className={classes.root}>
       <Spin size="large" tip="Loading..." />

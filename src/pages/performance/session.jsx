@@ -281,7 +281,7 @@ const Sessions = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24} xxl={24}>
               <div className={classes.chartContainer}>
-                <SessionChart />
+                <SessionChart withinComponent />
               </div>
             </Col>
           </Row>
