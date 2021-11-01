@@ -24,17 +24,7 @@ const AppBar = ({ icon, pageName }) => {
   const notifications = (
     <Menu onClick={handleMenuClick}>
       <Menu.Item key="1">
-        <Alert
-          message="Occupancy of tablespace [SYSAUX, WMS_LARGE] are more than 80%. Please extend them."
-          type="warning"
-          showIcon
-        />
-      </Menu.Item>
-      <Menu.Item key="2">
-        <Alert message="Host CPU usage more than 80%. Please take necessary actions." type="warning" showIcon />
-      </Menu.Item>
-      <Menu.Item key="3">
-        <Alert message="The setting was made." type="success" showIcon />
+        <Alert message="I am a testing message. No action required." type="warning" showIcon />
       </Menu.Item>
     </Menu>
   );
@@ -62,7 +52,7 @@ const AppBar = ({ icon, pageName }) => {
         <Col span={12} style={{ textAlign: "right" }}>
           <Button type="text" icon={<QuestionCircleOutlined />} />
           <Dropdown overlay={notifications}>
-            <Badge size="small" count={2} offset={[-4, 8]}>
+            <Badge size="small" count={1} offset={[-4, 8]}>
               <Button type="text" icon={<BellOutlined />} />
             </Badge>
           </Dropdown>
