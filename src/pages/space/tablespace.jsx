@@ -14,6 +14,7 @@ import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TablespaceSizeChart from "../../chart/TablespaceSizeChart";
 import TablespaceOccupancyChart from "../../chart/TablespaceOccupancyChart";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -150,6 +151,7 @@ const Tablespace = ({ classes }) => {
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -239,12 +241,12 @@ const Tablespace = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
+              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
                 <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
               </div>
             </Col>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
+              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
                 <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
               </div>
             </Col>
