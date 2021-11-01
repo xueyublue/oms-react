@@ -21,7 +21,6 @@ const TabPane = Tabs.TabPane;
 const styles = {
   root: {},
   chartContainer: {
-    height: "360px",
     width: "100%",
   },
 };
