@@ -13,6 +13,7 @@ import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import { useSnackbar } from "notistack";
 import SessionChart from "../../chart/SessionChart";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -131,7 +132,6 @@ const TabPane = Tabs.TabPane;
 const styles = {
   root: {},
   chartContainer: {
-    height: "600px",
     width: "100%",
   },
 };
@@ -151,6 +151,7 @@ const Sessions = ({ classes }) => {
   const [userName, setUserName] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -280,7 +281,7 @@ const Sessions = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
+              <div className={classes.chartContainer} style={{ height: height - 220 }}>
                 <SessionChart withinComponent />
               </div>
             </Col>
