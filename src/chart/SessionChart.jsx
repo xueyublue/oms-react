@@ -30,25 +30,23 @@ function SessionChart({ titleDisplay, legendPosition }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
-    setTimeout(() => {
-      axios
-        .get(`${baseUrl}/sessions/monitoring`)
-        .then(({ data }) => {
-          setData(data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setData(null);
-          setIsLoading(false);
-          console.log(err);
-        });
-    }, API_FETCH_WAIT);
+    axios
+      .get(`${baseUrl}/sessions/monitoring`)
+      .then(({ data }) => {
+        setData(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setData(null);
+        setIsLoading(false);
+        console.log(err);
+      });
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
-    }, API_FETCH_WAIT);
+    }, 5000);
     return () => clearInterval(interval);
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -63,7 +61,7 @@ function SessionChart({ titleDisplay, legendPosition }) {
   //* display snackbar only one time to inform the refresh interval
   if (!pageLoad) {
     setPageLoad(true);
-    enqueueSnackbar("Sessions loaded, refresh interval: 5 seconds.", {
+    enqueueSnackbar("Sessions loaded, refresh interval: 10 seconds.", {
       variant: "success",
       autoHideDuration: 5000,
     });
