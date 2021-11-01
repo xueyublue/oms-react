@@ -69,7 +69,7 @@ const TabPane = Tabs.TabPane;
 const styles = {
   root: {},
   chartContainer: {
-    height: "710px",
+    height: "2000px",
     width: "100%",
   },
 };
@@ -193,7 +193,7 @@ const TableRecords = ({ classes }) => {
           tab={
             <span>
               <AimOutlined />
-              Top 30 Tables
+              Top 100 Tables
             </span>
           }
           key="chart"
@@ -201,7 +201,7 @@ const TableRecords = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24} xxl={24}>
               <div className={classes.chartContainer}>
-                <TableRecordsChart data={data} limit={30} />
+                <TableRecordsChart data={data} limit={100} />
               </div>
             </Col>
           </Row>

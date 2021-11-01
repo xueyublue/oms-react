@@ -36,14 +36,13 @@ function TableRecordsChart({ displayTitle, data, limit }) {
     maintainAspectRatio: false,
     indexAxis: "y",
     scales: {
-      x: { beginAtZero: true, min: 0, max: data[0].totalRecords },
-      xAxes: [
-        {
-          ticks: {
-            min: 0,
-          },
-        },
-      ],
+      myScale: {
+        type: "linear", //logarithmic
+        position: "top",
+        beginAtZero: true,
+        min: 0,
+        max: data[0].totalRecords,
+      },
     },
   };
   return <Bar data={dataSource} options={options} />;
