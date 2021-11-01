@@ -119,6 +119,7 @@ const countHighOccupancy = (data) => {
   let count = 0;
   data.map((item) => {
     if (item.occupancy >= 80) count++;
+    return null;
   });
   return count;
 };
