@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Button, Select, Tag, Tabs, Row, Col } from "antd";
-import { CheckCircleOutlined, ClockCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
@@ -45,8 +45,8 @@ const columns = [
     width: 100,
     render: (status) => (
       <Tag
-        color={status === "Active" ? "green" : "volcano"}
-        icon={status === "Active" ? <CheckCircleOutlined /> : <ClockCircleOutlined />}
+        color={status === "Active" ? "warning" : "success"}
+        icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
         key={status}
       >
         {status}

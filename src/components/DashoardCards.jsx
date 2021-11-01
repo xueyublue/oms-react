@@ -32,10 +32,10 @@ const buildDataSource = (data, history) => [
     title: "Sessions",
     content: (
       <div>
-        <Tag color="success" style={tagStyle2}>
+        <Tag color={data.sessions.active === 0 ? "success" : "warning"} style={tagStyle2}>
           {data.sessions.active} Active
         </Tag>
-        <Tag color={data.sessions.inactive === 0 ? "success" : "warning"} style={tagStyle2}>
+        <Tag color="success" style={tagStyle2}>
           {data.sessions.inactive} Inactive
         </Tag>
       </div>
