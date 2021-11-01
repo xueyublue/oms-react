@@ -14,7 +14,7 @@ const getMaxValue = (data) => {
   }
   if (max < 100) max = 100;
   else if (max < 150) max = 150;
-  else if (max < 200) max = 100;
+  else if (max < 200) max = 200;
   else max = 500;
   return max;
 };
