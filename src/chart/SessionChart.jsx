@@ -100,7 +100,7 @@ function SessionChart({ type }) {
   };
   const options = {
     plugins: {
-      title: { display: true, text: "Sessions (every 10s)" },
+      title: { display: false, text: "Sessions (every 10s)" },
       legend: {
         position: "top",
       },
