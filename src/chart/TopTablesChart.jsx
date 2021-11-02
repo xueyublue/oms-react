@@ -59,7 +59,7 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
               onDisplayLimitChange(value);
             }}
           >
-            {["All", 30, 50, 100, 200, 500].map((value) => (
+            {[30, 50, 100, 200, 500].map((value) => (
               <Select.Option value={value} key={value}>
                 {value}
               </Select.Option>
