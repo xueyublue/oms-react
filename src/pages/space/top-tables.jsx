@@ -57,7 +57,7 @@ const TabPane = Tabs.TabPane;
 const styles = {
   root: {},
   chartContainer: {
-    height: "2000px",
+    height: "2100px",
     width: "100%",
   },
 };
@@ -71,6 +71,7 @@ const TopTables = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
+  const [chartDisplayLimit, setChartDisplayLimit] = useState(100);
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
@@ -187,7 +188,11 @@ const TopTables = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24} xxl={24}>
               <div className={classes.chartContainer}>
-                <TopTablesChart data={data} limit={100} />
+                <TopTablesChart
+                  data={data}
+                  displayLimit={chartDisplayLimit}
+                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+                />
               </div>
             </Col>
           </Row>
