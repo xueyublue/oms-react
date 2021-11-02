@@ -16,10 +16,10 @@ const styles = {
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-const Loading = ({ classes, withinComponent }) => {
+const Loading = ({ classes, withinComponent, text }) => {
   return (
     <div className={classes.root}>
-      <Spin size="large" tip="Loading..." />
+      <Spin size="large" tip={text ? text : "Loading..."} />
     </div>
   );
 };
