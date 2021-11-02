@@ -52,7 +52,7 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
   return (
     <>
       <Form form={form} layout={"inline"} size={"middle"} style={{ height: "35px" }}>
-        <Form.Item label="Display Limit" style={{ width: 300 }}>
+        <Form.Item label="Display Limit" style={{ width: 200 }}>
           <Select
             value={displayLimit}
             onChange={(value) => {
@@ -66,15 +66,15 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Chart Type" style={{ width: 300 }}>
+        <Form.Item label="Chart Type" style={{ width: 200 }}>
           <Select
             value={type}
             onChange={(value) => {
               setType(value);
             }}
           >
-            {["linear", "logarithmic"].map((value) => (
-              <Select.Option value={value} key={value}>
+            {["Linear", "Logarithmic"].map((value) => (
+              <Select.Option value={value.toLowerCase()} key={value}>
                 {value}
               </Select.Option>
             ))}

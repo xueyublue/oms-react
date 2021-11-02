@@ -71,7 +71,7 @@ const TopTables = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [chartDisplayLimit, setChartDisplayLimit] = useState(100);
+  const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
