@@ -73,7 +73,6 @@ function App({ classes }) {
           <Content className={classNames("site-layout-background", classes.loginContainer)}>
             <RouteContainer />
           </Content>
-          <AppFooter />
         </Layout>
       </BackendAPIProvider>
     );
