@@ -73,21 +73,21 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
     labels: labels,
     datasets: [
       {
-        label: "Total",
+        label: `Total (${total[0]})`,
         data: total,
         fill: true,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
       },
       {
-        label: "Active",
+        label: `Active (${active[0]})`,
         data: active,
         fill: true,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
       },
       {
-        label: "Inactive",
+        label: `Inactive (${inactive[0]})`,
         data: inactive,
         fill: true,
         borderColor: "rgb(75, 122, 192)",

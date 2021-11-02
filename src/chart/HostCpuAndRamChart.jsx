@@ -4,19 +4,19 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
+function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition }) {
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "CPU",
+        label: `Host CPU (${cpu[0]}%)`,
         data: cpu,
         fill: true,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
       },
       {
-        label: "RAM",
+        label: `Host RAM (${ram[0]}%)`,
         data: ram,
         fill: true,
         borderColor: "rgb(75, 122, 192)",
@@ -26,9 +26,9 @@ function HostCpuAndRamChart({ labels, cpu, ram, legendPosition }) {
   };
   const options = {
     plugins: {
-      title: { display: true, text: "Host CPU/RAM (every 5s)" },
+      title: { display: displayTitle, text: "Host CPU/RAM (every 5s)" },
       legend: {
-        position: legendPosition,
+        position: legendPosition ? legendPosition : "top",
       },
     },
     animation: {

@@ -4,12 +4,12 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostRamChart({ labels, ram }) {
+function HostRamChart({ labels, ram, displayTitle }) {
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "RAM",
+        label: `Host RAM (${ram[0]}%)`,
         data: ram,
         fill: true,
         borderColor: "rgb(75, 122, 192)",
@@ -19,9 +19,9 @@ function HostRamChart({ labels, ram }) {
   };
   const options = {
     plugins: {
-      title: { display: true, text: "Host RAM (every 5s)" },
+      title: { display: displayTitle, text: "Host RAM (every 5s)" },
       legend: {
-        display: false,
+        position: "top",
       },
     },
     animation: {

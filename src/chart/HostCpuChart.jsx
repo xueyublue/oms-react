@@ -4,12 +4,12 @@ import { Line } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostCpuChart({ labels, cpu }) {
+function HostCpuChart({ labels, cpu, displayTitle }) {
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "CPU",
+        label: `Host CPU (${cpu[0]}%)`,
         data: cpu,
         fill: true,
         borderColor: "rgb(36, 209, 209)",
@@ -19,9 +19,9 @@ function HostCpuChart({ labels, cpu }) {
   };
   const options = {
     plugins: {
-      title: { display: true, text: "Host CPU (every 5s)" },
+      title: { display: displayTitle, text: "Host CPU (every 5s)" },
       legend: {
-        display: false,
+        position: "top",
       },
     },
     animation: {

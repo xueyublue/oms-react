@@ -89,7 +89,7 @@ function Host({ classes }) {
                   labels={data.hostResource.time}
                   cpu={data.hostResource.cpu}
                   ram={data.hostResource.ram}
-                  legendPosition="right"
+                  legendPosition="top"
                 />
               </div>
             </Col>
