@@ -50,8 +50,6 @@ const styles = {
 //-------------------------------------------------------------
 const Login = ({ classes }) => {
   const history = useHistory();
-  document.body.style = "background: red;";
-
   const onFinish = (values) => {
     if (values.userid === "oms" && values.password === "oms") {
       localStorage.setItem("oms-userid", values.userid);
