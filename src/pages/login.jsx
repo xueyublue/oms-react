@@ -13,13 +13,13 @@ const styles = {
   root: {
     width: "100%",
     height: "100vh",
-    background: "rgba(255, 255, 255, 0.05)",
+    background: "#172a3d",
   },
   container: {
     width: "400px",
     height: "460px",
     borderRadius: "10px",
-    background: "rgba(0, 0, 0, 0.05)",
+    background: "#F2F2F2",
     color: "#fff",
     top: "50%",
     left: "50%",
