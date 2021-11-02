@@ -20,7 +20,7 @@ const styles = {
   container: {
     width: "400px",
     height: "420px",
-    borderRadius: "20px",
+    borderRadius: "10px",
     background: "#F2F2F2",
     color: "#fff",
     top: "50%",
