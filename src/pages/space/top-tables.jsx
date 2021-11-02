@@ -57,7 +57,6 @@ const TabPane = Tabs.TabPane;
 const styles = {
   root: {},
   chartContainer: {
-    height: "2100px",
     width: "100%",
   },
 };
@@ -187,7 +186,7 @@ const TopTables = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
+              <div className={classes.chartContainer} style={{ height: chartDisplayLimit * 21 }}>
                 <TopTablesChart
                   data={data}
                   displayLimit={chartDisplayLimit}
