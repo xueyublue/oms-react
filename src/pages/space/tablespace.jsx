@@ -177,10 +177,14 @@ const Tablespace = ({ classes }) => {
   if (!data) return <ApiCallFailed />;
   //* display snackbar only one time on page load succeed
   if (!pageLoad) {
+    const count = countHighOccupancy(data.table);
     setPageLoad(true);
-    enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
+    if (count && count > 0)
+      enqueueSnackbar(`There are ${count} tablespace occupancy more than 80%.`, {
+        variant: "warning",
+      });
+    else enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
   }
-  const count = countHighOccupancy(data.table);
 
   return (
     <div>
@@ -195,17 +199,7 @@ const Tablespace = ({ classes }) => {
           key="table"
         >
           <Form form={form} layout={"inline"} size={"middle"}>
-            <Form.Item>
-              <Tag
-                className={classes.tag}
-                icon={count === 0 ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
-                color={count === 0 ? "green" : "volcano"}
-              >
-                {count === 0
-                  ? `All tablespace occupancy are normal. No action required.`
-                  : `There are ${count} tablespace occupancy more than 80%. Manual extension might required.`}
-              </Tag>
-            </Form.Item>
+            <Form.Item />
             <div style={{ position: "absolute", right: 0 }}>
               <Form.Item>
                 <RefreshButton

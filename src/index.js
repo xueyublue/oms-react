@@ -14,7 +14,7 @@ ReactDOM.render(
   <BrowserRouter>
     <SnackbarProvider
       dense={true}
-      maxSnack={3}
+      maxSnack={1}
       anchorOrigin={{
         vertical: "top",
         horizontal: "center",
