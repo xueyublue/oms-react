@@ -41,7 +41,7 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
     indexAxis: "y",
     scales: {
       myScale: {
-        type: type, //logarithmic
+        type: type,
         position: "top",
         beginAtZero: true,
         min: 0,

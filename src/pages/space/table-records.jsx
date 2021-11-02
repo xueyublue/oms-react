@@ -14,6 +14,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TableRecordsChart from "../../chart/TableRecordsChart";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -83,10 +84,12 @@ const TableRecords = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const ownerList = getDistinctOwners(data);
+  const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const [owner, setOwner] = useState("All");
+  const ownerList = getDistinctOwners(data);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -193,15 +196,22 @@ const TableRecords = ({ classes }) => {
           tab={
             <span>
               <AimOutlined />
-              Top 100 Tables
+              {`Top ${chartDisplayLimit} Tables`}
             </span>
           }
           key="chart"
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
-                <TableRecordsChart data={data} limit={100} />
+              <div
+                className={classes.chartContainer}
+                style={{ height: chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21 }}
+              >
+                <TableRecordsChart
+                  data={data}
+                  displayLimit={chartDisplayLimit}
+                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+                />
               </div>
             </Col>
           </Row>

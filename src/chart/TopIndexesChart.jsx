@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { Form, Select } from "antd";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TopIndexesChart({ displayTitle, data, limit }) {
+function TopIndexesChart({ displayTitle, data, displayLimit, onDisplayLimitChange }) {
+  const [form] = Form.useForm();
+  const [type, setType] = useState("linear");
+
   if (!data) return;
   let labels = [];
   let records = [];
@@ -14,7 +18,7 @@ function TopIndexesChart({ displayTitle, data, limit }) {
     else bgColors[i] = "rgba(253, 211, 153, 0.8)";
     labels[i] = data[i].owner + "." + data[i].segmentName;
     records[i] = data[i].segmentSize;
-    if (i > limit) break;
+    if (i > displayLimit) break;
   }
   const dataSource = {
     labels: labels,
@@ -37,7 +41,7 @@ function TopIndexesChart({ displayTitle, data, limit }) {
     indexAxis: "y",
     scales: {
       myScale: {
-        type: "linear", //logarithmic
+        type: type,
         position: "top",
         beginAtZero: true,
         min: 0,
@@ -45,7 +49,41 @@ function TopIndexesChart({ displayTitle, data, limit }) {
       },
     },
   };
-  return <Bar data={dataSource} options={options} />;
+  return (
+    <>
+      <Form form={form} layout={"inline"} size={"middle"} style={{ height: "35px" }}>
+        <Form.Item label="Display Limit" style={{ width: 200 }}>
+          <Select
+            value={displayLimit}
+            onChange={(value) => {
+              onDisplayLimitChange(value);
+            }}
+          >
+            {["All", 30, 50, 100, 200, 500].map((value) => (
+              <Select.Option value={value} key={value}>
+                {value}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item label="Chart Type" style={{ width: 200 }}>
+          <Select
+            value={type}
+            onChange={(value) => {
+              setType(value);
+            }}
+          >
+            {["Linear", "Logarithmic"].map((value) => (
+              <Select.Option value={value.toLowerCase()} key={value}>
+                {value}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+      </Form>
+      <Bar data={dataSource} options={options} />
+    </>
+  );
 }
 
 export default TopIndexesChart;

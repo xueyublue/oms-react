@@ -14,6 +14,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TopIndexesChart from "./../../chart/TopIndexesChart";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -71,10 +72,12 @@ const TopIndexes = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
+  const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -179,15 +182,22 @@ const TopIndexes = ({ classes }) => {
           tab={
             <span>
               <AimOutlined />
-              Top 100 Indexes
+              {`Top ${chartDisplayLimit} Indexes`}
             </span>
           }
           key="chart"
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer}>
-                <TopIndexesChart data={data} limit={100} />
+              <div
+                className={classes.chartContainer}
+                style={{ height: chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21 }}
+              >
+                <TopIndexesChart
+                  data={data}
+                  displayLimit={chartDisplayLimit}
+                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+                />
               </div>
             </Col>
           </Row>
