@@ -11,6 +11,11 @@ import loginlogo from "../logo-login.png";
 //-------------------------------------------------------------
 const styles = {
   root: {
+    width: "100%",
+    height: "100vh",
+    background: "rgba(255, 255, 255, 0.05)",
+  },
+  container: {
     width: "400px",
     height: "460px",
     borderRadius: "10px",
@@ -35,6 +40,8 @@ const styles = {
   },
   loginButton: {
     width: "100%",
+    fontWeight: 600,
+    letterSpacing: "1px",
   },
 };
 
@@ -43,6 +50,7 @@ const styles = {
 //-------------------------------------------------------------
 const Login = ({ classes }) => {
   const history = useHistory();
+  document.body.style = "background: red;";
 
   const onFinish = (values) => {
     if (values.userid === "oms" && values.password === "oms") {
@@ -54,33 +62,35 @@ const Login = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      <img src={loginlogo} alt="logo" className={classes.logo}></img>
-      <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
-        <Form.Item name="userid" rules={[{ required: true, message: "Please input your User ID!" }]}>
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="User ID" size="large" />
-        </Form.Item>
-        <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-            size="large"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+      <div className={classes.container}>
+        <img src={loginlogo} alt="logo" className={classes.logo}></img>
+        <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
+          <Form.Item name="userid" rules={[{ required: true, message: "Please input your User ID!" }]}>
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="User ID" size="large" />
           </Form.Item>
-          <a className={classes.forgetPassord} href="/">
-            Forgot password
-          </a>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className={classes.loginButton} size="large">
-            LOGIN
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+              size="large"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+            <a className={classes.forgetPassord} href="/">
+              Forgot password
+            </a>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className={classes.loginButton} size="large">
+              LOGIN
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

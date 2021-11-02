@@ -35,7 +35,6 @@ const styles = {
   },
   loginContainer: {
     minHeight: "100vh",
-    padding: 8,
   },
 };
 
