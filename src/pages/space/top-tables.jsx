@@ -14,6 +14,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TopTablesChart from "./../../chart/TopTablesChart";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -75,6 +76,7 @@ const TopTables = ({ classes }) => {
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -179,14 +181,17 @@ const TopTables = ({ classes }) => {
           tab={
             <span>
               <AimOutlined />
-              Top 100 Tables
+              {`Top ${chartDisplayLimit} Tables`}
             </span>
           }
           key="chart"
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: chartDisplayLimit * 21 }}>
+              <div
+                className={classes.chartContainer}
+                style={{ height: chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21 }}
+              >
                 <TopTablesChart
                   data={data}
                   displayLimit={chartDisplayLimit}
