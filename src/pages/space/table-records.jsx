@@ -79,6 +79,7 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 const TableRecords = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -114,7 +115,11 @@ const TableRecords = ({ classes }) => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (owner === "All" ? true : row.owner === owner));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -134,6 +139,7 @@ const TableRecords = ({ classes }) => {
                 value={owner}
                 onChange={(value) => {
                   setOwner(value);
+                  setPageLoad(false);
                 }}
               >
                 {ownerList.map((owner) => (

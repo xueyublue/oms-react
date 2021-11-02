@@ -39,6 +39,7 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
     },
     maintainAspectRatio: false,
     indexAxis: "y",
+
     scales: {
       myScale: {
         type: type,
