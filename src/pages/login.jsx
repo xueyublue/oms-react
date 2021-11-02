@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import { ROUTE_DASHBORAD } from "./../util/constants";
 import loginlogo from "../logo-login.png";
+import wallpaper from "../wallpaper.jpeg";
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -13,12 +14,13 @@ const styles = {
   root: {
     width: "100%",
     height: "100vh",
-    background: "#172a3d",
+    //* color background
+    // background: "#172a3d",
   },
   container: {
     width: "400px",
-    height: "460px",
-    borderRadius: "10px",
+    height: "420px",
+    borderRadius: "20px",
     background: "#F2F2F2",
     color: "#fff",
     top: "50%",
@@ -59,7 +61,7 @@ const Login = ({ classes }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ backgroundImage: `url(${wallpaper})`, backgroundSize: "100% 100%" }}>
       <div className={classes.container}>
         <img src={loginlogo} alt="logo" className={classes.logo}></img>
         <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
