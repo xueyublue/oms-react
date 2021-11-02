@@ -120,6 +120,11 @@ const TableRecords = ({ classes }) => {
     setPageLoad(true);
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
+  //* calculate chart container height
+  let chartContainerHeight = 0;
+  if (data.length < chartDisplayLimit || chartDisplayLimit === "All")
+    chartContainerHeight = data.length * 21 < height ? height - 220 : data.length * 21;
+  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21;
 
   return (
     <div>
@@ -209,10 +214,7 @@ const TableRecords = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div
-                className={classes.chartContainer}
-                style={{ height: chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21 }}
-              >
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <TableRecordsChart
                   data={data}
                   displayLimit={chartDisplayLimit}
