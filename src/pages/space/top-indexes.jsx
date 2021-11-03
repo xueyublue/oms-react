@@ -206,6 +206,7 @@ const TopIndexes = ({ classes }) => {
                   data={data}
                   displayLimit={chartDisplayLimit}
                   onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+                  displayData
                 />
               </div>
             </Col>

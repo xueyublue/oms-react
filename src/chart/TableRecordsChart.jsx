@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Form, Select } from "antd";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitChange }) {
+function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitChange, displayData = true }) {
   const [form] = Form.useForm();
   const [type, setType] = useState("linear");
 
@@ -36,10 +37,15 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
       legend: {
         display: false,
       },
+      datalabels: {
+        display: displayData,
+        align: "end",
+        anchor: "start",
+        color: "rgba(0,0,0,0.7)",
+      },
     },
     maintainAspectRatio: false,
     indexAxis: "y",
-
     scales: {
       myScale: {
         type: type,
@@ -82,7 +88,7 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
           </Select>
         </Form.Item>
       </Form>
-      <Bar data={dataSource} options={options} />
+      <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />
     </>
   );
 }

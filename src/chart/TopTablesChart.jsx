@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Form, Select } from "antd";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange }) {
+function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange, displayData = false }) {
   const [form] = Form.useForm();
   const [type, setType] = useState("linear");
 
@@ -35,6 +36,12 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
       title: { display: displayTitle, text: "Tables" },
       legend: {
         display: false,
+      },
+      datalabels: {
+        display: displayData,
+        align: "end",
+        anchor: "start",
+        color: "rgba(0,0,0,0.7)",
       },
     },
     maintainAspectRatio: false,
@@ -81,7 +88,7 @@ function TopTablesChart({ displayTitle, data, displayLimit, onDisplayLimitChange
           </Select>
         </Form.Item>
       </Form>
-      <Bar data={dataSource} options={options} />
+      <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />
     </>
   );
 }
