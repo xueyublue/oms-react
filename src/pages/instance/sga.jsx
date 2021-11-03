@@ -14,6 +14,7 @@ import { getCsvHeaders } from "../../util/util";
 import SgaDoughnutChart from "../../chart/SgaDoughnutChart";
 import SgaBarChart from "./../../chart/SgaBarChart";
 import { withStyles } from "@mui/styles";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -54,7 +55,6 @@ const columns = [
 const styles = {
   root: {},
   chartContainer: {
-    height: "300px",
     width: "100%",
   },
   tag: {
@@ -67,11 +67,13 @@ const styles = {
 //* PAGE START
 //-------------------------------------------------------------
 const SgaConfigurations = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -95,7 +97,13 @@ const SgaConfigurations = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
+  }
+  let chartContainerHeight = height - 600;
+  if (chartContainerHeight <= 250) chartContainerHeight = 250;
 
   return (
     <div>
@@ -137,12 +145,12 @@ const SgaConfigurations = ({ classes }) => {
       </Row>
       <Row>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <SgaBarChart data={data} />
           </div>
         </Col>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <SgaDoughnutChart data={data} />
           </div>
         </Col>

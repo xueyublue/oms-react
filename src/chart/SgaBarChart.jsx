@@ -25,7 +25,12 @@ function SgaBarChart({ data, titleDisplay }) {
     maintainAspectRatio: false,
     indexAxis: "y",
     scales: {
-      x: { beginAtZero: true, max: data.chart.data[0] },
+      myScale: {
+        position: "top",
+        beginAtZero: true,
+        min: 0,
+        max: data.chart.data[0],
+      },
     },
   };
   return <Bar data={dataSource} options={options} />;
