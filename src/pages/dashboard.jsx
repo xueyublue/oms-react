@@ -74,7 +74,7 @@ const Dashboard = ({ classes }) => {
       autoHideDuration: 5000,
     });
   }
-  let chartContainerHeight = (height - 320) / 2;
+  let chartContainerHeight = (height - 290) / 2;
   if (chartContainerHeight < 300) chartContainerHeight = 300;
 
   return (

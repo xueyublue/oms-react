@@ -185,6 +185,7 @@ const Tablespace = ({ classes }) => {
       });
     else enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
   }
+  const chartContainerHeight = (height - 200) / 2;
 
   return (
     <div>
@@ -239,12 +240,12 @@ const Tablespace = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
               </div>
             </Col>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
               </div>
             </Col>

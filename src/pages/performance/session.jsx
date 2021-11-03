@@ -289,7 +289,7 @@ const Sessions = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: height - 220 }}>
+              <div className={classes.chartContainer} style={{ height: height - 200 }}>
                 <SessionChart withinComponent />
               </div>
             </Col>

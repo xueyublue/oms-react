@@ -69,6 +69,7 @@ function Host({ classes }) {
       autoHideDuration: 5000,
     });
   }
+  const chartContainerHeight = (height - 200) / 2;
 
   return (
     <div className={classes.root}>
@@ -84,7 +85,7 @@ function Host({ classes }) {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <HostCpuAndRamChart
                   labels={data.hostResource.time}
                   cpu={data.hostResource.cpu}
@@ -94,12 +95,12 @@ function Host({ classes }) {
               </div>
             </Col>
             <Col lg={24} xl={12} xxl={12}>
-              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <HostCpuChart labels={data.hostResource.time} cpu={data.hostResource.cpu} />
               </div>
             </Col>
             <Col lg={24} xl={12} xxl={12}>
-              <div className={classes.chartContainer} style={{ height: (height - 220) / 2 }}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <HostRamChart labels={data.hostResource.time} ram={data.hostResource.ram} />
               </div>
             </Col>

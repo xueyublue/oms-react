@@ -111,8 +111,9 @@ const TopIndexes = ({ classes }) => {
   //* calculate chart container height
   let chartContainerHeight = 0;
   if (data.length < chartDisplayLimit || chartDisplayLimit === "All")
-    chartContainerHeight = data.length * 21 < height ? height - 220 : data.length * 21;
-  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 220 : chartDisplayLimit * 21;
+    chartContainerHeight = data.length * 21 < height ? height - 190 : data.length * 21;
+  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
+  if (chartContainerHeight <= 600) chartContainerHeight = 600;
 
   return (
     <div>
