@@ -5,7 +5,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, displayData = false }) {
+function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, displayDataLabel }) {
   const data = {
     labels: labels,
     datasets: [
@@ -16,7 +16,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
         datalabels: {
-          display: displayData,
+          display: displayDataLabel,
           backgroundColor: "rgb(36, 209, 209)",
           color: "rgba(0,0,0,0.9)",
         },
@@ -28,7 +28,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
         datalabels: {
-          display: displayData,
+          display: displayDataLabel,
           backgroundColor: "rgb(75, 122, 192)",
           color: "white",
         },
@@ -42,7 +42,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
         position: legendPosition ? legendPosition : "top",
       },
       datalabels: {
-        display: displayData,
+        display: displayDataLabel,
         borderRadius: 4,
         padding: 2,
       },

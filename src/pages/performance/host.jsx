@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withStyles } from "@mui/styles";
-import { Row, Col, Tabs } from "antd";
+import { Row, Col, Tabs, Form, Switch } from "antd";
 import { ApartmentOutlined, HddOutlined } from "@ant-design/icons";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import Loading from "../../components/Loading";
@@ -9,8 +10,6 @@ import ApiCallFailed from "./../../components/ApiCallFailed";
 import { API_FETCH_WAIT } from "../../util/constants";
 import { BackendAPIContext } from "./../../context/BackendAPIContext";
 import HostCpuAndRamChart from "./../../chart/HostCpuAndRamChart";
-import HostCpuChart from "./../../chart/HostCpuChart";
-import HostRamChart from "./../../chart/HostRamChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const TabPane = Tabs.TabPane;
@@ -32,9 +31,11 @@ function Host({ classes }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [displayDataLabel, setDisplayDataLabel] = useState(true);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const [form] = Form.useForm();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -69,7 +70,7 @@ function Host({ classes }) {
       autoHideDuration: 5000,
     });
   }
-  const chartContainerHeight = (height - 200) / 2;
+  const chartContainerHeight = height - 250;
 
   return (
     <div className={classes.root}>
@@ -85,24 +86,24 @@ function Host({ classes }) {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
+              <Form.Item label="Display Data Labels" style={{ width: 200 }}>
+                <Switch
+                  defaultChecked
+                  checkedChildren={<MdVisibility />}
+                  unCheckedChildren={<MdVisibilityOff />}
+                  onChange={(value) => {
+                    setDisplayDataLabel(value);
+                  }}
+                />
+              </Form.Item>
               <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
                 <HostCpuAndRamChart
                   labels={data.hostResource.time}
                   cpu={data.hostResource.cpu}
                   ram={data.hostResource.ram}
                   legendPosition="top"
-                  displayData
+                  displayDataLabel={displayDataLabel}
                 />
-              </div>
-            </Col>
-            <Col lg={24} xl={12} xxl={12}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-                <HostCpuChart labels={data.hostResource.time} cpu={data.hostResource.cpu} />
-              </div>
-            </Col>
-            <Col lg={24} xl={12} xxl={12}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-                <HostRamChart labels={data.hostResource.time} ram={data.hostResource.ram} />
               </div>
             </Col>
           </Row>
