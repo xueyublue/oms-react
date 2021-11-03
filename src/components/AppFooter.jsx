@@ -7,7 +7,11 @@ const { Footer } = Layout;
 // COMPONENT START
 //-------------------------------------------------------------
 const AppFooter = () => {
-  return <Footer style={{ textAlign: "center" }}>All rights reserved by Daifuku Singapore 2021</Footer>;
+  return (
+    <Footer style={{ textAlign: "center" }}>
+      Copyright &copy; 2021 Daifuku Mechatronics (Singapore) Pte. Ltd. All Rights Reserved.
+    </Footer>
+  );
 };
 
 export default AppFooter;
