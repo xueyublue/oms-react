@@ -10,7 +10,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
     labels: labels,
     datasets: [
       {
-        label: `Host CPU (${cpu[0]}%)`,
+        label: `Host CPU (${cpu[cpu.length - 1]}%)`,
         data: cpu,
         fill: true,
         borderColor: "rgb(36, 209, 209)",
@@ -22,7 +22,7 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
         },
       },
       {
-        label: `Host RAM (${ram[0]}%)`,
+        label: `Host RAM (${ram[ram.length - 1]}%)`,
         data: ram,
         fill: true,
         borderColor: "rgb(75, 122, 192)",

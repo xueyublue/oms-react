@@ -9,7 +9,7 @@ function HostRamChart({ labels, ram, displayTitle }) {
     labels: labels,
     datasets: [
       {
-        label: `Host RAM (${ram[0]}%)`,
+        label: `Host RAM (${ram[ram.length - 1]}%)`,
         data: ram,
         fill: true,
         borderColor: "rgb(75, 122, 192)",

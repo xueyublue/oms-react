@@ -9,7 +9,7 @@ function HostCpuChart({ labels, cpu, displayTitle }) {
     labels: labels,
     datasets: [
       {
-        label: `Host CPU (${cpu[0]}%)`,
+        label: `Host CPU (${cpu[cpu.length - 1]}%)`,
         data: cpu,
         fill: true,
         borderColor: "rgb(36, 209, 209)",

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Form, Switch } from "antd";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { useSnackbar } from "notistack";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
@@ -22,12 +24,14 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionChart({ titleDisplay, legendPosition, withinComponent, displayData = false }) {
+function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [displayDataLabel, setDisplayDataLabel] = useState(false);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const [form] = Form.useForm();
 
   const fetchData = async () => {
     axios
@@ -74,37 +78,37 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent, displayDa
     labels: labels,
     datasets: [
       {
-        label: `Total (${total[0]})`,
+        label: `Total (${total[total.length - 1]})`,
         data: total,
         fill: false,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
         datalabels: {
-          display: displayData,
+          display: displayDataLabel,
           backgroundColor: "rgb(36, 209, 209)",
           color: "rgba(0,0,0,0.9)",
         },
       },
       {
-        label: `Active (${active[0]})`,
+        label: `Active (${active[active.length - 1]})`,
         data: active,
         fill: false,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
         datalabels: {
-          display: displayData,
+          display: displayDataLabel,
           backgroundColor: "rgb(253, 211, 100)",
           color: "rgba(0,0,0,0.9)",
         },
       },
       {
-        label: `Inactive (${inactive[0]})`,
+        label: `Inactive (${inactive[inactive.length - 1]})`,
         data: inactive,
         fill: false,
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
         datalabels: {
-          display: displayData,
+          display: displayDataLabel,
           backgroundColor: "rgb(75, 122, 192)",
           color: "white",
         },
@@ -118,7 +122,7 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent, displayDa
         position: legendPosition === null ? "top" : legendPosition,
       },
       datalabels: {
-        display: displayData,
+        display: displayDataLabel,
         borderRadius: 4,
         padding: 2,
       },
@@ -133,7 +137,23 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent, displayDa
     },
   };
 
-  return <Line data={dataSource} options={options} plugins={[ChartDataLabels]} />;
+  return (
+    <>
+      <Form form={form} layout={"inline"} size={"middle"} style={{ height: "35px" }}>
+        <Form.Item label="Display Data Labels" style={{ width: 200 }}>
+          <Switch
+            value={displayDataLabel}
+            checkedChildren={<MdVisibility />}
+            unCheckedChildren={<MdVisibilityOff />}
+            onChange={(value) => {
+              setDisplayDataLabel(value);
+            }}
+          />
+        </Form.Item>
+      </Form>
+      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} />
+    </>
+  );
 }
 
 export default SessionChart;
