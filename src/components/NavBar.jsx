@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Layout, Menu, Switch } from "antd";
-import { MdDarkMode } from "react-icons/md";
+import { MdWbSunny, MdDarkMode } from "react-icons/md";
 import { FcComboChart, FcMindMap, FcBusinessman, FcOrgUnit, FcDatabase, FcServices } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
 import * as Constants from "../util/constants";
@@ -148,7 +148,7 @@ const NavBar = ({ classes }) => {
       <div style={{ position: "fixed", bottom: 10, left: 90 }}>
         <Switch
           checkedChildren={<MdDarkMode />}
-          unCheckedChildren={<MdDarkMode />}
+          unCheckedChildren={<MdWbSunny />}
           onChange={(mode) => {
             setDarkMode(mode);
           }}
