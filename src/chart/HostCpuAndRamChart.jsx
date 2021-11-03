@@ -43,7 +43,6 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
       },
       datalabels: {
         display: displayData,
-        font: { size: "14px" },
         borderRadius: 4,
         padding: 2,
       },

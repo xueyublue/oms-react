@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { useSnackbar } from "notistack";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
@@ -21,7 +22,7 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
+function SessionChart({ titleDisplay, legendPosition, withinComponent, displayData = false }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -75,23 +76,38 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
       {
         label: `Total (${total[0]})`,
         data: total,
-        fill: true,
+        fill: false,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
+        datalabels: {
+          display: displayData,
+          backgroundColor: "rgb(36, 209, 209)",
+          color: "rgba(0,0,0,0.9)",
+        },
       },
       {
         label: `Active (${active[0]})`,
         data: active,
-        fill: true,
+        fill: false,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
+        datalabels: {
+          display: displayData,
+          backgroundColor: "rgb(253, 211, 100)",
+          color: "rgba(0,0,0,0.9)",
+        },
       },
       {
         label: `Inactive (${inactive[0]})`,
         data: inactive,
-        fill: true,
+        fill: false,
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
+        datalabels: {
+          display: displayData,
+          backgroundColor: "rgb(75, 122, 192)",
+          color: "white",
+        },
       },
     ],
   };
@@ -100,6 +116,11 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
       title: { display: titleDisplay, text: "Sessions (every 10s)" },
       legend: {
         position: legendPosition === null ? "top" : legendPosition,
+      },
+      datalabels: {
+        display: displayData,
+        borderRadius: 4,
+        padding: 2,
       },
     },
     stepped: true,
@@ -112,7 +133,7 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
     },
   };
 
-  return <Line data={dataSource} options={options} />;
+  return <Line data={dataSource} options={options} plugins={[ChartDataLabels]} />;
 }
 
 export default SessionChart;
