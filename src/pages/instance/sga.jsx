@@ -3,7 +3,7 @@ import { Table, Progress, Form, Row, Col, Tag, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
-import { formatNumberWithCommas } from "../../util/util";
+import { formatNumberWithCommasAndDecimals } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -29,7 +29,7 @@ const columns = [
     key: "size",
     width: 180,
     align: "right",
-    render: (value) => formatNumberWithCommas(value),
+    render: (value) => formatNumberWithCommasAndDecimals(value),
     sorter: (a, b) => a.size - b.size,
   },
   {
