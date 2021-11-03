@@ -185,7 +185,7 @@ const TopTables = ({ classes }) => {
                 setPageSize(size);
               },
             }}
-            scroll={{ x: 800 /*, y: 620 */ }}
+            scroll={{ x: 800, y: chartContainerHeight - 135 }}
             rowKey="segmentName"
           />
         </TabPane>

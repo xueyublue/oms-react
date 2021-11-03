@@ -200,7 +200,7 @@ const TableRecords = ({ classes }) => {
                 setPageSize(size);
               },
             }}
-            scroll={{ x: 1000 /*, y: 620 */ }}
+            scroll={{ x: 1000, y: chartContainerHeight - 135 }}
             rowKey="tableName"
           />
         </TabPane>
