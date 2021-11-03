@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SgaBarChart({ data, titleDisplay }) {
+function SgaBarChart({ data, titleDisplay, chartType }) {
   const dataSource = {
     labels: data.chart.name,
     datasets: [
@@ -26,6 +26,7 @@ function SgaBarChart({ data, titleDisplay }) {
     indexAxis: "y",
     scales: {
       myScale: {
+        type: chartType,
         position: "top",
         beginAtZero: true,
         min: 0,

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form, Row, Col, Tag } from "antd";
+import { Table, Progress, Form, Row, Col, Tag, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import { formatNumberWithCommas } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -49,6 +49,9 @@ const columns = [
     sorter: (a, b) => a.percentage - b.percentage,
   },
 ];
+
+const TabPane = Tabs.TabPane;
+
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -70,6 +73,7 @@ const SgaConfigurations = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [chartType, setChartType] = useState("linear");
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
@@ -102,59 +106,95 @@ const SgaConfigurations = ({ classes }) => {
     setPageLoad(true);
     enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
   }
-  let chartContainerHeight = height - 600;
-  if (chartContainerHeight <= 250) chartContainerHeight = 250;
+  let chartContainerHeight = height - 190;
+  if (chartContainerHeight <= 300) chartContainerHeight = 300;
 
   return (
     <div>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item>
-          <Tag className={classes.tag} icon={<ExclamationCircleOutlined />} color={"geekblue"}>
-            System Global Area (SGA): {data.maxSgaSize} MB in total.
-          </Tag>
-        </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
-          <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-              }}
-            />
-            <ExportButton
-              csvReport={{
-                data: data.table,
-                headers: getCsvHeaders(columns),
-                filename: "OMS_SGA.csv",
-              }}
-            />
-          </Form.Item>
-        </div>
-      </Form>
-      <Row>
-        <Col lg={24} xl={24}>
-          <Table
-            columns={columns}
-            dataSource={data.table}
-            bordered
-            size="small"
-            pagination={{ pageSize: 15, position: ["none"] }}
-            rowKey="name"
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <SgaBarChart data={data} />
-          </div>
-        </Col>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <SgaDoughnutChart data={data} />
-          </div>
-        </Col>
-      </Row>
+      <Tabs type="card">
+        <TabPane
+          tab={
+            <span>
+              <TableOutlined />
+              Table
+            </span>
+          }
+          key="table"
+        >
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item>
+              <Tag className={classes.tag} icon={<ExclamationCircleOutlined />} color={"geekblue"}>
+                System Global Area (SGA): {data.maxSgaSize} MB in total.
+              </Tag>
+            </Form.Item>
+            <div style={{ position: "absolute", right: 0 }}>
+              <Form.Item>
+                <RefreshButton
+                  onClick={() => {
+                    setIsLoading(true);
+                    fetchData();
+                  }}
+                />
+                <ExportButton
+                  csvReport={{
+                    data: data.table,
+                    headers: getCsvHeaders(columns),
+                    filename: "OMS_SGA.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Row>
+            <Col lg={24} xl={24}>
+              <Table
+                columns={columns}
+                dataSource={data.table}
+                bordered
+                size="small"
+                pagination={{ pageSize: 15, position: ["none"] }}
+                rowKey="name"
+              />
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <AreaChartOutlined />
+              Chart
+            </span>
+          }
+          key="chart"
+        >
+          <Row>
+            <Col lg={24} xl={12} xxl={12}>
+              <Form.Item label="Chart Type" style={{ width: 200 }}>
+                <Select
+                  value={chartType}
+                  onChange={(value) => {
+                    setChartType(value);
+                  }}
+                >
+                  {["Linear", "Logarithmic"].map((value) => (
+                    <Select.Option value={value.toLowerCase()} key={value}>
+                      {value}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight - 60 }}>
+                <SgaBarChart data={data} chartType={chartType} />
+              </div>
+            </Col>
+            <Col lg={24} xl={12} xxl={12}>
+              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+                <SgaDoughnutChart data={data} />
+              </div>
+            </Col>
+          </Row>
+        </TabPane>
+      </Tabs>
     </div>
   );
 };

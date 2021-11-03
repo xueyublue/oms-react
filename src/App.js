@@ -31,7 +31,7 @@ const styles = {
   container: {
     margin: "5px",
     padding: 8,
-    minHeight: 650,
+    minHeight: 500,
   },
   loginContainer: {
     minHeight: "100vh",
