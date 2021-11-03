@@ -241,12 +241,16 @@ const Tablespace = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24} xxl={24}>
               <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-                <TablespaceOccupancyChart labels={data.occupancyChart.name} data={data.occupancyChart.data} />
+                <TablespaceOccupancyChart
+                  labels={data.occupancyChart.name}
+                  data={data.occupancyChart.data}
+                  displayData
+                />
               </div>
             </Col>
             <Col lg={24} xl={24} xxl={24}>
               <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-                <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} />
+                <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} displayData />
               </div>
             </Col>
           </Row>

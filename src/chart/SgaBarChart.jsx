@@ -1,6 +1,5 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 //-------------------------------------------------------------
@@ -14,10 +13,6 @@ function SgaBarChart({ data, titleDisplay, chartType }) {
         data: data.chart.data,
         backgroundColor: data.chart.backgroundColor,
         tension: 0.1,
-        datalabels: {
-          align: "end",
-          anchor: "start",
-        },
       },
     ],
   };
@@ -28,6 +23,8 @@ function SgaBarChart({ data, titleDisplay, chartType }) {
         display: false,
       },
       datalabels: {
+        align: "end",
+        anchor: "start",
         color: "rgba(0,0,0,0.8)",
       },
     },

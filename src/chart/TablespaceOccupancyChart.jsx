@@ -1,10 +1,11 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TablespaceOccupancyChart({ labels, data }) {
+function TablespaceOccupancyChart({ labels, data, displayData = false }) {
   let bgColors = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i] >= 80) bgColors[i] = "rgba(255, 178, 195, 0.8)";
@@ -17,8 +18,6 @@ function TablespaceOccupancyChart({ labels, data }) {
         data: data,
         backgroundColor: bgColors,
         tension: 0.1,
-        // borderColor: "rgba(54, 162, 235, 0.5)",
-        // borderWidth: 1,
       },
     ],
   };
@@ -27,6 +26,12 @@ function TablespaceOccupancyChart({ labels, data }) {
       title: { display: true, text: "Tablespace Occupancy" },
       legend: {
         display: false,
+      },
+      datalabels: {
+        display: displayData,
+        align: "end",
+        anchor: "start",
+        color: "rgba(0,0,0,0.7)",
       },
     },
     maintainAspectRatio: false,
@@ -44,7 +49,7 @@ function TablespaceOccupancyChart({ labels, data }) {
       ],
     },
   };
-  return <Bar data={dataSource} options={options} />;
+  return <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />;
 }
 
 export default TablespaceOccupancyChart;
