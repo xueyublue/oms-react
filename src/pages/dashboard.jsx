@@ -86,6 +86,7 @@ const Dashboard = ({ classes }) => {
             <TablespaceOccupancyChart
               labels={data.tablespace.occupancyChart.name}
               data={data.tablespace.occupancyChart.data}
+              displayData
             />
           </div>
         </Col>
@@ -96,6 +97,7 @@ const Dashboard = ({ classes }) => {
               cpu={data.hostResource.cpu}
               ram={data.hostResource.ram}
               legendPosition="top"
+              displayDataLabel={true}
             />
           </div>
         </Col>
@@ -106,6 +108,7 @@ const Dashboard = ({ classes }) => {
             <TablespaceSizeChart
               labels={data.tablespace.totalSizeChart.name}
               data={data.tablespace.totalSizeChart.data}
+              displayData
             />
           </div>
         </Col>
