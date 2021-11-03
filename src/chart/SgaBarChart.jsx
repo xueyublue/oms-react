@@ -1,5 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import "chartjs-plugin-datalabels";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 //-------------------------------------------------------------
 //* COMPONENT START
@@ -12,6 +14,10 @@ function SgaBarChart({ data, titleDisplay, chartType }) {
         data: data.chart.data,
         backgroundColor: data.chart.backgroundColor,
         tension: 0.1,
+        datalabels: {
+          align: "end",
+          anchor: "start",
+        },
       },
     ],
   };
@@ -20,6 +26,9 @@ function SgaBarChart({ data, titleDisplay, chartType }) {
       title: { display: titleDisplay, text: `SGA Configuration (${data.maxSgaSize}MB In Total)` },
       legend: {
         display: false,
+      },
+      datalabels: {
+        color: "rgba(0,0,0,0.8)",
       },
     },
     maintainAspectRatio: false,
@@ -34,7 +43,7 @@ function SgaBarChart({ data, titleDisplay, chartType }) {
       },
     },
   };
-  return <Bar data={dataSource} options={options} />;
+  return <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />;
 }
 
 export default SgaBarChart;

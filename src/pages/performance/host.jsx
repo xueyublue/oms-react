@@ -91,6 +91,7 @@ function Host({ classes }) {
                   cpu={data.hostResource.cpu}
                   ram={data.hostResource.ram}
                   legendPosition="top"
+                  displayData={true}
                 />
               </div>
             </Col>
