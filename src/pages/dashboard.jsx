@@ -12,6 +12,7 @@ import TablespaceOccupancyChart from "../chart/TablespaceOccupancyChart";
 import DashboardCards from "../components/DashoardCards";
 import SgaDoughnutChart from "../chart/SgaDoughnutChart";
 import TablespaceSizeChart from "../chart/TablespaceSizeChart";
+import useWindowDimensions from "./../hooks/useWindowDimensions";
 
 //-------------------------------------------------------------
 // STYLES START
@@ -19,7 +20,6 @@ import TablespaceSizeChart from "../chart/TablespaceSizeChart";
 const styles = {
   root: {},
   chartContainer: {
-    height: "340px",
     width: "100%",
   },
 };
@@ -33,6 +33,7 @@ const Dashboard = ({ classes }) => {
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -73,13 +74,15 @@ const Dashboard = ({ classes }) => {
       autoHideDuration: 5000,
     });
   }
+  let chartContainerHeight = (height - 320) / 2;
+  if (chartContainerHeight < 300) chartContainerHeight = 300;
 
   return (
     <div className={classes.root}>
       <DashboardCards data={data} />
       <Row>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <TablespaceOccupancyChart
               labels={data.tablespace.occupancyChart.name}
               data={data.tablespace.occupancyChart.data}
@@ -87,7 +90,7 @@ const Dashboard = ({ classes }) => {
           </div>
         </Col>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <HostCpuAndRamChart
               labels={data.hostResource.time}
               cpu={data.hostResource.cpu}
@@ -99,7 +102,7 @@ const Dashboard = ({ classes }) => {
       </Row>
       <Row>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <TablespaceSizeChart
               labels={data.tablespace.totalSizeChart.name}
               data={data.tablespace.totalSizeChart.data}
@@ -107,7 +110,7 @@ const Dashboard = ({ classes }) => {
           </div>
         </Col>
         <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer}>
+          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
             <SgaDoughnutChart data={data.sgaConfig} titleDisplay />
           </div>
         </Col>
