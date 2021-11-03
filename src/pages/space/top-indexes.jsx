@@ -72,7 +72,7 @@ const TopIndexes = ({ classes }) => {
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useState(30);
   const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
@@ -180,7 +180,7 @@ const TopIndexes = ({ classes }) => {
               page: page,
               pageSize: pageSize,
               position: ["bottomRight"],
-              pageSizeOptions: [10, 15, 30, 100, 500],
+              pageSizeOptions: [30, 50, 100, 500],
               onChange: (p, size) => {
                 setPage(p);
                 setPageSize(size);

@@ -11,6 +11,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -98,12 +99,11 @@ const Users = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
   const statusList = getDistinctStatus(data);
   const [status, setStatus] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -129,6 +129,7 @@ const Users = () => {
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (status === "All" ? true : row.accountStatus === status));
   enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  const tableHeight = height - 220;
 
   return (
     <div>
@@ -180,17 +181,8 @@ const Users = () => {
         dataSource={filteredData}
         bordered
         size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [10, 15, 30, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1640 }}
+        pagination={{ pageSize: 999, position: ["none"] }}
+        scroll={{ x: 1620, y: tableHeight }}
         rowKey="userName"
       />
     </div>
