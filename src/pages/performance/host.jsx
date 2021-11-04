@@ -69,7 +69,7 @@ function Host({ classes }) {
       autoHideDuration: 5000,
     });
   }
-  const chartContainerHeight = height - 250;
+  const chartContainerHeight = height - 220;
 
   return (
     <div className={classes.root}>
@@ -85,7 +85,7 @@ function Host({ classes }) {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <Form.Item label="Display Data Labels" style={{ width: 200 }}>
+              <Form.Item label="Display Data Labels" style={{ width: 200, marginBottom: "0px" }}>
                 <Switch
                   defaultChecked
                   checkedChildren={<MdVisibility />}

@@ -145,7 +145,7 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
 
   return (
     <>
-      <Form form={form} layout={"inline"} size={"middle"} style={{ height: "35px" }}>
+      <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item label="Display Data Labels" style={{ width: 200 }}>
           <Switch
             value={displayDataLabel}
@@ -157,7 +157,7 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
           />
         </Form.Item>
       </Form>
-      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 29 }} />
+      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 26 }} />
     </>
   );
 }
