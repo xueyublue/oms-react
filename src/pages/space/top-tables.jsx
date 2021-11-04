@@ -63,6 +63,9 @@ const styles = {
     position: "absolute",
     right: 0,
   },
+  table: {
+    marginTop: "10px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -113,7 +116,7 @@ const TopTables = ({ classes }) => {
     setPageLoad(false);
   };
 
-  const handleClear = (value) => {
+  const handleClear = () => {
     setOwner("All");
     setPageLoad(false);
   };
@@ -126,12 +129,12 @@ const TopTables = ({ classes }) => {
     setPageLoad(true);
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
-  //* calculate chart container height
-  let chartContainerHeight = 0;
+  //* calculate chart height
+  let chartHeight = 0;
   if (data.length < chartDisplayLimit || chartDisplayLimit === "All")
-    chartContainerHeight = data.length * 21 < height ? height - 190 : data.length * 21;
-  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
-  if (chartContainerHeight <= 600) chartContainerHeight = 600;
+    chartHeight = data.length * 21 < height ? height - 190 : data.length * 21;
+  else chartHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
+  if (chartHeight <= 600) chartHeight = 600;
 
   return (
     <div className={classes.root}>
@@ -174,7 +177,7 @@ const TopTables = ({ classes }) => {
             </div>
           </Form>
           <Table
-            style={{ marginTop: 10 }}
+            className={classes.table}
             columns={columns}
             dataSource={filteredData}
             bordered
@@ -189,7 +192,7 @@ const TopTables = ({ classes }) => {
                 setPageSize(size);
               },
             }}
-            scroll={{ x: 800, y: chartContainerHeight - 135 }}
+            scroll={{ x: 800, y: height - 325 }}
             rowKey="segmentName"
           />
         </TabPane>
@@ -204,7 +207,7 @@ const TopTables = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartHeight }}>
                 <TopTablesChart
                   data={data}
                   displayLimit={chartDisplayLimit}

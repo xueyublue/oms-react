@@ -56,9 +56,7 @@ const TabPane = Tabs.TabPane;
 //* STYLES START
 //-------------------------------------------------------------
 const styles = {
-  root: {},
-  chartContainer: {
-    height: "2000px",
+  root: {
     width: "100%",
   },
 };
@@ -100,6 +98,22 @@ const TopIndexes = ({ classes }) => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
+  const handleOwnerChange = (value) => {
+    setOwner(value);
+    setPageLoad(false);
+  };
+
+  const handleClear = () => {
+    setOwner("All");
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (owner === "All" ? true : row.owner === owner));
@@ -116,7 +130,7 @@ const TopIndexes = ({ classes }) => {
   if (chartContainerHeight <= 600) chartContainerHeight = 600;
 
   return (
-    <div>
+    <div className={classes.root}>
       <Tabs type="card">
         <TabPane
           tab={
@@ -129,13 +143,7 @@ const TopIndexes = ({ classes }) => {
         >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Owner" style={{ width: 300 }}>
-              <Select
-                value={owner}
-                onChange={(value) => {
-                  setOwner(value);
-                  setPageLoad(false);
-                }}
-              >
+              <Select value={owner} onChange={handleOwnerChange}>
                 {ownerList.map((owner) => (
                   <Select.Option value={owner} key={owner}>
                     {owner}
@@ -144,24 +152,13 @@ const TopIndexes = ({ classes }) => {
               </Select>
             </Form.Item>
             <Form.Item>
-              <Button
-                onClick={() => {
-                  setOwner("All");
-                  setPageLoad(false);
-                }}
-              >
+              <Button onClick={handleClear}>
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
             <div style={{ position: "absolute", right: 0 }}>
               <Form.Item>
-                <RefreshButton
-                  onClick={() => {
-                    setIsLoading(true);
-                    fetchData();
-                    setPageLoad(false);
-                  }}
-                />
+                <RefreshButton onClick={handleRefresh} />
                 <ExportButton
                   csvReport={{
                     data: data,
@@ -188,7 +185,7 @@ const TopIndexes = ({ classes }) => {
                 setPageSize(size);
               },
             }}
-            scroll={{ x: 800, y: chartContainerHeight - 135 }}
+            scroll={{ x: 800, y: height - 325 }}
             rowKey="segmentName"
           />
         </TabPane>
@@ -203,7 +200,7 @@ const TopIndexes = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartContainerHeight }}>
                 <TopIndexesChart
                   data={data}
                   displayLimit={chartDisplayLimit}
