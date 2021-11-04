@@ -8,6 +8,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -54,13 +55,15 @@ const columns = [
 // PAGE START
 //-------------------------------------------------------------
 const ResourceLimit = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -83,7 +86,11 @@ const ResourceLimit = () => {
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
-  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -95,6 +102,7 @@ const ResourceLimit = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton
@@ -116,13 +124,13 @@ const ResourceLimit = () => {
           page: page,
           pageSize: pageSize,
           position: ["bottomRight"],
-          pageSizeOptions: [10, 15, 30, 100, 500],
+          pageSizeOptions: [30, 50, 100, 500],
           onChange: (p, size) => {
             setPage(p);
             setPageSize(size);
           },
         }}
-        scroll={{ x: 1000 }}
+        scroll={{ x: 1000, y: height - 260 }}
         rowKey="resourceName"
       />
     </div>

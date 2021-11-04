@@ -146,6 +146,7 @@ const TopTables = ({ classes }) => {
               <Button
                 onClick={() => {
                   setOwner("All");
+                  setPageLoad(false);
                 }}
               >
                 <FcUndo size={22} />
@@ -157,6 +158,7 @@ const TopTables = ({ classes }) => {
                   onClick={() => {
                     setIsLoading(true);
                     fetchData();
+                    setPageLoad(false);
                   }}
                 />
                 <ExportButton

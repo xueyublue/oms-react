@@ -147,6 +147,7 @@ const TopIndexes = ({ classes }) => {
               <Button
                 onClick={() => {
                   setOwner("All");
+                  setPageLoad(false);
                 }}
               >
                 <FcUndo size={22} />
@@ -158,6 +159,7 @@ const TopIndexes = ({ classes }) => {
                   onClick={() => {
                     setIsLoading(true);
                     fetchData();
+                    setPageLoad(false);
                   }}
                 />
                 <ExportButton

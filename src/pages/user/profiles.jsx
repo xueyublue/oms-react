@@ -54,6 +54,7 @@ const getDistinctProfiles = (data) => {
 // PAGE START
 //-------------------------------------------------------------
 const Profiles = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -88,7 +89,11 @@ const Profiles = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (profile === "All" ? true : row.profile === profile));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -98,6 +103,7 @@ const Profiles = () => {
             value={profile}
             onChange={(value) => {
               setProfile(value);
+              setPageLoad(false);
             }}
           >
             {profileList.map((profile) => (
@@ -111,6 +117,7 @@ const Profiles = () => {
           <Button
             onClick={() => {
               setProfile("All");
+              setPageLoad(false);
             }}
           >
             <FcUndo size={22} />
@@ -122,6 +129,7 @@ const Profiles = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton

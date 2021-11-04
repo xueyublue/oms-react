@@ -207,6 +207,7 @@ const Tablespace = ({ classes }) => {
                   onClick={() => {
                     setIsLoading(true);
                     fetchData();
+                    setPageLoad(false);
                   }}
                 />
                 <ExportButton

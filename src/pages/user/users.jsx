@@ -89,6 +89,7 @@ const getDistinctStatus = (data) => {
 // PAGE START
 //-------------------------------------------------------------
 const Users = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -123,7 +124,11 @@ const Users = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (status === "All" ? true : row.accountStatus === status));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -133,6 +138,7 @@ const Users = () => {
             value={status}
             onChange={(value) => {
               setStatus(value);
+              setPageLoad(false);
             }}
           >
             {statusList.map((status) => (
@@ -146,6 +152,7 @@ const Users = () => {
           <Button
             onClick={() => {
               setStatus("All");
+              setPageLoad(false);
             }}
           >
             <FcUndo size={22} />
@@ -157,6 +164,7 @@ const Users = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton

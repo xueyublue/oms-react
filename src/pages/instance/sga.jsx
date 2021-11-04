@@ -148,6 +148,7 @@ const SgaConfigurations = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24}>
               <Table
+                style={{ marginTop: 10 }}
                 columns={columns}
                 dataSource={data.table}
                 bordered

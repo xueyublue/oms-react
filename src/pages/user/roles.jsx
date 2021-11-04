@@ -40,6 +40,7 @@ const columns = [
 // PAGE START
 //-------------------------------------------------------------
 const Roles = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +72,11 @@ const Roles = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -83,6 +88,7 @@ const Roles = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton

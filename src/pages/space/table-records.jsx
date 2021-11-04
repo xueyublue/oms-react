@@ -160,6 +160,7 @@ const TableRecords = ({ classes }) => {
                 <Button
                   onClick={() => {
                     setOwner("All");
+                    setPageLoad(false);
                   }}
                 >
                   <FcUndo size={22} />
@@ -172,6 +173,7 @@ const TableRecords = ({ classes }) => {
                   onClick={() => {
                     setIsLoading(true);
                     fetchData();
+                    setPageLoad(false);
                   }}
                 />
                 <ExportButton

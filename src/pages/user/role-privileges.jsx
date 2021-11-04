@@ -48,6 +48,7 @@ const getDistinctRoles = (data) => {
 // PAGE START
 //-------------------------------------------------------------
 const RolePrivileges = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -82,7 +83,11 @@ const RolePrivileges = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (role === "All" ? true : row.role === role));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -92,6 +97,7 @@ const RolePrivileges = () => {
             value={role}
             onChange={(value) => {
               setRole(value);
+              setPageLoad(false);
             }}
           >
             {roleList.map((role) => (
@@ -105,6 +111,7 @@ const RolePrivileges = () => {
           <Button
             onClick={() => {
               setRole("All");
+              setPageLoad(false);
             }}
           >
             <FcUndo size={22} />
@@ -116,6 +123,7 @@ const RolePrivileges = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton

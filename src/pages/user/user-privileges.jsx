@@ -48,6 +48,7 @@ const getDistinctUserNames = (data) => {
 // PAGE START
 //-------------------------------------------------------------
 const UserPrivileges = () => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
@@ -82,7 +83,11 @@ const UserPrivileges = () => {
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (userName === "All" ? true : row.userName === userName));
-  enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div>
@@ -92,6 +97,7 @@ const UserPrivileges = () => {
             value={userName}
             onChange={(value) => {
               setUserName(value);
+              setPageLoad(false);
             }}
           >
             {userNameList.map((userName) => (
@@ -105,6 +111,7 @@ const UserPrivileges = () => {
           <Button
             onClick={() => {
               setUserName("All");
+              setPageLoad(false);
             }}
           >
             <FcUndo size={22} />
@@ -116,6 +123,7 @@ const UserPrivileges = () => {
               onClick={() => {
                 setIsLoading(true);
                 fetchData();
+                setPageLoad(false);
               }}
             />
             <ExportButton
