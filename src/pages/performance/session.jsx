@@ -145,7 +145,7 @@ const Sessions = ({ classes }) => {
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useState(30);
   const statusList = getDistinctStatus();
   const userNameList = getDistinctUserNames(data);
   const [status, setStatus] = useState("All");
@@ -246,6 +246,7 @@ const Sessions = ({ classes }) => {
                   onClick={() => {
                     setIsLoading(true);
                     fetchData();
+                    setPageLoad(false);
                   }}
                 />
                 <ExportButton
@@ -268,13 +269,13 @@ const Sessions = ({ classes }) => {
               page: page,
               pageSize: pageSize,
               position: ["bottomRight"],
-              pageSizeOptions: [10, 15, 30, 100, 500],
+              pageSizeOptions: [30, 50, 100, 500],
               onChange: (p, size) => {
                 setPage(p);
                 setPageSize(size);
               },
             }}
-            scroll={{ x: 1600 }}
+            scroll={{ x: 1600, y: height - 325 }}
             rowKey="id"
           />
         </TabPane>
