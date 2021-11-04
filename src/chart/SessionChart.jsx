@@ -133,7 +133,13 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
     },
     maintainAspectRatio: false,
     scales: {
-      y: { beginAtZero: true, max: maxValue },
+      y: {
+        beginAtZero: true,
+        max: maxValue,
+        ticks: {
+          stepSize: 10,
+        },
+      },
     },
   };
 

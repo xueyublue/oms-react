@@ -35,7 +35,6 @@ function Host({ classes }) {
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
-  const [form] = Form.useForm();
 
   const fetchData = async () => {
     setTimeout(() => {
