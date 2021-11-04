@@ -31,38 +31,38 @@ import host from "../pages/performance/host";
 const RouteContainer = () => {
   return (
     <Switch>
-      //* Dashboard
+      {/* //* Dashboard */}
       <Route exact path={Constants.ROUTE_ROOT} component={Dashboard} />
       <Route exact path={`${Constants.ROUTE_ROOT}/home`} component={Dashboard} />
       <Route exact path={Constants.ROUTE_DASHBORAD} component={Dashboard} />
-      //* Instance
+      {/* //* Instance */}
       <Route exact path={Constants.ROUTE_INSTANCE_DETAILS} component={InstanceDetails} />
       <Route exact path={Constants.ROUTE_INSTANCE_SGA} component={SgaConfigurations} />
       <Route exact path={Constants.ROUTE_INSTANCE_BANNERS} component={Banners} />
       <Route exact path={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT} component={ResourceLimit} />
       <Route exact path={Constants.ROUTE_INSTANCE_PARAMETERS} component={Parameters} />
-      //* Performance
+      {/* //* Performance */}
       <Route exact path={Constants.ROUTE_PERFORMANCE_SESSION} component={Sessions} />
       <Route exact path={Constants.ROUTE_PERFORMANCE_HOST} component={host} />
-      //* Space
+      {/* //* Space */}
       <Route exact path={Constants.ROUTE_SPACE_TABLESPACE} component={Tablespace} />
       <Route exact path={Constants.ROUTE_SPACE_TOP_TABLES} component={TopTables} />
       <Route exact path={Constants.ROUTE_SPACE_TOP_INDEXES} component={TopIndexes} />
       <Route exact path={Constants.ROUTE_SPACE_TABLE_RECORDS} component={TableRecords} />
-      //* User
+      {/* //* User */}
       <Route exact path={Constants.ROUTE_USER_PROFILES} component={Profiles} />
       <Route exact path={Constants.ROUTE_USER_ROLES} component={Roles} />
       <Route exact path={Constants.ROUTE_USER_ROLE_PRIVILEGES} component={RolePrivileges} />
       <Route exact path={Constants.ROUTE_USER_USERS} component={Users} />
       <Route exact path={Constants.ROUTE_USER_USER_PRIVILEGES} component={UserPrivileges} />
-      //* Admn
+      {/* //* Admn */}
       <Route exact path={Constants.ROUTE_ADMIN_SQL_WORKBENCH} component={SQLWorkbench} />
-      //* System
+      {/* //* System */}
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
       <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />
       <Route exact path={Constants.ROUTE_ABOUT} component={About} />
-      //* Catch all other routes
+      {/* //* Catch all other routes */}
       <Route exact path={Constants.ROUTE_NOT_FOUND} component={NotFound} />
       <Redirect to={Constants.ROUTE_NOT_FOUND} />
     </Switch>
