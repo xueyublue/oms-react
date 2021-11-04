@@ -10,6 +10,7 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
@@ -51,11 +52,12 @@ const RolePrivileges = () => {
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useState(30);
   const roleList = getDistinctRoles(data);
   const [role, setRole] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -136,13 +138,13 @@ const RolePrivileges = () => {
           page: page,
           pageSize: pageSize,
           position: ["bottomRight"],
-          pageSizeOptions: [10, 15, 30, 100, 500],
+          pageSizeOptions: [30, 50, 100, 500],
           onChange: (p, size) => {
             setPage(p);
             setPageSize(size);
           },
         }}
-        scroll={{ x: 900 }}
+        scroll={{ x: 900, y: height - 270 }}
         rowKey={(item) => `${item.role}${item.privilege}`}
       />
     </div>

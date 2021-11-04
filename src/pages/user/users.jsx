@@ -18,20 +18,13 @@ const columns = [
     title: "User Name",
     dataIndex: "userName",
     key: "userName",
-    width: 200,
-  },
-  {
-    title: "User ID",
-    dataIndex: "userId",
-    key: "userId",
-    width: 120,
-    sorter: (a, b) => a.userId - b.userId,
+    width: 220,
   },
   {
     title: "Status",
     dataIndex: "accountStatus",
     key: "accountStatus",
-    width: 140,
+    width: 180,
     render: (status) => (
       <Tag
         color={status === "OPEN" ? "green" : "volcano"}
@@ -52,7 +45,7 @@ const columns = [
     title: "Default Tablespace",
     dataIndex: "defaultTablespace",
     key: "defaultTablespace",
-    width: 150,
+    width: 200,
   },
   {
     title: "Temp Tablespace",
@@ -99,6 +92,8 @@ const Users = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(30);
   const statusList = getDistinctStatus(data);
   const [status, setStatus] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
@@ -129,7 +124,6 @@ const Users = () => {
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (status === "All" ? true : row.accountStatus === status));
   enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
-  const tableHeight = height - 220;
 
   return (
     <div>
@@ -181,8 +175,17 @@ const Users = () => {
         dataSource={filteredData}
         bordered
         size="small"
-        pagination={{ pageSize: 999, position: ["none"] }}
-        scroll={{ x: 1620, y: tableHeight }}
+        pagination={{
+          page: page,
+          pageSize: pageSize,
+          position: ["bottomRight"],
+          pageSizeOptions: [30, 50, 100, 500],
+          onChange: (p, size) => {
+            setPage(p);
+            setPageSize(size);
+          },
+        }}
+        scroll={{ x: 1620, y: height - 270 }}
         rowKey="userName"
       />
     </div>
