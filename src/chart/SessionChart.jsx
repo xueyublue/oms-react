@@ -151,7 +151,7 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
           />
         </Form.Item>
       </Form>
-      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} />
+      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 29 }} />
     </>
   );
 }
