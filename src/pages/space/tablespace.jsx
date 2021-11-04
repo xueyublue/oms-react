@@ -131,13 +131,16 @@ const TabPane = Tabs.TabPane;
 // STYLES START
 //-------------------------------------------------------------
 const styles = {
-  root: {},
-  chartContainer: {
+  root: {
     width: "100%",
   },
   tag: {
     fontSize: "1rem",
     padding: "5px",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
   },
 };
 
@@ -173,6 +176,12 @@ const Tablespace = ({ classes }) => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   //* display snackbar only one time on page load succeed
@@ -185,10 +194,11 @@ const Tablespace = ({ classes }) => {
       });
     else enqueueSnackbar(`${data.table.length} records found.`, { variant: "info" });
   }
-  const chartContainerHeight = (height - 200) / 2;
+  let chartHeight = (height - 200) / 2;
+  if (chartHeight <= 340) chartHeight = 340;
 
   return (
-    <div>
+    <div className={classes.root}>
       <Tabs type="card">
         <TabPane
           tab={
@@ -199,17 +209,11 @@ const Tablespace = ({ classes }) => {
           }
           key="table"
         >
-          <Form form={form} layout={"inline"} size={"middle"}>
+          <Form form={form} layout={"inline"}>
             <Form.Item />
-            <div style={{ position: "absolute", right: 0 }}>
+            <div className={classes.tableTools}>
               <Form.Item>
-                <RefreshButton
-                  onClick={() => {
-                    setIsLoading(true);
-                    fetchData();
-                    setPageLoad(false);
-                  }}
-                />
+                <RefreshButton onClick={handleRefresh} />
                 <ExportButton
                   csvReport={{
                     data: data.table,
@@ -241,7 +245,7 @@ const Tablespace = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartHeight }}>
                 <TablespaceOccupancyChart
                   labels={data.occupancyChart.name}
                   data={data.occupancyChart.data}
@@ -250,7 +254,7 @@ const Tablespace = ({ classes }) => {
               </div>
             </Col>
             <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartHeight }}>
                 <TablespaceSizeChart labels={data.totalSizeChart.name} data={data.totalSizeChart.data} displayData />
               </div>
             </Col>
