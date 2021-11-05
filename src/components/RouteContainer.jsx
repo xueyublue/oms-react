@@ -21,7 +21,7 @@ import Login from "../pages/login";
 import Settings from "../pages/settings";
 import Profile from "../pages/profile";
 import NotFound from "../pages/not-found";
-import SQLWorkbench from "../pages/admin/sql-workbench";
+import SQLWorkbench from "../pages/system/sql-workbench";
 import About from "./../pages/about";
 import host from "../pages/performance/host";
 
@@ -55,9 +55,9 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_USER_ROLE_PRIVILEGES} component={RolePrivileges} />
       <Route exact path={Constants.ROUTE_USER_USERS} component={Users} />
       <Route exact path={Constants.ROUTE_USER_USER_PRIVILEGES} component={UserPrivileges} />
-      {/* //* Admn */}
-      <Route exact path={Constants.ROUTE_ADMIN_SQL_WORKBENCH} component={SQLWorkbench} />
       {/* //* System */}
+      <Route exact path={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH} component={SQLWorkbench} />
+      {/* //* Others */}
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
       <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />

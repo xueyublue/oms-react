@@ -76,10 +76,11 @@ const NavBar = ({ classes }) => {
           }
         }}
       >
+        {/* //* Dashboard */}
         <Menu.Item key={Constants.ROUTE_DASHBORAD} icon={<FcOrgUnit size={20} />}>
           <Link to={Constants.ROUTE_DASHBORAD}>Dashboard</Link>
         </Menu.Item>
-
+        {/* //* Instance */}
         <SubMenu key="/instance" icon={<FcMindMap size={20} />} title="Instance">
           <Menu.Item key={Constants.ROUTE_INSTANCE_DETAILS}>
             <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
@@ -97,7 +98,7 @@ const NavBar = ({ classes }) => {
             <Link to={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Link>
           </Menu.Item>
         </SubMenu>
-
+        {/* //* Performance */}
         <SubMenu key="/performance" icon={<FcComboChart size={20} />} title="Performance">
           <Menu.Item key={Constants.ROUTE_PERFORMANCE_SESSION}>
             <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
@@ -106,6 +107,7 @@ const NavBar = ({ classes }) => {
             <Link to={Constants.ROUTE_PERFORMANCE_HOST}>Host Resource</Link>
           </Menu.Item>
         </SubMenu>
+        {/* //* Space */}
 
         <SubMenu key="/space" icon={<FcDatabase size={20} />} title="Space">
           <Menu.Item key={Constants.ROUTE_SPACE_TABLESPACE}>
@@ -121,7 +123,7 @@ const NavBar = ({ classes }) => {
             <Link to={Constants.ROUTE_SPACE_TABLE_RECORDS}>Table Records</Link>
           </Menu.Item>
         </SubMenu>
-
+        {/* //* User */}
         <SubMenu key="/user" icon={<FcBusinessman size={20} />} title="User">
           <Menu.Item key={Constants.ROUTE_USER_PROFILES}>
             <Link to={Constants.ROUTE_USER_PROFILES}>Profiles</Link>
@@ -139,9 +141,10 @@ const NavBar = ({ classes }) => {
             <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>User Privileges</Link>
           </Menu.Item>
         </SubMenu>
-        <SubMenu key="/admin" icon={<FcServices size={20} />} title="Admin">
-          <Menu.Item key={Constants.ROUTE_ADMIN_SQL_WORKBENCH}>
-            <Link to={Constants.ROUTE_ADMIN_SQL_WORKBENCH}>SQL Workbench</Link>
+        {/* //* System */}
+        <SubMenu key="/system" icon={<FcServices size={20} />} title="System">
+          <Menu.Item key={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH}>
+            <Link to={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH}>SQL Workbench</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>
