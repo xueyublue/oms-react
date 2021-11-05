@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Tabs, Table, Input } from "antd";
+import { Tabs } from "antd";
 import { MenuOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { withStyles } from "@mui/styles";
+import SQLTabPaneContent from "./SQLTabPaneContent";
+import ExplorerTabPaneContent from "./ExplorerTabPaneContent";
 
 const { TabPane } = Tabs;
-const { Search } = Input;
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -35,7 +36,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={1}
         >
-          <Table style={{ marginTop: "-15px" }} />
+          <ExplorerTabPaneContent />
         </TabPane>
         <TabPane
           tab={
@@ -46,7 +47,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={2}
         >
-          <Table style={{ marginTop: "-15px" }} />
+          <ExplorerTabPaneContent />
         </TabPane>
         <TabPane
           tab={
@@ -57,10 +58,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={3}
         >
-          <div style={{ width: "100%", marginTop: "-10px" }}>
-            <Search placeholder="Intelligent SQL Inputter" allowClear enterButton size="middle" />
-            <Table style={{ marginTop: "10px" }} />
-          </div>
+          <SQLTabPaneContent />
         </TabPane>
       </Tabs>
     </div>
