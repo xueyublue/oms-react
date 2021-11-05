@@ -17,7 +17,7 @@ const AppBar = ({ icon, pageName }) => {
 
   const handleMenuClick = (e) => {
     if (e.key === "profile") history.push(Constants.ROUTE_PROFILE);
-    else if (e.key === "settings") history.push(Constants.ROUTE_SETTINGS);
+    else if (e.key === "settings") history.push(Constants.ROUTE_SYSTEM_SETTINGS);
     else if (e.key === "logout") setLogoutModalVisiable(true);
   };
 

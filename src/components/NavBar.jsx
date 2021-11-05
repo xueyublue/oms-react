@@ -143,8 +143,14 @@ const NavBar = ({ classes }) => {
         </SubMenu>
         {/* //* System */}
         <SubMenu key="/system" icon={<FcServices size={20} />} title="System">
-          <Menu.Item key={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH}>
-            <Link to={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH}>SQL Workbench</Link>
+          <Menu.Item key={Constants.ROUTE_SYSTEM_WORKBENCH}>
+            <Link to={Constants.ROUTE_SYSTEM_WORKBENCH}>SQL Workbench</Link>
+          </Menu.Item>
+          <Menu.Item key={Constants.ROUTE_SYSTEM_SETTINGS}>
+            <Link to={Constants.ROUTE_SYSTEM_SETTINGS}>Settings</Link>
+          </Menu.Item>
+          <Menu.Item key={Constants.ROUTE_SYSTEM_ABOUT}>
+            <Link to={Constants.ROUTE_SYSTEM_ABOUT}>About</Link>
           </Menu.Item>
         </SubMenu>
       </Menu>

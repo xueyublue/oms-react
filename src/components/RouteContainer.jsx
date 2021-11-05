@@ -18,11 +18,11 @@ import RolePrivileges from "../pages/user/role-privileges";
 import Users from "../pages/user/users";
 import UserPrivileges from "../pages/user/user-privileges";
 import Login from "../pages/login";
-import Settings from "../pages/settings";
+import Settings from "../pages/system/settings";
 import Profile from "../pages/profile";
 import NotFound from "../pages/not-found";
-import SQLWorkbench from "../pages/system/sql-workbench";
-import About from "./../pages/about";
+import SQLWorkbench from "../pages/system/sqlworkbench/sql-workbench";
+import About from "./../pages/system/about";
 import host from "../pages/performance/host";
 
 //-------------------------------------------------------------
@@ -56,12 +56,12 @@ const RouteContainer = () => {
       <Route exact path={Constants.ROUTE_USER_USERS} component={Users} />
       <Route exact path={Constants.ROUTE_USER_USER_PRIVILEGES} component={UserPrivileges} />
       {/* //* System */}
-      <Route exact path={Constants.ROUTE_ADMIN_SYSTEM_WORKBENCH} component={SQLWorkbench} />
+      <Route exact path={Constants.ROUTE_SYSTEM_WORKBENCH} component={SQLWorkbench} />
+      <Route exact path={Constants.ROUTE_SYSTEM_SETTINGS} component={Settings} />
+      <Route exact path={Constants.ROUTE_SYSTEM_ABOUT} component={About} />
       {/* //* Others */}
       <Route exact path={Constants.ROUTE_PROFILE} component={Profile} />
-      <Route exact path={Constants.ROUTE_SETTINGS} component={Settings} />
       <Route exact path={Constants.ROUTE_LOGIN} component={Login} />
-      <Route exact path={Constants.ROUTE_ABOUT} component={About} />
       {/* //* Catch all other routes */}
       <Route exact path={Constants.ROUTE_NOT_FOUND} component={NotFound} />
       <Redirect to={Constants.ROUTE_NOT_FOUND} />

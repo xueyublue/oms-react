@@ -23,12 +23,12 @@ export const ROUTE_USER_ROLE_PRIVILEGES = `${ROUTE_ROOT}/user/role-privileges`;
 export const ROUTE_USER_USERS = `${ROUTE_ROOT}/user/users`;
 export const ROUTE_USER_USER_PRIVILEGES = `${ROUTE_ROOT}/user/user-privileges`;
 // system
-export const ROUTE_ADMIN_SYSTEM_WORKBENCH = `${ROUTE_ROOT}/system/sql-workbench`;
+export const ROUTE_SYSTEM_WORKBENCH = `${ROUTE_ROOT}/system/sql-workbench`;
+export const ROUTE_SYSTEM_SETTINGS = `${ROUTE_ROOT}/system/settings`;
+export const ROUTE_SYSTEM_ABOUT = `${ROUTE_ROOT}/system/about`;
 // others
 export const ROUTE_PROFILE = `${ROUTE_ROOT}/profile`;
-export const ROUTE_SETTINGS = `${ROUTE_ROOT}/settings`;
 export const ROUTE_LOGIN = `${ROUTE_ROOT}/login`;
-export const ROUTE_ABOUT = `${ROUTE_ROOT}/about`;
 export const ROUTE_NOT_FOUND = `${ROUTE_ROOT}/not-found`;
 // route to page name
 export const RouteToPageName = (route) => {
@@ -50,10 +50,10 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_USER_ROLE_PRIVILEGES) return "Role Privileges";
   else if (route === ROUTE_USER_USERS) return "Users";
   else if (route === ROUTE_USER_USER_PRIVILEGES) return "User Privileges";
-  else if (route === ROUTE_ADMIN_SYSTEM_WORKBENCH) return "SQL Workbench";
+  else if (route === ROUTE_SYSTEM_WORKBENCH) return "SQL Workbench";
+  else if (route === ROUTE_SYSTEM_SETTINGS) return "Settings";
+  else if (route === ROUTE_SYSTEM_ABOUT) return "About";
   else if (route === ROUTE_PROFILE) return "Profile";
-  else if (route === ROUTE_SETTINGS) return "Settings";
-  else if (route === ROUTE_ABOUT) return "About";
   return "";
 };
 
