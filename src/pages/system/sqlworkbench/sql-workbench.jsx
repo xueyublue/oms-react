@@ -20,14 +20,16 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 const SQLWorkbench = ({ classes }) => {
-  const [activeKey, setActiveKey] = useState(1);
+  const [activeKey, setActiveKey] = useState(2);
   const handleChange = () => {};
   const handleEdit = () => {};
+  const handleTabChange = (value) => setActiveKey(value);
 
   return (
     <div className={classes.root}>
-      <Tabs type="editable-card">
+      <Tabs type="editable-card" accessKey={activeKey} onChange={handleTabChange}>
         <TabPane
+          closable={false}
           tab={
             <span>
               <MenuOutlined />
@@ -39,24 +41,14 @@ const SQLWorkbench = ({ classes }) => {
           <ExplorerTabPaneContent />
         </TabPane>
         <TabPane
-          tab={
-            <span>
-              <MenuOutlined />
-              Explorer
-            </span>
-          }
-          key={2}
-        >
-          <ExplorerTabPaneContent />
-        </TabPane>
-        <TabPane
+          closable={false}
           tab={
             <span>
               <FileSearchOutlined />
               SQL
             </span>
           }
-          key={3}
+          key={2}
         >
           <SQLTabPaneContent />
         </TabPane>
