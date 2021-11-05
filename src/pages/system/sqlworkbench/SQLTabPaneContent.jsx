@@ -1,6 +1,7 @@
-import React from "react";
-import { Table, AutoComplete, Tabs, Input } from "antd";
+import React, { useState } from "react";
+import { Table, Tabs, Input, Button, Radio } from "antd";
 import { withStyles } from "@mui/styles";
+import { VscDebugStart, VscDebugRestart } from "react-icons/vsc";
 
 const { TabPane } = Tabs;
 
@@ -12,10 +13,15 @@ const styles = {
     width: "100%",
     marginTop: "-10px",
   },
+  buttons: {
+    display: "flex",
+    width: "100%",
+  },
+  records: { marginLeft: "auto" },
   input: {
     width: "100%",
   },
-  result: {
+  results: {
     marginTop: "5px",
   },
   table: {
@@ -27,21 +33,45 @@ const styles = {
 // COMPONENT START
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
+  const [sql, setSql] = useState("SELECT * FROM DMITEM;");
   return (
     <div className={classes.root}>
-      <AutoComplete className={classes.input}>
-        <Input.Search placeholder="Intelligent SQL Inputter" allowClear enterButton size="middle" />
-      </AutoComplete>
-      <div className={classes.result}>
-        <Tabs type="card">
-          <TabPane closable={false} tab={"Result"} key={"1"}>
-            <Table className={classes.table} />
-          </TabPane>
-          <TabPane closable={false} tab={"Result"} key={"2"}>
-            <Table className={classes.table} />
-          </TabPane>
-          <TabPane closable={false} tab={"Result"} key={"3"}>
-            <Table className={classes.table} />
+      <div className={classes.buttons}>
+        <Button type="text" icon={<VscDebugStart />} />
+        <Button type="text" icon={<VscDebugRestart />} />
+        <div className={classes.records}>
+          <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
+            <Radio.Button value={10}>10</Radio.Button>
+            <Radio.Button value={100}>100</Radio.Button>
+            <Radio.Button value={1000}>1K</Radio.Button>
+            <Radio.Button value={10000}>10K</Radio.Button>
+          </Radio.Group>
+        </div>
+      </div>
+      <div className={classes.input}>
+        <Input.TextArea
+          value={sql}
+          onChange={(e) => setSql(e.target.value.toUpperCase())}
+          rows={5}
+          placeholder="Intelligent SQL inputter (Not ready yet for now)."
+          allowClear
+          showCount
+          size="small"
+        />
+      </div>
+      <div className={classes.results}>
+        <Tabs type="card" size="small">
+          <TabPane tab={"Result"} key={"1"}>
+            <Table
+              columns={null}
+              dataSource={null}
+              className={classes.table}
+              bordered
+              size="small"
+              scroll={{ x: 0, y: 0 }}
+              pagination={{ pageSize: 10000, position: ["none"] }}
+              rowKey={"id"}
+            />
           </TabPane>
         </Tabs>
       </div>
