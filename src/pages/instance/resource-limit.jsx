@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import { withStyles } from "@mui/styles";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
@@ -52,9 +53,22 @@ const columns = [
 ];
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    width: "100%",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+};
+
+//-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const ResourceLimit = () => {
+const ResourceLimit = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
@@ -99,10 +113,10 @@ const ResourceLimit = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item />
-        <div style={{ position: "absolute", right: 0 }}>
+        <div className={classes.tableTools}>
           <Form.Item>
             <RefreshButton onClick={handleRefresh} />
             <ExportButton
@@ -137,4 +151,4 @@ const ResourceLimit = () => {
   );
 };
 
-export default ResourceLimit;
+export default withStyles(styles)(ResourceLimit);

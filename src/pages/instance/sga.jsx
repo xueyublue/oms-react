@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Progress, Form, Row, Col, Tag, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import { withStyles } from "@mui/styles";
 import { ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import { formatNumberWithCommasAndDecimals } from "../../util/util";
 import Loading from "../../components/Loading";
@@ -13,7 +14,6 @@ import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import SgaDoughnutChart from "../../chart/SgaDoughnutChart";
 import SgaBarChart from "./../../chart/SgaBarChart";
-import { withStyles } from "@mui/styles";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
@@ -56,13 +56,19 @@ const TabPane = Tabs.TabPane;
 //* STYLES START
 //-------------------------------------------------------------
 const styles = {
-  root: {},
-  chartContainer: {
+  root: {
     width: "100%",
   },
   tag: {
     fontSize: "1rem",
     padding: "5px",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
   },
 };
 
@@ -116,7 +122,7 @@ const SgaConfigurations = ({ classes }) => {
   if (chartContainerHeight <= 300) chartContainerHeight = 300;
 
   return (
-    <div>
+    <div className={classes.root}>
       <Tabs type="card">
         <TabPane
           tab={
@@ -133,7 +139,7 @@ const SgaConfigurations = ({ classes }) => {
                 System Global Area (SGA): {data.maxSgaSize} MB in total.
               </Tag>
             </Form.Item>
-            <div style={{ position: "absolute", right: 0 }}>
+            <div className={classes.tableTools}>
               <Form.Item>
                 <RefreshButton onClick={handleRefresh} />
                 <ExportButton
@@ -149,7 +155,7 @@ const SgaConfigurations = ({ classes }) => {
           <Row>
             <Col lg={24} xl={24}>
               <Table
-                style={{ marginTop: 10 }}
+                className={classes.table}
                 columns={columns}
                 dataSource={data.table}
                 bordered
@@ -185,12 +191,12 @@ const SgaConfigurations = ({ classes }) => {
                   ))}
                 </Select>
               </Form.Item>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight - 60 }}>
+              <div style={{ height: chartContainerHeight - 60 }}>
                 <SgaBarChart data={data} chartType={chartType} />
               </div>
             </Col>
             <Col lg={24} xl={12} xxl={12}>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartContainerHeight }}>
                 <SgaDoughnutChart data={data} />
               </div>
             </Col>
