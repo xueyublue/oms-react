@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Tabs, Table, Input } from "antd";
-import { MenuOutlined, FileSearchOutlined, AudioOutlined } from "@ant-design/icons";
+import { MenuOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { withStyles } from "@mui/styles";
 
 const { TabPane } = Tabs;
