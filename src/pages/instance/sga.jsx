@@ -99,6 +99,12 @@ const SgaConfigurations = ({ classes }) => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   //* display snackbar only one time on page load succeed
@@ -129,12 +135,7 @@ const SgaConfigurations = ({ classes }) => {
             </Form.Item>
             <div style={{ position: "absolute", right: 0 }}>
               <Form.Item>
-                <RefreshButton
-                  onClick={() => {
-                    setIsLoading(true);
-                    fetchData();
-                  }}
-                />
+                <RefreshButton onClick={handleRefresh} />
                 <ExportButton
                   csvReport={{
                     data: data.table,

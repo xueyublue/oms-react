@@ -47,6 +47,11 @@ const Banners = () => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
   if (isLoading) return <Loading />;
   enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
 
@@ -56,12 +61,7 @@ const Banners = () => {
         <Form.Item />
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-              }}
-            />
+            <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
                 data: data,

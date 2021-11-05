@@ -85,6 +85,12 @@ const ResourceLimit = () => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   //* display snackbar only one time on page load succeed
   if (!pageLoad) {
@@ -98,13 +104,7 @@ const ResourceLimit = () => {
         <Form.Item />
         <div style={{ position: "absolute", right: 0 }}>
           <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-                setPageLoad(false);
-              }}
-            />
+            <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
                 data: data,

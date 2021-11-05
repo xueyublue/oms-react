@@ -18,8 +18,7 @@ const TabPane = Tabs.TabPane;
 // STYLES START
 //-------------------------------------------------------------
 const styles = {
-  root: {},
-  chartContainer: {
+  root: {
     width: "100%",
   },
 };
@@ -95,7 +94,7 @@ function Host({ classes }) {
                   }}
                 />
               </Form.Item>
-              <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <div style={{ height: chartContainerHeight }}>
                 <HostCpuAndRamChart
                   labels={data.hostResource.time}
                   cpu={data.hostResource.cpu}
