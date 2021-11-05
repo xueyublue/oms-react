@@ -3,6 +3,7 @@ import { Table, Form, Button, Select, Tag } from "antd";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
+import { withStyles } from "@mui/styles";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { getCsvHeaders } from "../../util/util";
@@ -51,9 +52,25 @@ const getDistinctProfiles = (data) => {
 };
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    width: "100%",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
+  },
+};
+
+//-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const Profiles = () => {
+const Profiles = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -86,6 +103,22 @@ const Profiles = () => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
+  const handleProfileChange = (value) => {
+    setProfile(value);
+    setPageLoad(false);
+  };
+
+  const handleClear = () => {
+    setProfile("All");
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (profile === "All" ? true : row.profile === profile));
@@ -96,16 +129,10 @@ const Profiles = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item label="Profile" style={{ width: 240 }}>
-          <Select
-            value={profile}
-            onChange={(value) => {
-              setProfile(value);
-              setPageLoad(false);
-            }}
-          >
+          <Select value={profile} onChange={handleProfileChange}>
             {profileList.map((profile) => (
               <Select.Option value={profile} key={profile}>
                 {profile}
@@ -114,24 +141,13 @@ const Profiles = () => {
           </Select>
         </Form.Item>
         <Form.Item>
-          <Button
-            onClick={() => {
-              setProfile("All");
-              setPageLoad(false);
-            }}
-          >
+          <Button onClick={handleClear}>
             <FcUndo size={22} />
           </Button>
         </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
+        <div className={classes.tableTools}>
           <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-                setPageLoad(false);
-              }}
-            />
+            <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
                 data: data,
@@ -143,7 +159,7 @@ const Profiles = () => {
         </div>
       </Form>
       <Table
-        style={{ marginTop: 10 }}
+        className={classes.table}
         columns={columns}
         dataSource={filteredData}
         bordered
@@ -165,4 +181,4 @@ const Profiles = () => {
   );
 };
 
-export default Profiles;
+export default withStyles(styles)(Profiles);

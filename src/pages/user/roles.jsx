@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Tag, Form } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import { withStyles } from "@mui/styles";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -37,9 +38,22 @@ const columns = [
 ];
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    width: "100%",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+};
+
+//-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const Roles = () => {
+const Roles = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
@@ -70,6 +84,12 @@ const Roles = () => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   //* display snackbar only one time on page load succeed
@@ -79,18 +99,12 @@ const Roles = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item />
-        <div style={{ position: "absolute", right: 0 }}>
+        <div className={classes.tableTools}>
           <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-                setPageLoad(false);
-              }}
-            />
+            <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
                 data: data,
@@ -123,4 +137,4 @@ const Roles = () => {
   );
 };
 
-export default Roles;
+export default withStyles(styles)(Roles);

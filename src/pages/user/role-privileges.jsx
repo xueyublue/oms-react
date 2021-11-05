@@ -3,6 +3,7 @@ import { Table, Form, Button, Select, Tag } from "antd";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
+import { withStyles } from "@mui/styles";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -45,9 +46,25 @@ const getDistinctRoles = (data) => {
 };
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    width: "100%",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
+  },
+};
+
+//-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
-const RolePrivileges = () => {
+const RolePrivileges = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -80,6 +97,22 @@ const RolePrivileges = () => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
+  const handleRoleChange = (value) => {
+    setRole(value);
+    setPageLoad(false);
+  };
+
+  const handleClear = () => {
+    setRole("All");
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data.filter((row) => (role === "All" ? true : row.role === role));
@@ -90,16 +123,10 @@ const RolePrivileges = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item label="Role Name" style={{ width: 350 }}>
-          <Select
-            value={role}
-            onChange={(value) => {
-              setRole(value);
-              setPageLoad(false);
-            }}
-          >
+          <Select value={role} onChange={handleRoleChange}>
             {roleList.map((role) => (
               <Select.Option value={role} key={role}>
                 {role}
@@ -108,24 +135,13 @@ const RolePrivileges = () => {
           </Select>
         </Form.Item>
         <Form.Item>
-          <Button
-            onClick={() => {
-              setRole("All");
-              setPageLoad(false);
-            }}
-          >
+          <Button onClick={handleClear}>
             <FcUndo size={22} />
           </Button>
         </Form.Item>
-        <div style={{ position: "absolute", right: 0 }}>
+        <div className={classes.tableTools}>
           <Form.Item>
-            <RefreshButton
-              onClick={() => {
-                setIsLoading(true);
-                fetchData();
-                setPageLoad(false);
-              }}
-            />
+            <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
                 data: data,
@@ -137,7 +153,7 @@ const RolePrivileges = () => {
         </div>
       </Form>
       <Table
-        style={{ marginTop: 10 }}
+        className={classes.table}
         columns={columns}
         dataSource={filteredData}
         bordered
@@ -159,4 +175,4 @@ const RolePrivileges = () => {
   );
 };
 
-export default RolePrivileges;
+export default withStyles(styles)(RolePrivileges);
