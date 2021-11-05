@@ -133,6 +133,13 @@ const styles = {
   root: {
     width: "100%",
   },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -242,7 +249,7 @@ const Sessions = ({ classes }) => {
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
-            <div style={{ position: "absolute", right: 0 }}>
+            <div className={classes.tableTools}>
               <Form.Item>
                 <RefreshButton onClick={handleRefresh} />
                 <ExportButton
@@ -256,7 +263,7 @@ const Sessions = ({ classes }) => {
             </div>
           </Form>
           <Table
-            style={{ marginTop: 10 }}
+            className={classes.table}
             columns={columns}
             dataSource={filteredData}
             bordered
