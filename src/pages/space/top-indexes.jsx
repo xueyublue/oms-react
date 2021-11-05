@@ -59,6 +59,13 @@ const styles = {
   root: {
     width: "100%",
   },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -123,11 +130,11 @@ const TopIndexes = ({ classes }) => {
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
   //* calculate chart container height
-  let chartContainerHeight = 0;
+  let chartHeight = 0;
   if (data.length < chartDisplayLimit || chartDisplayLimit === "All")
-    chartContainerHeight = data.length * 21 < height ? height - 190 : data.length * 21;
-  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
-  if (chartContainerHeight <= 600) chartContainerHeight = 600;
+    chartHeight = data.length * 21 < height ? height - 190 : data.length * 21;
+  else chartHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
+  if (chartHeight <= 600) chartHeight = 600;
 
   return (
     <div className={classes.root}>
@@ -156,7 +163,7 @@ const TopIndexes = ({ classes }) => {
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
-            <div style={{ position: "absolute", right: 0 }}>
+            <div className={classes.tableTools}>
               <Form.Item>
                 <RefreshButton onClick={handleRefresh} />
                 <ExportButton
@@ -170,7 +177,7 @@ const TopIndexes = ({ classes }) => {
             </div>
           </Form>
           <Table
-            style={{ marginTop: 10 }}
+            className={classes.table}
             columns={columns}
             dataSource={filteredData}
             bordered
@@ -198,18 +205,14 @@ const TopIndexes = ({ classes }) => {
           }
           key="chart"
         >
-          <Row>
-            <Col lg={24} xl={24} xxl={24}>
-              <div style={{ height: chartContainerHeight }}>
-                <TopIndexesChart
-                  data={data}
-                  displayLimit={chartDisplayLimit}
-                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
-                  displayData
-                />
-              </div>
-            </Col>
-          </Row>
+          <div style={{ height: chartHeight }}>
+            <TopIndexesChart
+              data={data}
+              displayLimit={chartDisplayLimit}
+              onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+              displayData
+            />
+          </div>
         </TabPane>
       </Tabs>
     </div>

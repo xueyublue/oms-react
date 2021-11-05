@@ -71,6 +71,13 @@ const styles = {
   root: {
     width: "100%",
   },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+  table: {
+    marginTop: "10px",
+  },
 };
 
 //-------------------------------------------------------------
@@ -135,11 +142,11 @@ const TableRecords = ({ classes }) => {
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
   //* calculate chart container height
-  let chartContainerHeight = 0;
+  let chartHeight = 0;
   if (data.length < chartDisplayLimit || chartDisplayLimit === "All")
-    chartContainerHeight = data.length * 21 < height ? height - 190 : data.length * 21;
-  else chartContainerHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
-  if (chartContainerHeight <= 600) chartContainerHeight = 600;
+    chartHeight = data.length * 21 < height ? height - 190 : data.length * 21;
+  else chartHeight = chartDisplayLimit * 21 < height ? height - 190 : chartDisplayLimit * 21;
+  if (chartHeight <= 600) chartHeight = 600;
 
   return (
     <div className={classes.root}>
@@ -170,7 +177,7 @@ const TableRecords = ({ classes }) => {
                 </Button>
               </Tooltip>
             </Form.Item>
-            <div style={{ position: "absolute", right: 0 }}>
+            <div className={classes.tableTools}>
               <Form.Item>
                 <RefreshButton onClick={handleRefresh} />
                 <ExportButton
@@ -184,7 +191,7 @@ const TableRecords = ({ classes }) => {
             </div>
           </Form>
           <Table
-            style={{ marginTop: 10 }}
+            className={classes.table}
             columns={columns}
             dataSource={filteredData}
             bordered
@@ -212,18 +219,14 @@ const TableRecords = ({ classes }) => {
           }
           key="chart"
         >
-          <Row>
-            <Col lg={24} xl={24} xxl={24}>
-              <div style={{ height: chartContainerHeight }}>
-                <TableRecordsChart
-                  data={data}
-                  displayLimit={chartDisplayLimit}
-                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
-                  displayData
-                />
-              </div>
-            </Col>
-          </Row>
+          <div style={{ height: chartHeight }}>
+            <TableRecordsChart
+              data={data}
+              displayLimit={chartDisplayLimit}
+              onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+              displayData
+            />
+          </div>
         </TabPane>
       </Tabs>
     </div>

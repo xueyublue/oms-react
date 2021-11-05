@@ -205,18 +205,14 @@ const TopTables = ({ classes }) => {
           }
           key="chart"
         >
-          <Row>
-            <Col lg={24} xl={24} xxl={24}>
-              <div style={{ height: chartHeight }}>
-                <TopTablesChart
-                  data={data}
-                  displayLimit={chartDisplayLimit}
-                  onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
-                  displayData
-                />
-              </div>
-            </Col>
-          </Row>
+          <div style={{ height: chartHeight }}>
+            <TopTablesChart
+              data={data}
+              displayLimit={chartDisplayLimit}
+              onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+              displayData
+            />
+          </div>
         </TabPane>
       </Tabs>
     </div>
