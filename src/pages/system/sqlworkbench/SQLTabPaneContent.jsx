@@ -1,9 +1,8 @@
 import React from "react";
-import { Table, Input, Tabs } from "antd";
+import { Table, AutoComplete, Tabs, Input } from "antd";
 import { withStyles } from "@mui/styles";
 
 const { TabPane } = Tabs;
-const { Search } = Input;
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -12,6 +11,9 @@ const styles = {
   root: {
     width: "100%",
     marginTop: "-10px",
+  },
+  input: {
+    width: "100%",
   },
   result: {
     marginTop: "5px",
@@ -27,7 +29,9 @@ const styles = {
 function SQLTabPaneContent({ classes }) {
   return (
     <div className={classes.root}>
-      <Search placeholder="Intelligent SQL Inputter" allowClear enterButton size="middle" />
+      <AutoComplete className={classes.input}>
+        <Input.Search placeholder="Intelligent SQL Inputter" allowClear enterButton size="middle" />
+      </AutoComplete>
       <div className={classes.result}>
         <Tabs type="card">
           <TabPane closable={false} tab={"Result"} key={"1"}>

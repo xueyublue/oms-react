@@ -20,7 +20,7 @@ const styles = {
 // PAGE START
 //-------------------------------------------------------------
 const SQLWorkbench = ({ classes }) => {
-  const [activeKey, setActiveKey] = useState("2");
+  const [activeKey, setActiveKey] = useState("sql");
   const handleEdit = () => {};
   const handleTabChange = (value) => setActiveKey(value);
 
@@ -35,7 +35,7 @@ const SQLWorkbench = ({ classes }) => {
               Explorer
             </span>
           }
-          key={"1"}
+          key={"explorer"}
         >
           <ExplorerTabPaneContent />
         </TabPane>
@@ -47,7 +47,7 @@ const SQLWorkbench = ({ classes }) => {
               SQL
             </span>
           }
-          key={"2"}
+          key={"sql"}
         >
           <SQLTabPaneContent />
         </TabPane>
