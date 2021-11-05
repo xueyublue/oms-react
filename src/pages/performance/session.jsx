@@ -130,8 +130,7 @@ const TabPane = Tabs.TabPane;
 //* STYLES START
 //-------------------------------------------------------------
 const styles = {
-  root: {},
-  chartContainer: {
+  root: {
     width: "100%",
   },
 };
@@ -174,6 +173,28 @@ const Sessions = ({ classes }) => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+    setPageLoad(false);
+  };
+
+  const handleStatusChange = (value) => {
+    setStatus(value);
+    setPageLoad(false);
+  };
+
+  const handleUsernameChange = (value) => {
+    setUserName(value);
+    setPageLoad(false);
+  };
+
+  const handleClear = () => {
+    setStatus("All");
+    setUserName("All");
+    setPageLoad(false);
+  };
+
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
   const filteredData = data
@@ -199,14 +220,7 @@ const Sessions = ({ classes }) => {
         >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Status">
-              <Select
-                value={status}
-                onChange={(value) => {
-                  setStatus(value);
-                  setPageLoad(false);
-                }}
-                style={{ width: 100 }}
-              >
+              <Select value={status} onChange={handleStatusChange} style={{ width: 100 }}>
                 {statusList.map((status) => (
                   <Select.Option value={status} key={status}>
                     {status}
@@ -215,13 +229,7 @@ const Sessions = ({ classes }) => {
               </Select>
             </Form.Item>
             <Form.Item label="User Name" style={{ width: 200 }}>
-              <Select
-                value={userName}
-                onChange={(value) => {
-                  setUserName(value);
-                  setPageLoad(false);
-                }}
-              >
+              <Select value={userName} onChange={handleUsernameChange}>
                 {userNameList.map((username) => (
                   <Select.Option value={username} key={username}>
                     {username}
@@ -230,25 +238,13 @@ const Sessions = ({ classes }) => {
               </Select>
             </Form.Item>
             <Form.Item>
-              <Button
-                onClick={() => {
-                  setStatus("All");
-                  setUserName("All");
-                  setPageLoad(false);
-                }}
-              >
+              <Button onClick={handleClear}>
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
             <div style={{ position: "absolute", right: 0 }}>
               <Form.Item>
-                <RefreshButton
-                  onClick={() => {
-                    setIsLoading(true);
-                    fetchData();
-                    setPageLoad(false);
-                  }}
-                />
+                <RefreshButton onClick={handleRefresh} />
                 <ExportButton
                   csvReport={{
                     data: data,
@@ -288,13 +284,9 @@ const Sessions = ({ classes }) => {
           }
           key="monitoring"
         >
-          <Row>
-            <Col lg={24} xl={24} xxl={24}>
-              <div className={classes.chartContainer} style={{ height: height - 200 }}>
-                <SessionChart withinComponent />
-              </div>
-            </Col>
-          </Row>
+          <div style={{ height: height - 200 }}>
+            <SessionChart withinComponent />
+          </div>
         </TabPane>
       </Tabs>
     </div>
