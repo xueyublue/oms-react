@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tabs, Row, Col } from "antd";
+import { Table, Form, Button, Select, Tag, Tabs } from "antd";
 import { TableOutlined, AimOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
