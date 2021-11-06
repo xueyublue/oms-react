@@ -11,6 +11,12 @@ import ApiCallFailed from "../../../components/ApiCallFailed";
 
 const { TabPane } = Tabs;
 
+const generateTableColumns = (header) => {
+  let cols = [];
+  header.map((h) => cols.push({ title: h, dataIndex: h, key: h }));
+  return cols;
+};
+
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -73,19 +79,6 @@ function SQLTabPaneContent({ classes }) {
     }, API_FETCH_WAIT);
   };
 
-  const columns = [
-    {
-      title: "ITEM_CODE",
-      dataIndex: "ITEM_CODE",
-      key: "ITEM_CODE",
-    },
-    {
-      title: "ITEM_NAME",
-      dataIndex: "ITEM_NAME",
-      key: "ITEM_NAME",
-    },
-  ];
-
   return (
     <div className={classes.root}>
       <div className={classes.buttons}>
@@ -123,18 +116,20 @@ function SQLTabPaneContent({ classes }) {
         results && (
           <div className={classes.results}>
             <Tabs type="card" size="small">
-              <TabPane tab={results[0].title} key={"1"}>
-                <Table
-                  columns={columns}
-                  dataSource={results[0].detail}
-                  className={classes.table}
-                  bordered
-                  size="small"
-                  scroll={{ x: 1000, y: 1000 }}
-                  pagination={{ pageSize: 10000, position: ["none"] }}
-                  rowKey={"ITEM_CODE"}
-                />
-              </TabPane>
+              {results.map((result) => (
+                <TabPane tab={result.title} key={result.title}>
+                  <Table
+                    columns={generateTableColumns(result.header)}
+                    dataSource={result.detail}
+                    className={classes.table}
+                    bordered
+                    size="small"
+                    scroll={{ x: 1000, y: 1000 }}
+                    pagination={{ pageSize: 10000, position: ["none"] }}
+                    rowKey={"ITEM_CODE"}
+                  />
+                </TabPane>
+              ))}
             </Tabs>
           </div>
         )
