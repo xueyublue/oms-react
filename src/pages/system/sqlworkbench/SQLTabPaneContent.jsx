@@ -117,7 +117,7 @@ function SQLTabPaneContent({ classes }) {
           <div className={classes.results}>
             <Tabs type="card" size="small">
               {results.map((result) => (
-                <TabPane tab={result.title} key={result.title}>
+                <TabPane tab={`${result.title}(${result.detail.length})`} key={result.title}>
                   <Table
                     columns={generateTableColumns(result.header)}
                     dataSource={result.detail}
