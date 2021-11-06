@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Table, Tabs, Input, Button, Radio } from "antd";
 import { withStyles } from "@mui/styles";
-import { VscDebugStart, VscDebugRestart } from "react-icons/vsc";
+import { VscPlay, VscRunAll, VscDebugRestart, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
 
 const { TabPane } = Tabs;
 
@@ -15,11 +15,15 @@ const styles = {
   },
   buttons: {
     display: "flex",
+    alignItems: "center",
     width: "100%",
   },
-  records: { marginLeft: "auto" },
+  records: {
+    marginLeft: "auto",
+  },
   input: {
     width: "100%",
+    fontFamily: "Consolas",
   },
   results: {
     marginTop: "5px",
@@ -34,11 +38,20 @@ const styles = {
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
   const [sql, setSql] = useState("SELECT * FROM DMITEM;");
+  const handleSqlQuery = () => {};
+  const handleClear = () => {
+    setSql("");
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.buttons}>
-        <Button type="text" icon={<VscDebugStart />} />
-        <Button type="text" icon={<VscDebugRestart />} />
+        <Button type="text" icon={<VscPlay />} onClick={handleSqlQuery} />
+        <Button type="text" icon={<VscRunAll />} onClick={handleSqlQuery} />
+        <Button type="text" icon={<VscDebugRestart />} onClick={handleClear} />
+        <Button type="text" icon={<VscChevronLeft />} />
+        <Button type="text" icon={<VscChevronRight />} />
+        <Button type="text" icon={<VscHistory />} />
         <div className={classes.records}>
           <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
             <Radio.Button value={10}>10</Radio.Button>
@@ -50,6 +63,7 @@ function SQLTabPaneContent({ classes }) {
       </div>
       <div className={classes.input}>
         <Input.TextArea
+          autoFocus
           value={sql}
           onChange={(e) => setSql(e.target.value.toUpperCase())}
           rows={5}
