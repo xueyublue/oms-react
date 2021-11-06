@@ -90,6 +90,7 @@ function SQLTabPaneContent({ classes }) {
         <Button type="text" icon={<VscHistory />} />
         <div className={classes.records}>
           <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
+            <Radio.Button value={1}>1</Radio.Button>
             <Radio.Button value={10}>10</Radio.Button>
             <Radio.Button value={100}>100</Radio.Button>
             <Radio.Button value={1000}>1K</Radio.Button>
