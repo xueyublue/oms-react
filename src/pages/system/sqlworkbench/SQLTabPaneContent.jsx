@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table, Tabs, Input, Button, Radio } from "antd";
 import { withStyles } from "@mui/styles";
 import { VscPlay, VscRunAll, VscDebugRestart, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
+import useFocus from "./../../../hooks/useFocus";
 
 const { TabPane } = Tabs;
 
@@ -37,10 +38,12 @@ const styles = {
 // COMPONENT START
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
+  const [sqlInputRef, setSqlInputFocus] = useFocus();
   const [sql, setSql] = useState("SELECT * FROM DMITEM;");
   const handleSqlQuery = () => {};
   const handleClear = () => {
     setSql("");
+    setSqlInputFocus();
   };
 
   return (
@@ -63,6 +66,7 @@ function SQLTabPaneContent({ classes }) {
       </div>
       <div className={classes.input}>
         <Input.TextArea
+          ref={sqlInputRef}
           autoFocus
           value={sql}
           onChange={(e) => setSql(e.target.value.toUpperCase())}
