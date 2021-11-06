@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Table, Tabs, Input, Button, Radio } from "antd";
 import { withStyles } from "@mui/styles";
 import { VscPlay, VscRunAll, VscDebugRestart, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
 import useFocus from "./../../../hooks/useFocus";
+import axios from "axios";
+import { BackendAPIContext } from "../../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "../../../util/constants";
+import Loading from "../../../components/Loading";
+import ApiCallFailed from "../../../components/ApiCallFailed";
 
 const { TabPane } = Tabs;
 
@@ -40,11 +45,46 @@ const styles = {
 function SQLTabPaneContent({ classes }) {
   const [sqlInputRef, setSqlInputFocus] = useFocus();
   const [sql, setSql] = useState("SELECT * FROM DMITEM;");
-  const handleSqlQuery = () => {};
+  const [isLoading, setIsLoading] = useState(false);
+  const [results, setResults] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
+
+  const handleSqlQuery = () => {
+    setIsLoading(true);
+    fetchData();
+  };
   const handleClear = () => {
     setSql("");
     setSqlInputFocus();
   };
+  const fetchData = async () => {
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/sql`)
+        .then(({ data }) => {
+          setResults(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setResults(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  const columns = [
+    {
+      title: "ITEM_CODE",
+      dataIndex: "ITEM_CODE",
+      key: "ITEM_CODE",
+    },
+    {
+      title: "ITEM_NAME",
+      dataIndex: "ITEM_NAME",
+      key: "ITEM_NAME",
+    },
+  ];
 
   return (
     <div className={classes.root}>
@@ -77,22 +117,28 @@ function SQLTabPaneContent({ classes }) {
           size="small"
         />
       </div>
-      <div className={classes.results}>
-        <Tabs type="card" size="small">
-          <TabPane tab={"Result"} key={"1"}>
-            <Table
-              columns={null}
-              dataSource={null}
-              className={classes.table}
-              bordered
-              size="small"
-              scroll={{ x: 0, y: 0 }}
-              pagination={{ pageSize: 10000, position: ["none"] }}
-              rowKey={"id"}
-            />
-          </TabPane>
-        </Tabs>
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        results && (
+          <div className={classes.results}>
+            <Tabs type="card" size="small">
+              <TabPane tab={results[0].title} key={"1"}>
+                <Table
+                  columns={columns}
+                  dataSource={results[0].detail}
+                  className={classes.table}
+                  bordered
+                  size="small"
+                  scroll={{ x: 1000, y: 1000 }}
+                  pagination={{ pageSize: 10000, position: ["none"] }}
+                  rowKey={"ITEM_CODE"}
+                />
+              </TabPane>
+            </Tabs>
+          </div>
+        )
+      )}
     </div>
   );
 }
