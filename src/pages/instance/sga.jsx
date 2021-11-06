@@ -177,7 +177,7 @@ const SgaConfigurations = ({ classes }) => {
         >
           <Row>
             <Col lg={24} xl={12} xxl={12}>
-              <Form.Item label="Chart Type" style={{ width: 200 }}>
+              <Form.Item label="Chart Type" style={{ width: 250 }}>
                 <Select
                   value={chartType}
                   onChange={(value) => {
