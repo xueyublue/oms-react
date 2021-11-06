@@ -27098,5 +27098,20 @@
       "privilege": "UNLIMITED TABLESPACE",
       "userName": "XDB"
     }
-  ]
+  ],
+  "sql": {
+    "status": "success",
+    "results": [
+      {
+        "title": "DMItem",
+        "header": ["Item Code", "Item Name"],
+        "detail": [
+          { "itemCode": "EMP_PB01", "itemName": "Empty Pallet" },
+          { "itemCode": "DIRECT_PB", "itemName": "Direct Transfer" },
+          { "itemCode": "IRREGULAR_PB", "itemName": "Error Pallet" },
+          { "itemCode": "FGB-DS-T2-0118-INT-000614", "itemName": "FG - DRs Secret Toner T2 118mL (INT)" }
+        ]
+      }
+    ]
+  }
 }
