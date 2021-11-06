@@ -41,7 +41,7 @@ const styles = {
     marginTop: "5px",
   },
   table: {
-    marginTop: "-15px",
+    marginTop: "-17px",
   },
 };
 
@@ -55,6 +55,7 @@ function SQLTabPaneContent({ classes }) {
   const [results, setResults] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
 
+  const handleSqlChange = (e) => setSql(e.target.value.toUpperCase());
   const handleSqlQuery = () => {
     setIsLoading(true);
     fetchData();
@@ -103,11 +104,10 @@ function SQLTabPaneContent({ classes }) {
           ref={sqlInputRef}
           autoFocus
           value={sql}
-          onChange={(e) => setSql(e.target.value.toUpperCase())}
+          onChange={handleSqlChange}
           rows={5}
           placeholder="Intelligent SQL inputter (Not fully ready yet for now)."
           allowClear
-          showCount
           size="small"
         />
       </div>
