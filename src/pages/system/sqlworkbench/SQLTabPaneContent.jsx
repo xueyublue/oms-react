@@ -8,6 +8,7 @@ import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import Loading from "../../../components/Loading";
 import ApiCallFailed from "../../../components/ApiCallFailed";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 const { TabPane } = Tabs;
 
@@ -54,6 +55,7 @@ function SQLTabPaneContent({ classes }) {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
+  const { height } = useWindowDimensions();
 
   const handleSqlChange = (e) => setSql(e.target.value.toUpperCase());
   const handleSqlQuery = () => {
@@ -125,7 +127,7 @@ function SQLTabPaneContent({ classes }) {
                     className={classes.table}
                     bordered
                     size="small"
-                    scroll={{ x: 1000, y: 1000 }}
+                    scroll={{ x: 1000, y: height - 400 }}
                     pagination={{ pageSize: 10000, position: ["none"] }}
                     rowKey={"ITEM_CODE"}
                   />
