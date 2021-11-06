@@ -71,7 +71,7 @@ function SQLTabPaneContent({ classes }) {
           value={sql}
           onChange={(e) => setSql(e.target.value.toUpperCase())}
           rows={5}
-          placeholder="Intelligent SQL inputter (Not ready yet for now)."
+          placeholder="Intelligent SQL inputter (Not fully ready yet for now)."
           allowClear
           showCount
           size="small"
