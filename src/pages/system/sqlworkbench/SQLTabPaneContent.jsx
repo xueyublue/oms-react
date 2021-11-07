@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Table, Tabs, Input, Button, Radio, Tooltip } from "antd";
 import { withStyles } from "@mui/styles";
 import { VscPlay, VscRunAll, VscClearAll, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
@@ -50,11 +50,15 @@ const styles = {
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
   const [sqlInputRef, setSqlInputFocus] = useFocus();
-  const [sql, setSql] = useState("SELECT * FROM DMITEM;");
+  const [sql, setSql] = useState("SELECT * FROM DMITEM;\nSELECT * FROM DNSTOCK;");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const { height } = useWindowDimensions();
+
+  useEffect(() => {
+    setSqlInputFocus({ cursor: "end" });
+  });
 
   const handleSqlChange = (e) => setSql(e.target.value.toUpperCase());
   const handleSqlQuery = () => {
@@ -115,13 +119,13 @@ function SQLTabPaneContent({ classes }) {
       <div className={classes.input}>
         <Input.TextArea
           ref={sqlInputRef}
-          autoFocus
           value={sql}
           onChange={handleSqlChange}
           rows={5}
           placeholder="Intelligent SQL inputter (Not fully ready yet for now)."
           allowClear
           size="small"
+          spellCheck={false}
         />
       </div>
       {isLoading ? (
