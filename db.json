@@ -27102,7 +27102,7 @@
   "sql": [
     {
       "status": true,
-      "title": "DMItem",
+      "title": "Item",
       "header": ["ITEM_CODE", "ITEM_NAME"],
       "detail": [
         { "ITEM_CODE": "EMP_PB01", "ITEM_NAME": "Empty Pallet" },
@@ -27113,7 +27113,7 @@
     },
     {
       "status": true,
-      "title": "DNStock",
+      "title": "Stock",
       "header": ["ITEM_CODE", "ITEM_NAME", "STOCK_QTY", "BATCH_NO", "EXPIRY_DATE"],
       "detail": [
         { "ITEM_CODE": "EMP_PB01", "ITEM_NAME": "Empty Pallet", "STOCK_QTY": 10, "BATCH_NO": "", "EXPIRY_DATE": "" },

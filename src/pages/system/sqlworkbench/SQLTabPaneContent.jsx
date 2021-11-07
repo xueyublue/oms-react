@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Table, Tabs, Input, Button, Radio, Tooltip } from "antd";
 import { withStyles } from "@mui/styles";
 import {
@@ -60,24 +60,20 @@ const styles = {
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
   const [sqlInputRef, setSqlInputFocus] = useFocus();
-  const [sql, setSql] = useState("SELECT * FROM DMITEM;\nSELECT * FROM DNSTOCK;");
+  const [sql, setSql] = useState("[Item] select * from dmitem;\n[Stock] select * from dnstock;");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const { height } = useWindowDimensions();
 
-  useEffect(() => {
-    setSqlInputFocus({ cursor: "end" });
-  });
-
-  const handleSqlChange = (e) => setSql(e.target.value.toUpperCase());
+  const handleSqlChange = (e) => setSql(e.target.value);
   const handleSqlQuery = () => {
     setIsLoading(true);
     fetchData();
   };
   const handleClear = () => {
     setSql("");
-    setSqlInputFocus();
+    setSqlInputFocus({ cursor: "end" });
   };
   const fetchData = async () => {
     setTimeout(() => {
