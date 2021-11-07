@@ -1,7 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Table, Tabs, Input, Button, Radio, Tooltip } from "antd";
 import { withStyles } from "@mui/styles";
-import { VscPlay, VscRunAll, VscClearAll, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
+import {
+  VscPlay,
+  VscRunAll,
+  VscClearAll,
+  VscChevronLeft,
+  VscChevronRight,
+  VscHistory,
+  VscWand,
+  VscAdd,
+  VscStarEmpty,
+} from "react-icons/vsc";
 import useFocus from "./../../../hooks/useFocus";
 import axios from "axios";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
@@ -98,13 +108,22 @@ function SQLTabPaneContent({ classes }) {
           <Button type="text" icon={<VscClearAll />} onClick={handleClear} />
         </Tooltip>
         <Tooltip placement="top" title="Previous">
-          <Button type="text" icon={<VscChevronLeft />} />
+          <Button type="text" icon={<VscChevronLeft />} disabled />
         </Tooltip>
         <Tooltip placement="top" title="Next">
-          <Button type="text" icon={<VscChevronRight />} />
+          <Button type="text" icon={<VscChevronRight />} disabled />
         </Tooltip>
         <Tooltip placement="top" title="History">
-          <Button type="text" icon={<VscHistory />} />
+          <Button type="text" icon={<VscHistory />} disabled />
+        </Tooltip>
+        <Tooltip placement="top" title="Format">
+          <Button type="text" icon={<VscWand />} disabled />
+        </Tooltip>
+        <Tooltip placement="top" title="Add to favorite">
+          <Button type="text" icon={<VscAdd />} disabled />
+        </Tooltip>
+        <Tooltip placement="top" title="Favorites">
+          <Button type="text" icon={<VscStarEmpty />} disabled />
         </Tooltip>
         <div className={classes.records}>
           <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
