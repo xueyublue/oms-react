@@ -21,19 +21,19 @@ const columns = [
     width: 160,
   },
   {
-    title: "Resource Name",
-    dataIndex: "resourceName",
-    key: "resourceName",
-    width: 300,
-  },
-  {
     title: "Resource Type",
     dataIndex: "resourceType",
     key: "resourceType",
     width: 140,
   },
   {
-    title: "Limit",
+    title: "Resource Name",
+    dataIndex: "resourceName",
+    key: "resourceName",
+    width: 300,
+  },
+  {
+    title: "Resource Limit",
     dataIndex: "limit",
     key: "limit",
     render: (limit) => (

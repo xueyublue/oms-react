@@ -14,16 +14,18 @@ import useWindowDimensions from "./../../hooks/useWindowDimensions";
 
 const columns = [
   {
+    title: "Role ID",
+    dataIndex: "roleId",
+    key: "roleId",
+    width: 80,
+    align: "center",
+    render: (text) => <span style={{ color: "#1890FF" }}>{text}</span>,
+  },
+  {
     title: "Role",
     dataIndex: "role",
     key: "role",
     width: 300,
-  },
-  {
-    title: "Role ID",
-    dataIndex: "roleId",
-    key: "roleId",
-    width: 150,
   },
   {
     title: "Password Required?",
