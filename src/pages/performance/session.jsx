@@ -137,10 +137,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
   },
-  tableTools: {
-    marginLeft: "auto",
-    marginRight: "0",
-  },
   table: {
     marginTop: "10px",
   },
@@ -253,7 +249,7 @@ const Sessions = ({ classes }) => {
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
-            <Form.Item className={classes.tableTools}>
+            <Form.Item style={{ marginLeft: "auto", marginRight: 0 }}>
               <RefreshButton onClick={handleRefresh} />
               <ExportButton
                 csvReport={{
