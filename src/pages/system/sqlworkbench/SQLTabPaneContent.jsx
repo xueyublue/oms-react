@@ -84,7 +84,7 @@ function SQLTabPaneContent({ classes }) {
   return (
     <div className={classes.root}>
       <div className={classes.buttons}>
-        <Tooltip placement="top" title="Execute">
+        <Tooltip placement="top" title="Execute Selected">
           <Button type="text" icon={<VscPlay />} onClick={handleSqlQuery} />
         </Tooltip>
         <Tooltip placement="top" title="Execute All">
