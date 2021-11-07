@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Table, Tabs, Input, Button, Radio } from "antd";
+import { Table, Tabs, Input, Button, Radio, Tooltip } from "antd";
 import { withStyles } from "@mui/styles";
-import { VscPlay, VscRunAll, VscDebugRestart, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
+import { VscPlay, VscRunAll, VscClearAll, VscChevronLeft, VscChevronRight, VscHistory } from "react-icons/vsc";
 import useFocus from "./../../../hooks/useFocus";
 import axios from "axios";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
@@ -36,7 +36,7 @@ const styles = {
   },
   input: {
     width: "100%",
-    fontFamily: "Consolas",
+    fontFamily: "Consolas, Menlo",
   },
   results: {
     marginTop: "5px",
@@ -85,12 +85,24 @@ function SQLTabPaneContent({ classes }) {
   return (
     <div className={classes.root}>
       <div className={classes.buttons}>
-        <Button type="text" icon={<VscPlay />} onClick={handleSqlQuery} />
-        <Button type="text" icon={<VscRunAll />} onClick={handleSqlQuery} />
-        <Button type="text" icon={<VscDebugRestart />} onClick={handleClear} />
-        <Button type="text" icon={<VscChevronLeft />} />
-        <Button type="text" icon={<VscChevronRight />} />
-        <Button type="text" icon={<VscHistory />} />
+        <Tooltip placement="top" title="Execute">
+          <Button type="text" icon={<VscPlay />} onClick={handleSqlQuery} />
+        </Tooltip>
+        <Tooltip placement="top" title="Execute All">
+          <Button type="text" icon={<VscRunAll />} onClick={handleSqlQuery} />
+        </Tooltip>
+        <Tooltip placement="top" title="Clear">
+          <Button type="text" icon={<VscClearAll />} onClick={handleClear} />
+        </Tooltip>
+        <Tooltip placement="top" title="Previous">
+          <Button type="text" icon={<VscChevronLeft />} />
+        </Tooltip>
+        <Tooltip placement="top" title="Next">
+          <Button type="text" icon={<VscChevronRight />} />
+        </Tooltip>
+        <Tooltip placement="top" title="History">
+          <Button type="text" icon={<VscHistory />} />
+        </Tooltip>
         <div className={classes.records}>
           <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
             <Radio.Button value={1}>1</Radio.Button>
