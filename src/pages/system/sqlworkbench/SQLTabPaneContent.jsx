@@ -7,7 +7,6 @@ import axios from "axios";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import Loading from "../../../components/Loading";
-import ApiCallFailed from "../../../components/ApiCallFailed";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 const { TabPane } = Tabs;
