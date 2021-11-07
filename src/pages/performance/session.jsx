@@ -133,9 +133,13 @@ const styles = {
   root: {
     width: "100%",
   },
+  form: {
+    display: "flex",
+    alignItems: "center",
+  },
   tableTools: {
-    position: "absolute",
-    right: 0,
+    marginLeft: "auto",
+    marginRight: "0",
   },
   table: {
     marginTop: "10px",
@@ -225,7 +229,7 @@ const Sessions = ({ classes }) => {
           }
           key="table"
         >
-          <Form form={form} layout={"inline"} size={"middle"}>
+          <Form form={form} layout={"inline"} size={"middle"} className={classes.form}>
             <Form.Item label="Status">
               <Select value={status} onChange={handleStatusChange} style={{ width: 100 }}>
                 {statusList.map((status) => (
@@ -249,18 +253,16 @@ const Sessions = ({ classes }) => {
                 <FcUndo size={22} />
               </Button>
             </Form.Item>
-            <div className={classes.tableTools}>
-              <Form.Item>
-                <RefreshButton onClick={handleRefresh} />
-                <ExportButton
-                  csvReport={{
-                    data: data,
-                    headers: getCsvHeaders(columns),
-                    filename: "OMS_Sessions.csv",
-                  }}
-                />
-              </Form.Item>
-            </div>
+            <Form.Item className={classes.tableTools}>
+              <RefreshButton onClick={handleRefresh} />
+              <ExportButton
+                csvReport={{
+                  data: data,
+                  headers: getCsvHeaders(columns),
+                  filename: "OMS_Sessions.csv",
+                }}
+              />
+            </Form.Item>
           </Form>
           <Table
             className={classes.table}

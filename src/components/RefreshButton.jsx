@@ -6,7 +6,7 @@ import { FcSynchronize } from "react-icons/fc";
 //-------------------------------------------------------------
 const RefreshButton = ({ onClick }) => {
   return (
-    <Tooltip placement="bottom" title="REFRESH">
+    <Tooltip placement="bottom" title="Refresh">
       <Button type="text" icon={<FcSynchronize size={22} />} onClick={onClick} />
     </Tooltip>
   );

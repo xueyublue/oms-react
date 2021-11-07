@@ -7,7 +7,7 @@ import { FcDownload } from "react-icons/fc";
 //-------------------------------------------------------------
 const ExportButton = ({ csvReport }) => {
   return (
-    <Tooltip placement="bottom" title="EXPORT">
+    <Tooltip placement="bottom" title="Export">
       <CSVLink {...csvReport}>
         <Button type="text" icon={<FcDownload size={22} />} />
       </CSVLink>
