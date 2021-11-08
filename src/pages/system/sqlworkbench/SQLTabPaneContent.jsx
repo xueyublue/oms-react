@@ -23,7 +23,7 @@ const { TabPane } = Tabs;
 
 const generateTableColumns = (header) => {
   let cols = [];
-  header.map((h) => cols.push({ title: h, dataIndex: h, key: h, width: 180 }));
+  header.map((h) => cols.push({ title: h, dataIndex: h, key: h, width: 150 }));
   return cols;
 };
 
@@ -59,8 +59,10 @@ const styles = {
 // COMPONENT START
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(30);
   const [sqlInputRef, setSqlInputFocus] = useFocus();
-  const [sql, setSql] = useState("[Item] select * from dmitem;\n[Stock] select * from dnstock;");
+  const [sql, setSql] = useState("[Item] select * from dmitem;\n[Shelf] select * from dmshelfagc;");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
@@ -78,7 +80,7 @@ function SQLTabPaneContent({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .post(`${baseUrl}/sql`, { limit: 100, sql: sql })
+        .get(`${baseUrl}/sql`, { limit: 100, sql: sql })
         .then(({ data }) => {
           setResults(data);
           setIsLoading(false);
@@ -122,12 +124,12 @@ function SQLTabPaneContent({ classes }) {
           <Button type="text" icon={<VscStarEmpty />} disabled />
         </Tooltip>
         <div className={classes.records}>
-          <Radio.Group defaultValue={10000} buttonStyle="solid" size="small">
+          <Radio.Group defaultValue={1000} buttonStyle="solid" size="small">
             <Radio.Button value={1}>1</Radio.Button>
             <Radio.Button value={10}>10</Radio.Button>
             <Radio.Button value={100}>100</Radio.Button>
+            <Radio.Button value={500}>500</Radio.Button>
             <Radio.Button value={1000}>1K</Radio.Button>
-            <Radio.Button value={10000}>10K</Radio.Button>
           </Radio.Group>
         </div>
       </div>
@@ -157,8 +159,17 @@ function SQLTabPaneContent({ classes }) {
                     className={classes.table}
                     bordered
                     size="small"
-                    scroll={{ x: 1000, y: height - 400 }}
-                    pagination={{ pageSize: 10000, position: ["none"] }}
+                    scroll={{ x: 1000, y: height - 480 }}
+                    pagination={{
+                      page: page,
+                      pageSize: pageSize,
+                      position: ["bottomRight"],
+                      pageSizeOptions: [30, 50, 100, 500, 1000],
+                      onChange: (p, size) => {
+                        setPage(p);
+                        setPageSize(size);
+                      },
+                    }}
                     rowKey={"ITEM_CODE"}
                   />
                 </TabPane>
