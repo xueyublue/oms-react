@@ -159,9 +159,9 @@ function SQLTabPaneContent({ classes }) {
                     className={classes.table}
                     bordered
                     size="small"
-                    scroll={{ x: 1000, y: result.detail.length <= pageSize ? height - 425 : height - 480 }}
+                    scroll={{ x: 1000, y: result.detail.length <= 30 ? height - 425 : height - 480 }}
                     pagination={
-                      result.detail.length <= pageSize
+                      result.detail.length <= 30
                         ? {
                             page: page,
                             pageSize: pageSize,
