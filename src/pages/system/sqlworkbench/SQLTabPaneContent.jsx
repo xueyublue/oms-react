@@ -23,7 +23,7 @@ const { TabPane } = Tabs;
 
 const generateTableColumns = (header) => {
   let cols = [];
-  header.map((h) => cols.push({ title: h, dataIndex: h, key: h }));
+  header.map((h) => cols.push({ title: h, dataIndex: h, key: h, width: 180 }));
   return cols;
 };
 
@@ -78,7 +78,7 @@ function SQLTabPaneContent({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sql`)
+        .post(`${baseUrl}/sql`, { limit: 100, sql: sql })
         .then(({ data }) => {
           setResults(data);
           setIsLoading(false);
