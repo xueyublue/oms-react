@@ -159,17 +159,25 @@ function SQLTabPaneContent({ classes }) {
                     className={classes.table}
                     bordered
                     size="small"
-                    scroll={{ x: 1000, y: height - 480 }}
-                    pagination={{
-                      page: page,
-                      pageSize: pageSize,
-                      position: ["bottomRight"],
-                      pageSizeOptions: [30, 50, 100, 500, 1000],
-                      onChange: (p, size) => {
-                        setPage(p);
-                        setPageSize(size);
-                      },
-                    }}
+                    scroll={{ x: 1000, y: result.detail.length <= pageSize ? height - 425 : height - 480 }}
+                    pagination={
+                      result.detail.length <= pageSize
+                        ? {
+                            page: page,
+                            pageSize: pageSize,
+                            position: ["none"],
+                          }
+                        : {
+                            page: page,
+                            pageSize: pageSize,
+                            position: ["bottomRight"],
+                            pageSizeOptions: [30, 50, 100, 500, 1000],
+                            onChange: (p, size) => {
+                              setPage(p);
+                              setPageSize(size);
+                            },
+                          }
+                    }
                     rowKey={"ITEM_CODE"}
                   />
                 </TabPane>
