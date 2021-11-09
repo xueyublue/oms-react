@@ -61,7 +61,7 @@ const styles = {
 function SQLTabPaneContent({ classes }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
-  const [limit, setLimit] = useState(1000);
+  const [limit, setLimit] = useState(30);
   const [sql, setSql] = useState("[Item] select * from dmitem;\n[Shelf] select * from dmshelfagc;");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
@@ -130,10 +130,10 @@ function SQLTabPaneContent({ classes }) {
         <div className={classes.records}>
           <Radio.Group value={limit} onChange={handleLimitChange} buttonStyle="solid" size="small">
             <Radio.Button value={1}>1</Radio.Button>
-            <Radio.Button value={10}>10</Radio.Button>
+            <Radio.Button value={30}>30</Radio.Button>
+            <Radio.Button value={50}>50</Radio.Button>
             <Radio.Button value={100}>100</Radio.Button>
             <Radio.Button value={1000}>1K</Radio.Button>
-            <Radio.Button value={10000}>10K</Radio.Button>
           </Radio.Group>
         </div>
       </div>
@@ -175,7 +175,7 @@ function SQLTabPaneContent({ classes }) {
                             page: page,
                             pageSize: pageSize,
                             position: ["bottomRight"],
-                            pageSizeOptions: [30, 50, 100, 1000, 10000],
+                            pageSizeOptions: [30, 50, 100, 1000],
                             onChange: (p, size) => {
                               setPage(p);
                               setPageSize(size);
