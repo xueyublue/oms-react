@@ -62,7 +62,9 @@ function SQLTabPaneContent({ classes }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
   const [limit, setLimit] = useState(30);
-  const [sql, setSql] = useState("[Item] select * from dmitem;\n[Shelf] select * from dmshelfagc;");
+  const [sql, setSql] = useState(
+    "[Item] select * from dmitem;\n[Load] select * from dnload order by load_id desc;\n[Stock] select * from dnstock order by stock_id desc;\n[Shelf,10000] select * from dmshelfagc;"
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
   const [sqlInputRef, setSqlInputFocus] = useFocus();
