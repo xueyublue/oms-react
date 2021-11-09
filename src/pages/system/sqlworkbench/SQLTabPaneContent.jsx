@@ -61,10 +61,11 @@ const styles = {
 function SQLTabPaneContent({ classes }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
-  const [sqlInputRef, setSqlInputFocus] = useFocus();
+  const [limit, setLimit] = useState(1000);
   const [sql, setSql] = useState("[Item] select * from dmitem;\n[Shelf] select * from dmshelfagc;");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
+  const [sqlInputRef, setSqlInputFocus] = useFocus();
   const { baseUrl } = useContext(BackendAPIContext);
   const { height } = useWindowDimensions();
 
@@ -77,10 +78,13 @@ function SQLTabPaneContent({ classes }) {
     setSql("");
     setSqlInputFocus({ cursor: "end" });
   };
+  const handleLimitChange = (e) => {
+    setLimit(e.target.value);
+  };
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sql`, { limit: 100, sql: sql })
+        .get(`${baseUrl}/sql`, { params: { limit, sql } })
         .then(({ data }) => {
           setResults(data);
           setIsLoading(false);
@@ -124,12 +128,12 @@ function SQLTabPaneContent({ classes }) {
           <Button type="text" icon={<VscStarEmpty />} disabled />
         </Tooltip>
         <div className={classes.records}>
-          <Radio.Group defaultValue={1000} buttonStyle="solid" size="small">
+          <Radio.Group value={limit} onChange={handleLimitChange} buttonStyle="solid" size="small">
             <Radio.Button value={1}>1</Radio.Button>
             <Radio.Button value={10}>10</Radio.Button>
             <Radio.Button value={100}>100</Radio.Button>
-            <Radio.Button value={500}>500</Radio.Button>
             <Radio.Button value={1000}>1K</Radio.Button>
+            <Radio.Button value={10000}>10K</Radio.Button>
           </Radio.Group>
         </div>
       </div>
@@ -171,7 +175,7 @@ function SQLTabPaneContent({ classes }) {
                             page: page,
                             pageSize: pageSize,
                             position: ["bottomRight"],
-                            pageSizeOptions: [30, 50, 100, 500, 1000],
+                            pageSizeOptions: [30, 50, 100, 1000, 10000],
                             onChange: (p, size) => {
                               setPage(p);
                               setPageSize(size);
