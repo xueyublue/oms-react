@@ -4,7 +4,6 @@ import * as Constants from "../util/constants";
 import Dashboard from "../pages/dashboard";
 import InstanceDetails from "../pages/instance/details";
 import SgaConfigurations from "../pages/instance/sga";
-import Banners from "../pages/instance/banners";
 import ResourceLimit from "../pages/instance/resource-limit";
 import Parameters from "../pages/instance/parameters";
 import Sessions from "../pages/performance/session";
@@ -38,7 +37,6 @@ const RouteContainer = () => {
       {/* //* Instance */}
       <Route exact path={Constants.ROUTE_INSTANCE_DETAILS} component={InstanceDetails} />
       <Route exact path={Constants.ROUTE_INSTANCE_SGA} component={SgaConfigurations} />
-      <Route exact path={Constants.ROUTE_INSTANCE_BANNERS} component={Banners} />
       <Route exact path={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT} component={ResourceLimit} />
       <Route exact path={Constants.ROUTE_INSTANCE_PARAMETERS} component={Parameters} />
       {/* //* Performance */}

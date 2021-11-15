@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form } from "antd";
+import { Table, Form, Tabs } from "antd";
+import { TableOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -11,7 +12,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 
-const columns = [
+const columns_summary = [
   {
     title: "Field",
     dataIndex: "name",
@@ -23,6 +24,16 @@ const columns = [
     key: "value",
   },
 ];
+
+const columns_banners = [
+  {
+    title: "Banner",
+    dataIndex: "banner",
+    key: "banner",
+  },
+];
+
+const TabPane = Tabs.TabPane;
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -78,30 +89,60 @@ const InstanceDetails = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item />
-        <div className={classes.tableTools}>
-          <Form.Item>
-            <RefreshButton onClick={handleRefresh} />
-            <ExportButton
-              csvReport={{
-                data: data.summary,
-                headers: getCsvHeaders(columns),
-                filename: "OMS_InstanceDetails.csv",
-              }}
-            />
-          </Form.Item>
-        </div>
-      </Form>
-      <Table
-        columns={columns}
-        dataSource={data.summary}
-        bordered
-        size="small"
-        pagination={{ pageSize: 15, position: ["none"] }}
-        scroll={{ x: 700 }}
-        rowKey="name"
-      />
+      <Tabs type="card">
+        <TabPane tab={<span>Summary</span>} key="summary">
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item />
+            <div className={classes.tableTools}>
+              <Form.Item>
+                <RefreshButton onClick={handleRefresh} />
+                <ExportButton
+                  csvReport={{
+                    data: data.summary,
+                    headers: getCsvHeaders(columns_summary),
+                    filename: "OMS_InstanceDetails.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            columns={columns_summary}
+            dataSource={data.summary}
+            bordered
+            size="small"
+            pagination={{ pageSize: 15, position: ["none"] }}
+            scroll={{ x: 700 }}
+            rowKey="name"
+          />
+        </TabPane>
+        <TabPane tab={<span>Banners</span>} key="banners">
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item />
+            <div className={classes.tableTools}>
+              <Form.Item>
+                <RefreshButton onClick={handleRefresh} />
+                <ExportButton
+                  csvReport={{
+                    data: data.banners,
+                    headers: getCsvHeaders(columns_banners),
+                    filename: "OMS_Banners.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            columns={columns_banners}
+            dataSource={data.banners}
+            bordered
+            size="small"
+            pagination={{ pageSize: 15, position: ["none"] }}
+            scroll={{ x: 600 }}
+            rowKey="banner"
+          />
+        </TabPane>
+      </Tabs>
     </div>
   );
 };

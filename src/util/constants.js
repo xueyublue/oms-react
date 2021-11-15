@@ -5,7 +5,6 @@ export const ROUTE_DASHBORAD = `${ROUTE_ROOT}/dashboard`;
 // instance
 export const ROUTE_INSTANCE_DETAILS = `${ROUTE_ROOT}/instance/details`;
 export const ROUTE_INSTANCE_SGA = `${ROUTE_ROOT}/instance/sga`;
-export const ROUTE_INSTANCE_BANNERS = `${ROUTE_ROOT}/instance/banners`;
 export const ROUTE_INSTANCE_RESOURCE_LIMIT = `${ROUTE_ROOT}/instance/resource-limit`;
 export const ROUTE_INSTANCE_PARAMETERS = `${ROUTE_ROOT}/instance/parameters`;
 // performance
@@ -36,7 +35,6 @@ export const RouteToPageName = (route) => {
   else if (route === ROUTE_DASHBORAD) return "Dashboard";
   else if (route === ROUTE_INSTANCE_DETAILS) return "Instance Details";
   else if (route === ROUTE_INSTANCE_SGA) return "SGA Configuration";
-  else if (route === ROUTE_INSTANCE_BANNERS) return "Banners";
   else if (route === ROUTE_INSTANCE_RESOURCE_LIMIT) return "Resource Limit";
   else if (route === ROUTE_INSTANCE_PARAMETERS) return "Instance Parameters";
   else if (route === ROUTE_PERFORMANCE_SESSION) return "Session";

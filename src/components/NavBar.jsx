@@ -88,9 +88,6 @@ const NavBar = ({ classes }) => {
           <Menu.Item key={Constants.ROUTE_INSTANCE_SGA}>
             <Link to={Constants.ROUTE_INSTANCE_SGA}>SGA</Link>
           </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_INSTANCE_BANNERS}>
-            <Link to={Constants.ROUTE_INSTANCE_BANNERS}>Banners</Link>
-          </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
             <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>Resource Limit</Link>
           </Menu.Item>
