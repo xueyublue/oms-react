@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Tabs } from "antd";
-import { TableOutlined } from "@ant-design/icons";
+import { MenuOutlined, BuildOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -90,7 +90,15 @@ const InstanceDetails = ({ classes }) => {
   return (
     <div className={classes.root}>
       <Tabs type="card">
-        <TabPane tab={<span>Summary</span>} key="summary">
+        <TabPane
+          tab={
+            <span>
+              <MenuOutlined />
+              Summary
+            </span>
+          }
+          key="summary"
+        >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item />
             <div className={classes.tableTools}>
@@ -116,7 +124,15 @@ const InstanceDetails = ({ classes }) => {
             rowKey="name"
           />
         </TabPane>
-        <TabPane tab={<span>Banners</span>} key="banners">
+        <TabPane
+          tab={
+            <span>
+              <BuildOutlined />
+              Banners
+            </span>
+          }
+          key="banners"
+        >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item />
             <div className={classes.tableTools}>
