@@ -12,7 +12,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 
-const columns_summary = [
+const tableColumns_Summary = [
   {
     title: "Field",
     dataIndex: "name",
@@ -25,7 +25,7 @@ const columns_summary = [
   },
 ];
 
-const columns_banners = [
+const tableColumns_Banners = [
   {
     title: "Banner",
     dataIndex: "banner",
@@ -99,7 +99,7 @@ const InstanceDetails = ({ classes }) => {
                 <ExportButton
                   csvReport={{
                     data: data.summary,
-                    headers: getCsvHeaders(columns_summary),
+                    headers: getCsvHeaders(tableColumns_Summary),
                     filename: "OMS_InstanceDetails.csv",
                   }}
                 />
@@ -107,7 +107,7 @@ const InstanceDetails = ({ classes }) => {
             </div>
           </Form>
           <Table
-            columns={columns_summary}
+            columns={tableColumns_Summary}
             dataSource={data.summary}
             bordered
             size="small"
@@ -125,7 +125,7 @@ const InstanceDetails = ({ classes }) => {
                 <ExportButton
                   csvReport={{
                     data: data.banners,
-                    headers: getCsvHeaders(columns_banners),
+                    headers: getCsvHeaders(tableColumns_Banners),
                     filename: "OMS_Banners.csv",
                   }}
                 />
@@ -133,7 +133,7 @@ const InstanceDetails = ({ classes }) => {
             </div>
           </Form>
           <Table
-            columns={columns_banners}
+            columns={tableColumns_Banners}
             dataSource={data.banners}
             bordered
             size="small"
