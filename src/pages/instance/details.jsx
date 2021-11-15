@@ -18,6 +18,7 @@ const tableColumns_Database = [
     title: "Field",
     dataIndex: "name",
     key: "name",
+    width: 400,
   },
   {
     title: "Value",
