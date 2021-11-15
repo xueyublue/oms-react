@@ -374,51 +374,405 @@
     ]
   },
   "details": {
-    "summary": [
+    "database": [
       {
-        "key": "instanceName",
-        "name": "Instance Name",
-        "value": "orcl"
+        "key": "DBID",
+        "name": "DBID",
+        "value": "1599008495"
       },
       {
-        "key": "version",
-        "name": "Version",
-        "value": "19.0.0.0.0"
-      },
-      {
-        "key": "startupTime",
-        "name": "Startup Time",
-        "value": "2021-11-09 09:30:07.0"
-      },
-      {
-        "key": "hostName",
-        "name": "Hostname",
-        "value": "WIN-VSEO6OE6O86"
-      },
-      {
-        "key": "databaseaName",
-        "name": "Database Name",
+        "key": "NAME",
+        "name": "Name",
         "value": "ORCL"
       },
       {
-        "key": "timeCreated",
-        "name": "Time Created",
-        "value": "2021-10-29 16:38:45.0"
+        "key": "CREATED",
+        "name": "Created",
+        "value": "2021-04-30 11:15:59.0"
       },
       {
-        "key": "logMode",
+        "key": "RESETLOGS_CHANGE#",
+        "name": "Resetlogs Change #",
+        "value": "1"
+      },
+      {
+        "key": "RESETLOGS_TIME",
+        "name": "Resetlogs Time",
+        "value": "2021-04-30 11:15:59.0"
+      },
+      {
+        "key": "PRIOR_RESETLOGS_CHANGE#",
+        "name": "Prior Resetlogs Change #",
+        "value": "0"
+      },
+      {
+        "key": "PRIOR_RESETLOGS_TIME",
+        "name": "Prior Resetlogs Time"
+      },
+      {
+        "key": "LOG_MODE",
         "name": "Log Mode",
         "value": "NOARCHIVELOG"
       },
       {
-        "key": "banner",
-        "name": "Banner",
-        "value": "Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production"
+        "key": "CHECKPOINT_CHANGE#",
+        "name": "Checkpoint Change #",
+        "value": "13129143"
       },
       {
+        "key": "ARCHIVE_CHANGE#",
+        "name": "Archive Change #",
+        "value": "12463538"
+      },
+      {
+        "key": "CONTROLFILE_TYPE",
+        "name": "Controlfile Type",
+        "value": "CURRENT"
+      },
+      {
+        "key": "CONTROLFILE_CREATED",
+        "name": "Controlfile Created",
+        "value": "2021-04-30 11:15:59.0"
+      },
+      {
+        "key": "CONTROLFILE_SEQUENCE#",
+        "name": "Controlfile Sequence #",
+        "value": "41323"
+      },
+      {
+        "key": "CONTROLFILE_CHANGE#",
+        "name": "Controlfile Change #",
+        "value": "13133759"
+      },
+      {
+        "key": "CONTROLFILE_TIME",
+        "name": "Controlfile Time",
+        "value": "2021-11-15 17:21:06.0"
+      },
+      {
+        "key": "OPEN_RESETLOGS",
+        "name": "Open Resetlogs",
+        "value": "NOT ALLOWED"
+      },
+      {
+        "key": "VERSION_TIME",
+        "name": "Version Time",
+        "value": "2021-04-30 11:15:59.0"
+      },
+      {
+        "key": "OPEN_MODE",
+        "name": "Open Mode",
+        "value": "READ WRITE"
+      },
+      {
+        "key": "PROTECTION_MODE",
+        "name": "Protection Mode",
+        "value": "MAXIMUM PERFORMANCE"
+      },
+      {
+        "key": "PROTECTION_LEVEL",
+        "name": "Protection Level",
+        "value": "UNPROTECTED"
+      },
+      {
+        "key": "REMOTE_ARCHIVE",
+        "name": "Remote Archive",
+        "value": "ENABLED"
+      },
+      {
+        "key": "ACTIVATION#",
+        "name": "Activation #",
+        "value": "1599002351"
+      },
+      {
+        "key": "SWITCHOVER#",
+        "name": "Switchover #",
+        "value": "1599002351"
+      },
+      {
+        "key": "DATABASE_ROLE",
+        "name": "Database Role",
+        "value": "PRIMARY"
+      },
+      {
+        "key": "ARCHIVELOG_CHANGE#",
+        "name": "Archivelog Change #",
+        "value": "0"
+      },
+      {
+        "key": "ARCHIVELOG_COMPRESSION",
+        "name": "Archivelog Compression",
+        "value": "DISABLED"
+      },
+      {
+        "key": "SWITCHOVER_STATUS",
+        "name": "Switchover Status",
+        "value": "NOT ALLOWED"
+      },
+      {
+        "key": "DATAGUARD_BROKER",
+        "name": "Dataguard Broker",
+        "value": "DISABLED"
+      },
+      {
+        "key": "GUARD_STATUS",
+        "name": "Guard Status",
+        "value": "NONE"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_MIN",
+        "name": "Supplemental Log Data Min",
+        "value": "NO"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_PK",
+        "name": "Supplemental Log Data Pk",
+        "value": "NO"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_UI",
+        "name": "Supplemental Log Data Ui",
+        "value": "NO"
+      },
+      {
+        "key": "FORCE_LOGGING",
+        "name": "Force Logging",
+        "value": "NO"
+      },
+      {
+        "key": "PLATFORM_ID",
+        "name": "Platform ID",
+        "value": "12"
+      },
+      {
+        "key": "PLATFORM_NAME",
+        "name": "Platform Name",
+        "value": "Microsoft Windows x86 64-bit"
+      },
+      {
+        "key": "RECOVERY_TARGET_INCARNATION#",
+        "name": "Recovery Target Incarnation #",
+        "value": "1"
+      },
+      {
+        "key": "LAST_OPEN_INCARNATION#",
+        "name": "Last Open Incarnation #",
+        "value": "1"
+      },
+      {
+        "key": "CURRENT_SCN",
+        "name": "Current Scn",
+        "value": "13133797"
+      },
+      {
+        "key": "FLASHBACK_ON",
+        "name": "Flashback On",
+        "value": "NO"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_FK",
+        "name": "Supplemental Log Data Fk",
+        "value": "NO"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_ALL",
+        "name": "Supplemental Log Data All",
+        "value": "NO"
+      },
+      {
+        "key": "DB_UNIQUE_NAME",
+        "name": "DB Unique Name",
+        "value": "ORCL"
+      },
+      {
+        "key": "STANDBY_BECAME_PRIMARY_SCN",
+        "name": "StanDBy Became Primary Scn",
+        "value": "0"
+      },
+      {
+        "key": "FS_FAILOVER_MODE",
+        "name": "FS Failover Mode",
+        "value": "DISABLED"
+      },
+      {
+        "key": "FS_FAILOVER_STATUS",
+        "name": "FS Failover Status",
+        "value": "DISABLED"
+      },
+      {
+        "key": "FS_FAILOVER_CURRENT_TARGET",
+        "name": "FS Failover Current Target"
+      },
+      {
+        "key": "FS_FAILOVER_THRESHOLD",
+        "name": "FS Failover Threshold",
+        "value": "0"
+      },
+      {
+        "key": "FS_FAILOVER_OBSERVER_PRESENT",
+        "name": "FS Failover Observer Present"
+      },
+      {
+        "key": "FS_FAILOVER_OBSERVER_HOST",
+        "name": "FS Failover Observer Host"
+      },
+      {
+        "key": "CONTROLFILE_CONVERTED",
+        "name": "Controlfile Converted",
+        "value": "NO"
+      },
+      {
+        "key": "PRIMARY_DB_UNIQUE_NAME",
+        "name": "Primary DB Unique Name"
+      },
+      {
+        "key": "SUPPLEMENTAL_LOG_DATA_PL",
+        "name": "Supplemental Log Data Pl",
+        "value": "NO"
+      },
+      {
+        "key": "MIN_REQUIRED_CAPTURE_CHANGE#",
+        "name": "Min Required Capture Change #"
+      },
+      {
+        "key": "CDB",
+        "name": "CDB",
+        "value": "NO"
+      },
+      {
+        "key": "CON_ID",
+        "name": "Con ID",
+        "value": "0"
+      },
+      {
+        "key": "PENDING_ROLE_CHANGE_TASKS",
+        "name": "Pending Role Change Tasks",
+        "value": "NOT APPLICABLE"
+      },
+      {
+        "key": "CON_DBID",
+        "name": "Con DBID",
+        "value": "1599008495"
+      },
+      {
+        "key": "FORCE_FULL_DB_CACHING",
+        "name": "Force Full DB Caching",
+        "value": "NO"
+      }
+    ],
+    "instance": [
+      {
         "key": "currentSessions",
-        "name": "Current Sessions",
-        "value": 82
+        "name": "Total Sessions",
+        "value": 53
+      },
+      {
+        "key": "INSTANCE_NUMBER",
+        "name": "Instance Number",
+        "value": "1"
+      },
+      {
+        "key": "INSTANCE_NAME",
+        "name": "Instance Name",
+        "value": "orcl"
+      },
+      {
+        "key": "HOST_NAME",
+        "name": "Host Name",
+        "value": "WN7001"
+      },
+      {
+        "key": "VERSION",
+        "name": "Version",
+        "value": "19.0.0.0.0"
+      },
+      {
+        "key": "VERSION_LEGACY",
+        "name": "Version Legacy",
+        "value": "19.0.0.0.0"
+      },
+      {
+        "key": "VERSION_FULL",
+        "name": "Version Full",
+        "value": "19.3.0.0.0"
+      },
+      {
+        "key": "STARTUP_TIME",
+        "name": "Startup Time",
+        "value": "2021-11-15 16:29:41.0"
+      },
+      {
+        "key": "STATUS",
+        "name": "Status",
+        "value": "OPEN"
+      },
+      {
+        "key": "PARALLEL",
+        "name": "Parallel",
+        "value": "NO"
+      },
+      {
+        "key": "THREAD#",
+        "name": "Thread #",
+        "value": "1"
+      },
+      {
+        "key": "ARCHIVER",
+        "name": "Archiver",
+        "value": "STOPPED"
+      },
+      {
+        "key": "LOG_SWITCH_WAIT",
+        "name": "Log Switch Wait"
+      },
+      {
+        "key": "LOGINS",
+        "name": "Logins",
+        "value": "ALLOWED"
+      },
+      {
+        "key": "SHUTDOWN_PENDING",
+        "name": "Shutdown Pending",
+        "value": "NO"
+      },
+      {
+        "key": "DATABASE_STATUS",
+        "name": "Database Status",
+        "value": "ACTIVE"
+      },
+      {
+        "key": "INSTANCE_ROLE",
+        "name": "Instance Role",
+        "value": "PRIMARY_INSTANCE"
+      },
+      {
+        "key": "ACTIVE_STATE",
+        "name": "Active State",
+        "value": "NORMAL"
+      },
+      {
+        "key": "BLOCKED",
+        "name": "Blocked",
+        "value": "NO"
+      },
+      {
+        "key": "CON_ID",
+        "name": "Con ID",
+        "value": "0"
+      },
+      {
+        "key": "INSTANCE_MODE",
+        "name": "Instance Mode",
+        "value": "REGULAR"
+      },
+      {
+        "key": "EDITION",
+        "name": "Edition",
+        "value": "EE"
+      },
+      {
+        "key": "FAMILY",
+        "name": "Family"
       }
     ],
     "banners": [

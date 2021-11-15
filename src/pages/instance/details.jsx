@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Table, Form, Tabs } from "antd";
-import { MenuOutlined, BuildOutlined } from "@ant-design/icons";
+import { DatabaseOutlined, BuildOutlined, DeploymentUnitOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -11,8 +11,9 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
-const tableColumns_Summary = [
+const tableColumns_Database = [
   {
     title: "Field",
     dataIndex: "name",
@@ -24,6 +25,8 @@ const tableColumns_Summary = [
     key: "value",
   },
 ];
+
+const tableColumns_Instance = tableColumns_Database;
 
 const tableColumns_Banners = [
   {
@@ -57,6 +60,8 @@ const InstanceDetails = ({ classes }) => {
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
+  const { height } = useWindowDimensions();
+  const tableHeight = height - 260;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -85,7 +90,7 @@ const InstanceDetails = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.summary.length} records found.`, { variant: "info" });
+  enqueueSnackbar(`${data.database.length} records found.`, { variant: "info" });
 
   return (
     <div className={classes.root}>
@@ -93,8 +98,8 @@ const InstanceDetails = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <MenuOutlined />
-              Summary
+              <DatabaseOutlined />
+              Database
             </span>
           }
           key="summary"
@@ -106,21 +111,55 @@ const InstanceDetails = ({ classes }) => {
                 <RefreshButton onClick={handleRefresh} />
                 <ExportButton
                   csvReport={{
-                    data: data.summary,
-                    headers: getCsvHeaders(tableColumns_Summary),
-                    filename: "OMS_InstanceDetails.csv",
+                    data: data.database,
+                    headers: getCsvHeaders(tableColumns_Database),
+                    filename: "OMS_Database.csv",
                   }}
                 />
               </Form.Item>
             </div>
           </Form>
           <Table
-            columns={tableColumns_Summary}
-            dataSource={data.summary}
+            columns={tableColumns_Database}
+            dataSource={data.database}
             bordered
             size="small"
-            pagination={{ pageSize: 15, position: ["none"] }}
-            scroll={{ x: 700 }}
+            pagination={{ pageSize: 100, position: ["none"] }}
+            scroll={{ x: 700, y: tableHeight }}
+            rowKey="name"
+          />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <DeploymentUnitOutlined />
+              Instance
+            </span>
+          }
+          key="instance"
+        >
+          <Form form={form} layout={"inline"} size={"middle"}>
+            <Form.Item />
+            <div className={classes.tableTools}>
+              <Form.Item>
+                <RefreshButton onClick={handleRefresh} />
+                <ExportButton
+                  csvReport={{
+                    data: data.instance,
+                    headers: getCsvHeaders(tableColumns_Instance),
+                    filename: "OMS_Instance.csv",
+                  }}
+                />
+              </Form.Item>
+            </div>
+          </Form>
+          <Table
+            columns={tableColumns_Instance}
+            dataSource={data.instance}
+            bordered
+            size="small"
+            pagination={{ pageSize: 100, position: ["none"] }}
+            scroll={{ x: 700, y: tableHeight }}
             rowKey="name"
           />
         </TabPane>
