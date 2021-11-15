@@ -74,7 +74,7 @@ const InstanceDetails = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  enqueueSnackbar(`${data.summary.length} records found.`, { variant: "info" });
 
   return (
     <div className={classes.root}>
@@ -85,7 +85,7 @@ const InstanceDetails = ({ classes }) => {
             <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
-                data: data,
+                data: data.summary,
                 headers: getCsvHeaders(columns),
                 filename: "OMS_InstanceDetails.csv",
               }}
@@ -95,7 +95,7 @@ const InstanceDetails = ({ classes }) => {
       </Form>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={data.summary}
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}

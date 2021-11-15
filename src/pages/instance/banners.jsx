@@ -44,7 +44,7 @@ const Banners = ({ classes }) => {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/instance/banners`)
+        .get(`${baseUrl}/instance/details`)
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
@@ -67,7 +67,7 @@ const Banners = ({ classes }) => {
   };
 
   if (isLoading) return <Loading />;
-  enqueueSnackbar(`${data.length} records found.`, { variant: "info" });
+  enqueueSnackbar(`${data.banners.length} records found.`, { variant: "info" });
 
   return (
     <div className={classes.root}>
@@ -78,7 +78,7 @@ const Banners = ({ classes }) => {
             <RefreshButton onClick={handleRefresh} />
             <ExportButton
               csvReport={{
-                data: data,
+                data: data.banners,
                 headers: getCsvHeaders(columns),
                 filename: "OMS_Banners.csv",
               }}
@@ -88,7 +88,7 @@ const Banners = ({ classes }) => {
       </Form>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={data.banners}
         bordered
         size="small"
         pagination={{ pageSize: 15, position: ["none"] }}
