@@ -14,100 +14,7 @@ import { getCsvHeaders } from "../../util/util";
 import { useSnackbar } from "notistack";
 import SessionChart from "../../chart/SessionChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-
-const columns = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id",
-    width: 50,
-    align: "center",
-    render: (text) => <span style={{ color: "#1890FF" }}>{text}</span>,
-    sorter: (a, b) => a.id - b.id,
-    fixed: "left",
-  },
-  {
-    title: "Serial #",
-    dataIndex: "serialNo",
-    key: "serialNo",
-    width: 80,
-    sorter: (a, b) => a.serialNo - b.serialNo,
-    fixed: "left",
-    align: "center",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-    width: 100,
-    render: (status) => (
-      <Tag
-        color={status === "Active" ? "warning" : "success"}
-        icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
-        key={status}
-      >
-        {status}
-      </Tag>
-    ),
-    fixed: "left",
-    align: "center",
-  },
-  {
-    title: "Type",
-    dataIndex: "type",
-    key: "type",
-    width: 100,
-  },
-  {
-    title: "User Name",
-    dataIndex: "userName",
-    key: "userName",
-    width: 100,
-  },
-  {
-    title: "OS User",
-    dataIndex: "osUser",
-    key: "osUser",
-    width: 110,
-  },
-  {
-    title: "Machine",
-    dataIndex: "machine",
-    key: "machine",
-    width: 150,
-  },
-  {
-    title: "Terminal",
-    dataIndex: "terminal",
-    key: "terminal",
-    width: 150,
-  },
-  {
-    title: "Program",
-    dataIndex: "program",
-    key: "program",
-    width: 180,
-  },
-  {
-    title: "Module",
-    dataIndex: "module",
-    key: "module",
-    width: 150,
-  },
-  {
-    title: "Process",
-    dataIndex: "process",
-    key: "process",
-    width: 100,
-    sorter: (a, b) => a.process - b.process,
-  },
-  {
-    title: "Logon Time",
-    dataIndex: "logonTime",
-    key: "logonTime",
-    width: 180,
-  },
-];
+import SessionDetailModal from "../../components/SessionDetailModal";
 
 const getDistinctStatus = () => {
   return ["All", "Active", "Inactive"];
@@ -148,6 +55,7 @@ const Sessions = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
+  const [showDetail, setShowDetail] = useState(false);
   const statusList = getDistinctStatus();
   const userNameList = getDistinctUserNames(data);
   const [status, setStatus] = useState("All");
@@ -155,6 +63,104 @@ const Sessions = ({ classes }) => {
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      width: 50,
+      align: "center",
+      render: (text) => (
+        <a style={{ color: "#1890FF" }} onClick={() => setShowDetail(true)}>
+          {text}
+        </a>
+      ),
+      sorter: (a, b) => a.id - b.id,
+      fixed: "left",
+    },
+    {
+      title: "Serial #",
+      dataIndex: "serialNo",
+      key: "serialNo",
+      width: 80,
+      sorter: (a, b) => a.serialNo - b.serialNo,
+      fixed: "left",
+      align: "center",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      width: 100,
+      render: (status) => (
+        <Tag
+          color={status === "Active" ? "warning" : "success"}
+          icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
+          key={status}
+        >
+          {status}
+        </Tag>
+      ),
+      fixed: "left",
+      align: "center",
+    },
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+      width: 100,
+    },
+    {
+      title: "User Name",
+      dataIndex: "userName",
+      key: "userName",
+      width: 100,
+    },
+    {
+      title: "OS User",
+      dataIndex: "osUser",
+      key: "osUser",
+      width: 110,
+    },
+    {
+      title: "Machine",
+      dataIndex: "machine",
+      key: "machine",
+      width: 150,
+    },
+    {
+      title: "Terminal",
+      dataIndex: "terminal",
+      key: "terminal",
+      width: 150,
+    },
+    {
+      title: "Program",
+      dataIndex: "program",
+      key: "program",
+      width: 180,
+    },
+    {
+      title: "Module",
+      dataIndex: "module",
+      key: "module",
+      width: 150,
+    },
+    {
+      title: "Process",
+      dataIndex: "process",
+      key: "process",
+      width: 100,
+      sorter: (a, b) => a.process - b.process,
+    },
+    {
+      title: "Logon Time",
+      dataIndex: "logonTime",
+      key: "logonTime",
+      width: 180,
+    },
+  ];
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -209,8 +215,11 @@ const Sessions = ({ classes }) => {
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
 
+  console.log(showDetail);
+
   return (
     <div className={classes.root}>
+      <SessionDetailModal show={showDetail} onCancel={() => setShowDetail(false)} />
       <Tabs type="card">
         <TabPane
           tab={
