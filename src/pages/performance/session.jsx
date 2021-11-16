@@ -224,9 +224,6 @@ const Sessions = ({ classes }) => {
 
   return (
     <div className={classes.root}>
-      {showDetail && (
-        <SessionDetailModal sessionId={sessionId} show={showDetail} onCancel={() => setShowDetail(false)} />
-      )}
       <Tabs type="card">
         <TabPane
           tab={
@@ -237,6 +234,9 @@ const Sessions = ({ classes }) => {
           }
           key="table"
         >
+          {showDetail && (
+            <SessionDetailModal sessionId={sessionId} show={showDetail} onCancel={() => setShowDetail(false)} />
+          )}
           <Form form={form} layout={"inline"} size={"middle"} className={classes.form}>
             <Form.Item label="Status">
               <Select value={status} onChange={handleStatusChange} style={{ width: 100 }}>
