@@ -55,6 +55,7 @@ const Sessions = ({ classes }) => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
+  const [sessionId, setSessionId] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
   const statusList = getDistinctStatus();
   const userNameList = getDistinctUserNames(data);
@@ -72,7 +73,13 @@ const Sessions = ({ classes }) => {
       width: 50,
       align: "center",
       render: (text) => (
-        <a style={{ color: "#1890FF" }} onClick={() => setShowDetail(true)}>
+        <a
+          style={{ color: "#1890FF" }}
+          onClick={() => {
+            setSessionId(text);
+            setShowDetail(true);
+          }}
+        >
           {text}
         </a>
       ),
@@ -215,11 +222,11 @@ const Sessions = ({ classes }) => {
     enqueueSnackbar(`${filteredData.length} records found.`, { variant: "info" });
   }
 
-  console.log(showDetail);
-
   return (
     <div className={classes.root}>
-      <SessionDetailModal show={showDetail} onCancel={() => setShowDetail(false)} />
+      {showDetail && (
+        <SessionDetailModal sessionId={sessionId} show={showDetail} onCancel={() => setShowDetail(false)} />
+      )}
       <Tabs type="card">
         <TabPane
           tab={

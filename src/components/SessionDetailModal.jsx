@@ -1,24 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withStyles } from "@mui/styles";
-import { Modal, Table } from "antd";
+import { Button, Divider, Modal, Table, Tag } from "antd";
+import axios from "axios";
+import { BackendAPIContext } from "./../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "./../util/constants";
+import Loading from "./Loading";
+import ApiCallFailed from "./ApiCallFailed";
 
 const columns = [
   {
-    title: "Con ID",
-    dataIndex: "conId",
-    key: "conId",
-    width: 180,
-  },
-  {
-    title: "Type",
-    dataIndex: "type",
-    key: "type",
-    width: 180,
+    title: "Owner",
+    dataIndex: "owner",
+    key: "owner",
+    width: 140,
   },
   {
     title: "Object",
     dataIndex: "object",
     key: "object",
+    width: 240,
+  },
+  {
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+    width: 240,
+  },
+  {
+    title: "Con ID",
+    dataIndex: "conId",
+    key: "conId",
   },
 ];
 
@@ -27,26 +38,66 @@ const columns = [
 //-------------------------------------------------------------
 const styles = {
   root: {},
+  info: {
+    marginTop: "-15px",
+    marginBottom: "10px",
+  },
 };
 
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
 function SessionDetailModal({ classes, sessionId, show, onCancel }) {
-  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
+
+  const fetchData = async () => {
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/sessions/${sessionId}`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (isLoading) return <Loading />;
+  if (!data) return <ApiCallFailed />;
 
   return (
     <div className={classes.root}>
-      <Modal title="Session Details" visible={show} onCancel={onCancel} width={800}>
+      <Modal
+        title="Session Accessing Objects"
+        visible={show}
+        ononCancel={onCancel}
+        width={800}
+        footer={[
+          <Button key="back" type="primary" onClick={onCancel}>
+            Close
+          </Button>,
+        ]}
+      >
+        <h4 className={classes.info}>
+          Session ID: <Tag>{sessionId}</Tag> Total Accessing Objects: <Tag>{data.length}</Tag>
+        </h4>
         <Table
           columns={columns}
           dataSource={data}
           bordered
           size="small"
-          pagination={{ pageSize: 15, position: ["none"] }}
-          scroll={{ x: 700 }}
+          pagination={{ pageSize: 1000, position: ["none"] }}
+          scroll={{ x: 700, y: 300 }}
           rowKey="id"
         />
       </Modal>
