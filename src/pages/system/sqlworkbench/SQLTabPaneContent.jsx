@@ -40,7 +40,7 @@ const styles = {
   },
   input: {
     width: "100%",
-    fontFamily: "Consolas, Menlo",
+    //fontFamily: "Consolas, Menlo",
   },
   results: {
     marginTop: "5px",
