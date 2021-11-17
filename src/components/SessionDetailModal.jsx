@@ -12,7 +12,7 @@ const columns = [
     title: "Owner",
     dataIndex: "owner",
     key: "owner",
-    width: 140,
+    width: 200,
   },
   {
     title: "Object",
@@ -24,12 +24,6 @@ const columns = [
     title: "Type",
     dataIndex: "type",
     key: "type",
-    width: 240,
-  },
-  {
-    title: "Con ID",
-    dataIndex: "conId",
-    key: "conId",
   },
 ];
 
