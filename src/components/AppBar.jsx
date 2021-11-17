@@ -47,7 +47,7 @@ const AppBar = ({ icon, pageName }) => {
     <Header className="site-layout-background" style={{ paddingLeft: 16 }}>
       <Row justify="start">
         <Col span={12}>
-          <h3>{pageName}</h3>
+          <strong style={{ fontSize: "1.25rem" }}>{pageName}</strong>
         </Col>
         <Col span={12} style={{ textAlign: "right" }}>
           <Button type="text" icon={<QuestionCircleOutlined />} />

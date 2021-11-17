@@ -1,6 +1,7 @@
 import { useLocation, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { Layout } from "antd";
+import "rsuite/dist/rsuite.min.css";
 import "antd/dist/antd.css";
 import { withStyles } from "@mui/styles";
 import NavBar from "./components/NavBar";

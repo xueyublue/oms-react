@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Table, Tabs, Input, Button, Radio, Tooltip } from "antd";
+import { Tabs, Input, Button, Radio, Tooltip } from "antd";
 import { withStyles } from "@mui/styles";
 import {
   VscPlay,
@@ -18,6 +18,7 @@ import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import Loading from "../../../components/Loading";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import { Table, Pagination } from "rsuite";
 
 const { TabPane } = Tabs;
 
@@ -160,32 +161,43 @@ function SQLTabPaneContent({ classes }) {
               {results.map((result) => (
                 <TabPane tab={`${result.title}(${result.detail.length})`} key={result.title}>
                   <Table
-                    columns={generateTableColumns(result.header)}
-                    dataSource={result.detail}
                     className={classes.table}
+                    width={"100%"}
+                    height={height - 395}
+                    data={result.detail}
                     bordered
-                    size="small"
-                    scroll={{ x: 1000, y: result.detail.length <= 30 ? height - 425 : height - 480 }}
-                    pagination={
-                      result.detail.length <= 30
-                        ? {
-                            page: page,
-                            pageSize: pageSize,
-                            position: ["none"],
-                          }
-                        : {
-                            page: page,
-                            pageSize: pageSize,
-                            position: ["bottomRight"],
-                            pageSizeOptions: [30, 50, 100, 1000],
-                            onChange: (p, size) => {
-                              setPage(p);
-                              setPageSize(size);
-                            },
-                          }
-                    }
-                    rowKey={"ITEM_CODE"}
-                  />
+                    cellBordered
+                    headerHeight={30}
+                    rowHeight={28}
+                  >
+                    {result.header.map((item) => (
+                      <Table.Column width={140}>
+                        <Table.HeaderCell style={{ padding: 4, backgroundColor: "#FAFAFA", color: "black" }}>
+                          {item}
+                        </Table.HeaderCell>
+                        <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px" }} />
+                      </Table.Column>
+                    ))}
+                  </Table>
+                  <div style={{ paddingTop: 10 }}>
+                    <Pagination
+                      prev
+                      next
+                      first
+                      last
+                      ellipsis
+                      boundaryLinks
+                      maxButtons={5}
+                      size="xs"
+                      layout={["total", "-", "limit", "|", "pager", "skip"]}
+                      total={result.detail.length}
+                      limitOptions={[30, 50, 100, 1000]}
+                      limit={pageSize}
+                      activePage={page}
+                      onChangePage={setPage}
+                      onChangeLimit={setPageSize}
+                    />
+                  </div>
                 </TabPane>
               ))}
             </Tabs>
