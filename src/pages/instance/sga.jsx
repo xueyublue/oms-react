@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form, Row, Col, Tag, Tabs, Select } from "antd";
+import { Table, Progress, Form, Row, Col, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
-import { ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
+import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import { formatNumberWithCommasAndDecimals } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -24,7 +24,7 @@ const columns = [
     width: 250,
   },
   {
-    title: "Size",
+    title: "Size (MB)",
     dataIndex: "size",
     key: "size",
     width: 180,
@@ -59,16 +59,12 @@ const styles = {
   root: {
     width: "100%",
   },
-  tag: {
-    fontSize: "1rem",
-    padding: "5px",
-  },
   tableTools: {
     position: "absolute",
     right: 0,
   },
   table: {
-    marginTop: "10px",
+    marginTop: "0px",
   },
 };
 
@@ -134,11 +130,7 @@ const SgaConfigurations = ({ classes }) => {
           key="table"
         >
           <Form form={form} layout={"inline"} size={"middle"}>
-            <Form.Item>
-              <Tag className={classes.tag} icon={<ExclamationCircleOutlined />} color={"geekblue"}>
-                System Global Area (SGA): {data.maxSgaSize} MB in total.
-              </Tag>
-            </Form.Item>
+            <Form.Item />
             <div className={classes.tableTools}>
               <Form.Item>
                 <RefreshButton onClick={handleRefresh} />
@@ -160,8 +152,20 @@ const SgaConfigurations = ({ classes }) => {
                 dataSource={data.table}
                 bordered
                 size="small"
-                pagination={{ pageSize: 15, position: ["none"] }}
+                pagination={false}
                 rowKey="name"
+                summary={() => (
+                  <Table.Summary fixed>
+                    <Table.Summary.Row style={{ backgroundColor: "#FAFAFA" }}>
+                      <Table.Summary.Cell index={0}>
+                        <strong>Total System Global Area</strong>
+                      </Table.Summary.Cell>
+                      <Table.Summary.Cell index={1} align={"right"}>
+                        <strong>{formatNumberWithCommasAndDecimals(data.maxSgaSize)}</strong>
+                      </Table.Summary.Cell>
+                    </Table.Summary.Row>
+                  </Table.Summary>
+                )}
               />
             </Col>
           </Row>

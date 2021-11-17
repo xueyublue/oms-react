@@ -74,6 +74,7 @@ const Sessions = ({ classes }) => {
       align: "center",
       render: (text) => (
         <a
+          href="#"
           style={{ color: "#1890FF" }}
           onClick={() => {
             setSessionId(text);
