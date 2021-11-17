@@ -68,6 +68,8 @@ function SQLTabPaneContent({ classes }) {
 
   const handleSqlChange = (e) => setSql(e.target.value);
   const handleSqlQuery = () => {
+    setPage(1);
+    setPageSize(30);
     setIsLoading(true);
     fetchData();
   };
