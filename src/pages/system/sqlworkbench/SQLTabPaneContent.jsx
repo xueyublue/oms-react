@@ -22,12 +22,6 @@ import { Table, Pagination } from "rsuite";
 
 const { TabPane } = Tabs;
 
-const generateTableColumns = (header) => {
-  let cols = [];
-  header.map((h) => cols.push({ title: h, dataIndex: h, key: h, width: 150 }));
-  return cols;
-};
-
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -64,7 +58,7 @@ function SQLTabPaneContent({ classes }) {
   const [pageSize, setPageSize] = useState(30);
   const [limit, setLimit] = useState(30);
   const [sql, setSql] = useState(
-    "[Item] select * from dmitem;\n[Load] select * from dnload order by load_id desc;\n[Stock] select * from dnstock order by stock_id desc;\n[Shelf,10000] select * from dmshelfagc;"
+    "select * from dmitem;\n[KVs] select * from dnsystemkvs;\n[Shelf,10000] select * from dmshelfagc;\ndmarea;dmdevice;"
   );
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
@@ -159,7 +153,7 @@ function SQLTabPaneContent({ classes }) {
           <div className={classes.results}>
             <Tabs type="card" size="small">
               {results.map((result) => (
-                <TabPane tab={`${result.title}(${result.detail.length})`} key={result.title}>
+                <TabPane tab={result.title} key={result.title}>
                   <Table
                     className={classes.table}
                     width={"100%"}
@@ -175,7 +169,18 @@ function SQLTabPaneContent({ classes }) {
                     rowHeight={28}
                   >
                     {result.header.map((item) => (
-                      <Table.Column width={140}>
+                      <Table.Column
+                        width={
+                          item.length * 10 > 70
+                            ? item === "REGIST_DATE"
+                              ? "LAST_UPDATE_DATE".length * 10
+                              : item.length * 10
+                            : item === "KEYWORD"
+                            ? 262
+                            : 70
+                        }
+                        resizable
+                      >
                         <Table.HeaderCell style={{ padding: 4, backgroundColor: "#FAFAFA", color: "black" }}>
                           {item}
                         </Table.HeaderCell>
