@@ -164,7 +164,11 @@ function SQLTabPaneContent({ classes }) {
                     className={classes.table}
                     width={"100%"}
                     height={height - 395}
-                    data={result.detail}
+                    data={result.detail.filter((v, i) => {
+                      const start = pageSize * (page - 1);
+                      const end = start + pageSize;
+                      return i >= start && i < end;
+                    })}
                     bordered
                     cellBordered
                     headerHeight={30}
@@ -191,11 +195,14 @@ function SQLTabPaneContent({ classes }) {
                       size="xs"
                       layout={["total", "-", "limit", "|", "pager", "skip"]}
                       total={result.detail.length}
-                      limitOptions={[30, 50, 100, 1000]}
+                      limitOptions={[30, 50, 100]}
                       limit={pageSize}
                       activePage={page}
                       onChangePage={setPage}
-                      onChangeLimit={setPageSize}
+                      onChangeLimit={(value) => {
+                        setPage(1);
+                        setPageSize(value);
+                      }}
                     />
                   </div>
                 </TabPane>
