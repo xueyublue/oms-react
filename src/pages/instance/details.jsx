@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Tabs } from "antd";
+import { Form, Tabs } from "antd";
 import { DatabaseOutlined, BuildOutlined, DeploymentUnitOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
