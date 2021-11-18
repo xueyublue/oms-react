@@ -16,7 +16,7 @@ const columns = [
   {
     header: "Parameter Name",
     key: "name",
-    width: 280,
+    width: 300,
   },
   {
     header: "Value",
@@ -31,7 +31,7 @@ const columns = [
   {
     header: "Default?",
     key: "isDefault",
-    width: 100,
+    width: 80,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
@@ -41,7 +41,7 @@ const columns = [
   {
     header: "Session Modificable?",
     key: "isSessionModifiable",
-    width: 160,
+    width: 150,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
@@ -51,7 +51,7 @@ const columns = [
   {
     header: "System Modifucable?",
     key: "isSystemModifiable",
-    width: 160,
+    width: 150,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
@@ -61,7 +61,7 @@ const columns = [
   {
     header: "Instance Modificable?",
     key: "isInstanceModifiable",
-    width: 160,
+    width: 150,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
