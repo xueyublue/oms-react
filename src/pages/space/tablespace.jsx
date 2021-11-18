@@ -36,6 +36,7 @@ const columns = [
         color={status === "Online" ? "green" : "volcano"}
         icon={status === "Online" ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
         key={status}
+        style={{ width: "100%", textAlign: "center" }}
       >
         {status}
       </Tag>
@@ -89,7 +90,11 @@ const columns = [
     width: 110,
     align: "center",
     render: (autoExtensible) => (
-      <Tag color={autoExtensible === "Yes" ? "green" : "volcano"} key={autoExtensible}>
+      <Tag
+        color={autoExtensible === "Yes" ? "green" : "volcano"}
+        key={autoExtensible}
+        style={{ width: "100%", textAlign: "center" }}
+      >
         {autoExtensible}
       </Tag>
     ),

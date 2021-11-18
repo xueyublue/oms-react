@@ -106,6 +106,7 @@ const Sessions = ({ classes }) => {
           color={status === "Active" ? "warning" : "success"}
           icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
           key={status}
+          style={{ width: "100%", textAlign: "center" }}
         >
           {status}
         </Tag>
