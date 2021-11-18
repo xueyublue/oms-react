@@ -71,16 +71,17 @@ const Sessions = ({ classes }) => {
       key: "id",
       width: 80,
       renderCell: (text) => (
-        <a
-          href="#"
-          style={{ color: "#1890FF", width: "100%", textAlign: "center" }}
-          onClick={() => {
-            setSessionId(text);
-            setShowDetail(true);
-          }}
-        >
-          {text}
-        </a>
+        <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
+          <a
+            href="#"
+            onClick={() => {
+              setSessionId(text);
+              setShowDetail(true);
+            }}
+          >
+            {text}
+          </a>
+        </div>
       ),
     },
     {
