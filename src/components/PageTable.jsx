@@ -49,7 +49,12 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
         {columns.map((column) => (
           <Table.Column width={column.width} resizable>
             <HeaderCell>{column.header}</HeaderCell>
-            <BodyCell dataKey={column.key} />
+            <BodyCell>
+              {(rowData) => {
+                if (column.renderCell) return column.renderCell(rowData[column.key]);
+                return rowData[column.key];
+              }}
+            </BodyCell>
           </Table.Column>
         ))}
       </Table>

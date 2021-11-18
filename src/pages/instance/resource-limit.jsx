@@ -36,12 +36,16 @@ const columns = [
   {
     header: "Limit Value",
     key: "limitValue",
-    render: (limitValue) => (
-      <Tag color={limitValue === "Unlimited" ? "green" : "geekblue"} key={limitValue}>
-        {limitValue}
+    width: 150,
+    renderCell: (value) => (
+      <Tag
+        color={value === "Unlimited" ? "green" : "geekblue"}
+        key={value}
+        style={{ width: "100%", textAlign: "center" }}
+      >
+        {value}
       </Tag>
     ),
-    width: 150,
   },
 ];
 

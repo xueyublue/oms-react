@@ -32,8 +32,8 @@ const columns = [
     header: "Default?",
     key: "isDefault",
     width: 80,
-    render: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
+    renderCell: (value) => (
+      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
@@ -42,8 +42,8 @@ const columns = [
     header: "Session Modificable?",
     key: "isSessionModifiable",
     width: 150,
-    render: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
+    renderCell: (value) => (
+      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
@@ -52,8 +52,8 @@ const columns = [
     header: "System Modifucable?",
     key: "isSystemModifiable",
     width: 150,
-    render: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
+    renderCell: (value) => (
+      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
@@ -62,8 +62,8 @@ const columns = [
     header: "Instance Modificable?",
     key: "isInstanceModifiable",
     width: 150,
-    render: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
+    renderCell: (value) => (
+      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
