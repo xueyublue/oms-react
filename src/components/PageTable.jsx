@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { withStyles } from "@mui/styles";
 import { Table, Pagination } from "rsuite";
-import { columnHandledProps } from "rsuite-table/lib/Column";
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -21,6 +20,7 @@ const HeaderCell = (props) => (
       backgroundColor: "#FAFAFA",
       color: "black",
       fontSize: "14px",
+      fontWeight: 500,
     }}
   />
 );
@@ -48,7 +48,7 @@ function PageTable({ classes, height, columns, data }) {
       >
         {columns.map((column) => (
           <Table.Column width={column.width} resizable>
-            <HeaderCell>{column.title}</HeaderCell>
+            <HeaderCell>{column.header}</HeaderCell>
             <BodyCell dataKey={column.key} />
           </Table.Column>
         ))}
@@ -65,7 +65,7 @@ function PageTable({ classes, height, columns, data }) {
           size="xs"
           layout={["total", "-", "limit", "|", "pager", "skip"]}
           total={data.length}
-          limitOptions={[30, 50, 100]}
+          limitOptions={[30, 50, 100, 500]}
           limit={pageSize}
           activePage={page}
           onChangePage={setPage}

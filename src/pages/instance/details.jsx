@@ -16,14 +16,12 @@ import PageTable from "../../components/PageTable";
 
 const tableColumns_Database = [
   {
-    title: "Field",
-    dataIndex: "name",
+    header: "Field",
     key: "name",
     width: 400,
   },
   {
-    title: "Value",
-    dataIndex: "value",
+    header: "Value",
     key: "value",
     width: 400,
   },
@@ -33,9 +31,9 @@ const tableColumns_Instance = tableColumns_Database;
 
 const tableColumns_Banners = [
   {
-    title: "Banner",
-    dataIndex: "banner",
+    header: "Banner",
     key: "banner",
+    width: "100%",
   },
 ];
 
@@ -148,15 +146,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            columns={tableColumns_Instance}
-            dataSource={data.instance}
-            bordered
-            size="small"
-            pagination={{ pageSize: 100, position: ["none"] }}
-            scroll={{ x: 700, y: tableHeight }}
-            rowKey="name"
-          />
+          <PageTable height={tableHeight + 8} columns={tableColumns_Instance} data={data.instance} />
         </TabPane>
         <TabPane
           tab={
@@ -182,15 +172,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            columns={tableColumns_Banners}
-            dataSource={data.banners}
-            bordered
-            size="small"
-            pagination={{ pageSize: 15, position: ["none"] }}
-            scroll={{ x: 600 }}
-            rowKey="banner"
-          />
+          <PageTable height={tableHeight + 8} columns={tableColumns_Banners} data={data.banners} />
         </TabPane>
       </Tabs>
     </div>
