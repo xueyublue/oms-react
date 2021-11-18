@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Tag, Form } from "antd";
+import { Tag, Form } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -10,45 +10,38 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Resource Name",
-    dataIndex: "resourceName",
+    header: "Resource Name",
     key: "resourceName",
     width: 300,
-    sorter: (a, b) => a.resourceName > b.resourceName,
   },
   {
-    title: "Current Utilization",
-    dataIndex: "currentUtilization",
+    header: "Current Utilization",
     key: "currentUtilization",
     width: 150,
-    sorter: (a, b) => a.currentUtilization - b.currentUtilization,
   },
   {
-    title: "Max Utilization",
-    dataIndex: "maxUtilization",
+    header: "Max Utilization",
     key: "maxUtilization",
     width: 150,
-    sorter: (a, b) => a.maxUtilization - b.maxUtilization,
   },
   {
-    title: "Initial Allocation",
-    dataIndex: "initialAllocation",
+    header: "Initial Allocation",
     key: "initialAllocation",
     width: 150,
-    sorter: (a, b) => a.initialAllocation - b.initialAllocation,
   },
   {
-    title: "Limit Value",
-    dataIndex: "limitValue",
+    header: "Limit Value",
     key: "limitValue",
     render: (limitValue) => (
       <Tag color={limitValue === "Unlimited" ? "green" : "geekblue"} key={limitValue}>
         {limitValue}
       </Tag>
     ),
+    width: 150,
   },
 ];
 
@@ -70,14 +63,13 @@ const styles = {
 //-------------------------------------------------------------
 const ResourceLimit = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 196;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -129,24 +121,7 @@ const ResourceLimit = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        columns={columns}
-        dataSource={data}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1000, y: height - 260 }}
-        rowKey="resourceName"
-      />
+      <PageTable height={tableHeight} columns={columns} data={data} />
     </div>
   );
 };

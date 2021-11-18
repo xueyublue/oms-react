@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Tag, Form } from "antd";
+import { Tag, Form } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -10,32 +10,37 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Parameter Name",
-    dataIndex: "name",
+    header: "Parameter Name",
     key: "name",
-    width: 300,
-    fixed: "left",
+    width: 280,
   },
   {
-    title: "Value",
-    dataIndex: "value",
+    header: "Value",
     key: "value",
-    fixed: "left",
     width: 300,
   },
   {
-    title: "Description",
-    dataIndex: "description",
+    header: "Description",
     key: "description",
     width: 500,
   },
   {
-    title: "Default?",
-    dataIndex: "isDefault",
+    header: "Default?",
     key: "isDefault",
+    width: 100,
+    render: (value) => (
+      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
+        {value}
+      </Tag>
+    ),
+  },
+  {
+    header: "Session Modificable?",
+    key: "isSessionModifiable",
     width: 160,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
@@ -44,21 +49,9 @@ const columns = [
     ),
   },
   {
-    title: "Session Modificable?",
-    dataIndex: "isSessionModifiable",
-    key: "isSessionModifiable",
-    width: 180,
-    render: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
-        {value}
-      </Tag>
-    ),
-  },
-  {
-    title: "System Modifucable?",
-    dataIndex: "isSystemModifiable",
+    header: "System Modifucable?",
     key: "isSystemModifiable",
-    width: 180,
+    width: 160,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
@@ -66,10 +59,9 @@ const columns = [
     ),
   },
   {
-    title: "Instance Modificable?",
-    dataIndex: "isInstanceModifiable",
+    header: "Instance Modificable?",
     key: "isInstanceModifiable",
-    width: 180,
+    width: 160,
     render: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value}>
         {value}
@@ -96,14 +88,13 @@ const styles = {
 //-------------------------------------------------------------
 const Parameters = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 196;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -155,24 +146,7 @@ const Parameters = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        columns={columns}
-        dataSource={data}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1700, y: height - 260 }}
-        rowKey="name"
-      />
+      <PageTable height={tableHeight} columns={columns} data={data} />
     </div>
   );
 };
