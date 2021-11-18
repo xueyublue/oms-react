@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Form, Row, Col, Tabs, Select } from "antd";
+import { Progress, Form, Row, Col, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -15,38 +15,31 @@ import { getCsvHeaders } from "../../util/util";
 import SgaDoughnutChart from "../../chart/SgaDoughnutChart";
 import SgaBarChart from "./../../chart/SgaBarChart";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    header: "Name",
     key: "name",
     width: 250,
   },
   {
-    title: "Size (MB)",
-    dataIndex: "size",
+    header: "Size (MB)",
     key: "size",
-    width: 180,
-    align: "right",
-    render: (value) => formatNumberWithCommasAndDecimals(value),
-    sorter: (a, b) => a.size - b.size,
+    width: 120,
+    renderCell: (value) => (
+      <div style={{ textAlign: "right", width: "100%" }}>{formatNumberWithCommasAndDecimals(value)}</div>
+    ),
   },
   {
-    title: "Percentage%",
-    dataIndex: "percentage",
+    header: "Percentage%",
     key: "percentage",
-    render: (percentage) => (
-      <div>
-        <Progress
-          percent={percentage}
-          status={percentage >= 80 ? "exception" : "normal"}
-          strokeLinecap="square"
-          format={(percentage) => `${percentage}`}
-        />
+    width: 350,
+    renderCell: (percentage) => (
+      <div style={{ paddingRight: 20 }}>
+        <Progress percent={percentage} status={percentage >= 80 ? "exception" : "normal"} strokeLinecap="square" />
       </div>
     ),
-    sorter: (a, b) => a.percentage - b.percentage,
   },
 ];
 
@@ -63,9 +56,6 @@ const styles = {
     position: "absolute",
     right: 0,
   },
-  table: {
-    marginTop: "0px",
-  },
 };
 
 //-------------------------------------------------------------
@@ -80,6 +70,7 @@ const SgaConfigurations = ({ classes }) => {
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 263;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -144,31 +135,7 @@ const SgaConfigurations = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Row>
-            <Col lg={24} xl={24}>
-              <Table
-                className={classes.table}
-                columns={columns}
-                dataSource={data.table}
-                bordered
-                size="small"
-                pagination={false}
-                rowKey="name"
-                summary={() => (
-                  <Table.Summary fixed>
-                    <Table.Summary.Row style={{ backgroundColor: "#FAFAFA" }}>
-                      <Table.Summary.Cell index={0}>
-                        <strong>Total System Global Area</strong>
-                      </Table.Summary.Cell>
-                      <Table.Summary.Cell index={1} align={"right"}>
-                        <strong>{formatNumberWithCommasAndDecimals(data.maxSgaSize)}</strong>
-                      </Table.Summary.Cell>
-                    </Table.Summary.Row>
-                  </Table.Summary>
-                )}
-              />
-            </Col>
-          </Row>
+          <PageTable height={tableHeight} columns={columns} data={data.table} />
         </TabPane>
         <TabPane
           tab={
