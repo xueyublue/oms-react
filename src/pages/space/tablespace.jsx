@@ -47,13 +47,13 @@ const columns = [
     header: "Size (MB)",
     key: "size",
     width: 100,
-    renderCell: (value) => formatNumberWithCommas(value),
+    renderCell: (value) => <div style={{ textAlign: "right", width: "100%" }}>{formatNumberWithCommas(value)}</div>,
   },
   {
     header: "Free Size (MB) ",
     key: "freeSize",
     width: 120,
-    renderCell: (value) => formatNumberWithCommas(value),
+    renderCell: (value) => <div style={{ textAlign: "right", width: "100%" }}>{formatNumberWithCommas(value)}</div>,
   },
   {
     header: "Occupancy",
@@ -86,7 +86,7 @@ const columns = [
     header: "Next Extend (MB)",
     key: "nextExtend",
     width: 130,
-    renderCell: (value) => formatNumberWithCommas(value),
+    renderCell: (value) => <div style={{ textAlign: "right", width: "100%" }}>{formatNumberWithCommas(value)}</div>,
   },
   {
     header: "Contents",
