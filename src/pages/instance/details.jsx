@@ -12,6 +12,7 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const tableColumns_Database = [
   {
@@ -24,6 +25,7 @@ const tableColumns_Database = [
     title: "Value",
     dataIndex: "value",
     key: "value",
+    width: 400,
   },
 ];
 
@@ -120,15 +122,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            columns={tableColumns_Database}
-            dataSource={data.database}
-            bordered
-            size="small"
-            pagination={{ pageSize: 100, position: ["none"] }}
-            scroll={{ x: 700, y: tableHeight }}
-            rowKey="name"
-          />
+          <PageTable height={tableHeight + 8} columns={tableColumns_Database} data={data.database} />
         </TabPane>
         <TabPane
           tab={
