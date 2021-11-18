@@ -36,19 +36,19 @@ function SqlResultTable({ classes, height, result }) {
         rowHeight={28}
       >
         {result.header.map((item, index) => (
-          <Table.Column width={result.chars[index] * 7.6 > 70 ? result.chars[index] * 7.5 : 70} resizable>
+          <Table.Column width={result.chars[index] * 7.7 > 70 ? result.chars[index] * 7.7 : 70} resizable>
             <Table.HeaderCell
               style={{
                 padding: 4,
                 backgroundColor: "#FAFAFA",
                 color: "black",
                 fontSize: "12px",
-                fontFamily: "consolas",
+                fontFamily: "Calibri",
               }}
             >
               {item}
             </Table.HeaderCell>
-            <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px", fontFamily: "consolas" }} />
+            <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px", fontFamily: "Calibri" }} />
           </Table.Column>
         ))}
       </Table>
