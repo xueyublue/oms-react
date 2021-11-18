@@ -35,6 +35,7 @@ const tableColumns_Database = [
     header: "Field",
     key: "name",
     width: 400,
+    renderCell: (text) => <span style={{ fontWeight: 500 }}>{text}</span>,
   },
   {
     header: "Value",
