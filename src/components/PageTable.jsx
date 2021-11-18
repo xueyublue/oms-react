@@ -26,7 +26,7 @@ const HeaderCell = (props) => (
 );
 const BodyCell = (props) => <Table.Cell {...props} style={{ padding: 4, fontSize: "14px" }} />;
 
-function PageTable({ classes, height, columns, data }) {
+function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns, data }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
 
@@ -43,8 +43,8 @@ function PageTable({ classes, height, columns, data }) {
         })}
         bordered
         cellBordered
-        headerHeight={32}
-        rowHeight={30}
+        headerHeight={headerHeight}
+        rowHeight={rowHeight}
       >
         {columns.map((column) => (
           <Table.Column width={column.width} resizable>

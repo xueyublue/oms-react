@@ -14,31 +14,6 @@ import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
-const tableColumns_Database = [
-  {
-    header: "Field",
-    key: "name",
-    width: 400,
-  },
-  {
-    header: "Value",
-    key: "value",
-    width: 400,
-  },
-];
-
-const tableColumns_Instance = tableColumns_Database;
-
-const tableColumns_Banners = [
-  {
-    header: "Banner",
-    key: "banner",
-    width: "100%",
-  },
-];
-
-const TabPane = Tabs.TabPane;
-
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -55,14 +30,37 @@ const styles = {
 //-------------------------------------------------------------
 // PAGE START
 //-------------------------------------------------------------
+const tableColumns_Database = [
+  {
+    header: "Field",
+    key: "name",
+    width: 400,
+  },
+  {
+    header: "Value",
+    key: "value",
+    width: 400,
+  },
+];
+const tableColumns_Instance = tableColumns_Database;
+const tableColumns_Banners = [
+  {
+    header: "Banner",
+    key: "banner",
+    width: "100%",
+  },
+];
+const TabPane = Tabs.TabPane;
+
 const InstanceDetails = ({ classes }) => {
+  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
-  const tableHeight = height - 260;
+  const tableHeight = height - 252;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -91,7 +89,11 @@ const InstanceDetails = ({ classes }) => {
 
   if (isLoading) return <Loading />;
   if (!data) return <ApiCallFailed />;
-  enqueueSnackbar(`${data.database.length} records found.`, { variant: "info" });
+  //* display snackbar only one time on page load succeed
+  if (!pageLoad) {
+    setPageLoad(true);
+    enqueueSnackbar(`${data.database.length} records found.`, { variant: "info" });
+  }
 
   return (
     <div className={classes.root}>
@@ -120,7 +122,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <PageTable height={tableHeight + 8} columns={tableColumns_Database} data={data.database} />
+          <PageTable height={tableHeight} columns={tableColumns_Database} data={data.database} />
         </TabPane>
         <TabPane
           tab={
@@ -146,7 +148,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <PageTable height={tableHeight + 8} columns={tableColumns_Instance} data={data.instance} />
+          <PageTable height={tableHeight} columns={tableColumns_Instance} data={data.instance} />
         </TabPane>
         <TabPane
           tab={
@@ -172,7 +174,7 @@ const InstanceDetails = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <PageTable height={tableHeight + 8} columns={tableColumns_Banners} data={data.banners} />
+          <PageTable height={tableHeight} columns={tableColumns_Banners} data={data.banners} />
         </TabPane>
       </Tabs>
     </div>
