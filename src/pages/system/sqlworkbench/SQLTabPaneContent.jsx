@@ -18,7 +18,7 @@ import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import Loading from "../../../components/Loading";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
-import { Table, Pagination } from "rsuite";
+import SqlResultTable from "./SqlResultTable";
 
 const { TabPane } = Tabs;
 
@@ -40,13 +40,9 @@ const styles = {
   },
   input: {
     width: "100%",
-    //fontFamily: "Consolas, Menlo",
   },
   results: {
     marginTop: "5px",
-  },
-  table: {
-    marginTop: "-17px",
   },
 };
 
@@ -54,8 +50,6 @@ const styles = {
 // COMPONENT START
 //-------------------------------------------------------------
 function SQLTabPaneContent({ classes }) {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [limit, setLimit] = useState(30);
   const [sql, setSql] = useState(
     "select * from dmitem;\n[KVs] select * from dnsystemkvs;\n[Shelf,10000] select * from dmshelfagc;\ndmarea;dmdevice;"
@@ -68,8 +62,6 @@ function SQLTabPaneContent({ classes }) {
 
   const handleSqlChange = (e) => setSql(e.target.value);
   const handleSqlQuery = () => {
-    setPage(1);
-    setPageSize(30);
     setIsLoading(true);
     fetchData();
   };
@@ -156,62 +148,7 @@ function SQLTabPaneContent({ classes }) {
             <Tabs type="card" size="small">
               {results.map((result) => (
                 <TabPane tab={result.title} key={result.title}>
-                  <Table
-                    className={classes.table}
-                    width={"100%"}
-                    height={height - 395}
-                    data={result.detail.filter((v, i) => {
-                      const start = pageSize * (page - 1);
-                      const end = start + pageSize;
-                      return i >= start && i < end;
-                    })}
-                    bordered
-                    cellBordered
-                    headerHeight={30}
-                    rowHeight={28}
-                  >
-                    {result.header.map((item) => (
-                      <Table.Column
-                        width={
-                          item.length * 10 > 70
-                            ? item === "REGIST_DATE"
-                              ? "LAST_UPDATE_DATE".length * 10
-                              : item.length * 10
-                            : item === "KEYWORD"
-                            ? 262
-                            : 70
-                        }
-                        resizable
-                      >
-                        <Table.HeaderCell style={{ padding: 4, backgroundColor: "#FAFAFA", color: "black" }}>
-                          {item}
-                        </Table.HeaderCell>
-                        <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px" }} />
-                      </Table.Column>
-                    ))}
-                  </Table>
-                  <div style={{ paddingTop: 10 }}>
-                    <Pagination
-                      prev
-                      next
-                      first
-                      last
-                      ellipsis
-                      boundaryLinks
-                      maxButtons={5}
-                      size="xs"
-                      layout={["total", "-", "limit", "|", "pager", "skip"]}
-                      total={result.detail.length}
-                      limitOptions={[30, 50, 100]}
-                      limit={pageSize}
-                      activePage={page}
-                      onChangePage={setPage}
-                      onChangeLimit={(value) => {
-                        setPage(1);
-                        setPageSize(value);
-                      }}
-                    />
-                  </div>
+                  <SqlResultTable height={height - 395} result={result} />
                 </TabPane>
               ))}
             </Tabs>
