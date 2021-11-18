@@ -24,14 +24,9 @@ const columns = [
     width: 300,
   },
   {
-    header: "Description",
-    key: "description",
-    width: 500,
-  },
-  {
     header: "Default?",
     key: "isDefault",
-    width: 80,
+    width: 150,
     renderCell: (value) => (
       <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
@@ -49,7 +44,7 @@ const columns = [
     ),
   },
   {
-    header: "System Modifucable?",
+    header: "System Modificable?",
     key: "isSystemModifiable",
     width: 150,
     renderCell: (value) => (
@@ -67,6 +62,11 @@ const columns = [
         {value}
       </Tag>
     ),
+  },
+  {
+    header: "Description",
+    key: "description",
+    width: 470,
   },
 ];
 
