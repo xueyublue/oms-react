@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Tag, Form } from "antd";
+import { Tag, Form } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -11,28 +11,35 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Role ID",
-    dataIndex: "roleId",
+    header: "Role ID",
     key: "roleId",
     width: 80,
-    align: "center",
-    render: (text) => <span style={{ color: "#1890FF" }}>{text}</span>,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (text) => (
+      <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
+        <span>{text}</span>
+      </div>
+    ),
   },
   {
-    title: "Role",
-    dataIndex: "role",
+    header: "Role",
     key: "role",
     width: 300,
   },
   {
-    title: "Password Required?",
-    dataIndex: "passwordRequired",
+    header: "Password Required?",
     key: "passwordRequired",
-    render: (passwordRequired) => (
-      <Tag color={passwordRequired === "No" ? "green" : "geekblue"} key={passwordRequired}>
+    width: 150,
+    renderCell: (passwordRequired) => (
+      <Tag
+        color={passwordRequired === "No" ? "green" : "geekblue"}
+        key={passwordRequired}
+        style={{ width: "100%", textAlign: "center" }}
+      >
         {passwordRequired}
       </Tag>
     ),
@@ -57,14 +64,13 @@ const styles = {
 //-------------------------------------------------------------
 const Roles = ({ classes }) => {
   const [pageLoad, setPageLoad] = useState(false);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 207;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -117,24 +123,9 @@ const Roles = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        columns={columns}
-        dataSource={data}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 700, y: height - 260 }}
-        rowKey="role"
-      />
+      <div className={classes.table}>
+        <PageTable height={tableHeight} columns={columns} data={data} />
+      </div>
     </div>
   );
 };

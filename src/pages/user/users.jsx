@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
-import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { Form, Button, Select, Tag } from "antd";
+import { CheckCircleOutlined, LockOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
@@ -13,69 +13,63 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "User Name",
-    dataIndex: "userName",
+    header: "User Name",
     key: "userName",
     width: 220,
   },
   {
-    title: "Status",
-    dataIndex: "accountStatus",
+    header: "Status",
     key: "accountStatus",
-    width: 180,
-    render: (status) => (
+    width: 150,
+    renderCell: (status) => (
       <Tag
         color={status === "OPEN" ? "green" : "volcano"}
-        icon={status === "OPEN" ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
+        icon={status === "OPEN" ? <CheckCircleOutlined /> : <LockOutlined />}
         key={status}
+        style={{ width: "100%", textAlign: "center" }}
       >
         {status}
       </Tag>
     ),
   },
   {
-    title: "Profile",
-    dataIndex: "profile",
+    header: "Profile",
     key: "profile",
-    width: 100,
+    width: 150,
   },
   {
-    title: "Default Tablespace",
-    dataIndex: "defaultTablespace",
+    header: "Default Tablespace",
     key: "defaultTablespace",
     width: 200,
   },
   {
-    title: "Temp Tablespace",
-    dataIndex: "temporaryTablespace",
+    header: "Temp Tablespace",
     key: "temporaryTablespace",
     width: 150,
   },
   {
-    title: "Created Date",
-    dataIndex: "createdDate",
+    header: "Created Date",
     key: "createdDate",
     width: 170,
   },
   {
-    title: "Expiry Date",
-    dataIndex: "expiryDate",
+    header: "Expiry Date",
     key: "expiryDate",
     width: 170,
   },
   {
-    title: "Lock Date",
-    dataIndex: "lockDate",
+    header: "Lock Date",
     key: "lockDate",
     width: 170,
   },
   {
-    title: "Last Login Date",
-    dataIndex: "lastLogin",
+    header: "Last Login Date",
     key: "lastLogin",
+    width: 260,
   },
 ];
 
@@ -110,13 +104,12 @@ const Users = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const statusList = getDistinctStatus(data);
   const [status, setStatus] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 207;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -193,25 +186,9 @@ const Users = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        className={classes.table}
-        columns={columns}
-        dataSource={filteredData}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 1620, y: height - 270 }}
-        rowKey="userName"
-      />
+      <div className={classes.table}>
+        <PageTable height={tableHeight} columns={columns} data={filteredData} />
+      </div>
     </div>
   );
 };

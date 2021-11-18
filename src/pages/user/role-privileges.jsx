@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
+import { Form, Button, Select, Tag } from "antd";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
@@ -12,26 +12,29 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Role Name",
-    dataIndex: "role",
+    header: "Role Name",
     key: "role",
     width: 300,
   },
   {
-    title: "Privilege",
-    dataIndex: "privilege",
+    header: "Privilege",
     key: "privilege",
     width: 400,
   },
   {
-    title: "Admin Option",
-    dataIndex: "adminOption",
+    header: "Admin Option?",
     key: "adminOption",
-    render: (adminOption) => (
-      <Tag color={adminOption === "No" ? "green" : "volcano"} key={adminOption}>
+    width: 120,
+    renderCell: (adminOption) => (
+      <Tag
+        color={adminOption === "No" ? "green" : "volcano"}
+        key={adminOption}
+        style={{ width: "100%", textAlign: "center" }}
+      >
         {adminOption}
       </Tag>
     ),
@@ -69,13 +72,12 @@ const RolePrivileges = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const roleList = getDistinctRoles(data);
   const [role, setRole] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 207;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -152,25 +154,9 @@ const RolePrivileges = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        className={classes.table}
-        columns={columns}
-        dataSource={filteredData}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 900, y: height - 270 }}
-        rowKey={(item) => `${item.role}${item.privilege}`}
-      />
+      <div className={classes.table}>
+        <PageTable height={tableHeight} columns={columns} data={filteredData} />
+      </div>
     </div>
   );
 };

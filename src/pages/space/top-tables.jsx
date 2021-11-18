@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tabs } from "antd";
+import { Form, Button, Select, Tag, Tabs } from "antd";
 import { TableOutlined, AimOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
@@ -15,28 +15,29 @@ import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TopTablesChart from "./../../chart/TopTablesChart";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Owner",
-    dataIndex: "owner",
+    header: "Owner",
     key: "owner",
     width: 300,
   },
   {
-    title: "Segment Name",
-    dataIndex: "segmentName",
+    header: "Segment Name",
     key: "segmentName",
     width: 300,
   },
   {
-    title: "Segment Size (MB)",
-    dataIndex: "segmentSize",
+    header: "Segment Size (MB)",
     key: "segmentSize",
-    align: "right",
-    sorter: (a, b) => a.segmentSize - b.segmentSize,
-    render: (value) => (
-      <Tag color={value > 1024 ? "gold" : value === 0 ? "default" : "green"} key={value}>
+    width: 135,
+    renderCell: (value) => (
+      <Tag
+        color={value > 1024 ? "gold" : value === 0 ? "default" : "green"}
+        key={value}
+        style={{ width: "100%", textAlign: "right" }}
+      >
         {formatNumberWithCommas(value)}
       </Tag>
     ),
@@ -76,14 +77,13 @@ const TopTables = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const ownerList = getDistinctOwners(data);
   const [owner, setOwner] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 263;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -176,25 +176,9 @@ const TopTables = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            className={classes.table}
-            columns={columns}
-            dataSource={filteredData}
-            bordered
-            size="small"
-            pagination={{
-              page: page,
-              pageSize: pageSize,
-              position: ["bottomRight"],
-              pageSizeOptions: [30, 50, 100, 500],
-              onChange: (p, size) => {
-                setPage(p);
-                setPageSize(size);
-              },
-            }}
-            scroll={{ x: 800, y: height - 325 }}
-            rowKey="segmentName"
-          />
+          <div className={classes.table}>
+            <PageTable height={tableHeight} columns={columns} data={filteredData} />
+          </div>
         </TabPane>
         <TabPane
           tab={

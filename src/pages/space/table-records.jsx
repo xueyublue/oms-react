@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tabs, Tooltip } from "antd";
+import { Form, Button, Select, Tag, Tabs, Tooltip } from "antd";
 import { TableOutlined, AimOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
@@ -15,43 +15,39 @@ import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
 import TableRecordsChart from "../../chart/TableRecordsChart";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Owner",
-    dataIndex: "owner",
+    header: "Owner",
     key: "owner",
     width: 200,
   },
   {
-    title: "Table Name",
-    dataIndex: "tableName",
+    header: "Table Name",
     key: "tableName",
     width: 300,
   },
   {
-    title: "Total Records",
-    dataIndex: "totalRecords",
+    header: "Total Records",
     key: "totalRecords",
-    align: "right",
-    width: 200,
-    sorter: (a, b) => a.totalRecords - b.totalRecords,
-    render: (value) => {
+    width: 135,
+    renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";
       else if (value < 10000) style = "green";
       else style = "gold";
       return (
-        <Tag color={style} key={value}>
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
           {formatNumberWithCommas(value)}
         </Tag>
       );
     },
   },
   {
-    title: "Tablespace Name",
-    dataIndex: "tablespace",
+    header: "Tablespace Name",
     key: "tablespace",
+    width: 250,
   },
 ];
 
@@ -88,14 +84,13 @@ const TableRecords = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const [owner, setOwner] = useState("All");
   const ownerList = getDistinctOwners(data);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 263;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -190,25 +185,9 @@ const TableRecords = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            className={classes.table}
-            columns={columns}
-            dataSource={filteredData}
-            bordered
-            size="small"
-            pagination={{
-              page: page,
-              pageSize: pageSize,
-              position: ["bottomRight"],
-              pageSizeOptions: [30, 50, 100, 500],
-              onChange: (p, size) => {
-                setPage(p);
-                setPageSize(size);
-              },
-            }}
-            scroll={{ x: 1000, y: height - 325 }}
-            rowKey="tableName"
-          />
+          <div className={classes.table}>
+            <PageTable height={tableHeight} columns={columns} data={filteredData} />
+          </div>
         </TabPane>
         <TabPane
           tab={

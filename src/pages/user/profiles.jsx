@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag } from "antd";
+import { Form, Button, Select, Tag } from "antd";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
@@ -12,32 +12,34 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Profile",
-    dataIndex: "profile",
+    header: "Profile",
     key: "profile",
     width: 160,
   },
   {
-    title: "Resource Type",
-    dataIndex: "resourceType",
+    header: "Resource Type",
     key: "resourceType",
     width: 140,
   },
   {
-    title: "Resource Name",
-    dataIndex: "resourceName",
+    header: "Resource Name",
     key: "resourceName",
     width: 300,
   },
   {
-    title: "Resource Limit",
-    dataIndex: "limit",
+    header: "Resource Limit",
     key: "limit",
-    render: (limit) => (
-      <Tag color={limit === "Unlimited" ? "green" : limit === "Default" ? "geekblue" : "volcano"} key={limit}>
+    width: 170,
+    renderCell: (limit) => (
+      <Tag
+        color={limit === "Unlimited" ? "green" : limit === "Default" ? "geekblue" : "volcano"}
+        key={limit}
+        style={{ width: "100%", textAlign: "center" }}
+      >
         {limit}
       </Tag>
     ),
@@ -75,13 +77,12 @@ const Profiles = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const profileList = getDistinctProfiles(data);
   const [profile, setProfile] = useState("All");
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 207;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -158,25 +159,9 @@ const Profiles = ({ classes }) => {
           </Form.Item>
         </div>
       </Form>
-      <Table
-        className={classes.table}
-        columns={columns}
-        dataSource={filteredData}
-        bordered
-        size="small"
-        pagination={{
-          page: page,
-          pageSize: pageSize,
-          position: ["bottomRight"],
-          pageSizeOptions: [30, 50, 100, 500],
-          onChange: (p, size) => {
-            setPage(p);
-            setPageSize(size);
-          },
-        }}
-        scroll={{ x: 800, y: height - 270 }}
-        rowKey="resourceName"
-      />
+      <div className={classes.table}>
+        <PageTable height={tableHeight} columns={columns} data={filteredData} />
+      </div>
     </div>
   );
 };
