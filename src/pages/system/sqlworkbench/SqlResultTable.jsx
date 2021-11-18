@@ -35,23 +35,20 @@ function SqlResultTable({ classes, height, result }) {
         headerHeight={30}
         rowHeight={28}
       >
-        {result.header.map((item) => (
-          <Table.Column
-            width={
-              item.length * 10 > 70
-                ? item === "REGIST_DATE"
-                  ? "LAST_UPDATE_DATE".length * 10
-                  : item.length * 10
-                : item === "KEYWORD"
-                ? 262
-                : 70
-            }
-            resizable
-          >
-            <Table.HeaderCell style={{ padding: 4, backgroundColor: "#FAFAFA", color: "black" }}>
+        {result.header.map((item, index) => (
+          <Table.Column width={result.chars[index] * 7.6 > 70 ? result.chars[index] * 7.5 : 70} resizable>
+            <Table.HeaderCell
+              style={{
+                padding: 4,
+                backgroundColor: "#FAFAFA",
+                color: "black",
+                fontSize: "12px",
+                fontFamily: "consolas",
+              }}
+            >
               {item}
             </Table.HeaderCell>
-            <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px" }} />
+            <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px", fontFamily: "consolas" }} />
           </Table.Column>
         ))}
       </Table>
