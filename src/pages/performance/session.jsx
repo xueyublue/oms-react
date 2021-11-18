@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+  TableOutlined,
+  DashboardOutlined,
+  UserOutlined,
+  SyncOutlined,
+} from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
@@ -93,7 +100,7 @@ const Sessions = ({ classes }) => {
     {
       header: "Status",
       key: "status",
-      width: 100,
+      width: 120,
       renderCell: (status) => (
         <Tag
           color={status === "Active" ? "gold" : "success"}
@@ -110,7 +117,12 @@ const Sessions = ({ classes }) => {
       key: "type",
       width: 120,
       renderCell: (type) => (
-        <Tag color={type === "User" ? "gold" : "success"} key={type} style={{ width: "100%", textAlign: "center" }}>
+        <Tag
+          color={type === "User" ? "gold" : "success"}
+          icon={type === "User" ? <UserOutlined /> : <SyncOutlined />}
+          key={type}
+          style={{ width: "100%", textAlign: "center" }}
+        >
           {type}
         </Tag>
       ),
