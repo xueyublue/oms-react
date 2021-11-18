@@ -26,7 +26,7 @@ const HeaderCell = (props) => (
 );
 const BodyCell = (props) => <Table.Cell {...props} style={{ padding: 4, fontSize: "14px" }} />;
 
-function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns, data }) {
+function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns, data, hidePagination = false }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
 
@@ -36,11 +36,15 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
         className={classes.table}
         width={"100%"}
         height={height}
-        data={data.filter((v, i) => {
-          const start = pageSize * (page - 1);
-          const end = start + pageSize;
-          return i >= start && i < end;
-        })}
+        data={
+          hidePagination
+            ? data
+            : data.filter((v, i) => {
+                const start = pageSize * (page - 1);
+                const end = start + pageSize;
+                return i >= start && i < end;
+              })
+        }
         bordered
         cellBordered
         headerHeight={headerHeight}
@@ -58,28 +62,30 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
           </Table.Column>
         ))}
       </Table>
-      <div style={{ paddingTop: 10 }}>
-        <Pagination
-          prev
-          next
-          first
-          last
-          ellipsis
-          boundaryLinks
-          maxButtons={5}
-          size="xs"
-          layout={["total", "-", "limit", "|", "pager", "skip"]}
-          total={data.length}
-          limitOptions={[30, 50, 100, 500]}
-          limit={pageSize}
-          activePage={page}
-          onChangePage={setPage}
-          onChangeLimit={(value) => {
-            setPage(1);
-            setPageSize(value);
-          }}
-        />
-      </div>
+      {!hidePagination && (
+        <div style={{ paddingTop: 10 }}>
+          <Pagination
+            prev
+            next
+            first
+            last
+            ellipsis
+            boundaryLinks
+            maxButtons={5}
+            size="xs"
+            layout={["total", "-", "limit", "|", "pager", "skip"]}
+            total={data.length}
+            limitOptions={[30, 50, 100, 500]}
+            limit={pageSize}
+            activePage={page}
+            onChangePage={setPage}
+            onChangeLimit={(value) => {
+              setPage(1);
+              setPageSize(value);
+            }}
+          />
+        </div>
+      )}
     </>
   );
 }

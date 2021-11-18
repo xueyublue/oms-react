@@ -1,29 +1,38 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withStyles } from "@mui/styles";
 import { Button, Modal, Table, Tag } from "antd";
+import { UserOutlined, SyncOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { BackendAPIContext } from "./../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "./../util/constants";
 import Loading from "./Loading";
 import ApiCallFailed from "./ApiCallFailed";
+import PageTable from "./PageTable";
 
 const columns = [
   {
-    title: "Owner",
-    dataIndex: "owner",
+    header: "Owner",
     key: "owner",
-    width: 200,
+    width: 150,
   },
   {
-    title: "Object",
-    dataIndex: "object",
-    key: "object",
-    width: 240,
-  },
-  {
-    title: "Type",
-    dataIndex: "type",
+    header: "Type",
     key: "type",
+    width: 180,
+    renderCell: (type) => (
+      <Tag
+        color={type === "TABLE" || type === "VIEW" ? "success" : "gold"}
+        key={type}
+        style={{ width: "100%", textAlign: "center" }}
+      >
+        {type}
+      </Tag>
+    ),
+  },
+  {
+    header: "Object",
+    key: "object",
+    width: 420,
   },
 ];
 
@@ -85,15 +94,9 @@ function SessionDetailModal({ classes, sessionId, show, onCancel }) {
         <h4 className={classes.info}>
           Session ID: <Tag>{sessionId}</Tag> Total Accessing Objects: <Tag>{data.length}</Tag>
         </h4>
-        <Table
-          columns={columns}
-          dataSource={data}
-          bordered
-          size="small"
-          pagination={{ pageSize: 1000, position: ["none"] }}
-          scroll={{ x: 700, y: 300 }}
-          rowKey="id"
-        />
+        <div className={classes.table}>
+          <PageTable height={350} columns={columns} data={data} hidePagination />
+        </div>
       </Modal>
     </div>
   );
