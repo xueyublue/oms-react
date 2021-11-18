@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Form, Button, Select, Tag, Tabs } from "antd";
+import { Form, Button, Select, Tag, Tabs } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
@@ -15,6 +15,7 @@ import { useSnackbar } from "notistack";
 import SessionChart from "../../chart/SessionChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import SessionDetailModal from "../../components/SessionDetailModal";
+import PageTable from "../../components/PageTable";
 
 const getDistinctStatus = () => {
   return ["All", "Active", "Inactive"];
@@ -53,8 +54,6 @@ const Sessions = ({ classes }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [form] = Form.useForm();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(30);
   const [sessionId, setSessionId] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
   const statusList = getDistinctStatus();
@@ -64,18 +63,17 @@ const Sessions = ({ classes }) => {
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const tableHeight = height - 263;
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
+      header: "ID",
       key: "id",
-      width: 50,
-      align: "center",
-      render: (text) => (
+      width: 80,
+      renderCell: (text) => (
         <a
           href="#"
-          style={{ color: "#1890FF" }}
+          style={{ color: "#1890FF", width: "100%", textAlign: "center" }}
           onClick={() => {
             setSessionId(text);
             setShowDetail(true);
@@ -84,24 +82,17 @@ const Sessions = ({ classes }) => {
           {text}
         </a>
       ),
-      sorter: (a, b) => a.id - b.id,
-      fixed: "left",
     },
     {
-      title: "Serial #",
-      dataIndex: "serialNo",
+      header: "Serial #",
       key: "serialNo",
       width: 80,
-      sorter: (a, b) => a.serialNo - b.serialNo,
-      fixed: "left",
-      align: "center",
     },
     {
-      title: "Status",
-      dataIndex: "status",
+      header: "Status",
       key: "status",
       width: 100,
-      render: (status) => (
+      renderCell: (status) => (
         <Tag
           color={status === "Active" ? "warning" : "success"}
           icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
@@ -111,61 +102,49 @@ const Sessions = ({ classes }) => {
           {status}
         </Tag>
       ),
-      fixed: "left",
-      align: "center",
     },
     {
-      title: "Type",
-      dataIndex: "type",
+      header: "Type",
       key: "type",
       width: 100,
     },
     {
-      title: "User Name",
-      dataIndex: "userName",
+      header: "User Name",
       key: "userName",
       width: 100,
     },
     {
-      title: "OS User",
-      dataIndex: "osUser",
+      header: "OS User",
       key: "osUser",
-      width: 110,
+      width: 150,
     },
     {
-      title: "Machine",
-      dataIndex: "machine",
+      header: "Machine",
       key: "machine",
       width: 150,
     },
     {
-      title: "Terminal",
-      dataIndex: "terminal",
+      header: "Terminal",
       key: "terminal",
       width: 150,
     },
     {
-      title: "Program",
-      dataIndex: "program",
+      header: "Program",
       key: "program",
       width: 180,
     },
     {
-      title: "Module",
-      dataIndex: "module",
+      header: "Module",
       key: "module",
-      width: 150,
+      width: 180,
     },
     {
-      title: "Process",
-      dataIndex: "process",
+      header: "Process",
       key: "process",
       width: 100,
-      sorter: (a, b) => a.process - b.process,
     },
     {
-      title: "Logon Time",
-      dataIndex: "logonTime",
+      header: "Logon Time",
       key: "logonTime",
       width: 180,
     },
@@ -274,25 +253,9 @@ const Sessions = ({ classes }) => {
               />
             </Form.Item>
           </Form>
-          <Table
-            className={classes.table}
-            columns={columns}
-            dataSource={filteredData}
-            bordered
-            size="small"
-            pagination={{
-              page: page,
-              pageSize: pageSize,
-              position: ["bottomRight"],
-              pageSizeOptions: [30, 50, 100, 500],
-              onChange: (p, size) => {
-                setPage(p);
-                setPageSize(size);
-              },
-            }}
-            scroll={{ x: 1600, y: height - 325 }}
-            rowKey="id"
-          />
+          <div className={classes.table}>
+            <PageTable height={tableHeight} columns={columns} data={data} />
+          </div>
         </TabPane>
         <TabPane
           tab={
