@@ -70,7 +70,6 @@ const SgaConfigurations = ({ classes }) => {
   const [form] = Form.useForm();
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
-  const tableHeight = height - 263;
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -107,6 +106,7 @@ const SgaConfigurations = ({ classes }) => {
   }
   let chartContainerHeight = height - 190;
   if (chartContainerHeight <= 300) chartContainerHeight = 300;
+  const tableHeight = height - 252;
 
   return (
     <div className={classes.root}>
