@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withStyles } from "@mui/styles";
-import { Button, Modal, Table, Tag } from "antd";
-import { UserOutlined, SyncOutlined } from "@ant-design/icons";
+import { Button, Modal, Tag } from "antd";
 import axios from "axios";
 import { BackendAPIContext } from "./../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "./../util/constants";
