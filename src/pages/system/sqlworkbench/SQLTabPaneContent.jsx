@@ -40,6 +40,7 @@ const styles = {
   },
   input: {
     width: "100%",
+    fontFamily: "Calibri",
   },
   results: {
     marginTop: "5px",
