@@ -22,12 +22,12 @@ const HeaderCell = (props) => (
       padding: 4,
       backgroundColor: "#FAFAFA",
       color: "black",
-      fontSize: "12px",
+      fontSize: "13px",
       fontFamily: "Calibri",
     }}
   />
 );
-const BodyCell = (props) => <Table.Cell {...props} style={{ padding: 4, fontSize: "12px", fontFamily: "Calibri" }} />;
+const BodyCell = (props) => <Table.Cell {...props} style={{ padding: 4, fontSize: "13px", fontFamily: "Calibri" }} />;
 
 function SqlResultTable({ classes, height, result }) {
   const [page, setPage] = useState(1);
@@ -50,7 +50,7 @@ function SqlResultTable({ classes, height, result }) {
         rowHeight={28}
       >
         {result.header.map((item, index) => (
-          <Table.Column width={result.chars[index] * 7.7 > 70 ? result.chars[index] * 7.7 : 70} resizable>
+          <Table.Column width={result.chars[index] * 8.2 > 80 ? result.chars[index] * 8.2 : 80} resizable>
             <HeaderCell>{item}</HeaderCell>
             <BodyCell dataKey={item} />
           </Table.Column>
