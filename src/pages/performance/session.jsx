@@ -70,6 +70,7 @@ const Sessions = ({ classes }) => {
       header: "ID",
       key: "id",
       width: 80,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (text) => (
         <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
           <a
