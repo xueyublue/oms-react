@@ -15,6 +15,20 @@ const styles = {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
+const HeaderCell = (props) => (
+  <Table.HeaderCell
+    {...props}
+    style={{
+      padding: 4,
+      backgroundColor: "#FAFAFA",
+      color: "black",
+      fontSize: "12px",
+      fontFamily: "Calibri",
+    }}
+  />
+);
+const BodyCell = (props) => <Table.Cell {...props} style={{ padding: 4, fontSize: "12px", fontFamily: "Calibri" }} />;
+
 function SqlResultTable({ classes, height, result }) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
@@ -37,18 +51,8 @@ function SqlResultTable({ classes, height, result }) {
       >
         {result.header.map((item, index) => (
           <Table.Column width={result.chars[index] * 7.7 > 70 ? result.chars[index] * 7.7 : 70} resizable>
-            <Table.HeaderCell
-              style={{
-                padding: 4,
-                backgroundColor: "#FAFAFA",
-                color: "black",
-                fontSize: "12px",
-                fontFamily: "Calibri",
-              }}
-            >
-              {item}
-            </Table.HeaderCell>
-            <Table.Cell dataKey={item} style={{ padding: 4, fontSize: "12px", fontFamily: "Calibri" }} />
+            <HeaderCell>{item}</HeaderCell>
+            <BodyCell dataKey={item} />
           </Table.Column>
         ))}
       </Table>
