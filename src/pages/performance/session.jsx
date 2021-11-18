@@ -94,7 +94,7 @@ const Sessions = ({ classes }) => {
       width: 100,
       renderCell: (status) => (
         <Tag
-          color={status === "Active" ? "warning" : "success"}
+          color={status === "Active" ? "gold" : "success"}
           icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
           key={status}
           style={{ width: "100%", textAlign: "center" }}
@@ -106,7 +106,12 @@ const Sessions = ({ classes }) => {
     {
       header: "Type",
       key: "type",
-      width: 100,
+      width: 120,
+      renderCell: (type) => (
+        <Tag color={type === "User" ? "gold" : "success"} key={type} style={{ width: "100%", textAlign: "center" }}>
+          {type}
+        </Tag>
+      ),
     },
     {
       header: "User Name",
@@ -254,7 +259,7 @@ const Sessions = ({ classes }) => {
             </Form.Item>
           </Form>
           <div className={classes.table}>
-            <PageTable height={tableHeight} columns={columns} data={data} />
+            <PageTable height={tableHeight} columns={columns} data={filteredData} />
           </div>
         </TabPane>
         <TabPane
