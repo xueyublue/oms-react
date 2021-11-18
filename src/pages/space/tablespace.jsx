@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Progress, Tag, Form, Row, Col, Tabs } from "antd";
+import { Progress, Tag, Form, Row, Col, Tabs } from "antd";
 import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
@@ -15,65 +15,51 @@ import { getCsvHeaders } from "../../util/util";
 import TablespaceSizeChart from "../../chart/TablespaceSizeChart";
 import TablespaceOccupancyChart from "../../chart/TablespaceOccupancyChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import PageTable from "../../components/PageTable";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    header: "Name",
     key: "name",
-    width: 200,
-    sorter: (a, b) => a.name > b.name,
-    fixed: "left",
+    width: 250,
   },
   {
-    title: "Status",
-    dataIndex: "status",
+    header: "Path",
+    key: "path",
+    width: 400,
+  },
+  {
+    header: "Status",
     key: "status",
     width: 100,
-    align: "center",
-    render: (status) => (
+    renderCell: (status) => (
       <Tag
         color={status === "Online" ? "green" : "volcano"}
         icon={status === "Online" ? <CheckCircleOutlined /> : <ExclamationCircleOutlined />}
         key={status}
-        style={{ width: "100%", textAlign: "center" }}
+        style={{ width: "100%", height: "100%", textAlign: "center" }}
       >
         {status}
       </Tag>
     ),
   },
   {
-    title: "Path",
-    dataIndex: "path",
-    key: "path",
-    width: 400,
-    sorter: (a, b) => a.path > b.path,
-  },
-  {
-    title: "Size (MB)",
-    dataIndex: "size",
+    header: "Size (MB)",
     key: "size",
     width: 100,
-    align: "right",
-    render: (value) => formatNumberWithCommas(value),
-    sorter: (a, b) => a.size - b.size,
+    renderCell: (value) => formatNumberWithCommas(value),
   },
   {
-    title: "Free Size (MB) ",
-    dataIndex: "freeSize",
+    header: "Free Size (MB) ",
     key: "freeSize",
     width: 120,
-    align: "right",
-    render: (value) => formatNumberWithCommas(value),
-    sorter: (a, b) => a.freeSize - b.freeSize,
+    renderCell: (value) => formatNumberWithCommas(value),
   },
   {
-    title: "Occupancy",
-    dataIndex: "occupancy",
+    header: "Occupancy",
     key: "occupancy",
-    width: 140,
-    align: "center",
-    render: (text) => (
+    width: 200,
+    renderCell: (text) => (
       <Progress
         percent={text}
         status={text >= 80 ? "exception" : "normal"}
@@ -81,41 +67,34 @@ const columns = [
         format={(percent) => `${percent}%`}
       />
     ),
-    sorter: (a, b) => a.occupancy - b.occupancy,
   },
   {
-    title: "Auto Extend?",
-    dataIndex: "autoExtensible",
+    header: "Auto Extend?",
     key: "autoExtensible",
-    width: 110,
-    align: "center",
-    render: (autoExtensible) => (
+    width: 100,
+    renderCell: (autoExtensible) => (
       <Tag
         color={autoExtensible === "Yes" ? "green" : "volcano"}
         key={autoExtensible}
-        style={{ width: "100%", textAlign: "center" }}
+        style={{ width: "100%", height: "100%", textAlign: "center" }}
       >
         {autoExtensible}
       </Tag>
     ),
   },
   {
-    title: "Next Extend (MB)",
-    dataIndex: "nextExtend",
+    header: "Next Extend (MB)",
     key: "nextExtend",
     width: 130,
-    align: "right",
-    render: (value) => formatNumberWithCommas(value),
+    renderCell: (value) => formatNumberWithCommas(value),
   },
   {
-    title: "Contents",
-    dataIndex: "contents",
+    header: "Contents",
     key: "contents",
     width: 100,
   },
   {
-    title: "Allocation Type",
-    dataIndex: "allocationType",
+    header: "Allocation Type",
     key: "allocationType",
     width: 120,
   },
@@ -201,6 +180,7 @@ const Tablespace = ({ classes }) => {
   }
   let chartHeight = (height - 200) / 2;
   if (chartHeight <= 340) chartHeight = 340;
+  const tableHeight = height - 252;
 
   return (
     <div className={classes.root}>
@@ -229,15 +209,9 @@ const Tablespace = ({ classes }) => {
               </Form.Item>
             </div>
           </Form>
-          <Table
-            columns={columns}
-            dataSource={data.table}
-            bordered
-            size="small"
-            pagination={{ pageSize: 15, position: ["none"] }}
-            scroll={{ x: 1500 }}
-            rowKey="name"
-          />
+          <div className={classes.table}>
+            <PageTable height={tableHeight} columns={columns} data={data.table} />
+          </div>
         </TabPane>
         <TabPane
           tab={
