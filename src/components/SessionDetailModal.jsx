@@ -91,9 +91,11 @@ function SessionDetailModal({ classes, sessionId, show, onCancel }) {
           </Button>,
         ]}
       >
-        <h4 className={classes.info}>
-          Session ID: <Tag>{sessionId}</Tag> Total Accessing Objects: <Tag>{data.length}</Tag>
-        </h4>
+        <div className={classes.info}>
+          <strong>
+            Session ID: <Tag>{sessionId}</Tag> Total Accessing Objects: <Tag>{data.length}</Tag>
+          </strong>
+        </div>
         <div className={classes.table}>
           <PageTable height={350} columns={columns} data={data} hidePagination />
         </div>
