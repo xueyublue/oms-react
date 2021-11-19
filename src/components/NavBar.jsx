@@ -86,13 +86,13 @@ const NavBar = ({ classes }) => {
             <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_SGA}>
-            <Link to={Constants.ROUTE_INSTANCE_SGA}>SGA</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
-            <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>Resource Limit</Link>
+            <Link to={Constants.ROUTE_INSTANCE_SGA}>System Global Area</Link>
           </Menu.Item>
           <Menu.Item key={Constants.ROUTE_INSTANCE_PARAMETERS}>
             <Link to={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Link>
+          </Menu.Item>
+          <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
+            <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>Resource Limit</Link>
           </Menu.Item>
         </SubMenu>
         {/* //* Performance */}

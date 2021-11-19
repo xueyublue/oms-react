@@ -5,8 +5,8 @@ export const ROUTE_DASHBORAD = `${ROUTE_ROOT}/dashboard`;
 // instance
 export const ROUTE_INSTANCE_DETAILS = `${ROUTE_ROOT}/instance/details`;
 export const ROUTE_INSTANCE_SGA = `${ROUTE_ROOT}/instance/sga`;
-export const ROUTE_INSTANCE_RESOURCE_LIMIT = `${ROUTE_ROOT}/instance/resource-limit`;
 export const ROUTE_INSTANCE_PARAMETERS = `${ROUTE_ROOT}/instance/parameters`;
+export const ROUTE_INSTANCE_RESOURCE_LIMIT = `${ROUTE_ROOT}/instance/resource-limit`;
 // performance
 export const ROUTE_PERFORMANCE_SESSION = `${ROUTE_ROOT}/performance/session`;
 export const ROUTE_PERFORMANCE_HOST = `${ROUTE_ROOT}/performance/host`;
@@ -34,9 +34,9 @@ export const RouteToPageName = (route) => {
   if (!route) return "";
   else if (route === ROUTE_DASHBORAD) return "Dashboard";
   else if (route === ROUTE_INSTANCE_DETAILS) return "Instance Details";
-  else if (route === ROUTE_INSTANCE_SGA) return "SGA Configuration";
-  else if (route === ROUTE_INSTANCE_RESOURCE_LIMIT) return "Resource Limit";
+  else if (route === ROUTE_INSTANCE_SGA) return "System Global Area";
   else if (route === ROUTE_INSTANCE_PARAMETERS) return "Instance Parameters";
+  else if (route === ROUTE_INSTANCE_RESOURCE_LIMIT) return "Resource Limit";
   else if (route === ROUTE_PERFORMANCE_SESSION) return "Session";
   else if (route === ROUTE_PERFORMANCE_HOST) return "Host Resource";
   else if (route === ROUTE_SPACE_TABLESPACE) return "Tablespace";
