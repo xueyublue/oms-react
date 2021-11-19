@@ -27,8 +27,9 @@ const columns = [
     header: "Default?",
     key: "isDefault",
     width: 150,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
+      <Tag color={value === "True" ? "green" : "gold"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
@@ -37,18 +38,9 @@ const columns = [
     header: "Session Modificable?",
     key: "isSessionModifiable",
     width: 150,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
-        {value}
-      </Tag>
-    ),
-  },
-  {
-    header: "System Modificable?",
-    key: "isSystemModifiable",
-    width: 150,
-    renderCell: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
+      <Tag color={value === "True" ? "green" : "gold"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
@@ -57,12 +49,25 @@ const columns = [
     header: "Instance Modificable?",
     key: "isInstanceModifiable",
     width: 150,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => (
-      <Tag color={value === "True" ? "green" : "geekblue"} key={value} style={{ width: "100%", textAlign: "center" }}>
+      <Tag color={value === "True" ? "green" : "gold"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
   },
+  {
+    header: "System Modificable?",
+    key: "isSystemModifiable",
+    width: 150,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color={value === "False" ? "gold" : "green"} key={value} style={{ width: "100%", textAlign: "center" }}>
+        {value}
+      </Tag>
+    ),
+  },
+
   {
     header: "Description",
     key: "description",

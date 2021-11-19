@@ -12,6 +12,13 @@ import { getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
+const decideTagColor = (value) => {
+  console.log(value);
+  if (value === "Unlimited") return "gold";
+  if (value != 0 && value != "0") return "green";
+  return "default";
+};
+
 const columns = [
   {
     header: "Resource Name",
@@ -21,28 +28,43 @@ const columns = [
   {
     header: "Current Utilization",
     key: "currentUtilization",
-    width: 150,
+    width: 130,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color={decideTagColor(value)} key={value} style={{ width: "100%", textAlign: "center" }}>
+        {value}
+      </Tag>
+    ),
   },
   {
     header: "Max Utilization",
     key: "maxUtilization",
-    width: 150,
+    width: 130,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color={decideTagColor(value)} key={value} style={{ width: "100%", textAlign: "center" }}>
+        {value}
+      </Tag>
+    ),
   },
   {
     header: "Initial Allocation",
     key: "initialAllocation",
-    width: 150,
+    width: 130,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color={decideTagColor(value)} key={value} style={{ width: "100%", textAlign: "center" }}>
+        {value}
+      </Tag>
+    ),
   },
   {
     header: "Limit Value",
     key: "limitValue",
-    width: 150,
+    width: 130,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => (
-      <Tag
-        color={value === "Unlimited" ? "green" : "geekblue"}
-        key={value}
-        style={{ width: "100%", textAlign: "center" }}
-      >
+      <Tag color={value === "Unlimited" ? "gold" : "green"} key={value} style={{ width: "100%", textAlign: "center" }}>
         {value}
       </Tag>
     ),
