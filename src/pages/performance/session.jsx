@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import {
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
-  TableOutlined,
-  DashboardOutlined,
-  UserOutlined,
-  SyncOutlined,
-} from "@ant-design/icons";
+import { TableOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
@@ -100,11 +93,11 @@ const Sessions = ({ classes }) => {
     {
       header: "Status",
       key: "status",
-      width: 120,
+      width: 100,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (status) => (
         <Tag
           color={status === "Active" ? "gold" : "success"}
-          icon={status === "Active" ? <ExclamationCircleOutlined /> : <CheckCircleOutlined />}
           key={status}
           style={{ width: "100%", textAlign: "center" }}
         >
@@ -115,14 +108,10 @@ const Sessions = ({ classes }) => {
     {
       header: "Type",
       key: "type",
-      width: 120,
+      width: 100,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (type) => (
-        <Tag
-          color={type === "User" ? "gold" : "success"}
-          icon={type === "User" ? <UserOutlined /> : <SyncOutlined />}
-          key={type}
-          style={{ width: "100%", textAlign: "center" }}
-        >
+        <Tag color={type === "User" ? "gold" : "success"} key={type} style={{ width: "100%", textAlign: "center" }}>
           {type}
         </Tag>
       ),
