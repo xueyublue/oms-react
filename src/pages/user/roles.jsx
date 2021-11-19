@@ -34,6 +34,7 @@ const columns = [
     header: "Password Required?",
     key: "passwordRequired",
     width: 150,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (passwordRequired) => (
       <Tag
         color={passwordRequired === "No" ? "green" : "geekblue"}

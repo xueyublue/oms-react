@@ -34,6 +34,7 @@ const columns = [
     header: "Resource Limit",
     key: "limit",
     width: 170,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (limit) => (
       <Tag
         color={limit === "Unlimited" ? "green" : limit === "Default" ? "geekblue" : "volcano"}

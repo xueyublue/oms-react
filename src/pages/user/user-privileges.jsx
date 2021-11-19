@@ -29,6 +29,7 @@ const columns = [
     header: "Admin Option?",
     key: "adminOption",
     width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (adminOption) => (
       <Tag
         color={adminOption === "No" ? "green" : "volcano"}
