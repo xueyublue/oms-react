@@ -31,7 +31,8 @@ const columns = [
   {
     header: "Status",
     key: "status",
-    width: 100,
+    width: 110,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (status) => (
       <Tag
         color={status === "Online" ? "green" : "volcano"}
@@ -44,10 +45,15 @@ const columns = [
     ),
   },
   {
-    header: "Size (MB)",
+    header: "Total Size (MB)",
     key: "size",
-    width: 100,
-    renderCell: (value) => <div style={{ textAlign: "right", width: "100%" }}>{formatNumberWithCommas(value)}</div>,
+    width: 110,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color={value >= 10240 ? "gold" : "green"} key={value} style={{ width: "100%", textAlign: "right" }}>
+        {formatNumberWithCommas(value)}
+      </Tag>
+    ),
   },
   {
     header: "Free Size (MB) ",
@@ -72,6 +78,7 @@ const columns = [
     header: "Auto Extend?",
     key: "autoExtensible",
     width: 100,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (autoExtensible) => (
       <Tag
         color={autoExtensible === "Yes" ? "green" : "volcano"}
