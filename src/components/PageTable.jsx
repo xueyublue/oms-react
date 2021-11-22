@@ -49,6 +49,7 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
         cellBordered
         headerHeight={headerHeight}
         rowHeight={rowHeight}
+        affixHorizontalScrollbar
       >
         {columns.map((column) => (
           <Table.Column width={column.width} resizable>

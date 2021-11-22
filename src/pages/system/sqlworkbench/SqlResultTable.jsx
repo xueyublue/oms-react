@@ -48,6 +48,7 @@ function SqlResultTable({ classes, height, result }) {
         cellBordered
         headerHeight={30}
         rowHeight={28}
+        affixHorizontalScrollbar
       >
         {result.header.map((item, index) => (
           <Table.Column width={result.chars[index] * 8.2 > 80 ? result.chars[index] * 8.2 : 80} resizable>
