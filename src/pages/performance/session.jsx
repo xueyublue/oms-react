@@ -123,7 +123,7 @@ const Sessions = ({ classes }) => {
     {
       header: "User Name",
       key: "userName",
-      width: 100,
+      width: 150,
     },
     {
       header: "OS User",
@@ -143,12 +143,12 @@ const Sessions = ({ classes }) => {
     {
       header: "Program",
       key: "program",
-      width: 180,
+      width: 200,
     },
     {
       header: "Module",
       key: "module",
-      width: 180,
+      width: 200,
     },
     {
       header: "Process",
@@ -158,7 +158,7 @@ const Sessions = ({ classes }) => {
     {
       header: "Logon Time",
       key: "logonTime",
-      width: 180,
+      width: 200,
     },
   ];
 
