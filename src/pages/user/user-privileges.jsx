@@ -19,6 +19,7 @@ const columns = [
     header: "User Name",
     key: "userName",
     width: 220,
+    fixed: true,
   },
   {
     header: "Privilege",

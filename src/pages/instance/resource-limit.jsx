@@ -24,6 +24,7 @@ const columns = [
     header: "Resource Name",
     key: "resourceName",
     width: 300,
+    fixed: true,
   },
   {
     header: "Current Utilization",

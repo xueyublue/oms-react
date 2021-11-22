@@ -19,6 +19,7 @@ const columns = [
     header: "Role Name",
     key: "role",
     width: 300,
+    fixed: true,
   },
   {
     header: "Privilege",

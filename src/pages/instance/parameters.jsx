@@ -17,6 +17,7 @@ const columns = [
     header: "Parameter Name",
     key: "name",
     width: 300,
+    fixed: true,
   },
   {
     header: "Value",

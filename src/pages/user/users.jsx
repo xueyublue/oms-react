@@ -20,11 +20,13 @@ const columns = [
     header: "User Name",
     key: "userName",
     width: 220,
+    fixed: true,
   },
   {
     header: "Status",
     key: "accountStatus",
     width: 150,
+    fixed: true,
     renderCell: (status) => (
       <Tag
         color={status === "OPEN" ? "green" : "volcano"}
