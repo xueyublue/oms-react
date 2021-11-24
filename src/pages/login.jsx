@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Input, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { ROUTE_DASHBORAD } from "./../util/constants";
 import loginlogo from "../logo-login.png";
 import wallpaper from "../wallpaper.jpeg";
+import { BackendAPIContext } from "./../context/BackendAPIContext";
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -45,19 +48,48 @@ const styles = {
     fontWeight: 600,
     letterSpacing: "1px",
   },
+  messageContainer: {
+    marginTop: 10,
+  },
+  message: {
+    color: "purple",
+  },
 };
 
 //-------------------------------------------------------------
 //* PAGE START
 //-------------------------------------------------------------
 const Login = ({ classes }) => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [authStatus, setAuthStatus] = useState(null);
+  const { baseUrl } = useContext(BackendAPIContext);
   const history = useHistory();
   const onFinish = (values) => {
-    if (values.userid === "oms" && values.password === "oms") {
-      localStorage.setItem("oms-userid", values.userid);
-      localStorage.setItem("oms-username", "DMS IS Team DEV");
-      history.push(ROUTE_DASHBORAD);
-    }
+    setAuthStatus(null);
+    setIsAuthenticating(true);
+    setTimeout(() => {
+      if (values.userid === "oms" && values.password === "oms") {
+        localStorage.setItem("oms-userid", values.userid);
+        localStorage.setItem("oms-username", "DMS IS Team DEV");
+        history.push(ROUTE_DASHBORAD);
+      }
+      axios
+        .post(`${baseUrl}/auth/login`, { userId: values.userid, password: values.password })
+        .then(({ data }) => {
+          setIsAuthenticating(false);
+          if (data.success) {
+            setAuthStatus("S");
+            localStorage.setItem("oms-token", data.omsToken);
+            history.push(ROUTE_DASHBORAD);
+            console.log(jwtDecode(data.omsToken));
+          } else setAuthStatus("F");
+        })
+        .catch((err) => {
+          setAuthStatus("F");
+          setIsAuthenticating(false);
+          console.log(err);
+        });
+    }, 2000);
   };
 
   return (
@@ -85,9 +117,18 @@ const Login = ({ classes }) => {
             </a>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className={classes.loginButton} size="large">
-              LOGIN
+            <Button
+              disabled={isAuthenticating}
+              type="primary"
+              htmlType="submit"
+              className={classes.loginButton}
+              size="large"
+            >
+              {isAuthenticating && <LoadingOutlined />} LOGIN
             </Button>
+            <div className={classes.messageContainer}>
+              {authStatus === "F" && <span className={classes.message}>Invalid User ID or Password!</span>}
+            </div>
           </Form.Item>
         </Form>
       </div>
