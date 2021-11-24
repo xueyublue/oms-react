@@ -70,6 +70,7 @@ const Sessions = ({ classes }) => {
       header: "ID",
       key: "id",
       width: 80,
+      fixed: true,
       renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (text) => (
         <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
@@ -89,11 +90,13 @@ const Sessions = ({ classes }) => {
       header: "Serial #",
       key: "serialNo",
       width: 80,
+      fixed: true,
     },
     {
       header: "Status",
       key: "status",
       width: 100,
+      fixed: true,
       renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (status) => (
         <Tag
@@ -109,6 +112,7 @@ const Sessions = ({ classes }) => {
       header: "Type",
       key: "type",
       width: 100,
+      fixed: true,
       renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (type) => (
         <Tag color={type === "User" ? "gold" : "success"} key={type} style={{ width: "100%", textAlign: "center" }}>
@@ -119,7 +123,7 @@ const Sessions = ({ classes }) => {
     {
       header: "User Name",
       key: "userName",
-      width: 100,
+      width: 150,
     },
     {
       header: "OS User",
@@ -139,12 +143,12 @@ const Sessions = ({ classes }) => {
     {
       header: "Program",
       key: "program",
-      width: 180,
+      width: 200,
     },
     {
       header: "Module",
       key: "module",
-      width: 180,
+      width: 200,
     },
     {
       header: "Process",
@@ -154,7 +158,7 @@ const Sessions = ({ classes }) => {
     {
       header: "Logon Time",
       key: "logonTime",
-      width: 180,
+      width: 200,
     },
   ];
 

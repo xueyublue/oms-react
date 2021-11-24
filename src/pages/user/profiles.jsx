@@ -19,6 +19,7 @@ const columns = [
     header: "Profile",
     key: "profile",
     width: 160,
+    fixed: true,
   },
   {
     header: "Resource Type",

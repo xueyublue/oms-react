@@ -22,6 +22,7 @@ const columns = [
     header: "Owner",
     key: "owner",
     width: 200,
+    fixed: true,
   },
   {
     header: "Table Name",

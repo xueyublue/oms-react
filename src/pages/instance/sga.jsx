@@ -22,6 +22,7 @@ const columns = [
     header: "Name",
     key: "name",
     width: 250,
+    fixed: true,
   },
   {
     header: "Size (MB)",

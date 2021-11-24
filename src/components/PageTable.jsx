@@ -51,7 +51,7 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
         rowHeight={rowHeight}
       >
         {columns.map((column) => (
-          <Table.Column width={column.width} resizable>
+          <Table.Column width={column.width} fixed={column.fixed} resizable={!column.fixed}>
             <HeaderCell>{column.renderHeader ? column.renderHeader(column.header) : column.header}</HeaderCell>
             <BodyCell>
               {(rowData) => {

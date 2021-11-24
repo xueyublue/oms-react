@@ -18,6 +18,7 @@ const columns = [
     header: "Role ID",
     key: "roleId",
     width: 80,
+    fixed: true,
     renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (text) => (
       <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>

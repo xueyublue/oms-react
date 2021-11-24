@@ -22,6 +22,7 @@ const columns = [
     header: "Owner",
     key: "owner",
     width: 300,
+    fixed: true,
   },
   {
     header: "Segment Name",
