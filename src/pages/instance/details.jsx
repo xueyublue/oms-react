@@ -10,7 +10,7 @@ import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
-import { getCsvHeaders } from "../../util/util";
+import { getCsvHeaders, getCsvFileIndex } from "../../util/util";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
@@ -118,7 +118,7 @@ const InstanceDetails = ({ classes }) => {
                   csvReport={{
                     data: data.database,
                     headers: getCsvHeaders(tableColumns_Database),
-                    filename: "OMS_Database.csv",
+                    filename: `OMS_Database_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>
@@ -144,7 +144,7 @@ const InstanceDetails = ({ classes }) => {
                   csvReport={{
                     data: data.instance,
                     headers: getCsvHeaders(tableColumns_Instance),
-                    filename: "OMS_Instance.csv",
+                    filename: `OMS_Instance_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>
@@ -170,7 +170,7 @@ const InstanceDetails = ({ classes }) => {
                   csvReport={{
                     data: data.banners,
                     headers: getCsvHeaders(tableColumns_Banners),
-                    filename: "OMS_Banners.csv",
+                    filename: `OMS_Banners_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>

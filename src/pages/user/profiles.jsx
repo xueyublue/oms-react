@@ -6,7 +6,7 @@ import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import Loading from "../../components/Loading";
-import { getCsvHeaders } from "../../util/util";
+import { getCsvFileIndex, getCsvHeaders } from "../../util/util";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
@@ -155,7 +155,7 @@ const Profiles = ({ classes }) => {
               csvReport={{
                 data: data,
                 headers: getCsvHeaders(columns),
-                filename: "OMS_Profiles.csv",
+                filename: `OMS_Profiles_${getCsvFileIndex()}.csv`,
               }}
             />
           </Form.Item>

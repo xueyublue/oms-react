@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
 import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
-import { formatNumberWithCommasAndDecimals } from "../../util/util";
+import { formatNumberWithCommasAndDecimals, getCsvFileIndex } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
@@ -130,7 +130,7 @@ const SgaConfigurations = ({ classes }) => {
                   csvReport={{
                     data: data.table,
                     headers: getCsvHeaders(columns),
-                    filename: "OMS_SGA.csv",
+                    filename: `OMS_SGA_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>

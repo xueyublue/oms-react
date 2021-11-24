@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const formatNumberWithCommas = (value) => {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
@@ -11,7 +13,11 @@ export const formatNumberWithCommasAndDecimals = (value) => {
 export const getCsvHeaders = (columns) => {
   let headers = [];
   for (let i = 0; i < columns.length; i++) {
-    headers[i] = { label: columns[i].title, key: columns[i].key };
+    headers[i] = { label: columns[i].header, key: columns[i].key };
   }
   return headers;
+};
+
+export const getCsvFileIndex = () => {
+  return moment().format("YYYYMMDDHHmmss");
 };

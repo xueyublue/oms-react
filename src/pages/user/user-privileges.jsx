@@ -10,7 +10,7 @@ import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
-import { getCsvHeaders } from "../../util/util";
+import { getCsvFileIndex, getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
@@ -150,7 +150,7 @@ const UserPrivileges = ({ classes }) => {
               csvReport={{
                 data: data,
                 headers: getCsvHeaders(columns),
-                filename: "OMS_UserPrivileges.csv",
+                filename: `OMS_UserPrivileges_${getCsvFileIndex()}.csv`,
               }}
             />
           </Form.Item>

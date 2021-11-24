@@ -4,7 +4,7 @@ import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, AreaChar
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
-import { formatNumberWithCommas } from "../../util/util";
+import { formatNumberWithCommas, getCsvFileIndex } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -211,7 +211,7 @@ const Tablespace = ({ classes }) => {
                   csvReport={{
                     data: data.table,
                     headers: getCsvHeaders(columns),
-                    filename: "OMS_Tablespace.csv",
+                    filename: `OMS_Tablespace_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>

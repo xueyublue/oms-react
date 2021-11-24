@@ -10,7 +10,7 @@ import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
-import { getCsvHeaders } from "../../util/util";
+import { getCsvFileIndex, getCsvHeaders } from "../../util/util";
 import { useSnackbar } from "notistack";
 import SessionChart from "../../chart/SessionChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -260,7 +260,7 @@ const Sessions = ({ classes }) => {
                 csvReport={{
                   data: data,
                   headers: getCsvHeaders(columns),
-                  filename: "OMS_Sessions.csv",
+                  filename: `OMS_Sessions_${getCsvFileIndex()}.csv`,
                 }}
               />
             </Form.Item>

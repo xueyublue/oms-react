@@ -8,7 +8,7 @@ import { BackendAPIContext } from "../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
-import { getCsvHeaders } from "../../util/util";
+import { getCsvFileIndex, getCsvHeaders } from "../../util/util";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
@@ -146,7 +146,7 @@ const Parameters = ({ classes }) => {
               csvReport={{
                 data: data,
                 headers: getCsvHeaders(columns),
-                filename: "OMS_Parameters.csv",
+                filename: `OMS_Parameters_${getCsvFileIndex()}.csv`,
               }}
             />
           </Form.Item>

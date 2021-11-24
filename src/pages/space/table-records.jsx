@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSnackbar } from "notistack";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
-import { formatNumberWithCommas } from "../../util/util";
+import { formatNumberWithCommas, getCsvFileIndex } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -180,7 +180,7 @@ const TableRecords = ({ classes }) => {
                   csvReport={{
                     data: data,
                     headers: getCsvHeaders(columns),
-                    filename: "OMS_TableRecords.csv",
+                    filename: `OMS_TableRecords_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>

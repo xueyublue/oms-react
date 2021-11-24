@@ -5,7 +5,7 @@ import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
-import { formatNumberWithCommas } from "../../util/util";
+import { formatNumberWithCommas, getCsvFileIndex } from "../../util/util";
 import Loading from "../../components/Loading";
 import { BackendAPIContext } from "../../context/BackendAPIContext";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -171,7 +171,7 @@ const TopTables = ({ classes }) => {
                   csvReport={{
                     data: data,
                     headers: getCsvHeaders(columns),
-                    filename: "OMS_TopTables.csv",
+                    filename: `OMS_TopTables_${getCsvFileIndex()}.csv`,
                   }}
                 />
               </Form.Item>
