@@ -20,9 +20,9 @@ function SgaDoughnutChart({ data, titleDisplay }) {
       legend: { position: "right" },
     },
     maintainAspectRatio: false,
-    scales: {
-      yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
-    },
+    // scales: {
+    //   yAxes: [{ ticks: { display: false }, gridLines: { display: false } }],
+    // },
   };
   return <Doughnut data={dataSource} options={options} />;
 }

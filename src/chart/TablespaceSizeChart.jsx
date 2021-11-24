@@ -38,14 +38,10 @@ function TablespaceSizeChart({ labels, data, displayData = false }) {
     maintainAspectRatio: false,
     indexAxis: "y",
     scales: {
-      x: { beginAtZero: true, max: data[0] },
-      xAxes: [
-        {
-          ticks: {
-            min: 0,
-          },
-        },
-      ],
+      x: {
+        beginAtZero: true,
+        max: data[0],
+      },
     },
   };
   return <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />;

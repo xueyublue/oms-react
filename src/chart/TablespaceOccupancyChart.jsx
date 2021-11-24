@@ -37,16 +37,12 @@ function TablespaceOccupancyChart({ labels, data, displayData = false }) {
     maintainAspectRatio: false,
     indexAxis: "y",
     scales: {
-      x: { beginAtZero: true, max: 100 },
-      xAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 100,
-            stepSize: 20,
-          },
-        },
-      ],
+      x: {
+        beginAtZero: true,
+        min: 0,
+        max: 100,
+        stepSize: 20,
+      },
     },
   };
   return <Bar data={dataSource} options={options} plugins={[ChartDataLabels]} />;

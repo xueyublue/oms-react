@@ -52,16 +52,10 @@ function HostCpuAndRamChart({ labels, cpu, ram, displayTitle, legendPosition, di
     },
     maintainAspectRatio: false,
     scales: {
-      y: { beginAtZero: true, max: 100 },
-      yAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 100,
-            stepSize: 20,
-          },
-        },
-      ],
+      y: {
+        beginAtZero: true,
+        max: 100,
+      },
     },
   };
   return <Line data={data} options={options} plugins={[ChartDataLabels]} />;
