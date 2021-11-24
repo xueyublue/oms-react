@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Input, Checkbox } from "antd";
+import { Form, Button, Input, Checkbox, Typography } from "antd";
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
@@ -53,6 +53,15 @@ const styles = {
   },
   message: {
     color: "purple",
+  },
+  footer: {
+    color: "gray",
+    fontSize: "12px",
+    textAlign: "center",
+    width: "340px",
+    position: "absolute",
+    bottom: "5px",
+    left: "calc(50% - 170px)",
   },
 };
 
@@ -112,9 +121,9 @@ const Login = ({ classes }) => {
             <Form.Item name="remember" valuePropName="checked" noStyle>
               <Checkbox>Remember me</Checkbox>
             </Form.Item>
-            <a className={classes.forgetPassord} href="/">
+            {/* <a className={classes.forgetPassord} href="/">
               Forgot password
-            </a>
+            </a> */}
           </Form.Item>
           <Form.Item>
             <Button
@@ -127,9 +136,16 @@ const Login = ({ classes }) => {
               {isAuthenticating && <LoadingOutlined />} LOGIN
             </Button>
             <div className={classes.messageContainer}>
-              {authStatus === "F" && <span className={classes.message}>Invalid User ID or Password!</span>}
+              {authStatus === "F" && (
+                <Typography.Text type="danger" strong>
+                  Invalid User ID or Password!
+                </Typography.Text>
+              )}
             </div>
           </Form.Item>
+          <div className={classes.footer}>
+            Copyright &copy; 2021 Daifuku Mechatronics (Singapore) Pte. Ltd. All Rights Reserved.
+          </div>
         </Form>
       </div>
     </div>
