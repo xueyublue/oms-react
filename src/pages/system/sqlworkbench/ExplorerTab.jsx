@@ -103,7 +103,7 @@ function ExplorerTab({ classes }) {
           </Sidenav>
         </div>
         <div className={classes.tabs}>
-          <Tabs type="card">
+          <Tabs type="card" size="small">
             <TabPane tab={<span>Columns</span>} key={"Columns"}></TabPane>
             <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}></TabPane>
             <TabPane tab={<span>Data</span>} key={"Data"}></TabPane>
