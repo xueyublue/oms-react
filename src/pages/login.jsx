@@ -60,7 +60,7 @@ const styles = {
     textAlign: "center",
     width: "340px",
     position: "absolute",
-    bottom: "5px",
+    bottom: "20px",
     left: "calc(50% - 170px)",
   },
 };
