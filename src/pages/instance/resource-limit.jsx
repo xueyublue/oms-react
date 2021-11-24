@@ -13,7 +13,6 @@ import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
 const decideTagColor = (value) => {
-  console.log(value);
   if (value === "Unlimited") return "gold";
   if (value !== 0 && value !== "0") return "green";
   return "default";

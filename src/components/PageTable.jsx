@@ -34,7 +34,6 @@ function PageTable({ classes, height, headerHeight = 32, rowHeight = 30, columns
     <>
       <Table
         className={classes.table}
-        width={"100%"}
         height={height}
         data={
           hidePagination
