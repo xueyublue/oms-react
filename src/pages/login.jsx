@@ -4,7 +4,6 @@ import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 import { ROUTE_DASHBORAD } from "./../util/constants";
 import loginlogo from "../logo-login.png";
 import wallpaper from "../wallpaper.jpeg";
@@ -77,20 +76,14 @@ const Login = ({ classes }) => {
     setAuthStatus(null);
     setIsAuthenticating(true);
     setTimeout(() => {
-      if (values.userid === "oms" && values.password === "oms") {
-        localStorage.setItem("oms-userid", values.userid);
-        localStorage.setItem("oms-username", "DMS IS Team DEV");
-        history.push(ROUTE_DASHBORAD);
-      }
       axios
         .post(`${baseUrl}/auth/login`, { userId: values.userid, password: values.password })
         .then(({ data }) => {
           setIsAuthenticating(false);
           if (data.success) {
             setAuthStatus("S");
-            localStorage.setItem("oms-token", data.omsToken);
+            localStorage.setItem("omsToken", data.omsToken);
             history.push(ROUTE_DASHBORAD);
-            console.log(jwtDecode(data.omsToken));
           } else setAuthStatus("F");
         })
         .catch((err) => {

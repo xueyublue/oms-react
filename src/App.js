@@ -44,8 +44,7 @@ const styles = {
 //-------------------------------------------------------------
 function App({ classes }) {
   const history = useHistory();
-  const userId = localStorage.getItem("oms-userid");
-  const username = localStorage.getItem("oms-username");
+  const omsToken = localStorage.getItem("omsToken");
   const [pageWithoutNavigation, setPageWithoutNavigation] = useState(false);
   const { pathname } = useLocation();
   if (pathname === ROUTE_LOGIN && !pageWithoutNavigation) setPageWithoutNavigation(true);
@@ -53,9 +52,8 @@ function App({ classes }) {
 
   // validate User ID and Password for non-login pages
   if (pathname !== ROUTE_LOGIN) {
-    if (!userId || !username) {
-      localStorage.removeItem("oms-userid");
-      localStorage.removeItem("oms-username");
+    if (!omsToken) {
+      localStorage.removeItem("omsToken");
       history.push(ROUTE_LOGIN);
     }
   }

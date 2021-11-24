@@ -4,6 +4,7 @@ import { Layout, Row, Col, Button, Dropdown, Menu, Modal, Badge, Alert } from "a
 import { UserOutlined, BellOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { FcBusinessman, FcSettings } from "react-icons/fc";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import jwtDecode from "jwt-decode";
 import * as Constants from "../util/constants";
 
 const { Header } = Layout;
@@ -58,7 +59,7 @@ const AppBar = ({ icon, pageName }) => {
           </Dropdown>
           <Dropdown overlay={userMenu}>
             <Button type="text" icon={<UserOutlined />}>
-              {localStorage.getItem("oms-username")}
+              {jwtDecode(localStorage.getItem("omsToken")).userName}
             </Button>
           </Dropdown>
         </Col>
@@ -68,8 +69,7 @@ const AppBar = ({ icon, pageName }) => {
         visible={logoutModalVisiable}
         onOk={() => {
           setLogoutModalVisiable(false);
-          localStorage.removeItem("oms-userid");
-          localStorage.removeItem("oms-username");
+          localStorage.removeItem("omsToken");
           history.push(Constants.ROUTE_LOGIN);
         }}
         onCancel={() => setLogoutModalVisiable(false)}
