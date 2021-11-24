@@ -20,6 +20,15 @@ const styles = { root: {} };
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
+const MenuItem = (props) => (
+  <Menu.Item
+    {...props}
+    style={{
+      paddingLeft: 54,
+    }}
+  />
+);
+
 const NavBar = ({ classes }) => {
   const [selectedKeys, setSelectedKeys] = useState(Constants.ROUTE_DASHBORAD);
   const [openKeys, setOpenKeys] = useState(null);
@@ -82,73 +91,73 @@ const NavBar = ({ classes }) => {
         </Menu.Item>
         {/* //* Instance */}
         <SubMenu key="/instance" icon={<FcMindMap size={20} />} title="Instance">
-          <Menu.Item key={Constants.ROUTE_INSTANCE_DETAILS}>
+          <MenuItem key={Constants.ROUTE_INSTANCE_DETAILS}>
             <Link to={Constants.ROUTE_INSTANCE_DETAILS}>Details</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_INSTANCE_SGA}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_INSTANCE_SGA}>
             <Link to={Constants.ROUTE_INSTANCE_SGA}>System Global Area</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_INSTANCE_PARAMETERS}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_INSTANCE_PARAMETERS}>
             <Link to={Constants.ROUTE_INSTANCE_PARAMETERS}>Parameters</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>
             <Link to={Constants.ROUTE_INSTANCE_RESOURCE_LIMIT}>Resource Limit</Link>
-          </Menu.Item>
+          </MenuItem>
         </SubMenu>
         {/* //* Performance */}
         <SubMenu key="/performance" icon={<FcComboChart size={20} />} title="Performance">
-          <Menu.Item key={Constants.ROUTE_PERFORMANCE_SESSION}>
+          <MenuItem key={Constants.ROUTE_PERFORMANCE_SESSION}>
             <Link to={Constants.ROUTE_PERFORMANCE_SESSION}>Session</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_PERFORMANCE_HOST}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_PERFORMANCE_HOST}>
             <Link to={Constants.ROUTE_PERFORMANCE_HOST}>Host Resource</Link>
-          </Menu.Item>
+          </MenuItem>
         </SubMenu>
         {/* //* Space */}
 
         <SubMenu key="/space" icon={<FcDatabase size={20} />} title="Space">
-          <Menu.Item key={Constants.ROUTE_SPACE_TABLESPACE}>
+          <MenuItem key={Constants.ROUTE_SPACE_TABLESPACE}>
             <Link to={Constants.ROUTE_SPACE_TABLESPACE}>Tablespace</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_SPACE_TOP_TABLES}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_SPACE_TOP_TABLES}>
             <Link to={Constants.ROUTE_SPACE_TOP_TABLES}>Top Tables</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_SPACE_TOP_INDEXES}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_SPACE_TOP_INDEXES}>
             <Link to={Constants.ROUTE_SPACE_TOP_INDEXES}>Top Indexes</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_SPACE_TABLE_RECORDS}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_SPACE_TABLE_RECORDS}>
             <Link to={Constants.ROUTE_SPACE_TABLE_RECORDS}>Table Records</Link>
-          </Menu.Item>
+          </MenuItem>
         </SubMenu>
         {/* //* User */}
         <SubMenu key="/user" icon={<FcBusinessman size={20} />} title="User">
-          <Menu.Item key={Constants.ROUTE_USER_PROFILES}>
+          <MenuItem key={Constants.ROUTE_USER_PROFILES}>
             <Link to={Constants.ROUTE_USER_PROFILES}>Profiles</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_USER_ROLES}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_USER_ROLES}>
             <Link to={Constants.ROUTE_USER_ROLES}>Roles</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_USER_ROLE_PRIVILEGES}>
             <Link to={Constants.ROUTE_USER_ROLE_PRIVILEGES}>Role Privileges</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_USER_USERS}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_USER_USERS}>
             <Link to={Constants.ROUTE_USER_USERS}>Users</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_USER_USER_PRIVILEGES}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_USER_USER_PRIVILEGES}>
             <Link to={Constants.ROUTE_USER_USER_PRIVILEGES}>User Privileges</Link>
-          </Menu.Item>
+          </MenuItem>
         </SubMenu>
         {/* //* System */}
         <SubMenu key="/system" icon={<FcServices size={20} />} title="System">
-          <Menu.Item key={Constants.ROUTE_SYSTEM_WORKBENCH}>
+          <MenuItem key={Constants.ROUTE_SYSTEM_WORKBENCH}>
             <Link to={Constants.ROUTE_SYSTEM_WORKBENCH}>SQL Workbench</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_SYSTEM_SETTINGS}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_SYSTEM_SETTINGS}>
             <Link to={Constants.ROUTE_SYSTEM_SETTINGS}>Settings</Link>
-          </Menu.Item>
-          <Menu.Item key={Constants.ROUTE_SYSTEM_ABOUT}>
+          </MenuItem>
+          <MenuItem key={Constants.ROUTE_SYSTEM_ABOUT}>
             <Link to={Constants.ROUTE_SYSTEM_ABOUT}>About</Link>
-          </Menu.Item>
+          </MenuItem>
         </SubMenu>
       </Menu>
       <div style={{ position: "fixed", bottom: 10, left: 90 }}>
