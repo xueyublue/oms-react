@@ -12,7 +12,7 @@ import {
   VscAdd,
   VscStarEmpty,
 } from "react-icons/vsc";
-import useFocus from "./../../../hooks/useFocus";
+import useFocus from "../../../hooks/useFocus";
 import axios from "axios";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
@@ -50,7 +50,7 @@ const styles = {
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-function SQLTabPaneContent({ classes }) {
+function SQLTab({ classes }) {
   const [limit, setLimit] = useState(30);
   const [sql, setSql] = useState(
     "select * from dmitem;\n[KVs] select * from dnsystemkvs;\n[Shelf,10000] select * from dmshelfagc;\ndmarea;dmdevice;"
@@ -160,4 +160,4 @@ function SQLTabPaneContent({ classes }) {
   );
 }
 
-export default withStyles(styles)(SQLTabPaneContent);
+export default withStyles(styles)(SQLTab);

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Tabs } from "antd";
 import { MenuOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { withStyles } from "@mui/styles";
-import SQLTabPaneContent from "./SQLTabPaneContent";
-import ExplorerTabPaneContent from "./ExplorerTabPaneContent";
+import ExplorerTab from "./ExplorerTab";
+import SQLTab from "./SQLTab";
 
 const { TabPane } = Tabs;
 
@@ -54,7 +54,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={"EXPLORER"}
         >
-          <ExplorerTabPaneContent />
+          <ExplorerTab />
         </TabPane>
         <TabPane
           closable={false}
@@ -66,7 +66,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={"SQL"}
         >
-          <SQLTabPaneContent />
+          <SQLTab />
         </TabPane>
         {sqlTabPaneList &&
           sqlTabPaneList.map((item) => (
@@ -80,7 +80,7 @@ const SQLWorkbench = ({ classes }) => {
               }
               key={item.key}
             >
-              <SQLTabPaneContent />
+              <SQLTab />
             </TabPane>
           ))}
       </Tabs>
