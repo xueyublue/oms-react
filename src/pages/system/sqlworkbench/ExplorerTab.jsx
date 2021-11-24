@@ -20,9 +20,22 @@ const styles = {
   },
   list: {
     width: 200,
-    height: 700,
     overflowY: "scroll",
     border: "1px solid #F0F0F0",
+    "&::-webkit-scrollbar": {
+      width: 8,
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "#F0F0F0",
+      borderRadius: 10,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "#888",
+      borderRadius: 10,
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "#555",
+    },
   },
   tabs: {
     marginLeft: 5,
@@ -44,7 +57,7 @@ function ExplorerTab({ classes }) {
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,
-        fontSize: 12,
+        fontSize: "0.8rem",
       }}
       onClick={() => setTable(props.eventKey)}
     />
@@ -77,6 +90,14 @@ function ExplorerTab({ classes }) {
                 <DropdownItem eventKey="DNPULLDOWNKVS">DNPULLDOWNKVS</DropdownItem>
                 <DropdownItem eventKey="DNEVENTHISTORY">DNEVENTHISTORY</DropdownItem>
                 <DropdownItem eventKey="DCROLE">DCROLE</DropdownItem>
+                <DropdownItem eventKey="DMREPDEVICE">DMREPDEVICE</DropdownItem>
+                <DropdownItem eventKey="DMHARDSIZEAGC">DMHARDSIZEAGC</DropdownItem>
+                <DropdownItem eventKey="DNHOSTCOMMHISTORY">DNHOSTCOMMHISTORY</DropdownItem>
+                <DropdownItem eventKey="DNHOSTDATAERROR">DNHOSTDATAERROR</DropdownItem>
+                <DropdownItem eventKey="DCBASE">DCBASE</DropdownItem>
+                <DropdownItem eventKey="DMPALLETIZATIONLINE">DMPALLETIZATIONLINE</DropdownItem>
+                <DropdownItem eventKey="DNHOSTCOMMSENDHEADER">DNHOSTCOMMSENDHEADER</DropdownItem>
+                <DropdownItem eventKey="DNHOSTCOMMSENDDETAIL">DNHOSTCOMMSENDDETAIL</DropdownItem>
               </Nav>
             </Sidenav.Body>
           </Sidenav>
