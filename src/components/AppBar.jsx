@@ -44,6 +44,8 @@ const AppBar = ({ icon, pageName }) => {
     </Menu>
   );
 
+  const token = localStorage.getItem("omsToken");
+
   return (
     <Header className="site-layout-background" style={{ paddingLeft: 16 }}>
       <Row justify="start">
@@ -59,7 +61,7 @@ const AppBar = ({ icon, pageName }) => {
           </Dropdown>
           <Dropdown overlay={userMenu}>
             <Button type="text" icon={<UserOutlined />}>
-              {jwtDecode(localStorage.getItem("omsToken")).userName}
+              {token && jwtDecode(token).userName}
             </Button>
           </Dropdown>
         </Col>
