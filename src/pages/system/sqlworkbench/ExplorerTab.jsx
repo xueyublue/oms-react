@@ -7,6 +7,10 @@ import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "./../../../util/constants";
+import ExplorerColumnsTab from "./ExplorerColumnsTab";
+import ExplorerSqlSourceTab from "./ExplorerSqlSourceTab";
+import ExplorerDataTab from "./ExplorerDataTab";
+import ExplorerIndexesTab from "./ExplorerIndexesTab";
 
 const { TabPane } = Tabs;
 
@@ -146,14 +150,24 @@ function ExplorerTab({ classes }) {
           </div>
         </Col>
         {table && (
-          <div className={classes.tabs}>
-            <Tabs type="card" size="small">
-              <TabPane tab={<span>Columns</span>} key={"Columns"}></TabPane>
-              <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}></TabPane>
-              <TabPane tab={<span>Data</span>} key={"Data"}></TabPane>
-              <TabPane tab={<span>Indexes</span>} key={"Indexes"}></TabPane>
-            </Tabs>
-          </div>
+          <Col flex="auto">
+            <div className={classes.tabs}>
+              <Tabs type="card" size="small">
+                <TabPane tab={<span>Columns</span>} key={"Columns"}>
+                  <ExplorerColumnsTab table={table} />
+                </TabPane>
+                <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}>
+                  <ExplorerSqlSourceTab table={table} />
+                </TabPane>
+                <TabPane tab={<span>Data</span>} key={"Data"}>
+                  <ExplorerDataTab table={table} />
+                </TabPane>
+                <TabPane tab={<span>Indexes</span>} key={"Indexes"}>
+                  <ExplorerIndexesTab table={table} />
+                </TabPane>
+              </Tabs>
+            </div>
+          </Col>
         )}
       </Row>
     </div>
