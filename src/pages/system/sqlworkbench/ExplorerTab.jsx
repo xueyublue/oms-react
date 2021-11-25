@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { withStyles } from "@mui/styles";
 import { Nav, Sidenav } from "rsuite";
 import Dropdown from "rsuite/Dropdown";
 import { Row, Tabs } from "antd";
+import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import { BackendAPIContext } from "./../../../context/BackendAPIContext";
 
 const { TabPane } = Tabs;
 
@@ -47,8 +49,10 @@ const styles = {
 //-------------------------------------------------------------
 
 function ExplorerTab({ classes }) {
+  const [tables, setTables] = useState([]);
   const [table, setTable] = useState(null);
   const { height } = useWindowDimensions();
+  const { baseUrl } = useContext(BackendAPIContext);
 
   const DropdownItem = (props) => (
     <Dropdown.Item
@@ -62,6 +66,22 @@ function ExplorerTab({ classes }) {
       onClick={() => setTable(props.eventKey)}
     />
   );
+
+  const fetchData = async () => {
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/sql/tables`)
+        .then(({ data }) => {
+          setResults(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setResults(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
 
   return (
     <div className={classes.root}>

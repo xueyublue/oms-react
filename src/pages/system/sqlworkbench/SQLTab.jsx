@@ -12,8 +12,8 @@ import {
   VscAdd,
   VscStarEmpty,
 } from "react-icons/vsc";
-import useFocus from "../../../hooks/useFocus";
 import axios from "axios";
+import useFocus from "../../../hooks/useFocus";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import Loading from "../../../components/Loading";
@@ -76,7 +76,7 @@ function SQLTab({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sql`, { params: { limit, sql } })
+        .get(`${baseUrl}/sql/query`, { params: { limit, sql } })
         .then(({ data }) => {
           setResults(data);
           setIsLoading(false);
