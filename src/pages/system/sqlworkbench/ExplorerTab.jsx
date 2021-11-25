@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { withStyles } from "@mui/styles";
 import { Nav, Sidenav } from "rsuite";
 import Dropdown from "rsuite/Dropdown";
-import { Row, Col, Tabs, Input, Spin } from "antd";
+import { Row, Col, Tabs, Input, Spin, Tag } from "antd";
 import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
@@ -34,11 +34,11 @@ const styles = {
     },
     "&::-webkit-scrollbar-track": {
       background: "#F0F0F0",
-      borderRadius: 10,
+      borderRadius: 4,
     },
     "&::-webkit-scrollbar-thumb": {
       background: "#888",
-      borderRadius: 10,
+      borderRadius: 4,
     },
     "&::-webkit-scrollbar-thumb:hover": {
       background: "#555",
@@ -65,9 +65,10 @@ function ExplorerTab({ classes }) {
     <Dropdown.Item
       {...props}
       style={{
-        paddingTop: 2,
-        paddingBottom: 2,
-        paddingLeft: 4,
+        paddingTop: 0,
+        paddingBottom: 1,
+        paddingLeft: 0,
+        paddingRight: 0,
         fontSize: "12px",
       }}
       onClick={() => setTable(props.eventKey)}
@@ -129,7 +130,14 @@ function ExplorerTab({ classes }) {
                 <Sidenav.Body>
                   <Nav>
                     {filteredTables.map((item) => (
-                      <DropdownItem eventKey={item}>{item}</DropdownItem>
+                      <DropdownItem eventKey={item}>
+                        <Tag
+                          color={item.includes("DC") ? "purple" : item.includes("DM") ? "geekblue" : "default"}
+                          style={{ width: "100%", paddingLeft: 4 }}
+                        >
+                          {item}
+                        </Tag>
+                      </DropdownItem>
                     ))}
                   </Nav>
                 </Sidenav.Body>
