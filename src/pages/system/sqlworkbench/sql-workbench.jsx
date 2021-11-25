@@ -3,7 +3,7 @@ import { Tabs } from "antd";
 import { MenuOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { withStyles } from "@mui/styles";
 import ExplorerTab from "./ExplorerTab";
-import SQLTab from "./SQLTab";
+import SqlTab from "./SqlTab";
 
 const { TabPane } = Tabs;
 
@@ -52,7 +52,31 @@ const SQLWorkbench = ({ classes }) => {
               Explorer
             </span>
           }
-          key={"EXPLORER"}
+          key={"EXPLORER1"}
+        >
+          <ExplorerTab />
+        </TabPane>
+        <TabPane
+          closable={false}
+          tab={
+            <span>
+              <MenuOutlined />
+              Explorer
+            </span>
+          }
+          key={"EXPLORER2"}
+        >
+          <ExplorerTab />
+        </TabPane>
+        <TabPane
+          closable={false}
+          tab={
+            <span>
+              <MenuOutlined />
+              Explorer
+            </span>
+          }
+          key={"EXPLORER3"}
         >
           <ExplorerTab />
         </TabPane>
@@ -66,7 +90,7 @@ const SQLWorkbench = ({ classes }) => {
           }
           key={"SQL"}
         >
-          <SQLTab />
+          <SqlTab />
         </TabPane>
         {sqlTabPaneList &&
           sqlTabPaneList.map((item) => (
@@ -80,7 +104,7 @@ const SQLWorkbench = ({ classes }) => {
               }
               key={item.key}
             >
-              <SQLTab />
+              <SqlTab />
             </TabPane>
           ))}
       </Tabs>

@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { withStyles } from "@mui/styles";
 import { Nav, Sidenav } from "rsuite";
 import Dropdown from "rsuite/Dropdown";
-import { Row, Tabs } from "antd";
+import { Row, Col, Tabs, Input } from "antd";
 import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
+import { API_FETCH_WAIT } from "./../../../util/constants";
 
 const { TabPane } = Tabs;
 
@@ -19,6 +20,10 @@ const styles = {
   },
   table: {
     marginTop: "10px",
+  },
+  search: {
+    width: 201,
+    marginBottom: 5,
   },
   list: {
     width: 200,
@@ -49,7 +54,9 @@ const styles = {
 //-------------------------------------------------------------
 
 function ExplorerTab({ classes }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [tables, setTables] = useState([]);
+  const [search, setSearch] = useState(null);
   const [table, setTable] = useState(null);
   const { height } = useWindowDimensions();
   const { baseUrl } = useContext(BackendAPIContext);
@@ -58,70 +65,55 @@ function ExplorerTab({ classes }) {
     <Dropdown.Item
       {...props}
       style={{
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingTop: 4,
+        paddingBottom: 4,
         paddingLeft: 10,
-        fontSize: "0.8rem",
+        fontSize: "12px",
       }}
       onClick={() => setTable(props.eventKey)}
     />
   );
 
-  const fetchData = async () => {
-    setTimeout(() => {
-      axios
-        .get(`${baseUrl}/sql/tables`)
-        .then(({ data }) => {
-          setResults(data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setResults(null);
-          setIsLoading(false);
-          console.log(err);
-        });
-    }, API_FETCH_WAIT);
-  };
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/sql/tables`)
+      .then(({ data }) => {
+        setTables(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setTables(null);
+        setIsLoading(false);
+        console.log(err);
+      });
+  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  let filteredTables = search ? tables.filter((row) => row.includes(search)) : tables;
 
   return (
     <div className={classes.root}>
       <Row>
-        <div className={classes.list} style={{ height: height - 176 }}>
-          <Sidenav activeKey={table}>
-            <Sidenav.Body>
-              <Nav>
-                <DropdownItem eventKey="DMITEM">DMITEM</DropdownItem>
-                <DropdownItem eventKey="DNSTOCK">DNSTOCK</DropdownItem>
-                <DropdownItem eventKey="DNPALLET">DNPALLET</DropdownItem>
-                <DropdownItem eventKey="DMSHELFAGC">DMSHELFAGC</DropdownItem>
-                <DropdownItem eventKey="DNRESOURCEKVS">DNRESOURCEKVS</DropdownItem>
-                <DropdownItem eventKey="DNGADGETVALUES">DNGADGETVALUES</DropdownItem>
-                <DropdownItem eventKey="DNSYSTEMKVS">DNSYSTEMKVS</DropdownItem>
-                <DropdownItem eventKey="DMHOSTDATADEFINE">DMHOSTDATADEFINE</DropdownItem>
-                <DropdownItem eventKey="DCMENU">DCMENU</DropdownItem>
-                <DropdownItem eventKey="DCMENUCONTENT">DCMENUCONTENT</DropdownItem>
-                <DropdownItem eventKey="DCMESSAGERECEIVER">DCMESSAGERECEIVER</DropdownItem>
-                <DropdownItem eventKey="DMORDERLIMIT">DMORDERLIMIT</DropdownItem>
-                <DropdownItem eventKey="DMROUTE">DMROUTE</DropdownItem>
-                <DropdownItem eventKey="DNSTATUSCHANGERULE">DNSTATUSCHANGERULE</DropdownItem>
-                <DropdownItem eventKey="DMDEVICE">DMDEVICE</DropdownItem>
-                <DropdownItem eventKey="DMLAMP">DMLAMP</DropdownItem>
-                <DropdownItem eventKey="DMSOFTZONEPRIORITYAGC">DMSOFTZONEPRIORITYAGC</DropdownItem>
-                <DropdownItem eventKey="DNPULLDOWNKVS">DNPULLDOWNKVS</DropdownItem>
-                <DropdownItem eventKey="DNEVENTHISTORY">DNEVENTHISTORY</DropdownItem>
-                <DropdownItem eventKey="DCROLE">DCROLE</DropdownItem>
-                <DropdownItem eventKey="DMREPDEVICE">DMREPDEVICE</DropdownItem>
-                <DropdownItem eventKey="DMHARDSIZEAGC">DMHARDSIZEAGC</DropdownItem>
-                <DropdownItem eventKey="DNHOSTCOMMHISTORY">DNHOSTCOMMHISTORY</DropdownItem>
-                <DropdownItem eventKey="DNHOSTDATAERROR">DNHOSTDATAERROR</DropdownItem>
-                <DropdownItem eventKey="DCBASE">DCBASE</DropdownItem>
-                <DropdownItem eventKey="DMPALLETIZATIONLINE">DMPALLETIZATIONLINE</DropdownItem>
-                <DropdownItem eventKey="DNHOSTCOMMSENDHEADER">DNHOSTCOMMSENDHEADER</DropdownItem>
-                <DropdownItem eventKey="DNHOSTCOMMSENDDETAIL">DNHOSTCOMMSENDDETAIL</DropdownItem>
-              </Nav>
-            </Sidenav.Body>
-          </Sidenav>
-        </div>
+        <Col>
+          <div className={classes.search}>
+            <Input.Search
+              placeholder="Search"
+              allowClear
+              value={search}
+              onChange={(e) => setSearch(e.target.value.toUpperCase())}
+            />
+          </div>
+          <div className={classes.list} style={{ height: height - 213 }}>
+            <Sidenav activeKey={table}>
+              <Sidenav.Body>
+                <Nav>
+                  {filteredTables.map((item) => (
+                    <DropdownItem eventKey={item}>{item}</DropdownItem>
+                  ))}
+                </Nav>
+              </Sidenav.Body>
+            </Sidenav>
+          </div>
+        </Col>
         <div className={classes.tabs}>
           <Tabs type="card" size="small">
             <TabPane tab={<span>Columns</span>} key={"Columns"}></TabPane>
