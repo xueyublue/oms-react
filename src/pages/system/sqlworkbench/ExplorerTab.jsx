@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { withStyles } from "@mui/styles";
 import { Nav, Sidenav } from "rsuite";
 import Dropdown from "rsuite/Dropdown";
-import { Row, Col, Tabs, Input } from "antd";
+import { Row, Col, Tabs, Input, Spin } from "antd";
 import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
@@ -54,7 +54,7 @@ const styles = {
 //-------------------------------------------------------------
 
 function ExplorerTab({ classes }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [tables, setTables] = useState([]);
   const [search, setSearch] = useState(null);
   const [table, setTable] = useState(null);
@@ -65,27 +65,33 @@ function ExplorerTab({ classes }) {
     <Dropdown.Item
       {...props}
       style={{
-        paddingTop: 4,
-        paddingBottom: 4,
-        paddingLeft: 10,
+        paddingTop: 2,
+        paddingBottom: 2,
+        paddingLeft: 4,
         fontSize: "12px",
       }}
       onClick={() => setTable(props.eventKey)}
     />
   );
 
+  const fetchData = async () => {
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/sql/tables`)
+        .then(({ data }) => {
+          setTables(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setTables(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
+  };
+
   useEffect(() => {
-    axios
-      .get(`${baseUrl}/sql/tables`)
-      .then(({ data }) => {
-        setTables(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setTables(null);
-        setIsLoading(false);
-        console.log(err);
-      });
+    fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let filteredTables = search ? tables.filter((row) => row.includes(search)) : tables;
@@ -103,15 +109,28 @@ function ExplorerTab({ classes }) {
             />
           </div>
           <div className={classes.list} style={{ height: height - 213 }}>
-            <Sidenav activeKey={table}>
-              <Sidenav.Body>
-                <Nav>
-                  {filteredTables.map((item) => (
-                    <DropdownItem eventKey={item}>{item}</DropdownItem>
-                  ))}
-                </Nav>
-              </Sidenav.Body>
-            </Sidenav>
+            {isLoading ? (
+              <Spin
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "col",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              />
+            ) : (
+              <Sidenav activeKey={table}>
+                <Sidenav.Body>
+                  <Nav>
+                    {filteredTables.map((item) => (
+                      <DropdownItem eventKey={item}>{item}</DropdownItem>
+                    ))}
+                  </Nav>
+                </Sidenav.Body>
+              </Sidenav>
+            )}
           </div>
         </Col>
         <div className={classes.tabs}>
