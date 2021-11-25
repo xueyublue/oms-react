@@ -52,7 +52,7 @@ function ExplorerSqlSourceTab({ classes, table }) {
   return (
     <div className={classes.root}>
       {isLoading ? (
-        <Loading />
+        <Loading withinComponent />
       ) : (
         <div className={classes.input}>
           <Input.TextArea readOnly value={data ? data.data : null} rows={32} size="small" spellCheck={false} />

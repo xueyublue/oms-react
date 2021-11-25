@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { withStyles } from "@mui/styles";
 import axios from "axios";
-import { Spin } from "antd";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "../../../util/constants";
 import SqlResultTable from "./SqlResultTable";
+import Loading from "../../../components/Loading";
 
 //-------------------------------------------------------------
 //* STYLES START
@@ -26,21 +26,6 @@ function ExplorerDataTab({ classes, table }) {
   const [data, setData] = useState(null);
   const { height } = useWindowDimensions();
   const { baseUrl } = useContext(BackendAPIContext);
-
-  const Loading = (props) => (
-    <Spin
-      size="large"
-      tip="&nbsp;&nbsp;Loading..."
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "col",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    />
-  );
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -67,7 +52,11 @@ function ExplorerDataTab({ classes, table }) {
 
   return (
     <div className={classes.root} style={{ height: height - 211 }}>
-      {isLoading ? <Loading /> : data ? <SqlResultTable height={height - 245} result={data[0]} /> : null}
+      {isLoading ? (
+        <Loading withinComponent />
+      ) : data ? (
+        <SqlResultTable height={height - 245} result={data[0]} />
+      ) : null}
     </div>
   );
 }

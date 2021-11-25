@@ -100,7 +100,7 @@ function ExplorerColumnsTab({ classes, table }) {
 
   return (
     <div className={classes.root}>
-      {isLoading ? <Loading /> : <PageTable height={height - 245} columns={columns} data={data} />}
+      {isLoading ? <Loading withinComponent /> : <PageTable height={height - 245} columns={columns} data={data} />}
     </div>
   );
 }
