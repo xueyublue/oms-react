@@ -10,36 +10,50 @@ import Loading from "../../../components/Loading";
 
 const columns = [
   {
-    header: "Owner",
-    key: "owner",
-    width: 200,
+    header: "Name",
+    key: "name",
+    width: 300,
     fixed: true,
   },
   {
-    header: "Table Name",
-    key: "tableName",
-    width: 300,
+    header: "Date Type",
+    key: "type",
+    width: 200,
   },
   {
-    header: "Total Records",
-    key: "totalRecords",
-    width: 135,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {value}
-        </Tag>
-      );
-    },
+    header: "Primary Key",
+    key: "primaryKey",
+    width: 100,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag
+        color={value === "Yes" ? "geekblue" : "default"}
+        key={value}
+        style={{ width: "100%", height: "100%", textAlign: "center" }}
+      >
+        {value}
+      </Tag>
+    ),
   },
   {
-    header: "Tablespace Name",
-    key: "tablespace",
-    width: 250,
+    header: "Nullable?",
+    key: "nullable",
+    width: 100,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag
+        color={value === "Yes" ? "default" : "geekblue"}
+        key={value}
+        style={{ width: "100%", height: "100%", textAlign: "center" }}
+      >
+        {value}
+      </Tag>
+    ),
+  },
+  {
+    header: "Default",
+    key: "default",
+    width: 200,
   },
 ];
 
@@ -67,7 +81,7 @@ function ExplorerColumnsTab({ classes, table }) {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/space/tablerecords`)
+        .get(`${baseUrl}/sql/columns`, { params: { table } })
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
