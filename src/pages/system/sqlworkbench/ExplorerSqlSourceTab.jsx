@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { withStyles } from "@mui/styles";
 import axios from "axios";
 import { Input } from "antd";
-import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "./../../../util/constants";
 import Loading from "../../../components/Loading";
@@ -27,7 +26,6 @@ const styles = {
 function ExplorerSqlSourceTab({ classes, table }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
-  const { height } = useWindowDimensions();
   const { baseUrl } = useContext(BackendAPIContext);
 
   const fetchData = async () => {
@@ -57,7 +55,7 @@ function ExplorerSqlSourceTab({ classes, table }) {
         <Loading />
       ) : (
         <div className={classes.input}>
-          <Input.TextArea readOnly value={data ? data.data : null} rows={33} size="small" spellCheck={false} />
+          <Input.TextArea readOnly value={data ? data.data : null} rows={32} size="small" spellCheck={false} />
         </div>
       )}
     </div>
