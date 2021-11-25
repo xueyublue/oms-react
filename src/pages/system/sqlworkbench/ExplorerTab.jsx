@@ -74,6 +74,19 @@ function ExplorerTab({ classes }) {
     />
   );
 
+  const Loading = (props) => (
+    <Spin
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "col",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    />
+  );
+
   const fetchData = async () => {
     setTimeout(() => {
       axios
@@ -110,16 +123,7 @@ function ExplorerTab({ classes }) {
           </div>
           <div className={classes.list} style={{ height: height - 213 }}>
             {isLoading ? (
-              <Spin
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "col",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              />
+              <Loading />
             ) : (
               <Sidenav activeKey={table}>
                 <Sidenav.Body>
@@ -133,14 +137,16 @@ function ExplorerTab({ classes }) {
             )}
           </div>
         </Col>
-        <div className={classes.tabs}>
-          <Tabs type="card" size="small">
-            <TabPane tab={<span>Columns</span>} key={"Columns"}></TabPane>
-            <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}></TabPane>
-            <TabPane tab={<span>Data</span>} key={"Data"}></TabPane>
-            <TabPane tab={<span>Indexes</span>} key={"Indexes"}></TabPane>
-          </Tabs>
-        </div>
+        {table && (
+          <div className={classes.tabs}>
+            <Tabs type="card" size="small">
+              <TabPane tab={<span>Columns</span>} key={"Columns"}></TabPane>
+              <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}></TabPane>
+              <TabPane tab={<span>Data</span>} key={"Data"}></TabPane>
+              <TabPane tab={<span>Indexes</span>} key={"Indexes"}></TabPane>
+            </Tabs>
+          </div>
+        )}
       </Row>
     </div>
   );
