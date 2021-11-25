@@ -159,11 +159,11 @@ function ExplorerTab({ classes }) {
                 <TabPane tab={<span>SQL Source</span>} key={"SQL Source"}>
                   <ExplorerSqlSourceTab table={table} />
                 </TabPane>
-                <TabPane tab={<span>Data</span>} key={"Data"}>
-                  <ExplorerDataTab table={table} />
-                </TabPane>
                 <TabPane tab={<span>Indexes</span>} key={"Indexes"}>
                   <ExplorerIndexesTab table={table} />
+                </TabPane>
+                <TabPane tab={<span>Data</span>} key={"Data"}>
+                  <ExplorerDataTab table={table} />
                 </TabPane>
               </Tabs>
             </div>
