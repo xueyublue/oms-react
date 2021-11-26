@@ -21,7 +21,7 @@ const styles = {
 //-------------------------------------------------------------
 const SQLWorkbench = ({ classes }) => {
   const [sqlTabPaneList, setSqlTabPaneList] = useState([]);
-  const [activeKey, setActiveKey] = useState("SQL");
+  const [activeKey, setActiveKey] = useState("EXPLORER1");
   const [tabIndex, setTabIndex] = useState(1);
 
   const handleTabChange = (value) => setActiveKey(value);
