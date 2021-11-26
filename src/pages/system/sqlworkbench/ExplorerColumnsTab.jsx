@@ -21,7 +21,7 @@ const columns = [
     width: 200,
   },
   {
-    header: "Primary Key",
+    header: "Primary Key?",
     key: "primaryKey",
     width: 100,
     renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
