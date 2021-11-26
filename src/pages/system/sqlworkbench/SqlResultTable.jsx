@@ -23,6 +23,7 @@ const HeaderCell = (props) => (
       backgroundColor: "#FAFAFA",
       color: "black",
       fontSize: "13px",
+      fontWeight: 600,
       fontFamily: "Calibri",
     }}
   />
@@ -52,7 +53,7 @@ function SqlResultTable({ classes, height, result }) {
       >
         {result.header.map((item, index) => (
           <Table.Column
-            width={result.chars[index] * 8.2 > 80 ? result.chars[index] * 8.2 : 80}
+            width={result.chars[index] * 8.4 > 90 ? result.chars[index] * 8.4 : 90}
             fixed={index === 0 ? true : false}
             resizable={index === 0 ? false : true}
           >

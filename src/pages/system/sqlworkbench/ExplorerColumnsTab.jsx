@@ -5,8 +5,8 @@ import axios from "axios";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { BackendAPIContext } from "./../../../context/BackendAPIContext";
 import { API_FETCH_WAIT } from "./../../../util/constants";
-import PageTable from "../../../components/PageTable";
 import Loading from "../../../components/Loading";
+import ExplorerColumnsTable from "./ExplorerColumnsTable";
 
 const columns = [
   {
@@ -100,7 +100,11 @@ function ExplorerColumnsTab({ classes, table }) {
 
   return (
     <div className={classes.root}>
-      {isLoading ? <Loading withinComponent /> : <PageTable height={height - 245} columns={columns} data={data} />}
+      {isLoading ? (
+        <Loading withinComponent />
+      ) : (
+        <ExplorerColumnsTable height={height - 245} columns={columns} data={data} />
+      )}
     </div>
   );
 }
