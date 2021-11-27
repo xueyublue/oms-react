@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 import axios from "axios";
 import { withStyles } from "@mui/styles";
 import { useSnackbar } from "notistack";
+import { useSpring, animated } from "react-spring";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
@@ -34,6 +35,11 @@ const Dashboard = ({ classes }) => {
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
+  const spring = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 4000 },
+  });
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -78,47 +84,49 @@ const Dashboard = ({ classes }) => {
   if (chartContainerHeight < 300) chartContainerHeight = 300;
 
   return (
-    <div className={classes.root}>
-      <DashboardCards data={data} />
-      <Row>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <TablespaceOccupancyChart
-              labels={data.tablespace.occupancyChart.name}
-              data={data.tablespace.occupancyChart.data}
-              displayData
-            />
-          </div>
-        </Col>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <HostCpuAndRamChart
-              labels={data.hostResource.time}
-              cpu={data.hostResource.cpu}
-              ram={data.hostResource.ram}
-              legendPosition="top"
-              displayDataLabel={true}
-            />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <TablespaceSizeChart
-              labels={data.tablespace.totalSizeChart.name}
-              data={data.tablespace.totalSizeChart.data}
-              displayData
-            />
-          </div>
-        </Col>
-        <Col lg={24} xl={12} xxl={12}>
-          <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
-            <SgaDoughnutChart data={data.sgaConfig} titleDisplay />
-          </div>
-        </Col>
-      </Row>
-    </div>
+    <animated.div style={spring}>
+      <div className={classes.root}>
+        <DashboardCards data={data} />
+        <Row>
+          <Col lg={24} xl={12} xxl={12}>
+            <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <TablespaceOccupancyChart
+                labels={data.tablespace.occupancyChart.name}
+                data={data.tablespace.occupancyChart.data}
+                displayData
+              />
+            </div>
+          </Col>
+          <Col lg={24} xl={12} xxl={12}>
+            <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <HostCpuAndRamChart
+                labels={data.hostResource.time}
+                cpu={data.hostResource.cpu}
+                ram={data.hostResource.ram}
+                legendPosition="top"
+                displayDataLabel={true}
+              />
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={24} xl={12} xxl={12}>
+            <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <TablespaceSizeChart
+                labels={data.tablespace.totalSizeChart.name}
+                data={data.tablespace.totalSizeChart.data}
+                displayData
+              />
+            </div>
+          </Col>
+          <Col lg={24} xl={12} xxl={12}>
+            <div className={classes.chartContainer} style={{ height: chartContainerHeight }}>
+              <SgaDoughnutChart data={data.sgaConfig} titleDisplay />
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </animated.div>
   );
 };
 

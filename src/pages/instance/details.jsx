@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Form, Tabs } from "antd";
 import { DatabaseOutlined, BuildOutlined, DeploymentUnitOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { useSpring, animated } from "react-spring";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
 import Loading from "../../components/Loading";
@@ -63,6 +64,11 @@ const InstanceDetails = ({ classes }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
   const tableHeight = height - 252;
+  const spring = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 1000 },
+  });
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -98,88 +104,90 @@ const InstanceDetails = ({ classes }) => {
   }
 
   return (
-    <div className={classes.root}>
-      <Tabs type="card">
-        <TabPane
-          tab={
-            <span>
-              <DatabaseOutlined />
-              Database
-            </span>
-          }
-          key="summary"
-        >
-          <Form form={form} layout={"inline"} size={"middle"}>
-            <Form.Item />
-            <div className={classes.tableTools}>
-              <Form.Item>
-                <RefreshButton onClick={handleRefresh} />
-                <ExportButton
-                  csvReport={{
-                    data: data.database,
-                    headers: getCsvHeaders(tableColumns_Database),
-                    filename: `OMS_Database_${getCsvFileIndex()}.csv`,
-                  }}
-                />
-              </Form.Item>
-            </div>
-          </Form>
-          <PageTable height={tableHeight} columns={tableColumns_Database} data={data.database} />
-        </TabPane>
-        <TabPane
-          tab={
-            <span>
-              <DeploymentUnitOutlined />
-              Instance
-            </span>
-          }
-          key="instance"
-        >
-          <Form form={form} layout={"inline"} size={"middle"}>
-            <Form.Item />
-            <div className={classes.tableTools}>
-              <Form.Item>
-                <RefreshButton onClick={handleRefresh} />
-                <ExportButton
-                  csvReport={{
-                    data: data.instance,
-                    headers: getCsvHeaders(tableColumns_Instance),
-                    filename: `OMS_Instance_${getCsvFileIndex()}.csv`,
-                  }}
-                />
-              </Form.Item>
-            </div>
-          </Form>
-          <PageTable height={tableHeight} columns={tableColumns_Instance} data={data.instance} />
-        </TabPane>
-        <TabPane
-          tab={
-            <span>
-              <BuildOutlined />
-              Banners
-            </span>
-          }
-          key="banners"
-        >
-          <Form form={form} layout={"inline"} size={"middle"}>
-            <Form.Item />
-            <div className={classes.tableTools}>
-              <Form.Item>
-                <RefreshButton onClick={handleRefresh} />
-                <ExportButton
-                  csvReport={{
-                    data: data.banners,
-                    headers: getCsvHeaders(tableColumns_Banners),
-                    filename: `OMS_Banners_${getCsvFileIndex()}.csv`,
-                  }}
-                />
-              </Form.Item>
-            </div>
-          </Form>
-          <PageTable height={tableHeight} columns={tableColumns_Banners} data={data.banners} />
-        </TabPane>
-      </Tabs>
-    </div>
+    <animated.div style={spring}>
+      <div className={classes.root}>
+        <Tabs type="card">
+          <TabPane
+            tab={
+              <span>
+                <DatabaseOutlined />
+                Database
+              </span>
+            }
+            key="summary"
+          >
+            <Form form={form} layout={"inline"} size={"middle"}>
+              <Form.Item />
+              <div className={classes.tableTools}>
+                <Form.Item>
+                  <RefreshButton onClick={handleRefresh} />
+                  <ExportButton
+                    csvReport={{
+                      data: data.database,
+                      headers: getCsvHeaders(tableColumns_Database),
+                      filename: `OMS_Database_${getCsvFileIndex()}.csv`,
+                    }}
+                  />
+                </Form.Item>
+              </div>
+            </Form>
+            <PageTable height={tableHeight} columns={tableColumns_Database} data={data.database} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <DeploymentUnitOutlined />
+                Instance
+              </span>
+            }
+            key="instance"
+          >
+            <Form form={form} layout={"inline"} size={"middle"}>
+              <Form.Item />
+              <div className={classes.tableTools}>
+                <Form.Item>
+                  <RefreshButton onClick={handleRefresh} />
+                  <ExportButton
+                    csvReport={{
+                      data: data.instance,
+                      headers: getCsvHeaders(tableColumns_Instance),
+                      filename: `OMS_Instance_${getCsvFileIndex()}.csv`,
+                    }}
+                  />
+                </Form.Item>
+              </div>
+            </Form>
+            <PageTable height={tableHeight} columns={tableColumns_Instance} data={data.instance} />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <BuildOutlined />
+                Banners
+              </span>
+            }
+            key="banners"
+          >
+            <Form form={form} layout={"inline"} size={"middle"}>
+              <Form.Item />
+              <div className={classes.tableTools}>
+                <Form.Item>
+                  <RefreshButton onClick={handleRefresh} />
+                  <ExportButton
+                    csvReport={{
+                      data: data.banners,
+                      headers: getCsvHeaders(tableColumns_Banners),
+                      filename: `OMS_Banners_${getCsvFileIndex()}.csv`,
+                    }}
+                  />
+                </Form.Item>
+              </div>
+            </Form>
+            <PageTable height={tableHeight} columns={tableColumns_Banners} data={data.banners} />
+          </TabPane>
+        </Tabs>
+      </div>
+    </animated.div>
   );
 };
 
