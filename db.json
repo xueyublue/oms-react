@@ -1,4 +1,8 @@
 {
+  "login": {
+    "success": true,
+    "omsToken": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyMDIxLTExLTI3XzIxOjUwOjQ5LjYwMiIsImlhdCI6MTYzODAyMTA0OSwic3ViIjoiT3JhY2xlIE1vbml0b3JpbmcgU3lzdGVtIiwiaXNzIjoiRE1TX1dON0FfUkVTVGZ1bEFQSV9PbXNBdXRoIiwidXNlck5hbWUiOiJETVMgSVMgVGVhbSBERVYiLCJhZG1pbkZsYWciOnRydWUsImV4cCI6MTYzOTg0ODQzNn0.vI6moISzQxL7D2FybZKqURjQqeW_N3KLcvNEnmciNvo"
+  },
   "dashboard": {
     "instanceStatus": "Online",
     "sessions": {

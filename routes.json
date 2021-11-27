@@ -5,5 +5,6 @@
   "/wms7/rest/oms/user/*": "/$1",
   "/wms7/rest/oms/sessions/*": "/$1",
   "/wms7/rest/oms/sql/*": "/$1",
+  "/wms7/rest/oms/auth/*": "/$1",
   "/wms7/rest/oms/*": "/$1"
 }
