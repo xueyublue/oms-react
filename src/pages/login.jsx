@@ -74,7 +74,7 @@ const Login = ({ classes }) => {
   const [authStatus, setAuthStatus] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const history = useHistory();
-  const spring = useSpring({ from: { opacity: 0 }, to: { opacity: 1 }, config: { duration: 250 } });
+  const spring = useSpring({ from: { opacity: 0.5 }, to: { opacity: 1 }, config: { duration: 250 } });
 
   const onFinish = (values) => {
     setAuthStatus(null);
