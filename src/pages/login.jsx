@@ -80,21 +80,37 @@ const Login = ({ classes }) => {
     setAuthStatus(null);
     setIsAuthenticating(true);
     setTimeout(() => {
-      axios
-        .post(`${baseUrl}/auth/login`, { userId: values.userid, password: values.password })
-        .then(({ data }) => {
-          setIsAuthenticating(false);
-          if (data.success) {
-            setAuthStatus("S");
-            localStorage.setItem("omsToken", data.omsToken);
-            history.push(ROUTE_DASHBORAD);
-          } else setAuthStatus("F");
-        })
-        .catch((err) => {
-          setAuthStatus("F");
-          setIsAuthenticating(false);
-          console.log(err);
-        });
+      process.env.REACT_APP_COMM_WITH_JSON_SERVER === "FALSE"
+        ? axios
+            .post(`${baseUrl}/auth/login`, { userId: values.userid, password: values.password })
+            .then(({ data }) => {
+              setIsAuthenticating(false);
+              if (data.success) {
+                setAuthStatus("S");
+                localStorage.setItem("omsToken", data.omsToken);
+                history.push(ROUTE_DASHBORAD);
+              } else setAuthStatus("F");
+            })
+            .catch((err) => {
+              setAuthStatus("F");
+              setIsAuthenticating(false);
+              console.log(err);
+            })
+        : axios
+            .get(`${baseUrl}/auth/login`, { userId: values.userid, password: values.password })
+            .then(({ data }) => {
+              setIsAuthenticating(false);
+              if (data.success) {
+                setAuthStatus("S");
+                localStorage.setItem("omsToken", data.omsToken);
+                history.push(ROUTE_DASHBORAD);
+              } else setAuthStatus("F");
+            })
+            .catch((err) => {
+              setAuthStatus("F");
+              setIsAuthenticating(false);
+              console.log(err);
+            });
     }, 2000);
   };
 
