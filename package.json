@@ -18,7 +18,7 @@
     "chartjs-plugin-datalabels": "2.0.0",
     "classnames": "2.3.1",
     "json-server": "0.17.0",
-    "jwt-decode": "^3.1.2",
+    "jwt-decode": "3.1.2",
     "moment": "2.29.1",
     "notistack": "2.0.2",
     "react": "17.0.2",
@@ -28,6 +28,7 @@
     "react-icons": "4.3.1",
     "react-router-dom": "5.3.0",
     "react-scripts": "4.0.3",
+    "react-spring": "9.3.2",
     "rsuite": "5.2.1",
     "web-vitals": "1.1.2"
   },
