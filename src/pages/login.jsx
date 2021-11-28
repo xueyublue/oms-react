@@ -18,8 +18,6 @@ const styles = {
   root: {
     width: "100%",
     height: "100vh",
-    //* color background
-    // background: "#172a3d",
   },
   container: {
     width: "400px",
@@ -47,7 +45,7 @@ const styles = {
   loginButton: {
     width: "100%",
     fontWeight: 600,
-    letterSpacing: "1px",
+    letterSpacing: "1.25px",
   },
   messageContainer: {
     marginTop: 10,
