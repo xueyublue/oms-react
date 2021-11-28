@@ -119,10 +119,16 @@ const Login = ({ classes }) => {
           <img src={loginlogo} alt="logo" className={classes.logo}></img>
           <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
             <Form.Item name="userid" rules={[{ required: true, message: "Please input your User ID!" }]}>
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="User ID" size="large" />
+              <Input
+                disabled={isAuthenticating}
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="User ID"
+                size="large"
+              />
             </Form.Item>
             <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
               <Input
+                disabled={isAuthenticating}
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
                 placeholder="Password"
@@ -131,7 +137,7 @@ const Login = ({ classes }) => {
             </Form.Item>
             <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox disabled={isAuthenticating}>Remember me</Checkbox>
               </Form.Item>
               {/* <a className={classes.forgetPassord} href="/">
               Forgot password
