@@ -51,9 +51,16 @@ const columns = [
     ),
   },
   {
-    header: "Default",
+    header: "Default Value",
     key: "default",
-    width: 200,
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) =>
+      value && (
+        <Tag key={value} style={{ width: "100%", textAlign: "center" }}>
+          {value}
+        </Tag>
+      ),
   },
 ];
 
