@@ -153,7 +153,7 @@ function ExplorerTab({ classes }) {
           <Col flex="auto">
             <div className={classes.tabs}>
               <Tabs type="card" size="small">
-                <TabPane tab={<span>Data</span>} key={"Data"}>
+                <TabPane tab={<span>Top 1000 Records</span>} key={"Data"}>
                   <ExplorerDataTab table={table} />
                 </TabPane>
                 <TabPane tab={<span>Columns</span>} key={"Columns"}>
