@@ -65,7 +65,7 @@ const columns = [
     renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
+      else if (value < 1000) style = "green";
       else style = "gold";
       return (
         <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
@@ -82,7 +82,7 @@ const columns = [
     renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
+      else if (value < 1000 * 7) style = "green";
       else style = "gold";
       return (
         <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
@@ -99,7 +99,7 @@ const columns = [
     renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
+      else if (value < 1000 * 30) style = "green";
       else style = "gold";
       return (
         <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
@@ -116,7 +116,7 @@ const columns = [
     renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
+      else if (value < 1000 * 365) style = "green";
       else style = "gold";
       return (
         <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
