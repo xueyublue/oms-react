@@ -21,18 +21,98 @@ const columns = [
   {
     header: "Owner",
     key: "owner",
-    width: 200,
+    width: 120,
     fixed: true,
   },
   {
     header: "Table Name",
     key: "tableName",
-    width: 300,
+    width: 250,
   },
   {
-    header: "Total Records",
-    key: "totalRecords",
-    width: 135,
+    header: "Initial Count",
+    key: "initialCount",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => (
+      <Tag color="default" key={value} style={{ width: "100%", textAlign: "right" }}>
+        {formatNumberWithCommas(value)}
+      </Tag>
+    ),
+  },
+  {
+    header: "Current Count",
+    key: "currentCount",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 10000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
+  },
+  {
+    header: "Daily Growth",
+    key: "dailyGrowth",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 10000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
+  },
+  {
+    header: "Weekly Growth",
+    key: "dailyGrowth",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 10000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
+  },
+  {
+    header: "Monthly Growth",
+    key: "dailyGrowth",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 10000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
+  },
+  {
+    header: "Yearly Growth",
+    key: "dailyGrowth",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => {
       let style = "default";
       if (value === 0) style = "default";

@@ -15,10 +15,10 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
   let records = [];
   let bgColors = [];
   for (let i = 0; i < data.length; i++) {
-    if (data[i].totalRecords < 10000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
+    if (data[i].currentCount < 10000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
     else bgColors[i] = "rgba(253, 211, 153, 0.8)";
     labels[i] = data[i].owner + "." + data[i].tableName;
-    records[i] = data[i].totalRecords;
+    records[i] = data[i].currentCount;
     if (i > displayLimit) break;
   }
   const dataSource = {
@@ -52,7 +52,7 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
         position: "top",
         beginAtZero: true,
         min: 0,
-        max: data[0].totalRecords,
+        max: data[0].currentCount,
       },
     },
   };
