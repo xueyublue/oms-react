@@ -76,7 +76,7 @@ const columns = [
   },
   {
     header: "Weekly Growth",
-    key: "dailyGrowth",
+    key: "weeklyGrowth",
     width: 120,
     renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => {
@@ -93,7 +93,7 @@ const columns = [
   },
   {
     header: "Monthly Growth",
-    key: "dailyGrowth",
+    key: "monthlyGrowth",
     width: 120,
     renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => {
@@ -110,7 +110,7 @@ const columns = [
   },
   {
     header: "Yearly Growth",
-    key: "dailyGrowth",
+    key: "yearlyGrowth",
     width: 120,
     renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (value) => {
