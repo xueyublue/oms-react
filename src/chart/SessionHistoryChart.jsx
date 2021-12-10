@@ -24,6 +24,8 @@ const getMaxValue = (data) => {
   return max;
 };
 
+const HISTORY_DATE_FORMAT = "DD-MM-YYYY";
+
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -41,10 +43,9 @@ const styles = {
 //* COMPONENT START
 //-------------------------------------------------------------
 function SessionHistoryChart({ classes }) {
-  const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [historyDate, setHistoryDate] = useState(null);
+  const [historyDate, setHistoryDate] = useState(moment().format(HISTORY_DATE_FORMAT));
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
@@ -52,7 +53,7 @@ function SessionHistoryChart({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sessions/history`, { params: { date: historyDate } })
+        .get(`${baseUrl}/sessions/history`, { params: { date: historyDate, format: HISTORY_DATE_FORMAT } })
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
@@ -67,9 +68,10 @@ function SessionHistoryChart({ classes }) {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [baseUrl, historyDate]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRefresh = () => {
+    setHistoryDate(moment().format(HISTORY_DATE_FORMAT));
     setIsLoading(true);
     fetchData();
   };
@@ -81,14 +83,6 @@ function SessionHistoryChart({ classes }) {
       autoHideDuration: 5000,
     });
     return <ApiCallFailed />;
-  }
-  //* display snackbar only one time to inform the refresh interval
-  if (!pageLoad) {
-    setPageLoad(true);
-    enqueueSnackbar("Sessions loaded, refresh interval: 10 seconds.", {
-      variant: "success",
-      autoHideDuration: 5000,
-    });
   }
 
   let maxValue = 100;
@@ -147,8 +141,9 @@ function SessionHistoryChart({ classes }) {
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item label="History Date">
           <DatePicker
+            allowClear={false}
             defaultValue={moment()}
-            format="DD-MM-YYYY"
+            format={HISTORY_DATE_FORMAT}
             onChange={(date, dateString) => setHistoryDate(dateString)}
           />
         </Form.Item>
