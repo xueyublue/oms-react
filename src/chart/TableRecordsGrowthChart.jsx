@@ -10,29 +10,33 @@ function TableRecordsGrowthChart({ displayTitle, data, displayLimit, onDisplayLi
   const [form] = Form.useForm();
   const [type, setType] = useState("linear");
   const [growthType, setGrowthType] = useState("Daily");
-
   if (!data) return;
   let labels = [];
   let records = [];
   let bgColors = [];
-
-  for (let i = 0; i < data.length; i++) {
+  // sort data by growth
+  const sortedData = [...data];
+  sortedData.sort(function (a, b) {
+    return b.dailyGrowth - a.dailyGrowth;
+  });
+  // build chart data
+  for (let i = 0; i < sortedData.length; i++) {
     if (growthType === "Daily")
-      if (data[i].dailyGrowth < 1000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
+      if (sortedData[i].dailyGrowth < 1000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
       else bgColors[i] = "rgba(253, 211, 153, 0.8)";
     else if (growthType === "Monthly")
-      if (data[i].monthlyGrowth < 1000 * 30) bgColors[i] = "rgba(36, 209, 209, 0.8)";
+      if (sortedData[i].monthlyGrowth < 1000 * 30) bgColors[i] = "rgba(36, 209, 209, 0.8)";
       else bgColors[i] = "rgba(253, 211, 153, 0.8)";
     else if (growthType === "Yearly")
-      if (data[i].yearlyGrowth < 1000 * 365) bgColors[i] = "rgba(36, 209, 209, 0.8)";
+      if (sortedData[i].yearlyGrowth < 1000 * 365) bgColors[i] = "rgba(36, 209, 209, 0.8)";
       else bgColors[i] = "rgba(253, 211, 153, 0.8)";
-    labels[i] = data[i].owner + "." + data[i].tableName;
-    if (growthType === "Daily") records[i] = data[i].dailyGrowth;
-    else if (growthType === "Monthly") records[i] = data[i].monthlyGrowth;
-    else if (growthType === "Yearly") records[i] = data[i].yearlyGrowth;
+    labels[i] = sortedData[i].owner + "." + sortedData[i].tableName;
+    if (growthType === "Daily") records[i] = sortedData[i].dailyGrowth;
+    else if (growthType === "Monthly") records[i] = sortedData[i].monthlyGrowth;
+    else if (growthType === "Yearly") records[i] = sortedData[i].yearlyGrowth;
     if (i > displayLimit) break;
   }
-
+  // chart configurations
   const dataSource = {
     labels: labels,
     datasets: [
@@ -66,10 +70,10 @@ function TableRecordsGrowthChart({ displayTitle, data, displayLimit, onDisplayLi
         min: 0,
         max:
           growthType === "Daily"
-            ? data[0].dailyGrowth
+            ? sortedData[0].dailyGrowth
             : growthType === "Monthly"
-            ? data[0].monthlyGrowth
-            : data[0].yearlyGrowth,
+            ? sortedData[0].monthlyGrowth
+            : sortedData[0].yearlyGrowth,
       },
     },
   };
