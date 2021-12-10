@@ -145,6 +145,18 @@ function SessionHistoryChart({ classes }) {
             defaultValue={moment()}
             format={HISTORY_DATE_FORMAT}
             onChange={(date, dateString) => setHistoryDate(dateString)}
+            dateRender={(current) => {
+              const style = {};
+              if (current.date() === 1) {
+                style.border = "1px solid #1890ff";
+                style.borderRadius = "50%";
+              }
+              return (
+                <div className="ant-picker-cell-inner" style={style}>
+                  {current.date()}
+                </div>
+              );
+            }}
           />
         </Form.Item>
         <div className={classes.tableTools}>
