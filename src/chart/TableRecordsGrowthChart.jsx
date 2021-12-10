@@ -6,7 +6,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitChange, displayData = true }) {
+function TableRecordsGrowthChart({ displayTitle, data, displayLimit, onDisplayLimitChange, displayData = true }) {
   const [form] = Form.useForm();
   const [type, setType] = useState("linear");
 
@@ -15,10 +15,10 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
   let records = [];
   let bgColors = [];
   for (let i = 0; i < data.length; i++) {
-    if (data[i].currentCount < 10000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
+    if (data[i].dailyGrowth < 1000) bgColors[i] = "rgba(36, 209, 209, 0.8)";
     else bgColors[i] = "rgba(253, 211, 153, 0.8)";
     labels[i] = data[i].owner + "." + data[i].tableName;
-    records[i] = data[i].currentCount;
+    records[i] = data[i].dailyGrowth;
     if (i > displayLimit) break;
   }
   const dataSource = {
@@ -93,4 +93,4 @@ function TableRecordsChart({ displayTitle, data, displayLimit, onDisplayLimitCha
   );
 }
 
-export default TableRecordsChart;
+export default TableRecordsGrowthChart;

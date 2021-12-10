@@ -13,7 +13,8 @@ import { API_FETCH_WAIT } from "../../util/constants";
 import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvHeaders } from "../../util/util";
-import TableRecordsChart from "../../chart/TableRecordsChart";
+import TableRecordsCountChart from "../../chart/TableRecordsCountChart";
+import TableRecordsGrowthChart from "../../chart/TableRecordsGrowthChart";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
 
@@ -263,7 +264,7 @@ const TableRecords = ({ classes }) => {
           key="count"
         >
           <div style={{ height: chartHeight }}>
-            <TableRecordsChart
+            <TableRecordsCountChart
               data={data}
               displayLimit={chartDisplayLimit}
               onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
@@ -281,7 +282,7 @@ const TableRecords = ({ classes }) => {
           key="growth"
         >
           <div style={{ height: chartHeight }}>
-            <TableRecordsChart
+            <TableRecordsGrowthChart
               data={data}
               displayLimit={chartDisplayLimit}
               onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
