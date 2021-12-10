@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import { TableOutlined, AimOutlined } from "@ant-design/icons";
+import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
@@ -144,10 +144,10 @@ const TopTables = ({ classes }) => {
           tab={
             <span>
               <TableOutlined />
-              Table
+              Details
             </span>
           }
-          key="table"
+          key="details"
         >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Owner" style={{ width: 300 }}>
@@ -184,8 +184,8 @@ const TopTables = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <AimOutlined />
-              {`Top ${chartDisplayLimit} Tables`}
+              <AreaChartOutlined />
+              Chart
             </span>
           }
           key="chart"

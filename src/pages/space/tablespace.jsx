@@ -197,10 +197,10 @@ const Tablespace = ({ classes }) => {
           tab={
             <span>
               <TableOutlined />
-              Table
+              Details
             </span>
           }
-          key="table"
+          key="details"
         >
           <Form form={form} layout={"inline"}>
             <Form.Item />
