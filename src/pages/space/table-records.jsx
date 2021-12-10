@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs, Tooltip } from "antd";
-import { TableOutlined, AimOutlined } from "@ant-design/icons";
+import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { FcUndo } from "react-icons/fc";
@@ -214,10 +214,10 @@ const TableRecords = ({ classes }) => {
           tab={
             <span>
               <TableOutlined />
-              Table
+              Details
             </span>
           }
-          key="table"
+          key="details"
         >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Owner" style={{ width: 200 }}>
@@ -256,11 +256,29 @@ const TableRecords = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <AimOutlined />
-              {`Top ${chartDisplayLimit} Tables`}
+              <AreaChartOutlined />
+              Count
             </span>
           }
-          key="chart"
+          key="count"
+        >
+          <div style={{ height: chartHeight }}>
+            <TableRecordsChart
+              data={data}
+              displayLimit={chartDisplayLimit}
+              onDisplayLimitChange={(limit) => setChartDisplayLimit(limit)}
+              displayData
+            />
+          </div>
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <AreaChartOutlined />
+              Growth
+            </span>
+          }
+          key="growth"
         >
           <div style={{ height: chartHeight }}>
             <TableRecordsChart
