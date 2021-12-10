@@ -28,10 +28,8 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [displayDataLabel, setDisplayDataLabel] = useState(false);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const [form] = Form.useForm();
 
   const fetchData = async () => {
     axios
@@ -48,10 +46,7 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchData();
-    }, 5000);
-    return () => clearInterval(interval);
+    fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading withinComponent />;
@@ -78,40 +73,25 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
     labels: labels,
     datasets: [
       {
-        label: `Total (${total[total.length - 1]})`,
+        label: "Total",
         data: total,
         fill: false,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
-        datalabels: {
-          display: displayDataLabel,
-          backgroundColor: "rgb(36, 209, 209)",
-          color: "rgba(0,0,0,0.9)",
-        },
       },
       {
-        label: `Active (${active[active.length - 1]})`,
+        label: "Active",
         data: active,
         fill: false,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
-        datalabels: {
-          display: displayDataLabel,
-          backgroundColor: "rgb(253, 211, 100)",
-          color: "rgba(0,0,0,0.9)",
-        },
       },
       {
-        label: `Inactive (${inactive[inactive.length - 1]})`,
+        label: "Inactive",
         data: inactive,
         fill: false,
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
-        datalabels: {
-          display: displayDataLabel,
-          backgroundColor: "rgb(75, 122, 192)",
-          color: "white",
-        },
       },
     ],
   };
@@ -122,12 +102,12 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
         position: legendPosition === null ? "top" : legendPosition,
       },
       datalabels: {
-        display: displayDataLabel,
+        display: false,
         borderRadius: 4,
         padding: 2,
       },
     },
-    stepped: true,
+    stepped: false,
     animation: {
       duration: 500,
     },
@@ -145,18 +125,6 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
 
   return (
     <>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Display Data Labels" style={{ width: 200 }}>
-          <Switch
-            value={displayDataLabel}
-            checkedChildren={<MdVisibility />}
-            unCheckedChildren={<MdVisibilityOff />}
-            onChange={(value) => {
-              setDisplayDataLabel(value);
-            }}
-          />
-        </Form.Item>
-      </Form>
       <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 26 }} />
     </>
   );
