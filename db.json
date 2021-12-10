@@ -21772,663 +21772,1143 @@
   "tablerecords": [
     {
       "owner": "WMS",
-      "tableName": "DCBASE",
-      "tablespace": "WMS",
-      "totalRecords": 1
+      "tableName": "DNRESOURCEKVS",
+      "initialCount": 0,
+      "currentCount": 25670,
+      "dailyGrowth": 12835,
+      "monthlyGrowth": 385050,
+      "yearlyGrowth": 4684775,
+      "tablespace": "CMN_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DCDGATEDEFINES",
-      "tablespace": "WMS",
-      "totalRecords": 1
+      "tableName": "DMSHELFAGC",
+      "initialCount": 1352,
+      "currentCount": 1352,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DCMENU",
-      "tablespace": "WMS",
-      "totalRecords": 1500
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCMENULAYOUT",
-      "tablespace": "WMS",
-      "totalRecords": 200
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCMESSAGE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCMESSAGERECEIVER",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCMYMENU",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCOPERATIONDEFINE",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCOPERATIONEQUIPMENTTYPE",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCPASSWORDHISTORY",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCROLE",
-      "tablespace": "WMS",
-      "totalRecords": 5
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCROLEMENUMAP",
-      "tablespace": "WMS",
-      "totalRecords": 36
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCUSER",
-      "tablespace": "WMS",
-      "totalRecords": 12
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DCUSERGADGET",
-      "tablespace": "WMS",
-      "totalRecords": 12458596
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMACCESSNGSHELF",
-      "tablespace": "WCS",
-      "totalRecords": 12541252
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMAISLE",
-      "tablespace": "WCS",
-      "totalRecords": 5
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMALLOCATEPRIORITY",
-      "tablespace": "WMS",
-      "totalRecords": 2
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMAREA",
-      "tablespace": "WMS",
-      "totalRecords": 2
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMBANKSELECT",
-      "tablespace": "WCS",
-      "totalRecords": 10
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMCONSIGNOR",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMCUSTOMER",
-      "tablespace": "WMS",
-      "totalRecords": 2
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMEQUIPMENT",
-      "tablespace": "WMS",
-      "totalRecords": 13
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMEXCHANGEENVIRONMENT",
-      "tablespace": "WMS",
-      "totalRecords": 5
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMGROUPCONTROLLER",
-      "tablespace": "WCS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMHARDZONE",
-      "tablespace": "WCS",
-      "totalRecords": 3
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMHOSTDATADEFINE",
-      "tablespace": "WMS",
-      "totalRecords": 691212
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMITEM",
-      "tablespace": "WMS",
-      "totalRecords": 12111
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMLOADSIZE",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMMACHINE",
-      "tablespace": "WCS",
-      "totalRecords": 22
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMSHELF",
-      "tablespace": "WCS",
-      "totalRecords": 1200
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMSOFTZONE",
-      "tablespace": "WCS",
-      "totalRecords": 5
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMSOFTZONEPRIORITY",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMSTATION",
-      "tablespace": "WCS",
-      "totalRecords": 24
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMSTATIONTYPE",
-      "tablespace": "WCS",
-      "totalRecords": 12300
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMSUPPLIER",
-      "tablespace": "WMS",
-      "totalRecords": 26381
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMTERMINALAREA",
-      "tablespace": "WCS",
-      "totalRecords": 22
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMWAREHOUSE",
-      "tablespace": "WCS",
-      "totalRecords": 12
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DMWARENAVISYSTEM",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "MC",
-      "tableName": "DMWIDTH",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNARRIVAL",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNARUF",
-      "tablespace": "WMS",
-      "totalRecords": 9
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNAUTOSTORAGEPLAN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNCARRYINFO",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNDELETESTOCK",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNDOMAIN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNEMAILADDRESS",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNEMAILREQUEST",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNEXCHANGEHISTORY",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNGADGETVALUES",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTCOMMHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 3
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTCOMMHISTORYDETAIL",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 3
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTCOMMREQUEST",
-      "tablespace": "WMS",
-      "totalRecords": 9
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTINVENTORYCOUNT",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTINVENTORYDISC",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTSEND",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTSENDDETAIL",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNHOSTSENDHEADER",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNINOUTRESULT",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNINVENTORYCHECK",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNLOADERRORINFO",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNOPERATIONDAY",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNOPERATIONDISPLAY",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNOPERATIONEQUIPMENT",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNPALLET",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNPICKINGPLANDETAIL",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNPICKINGPLANHEADER",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNPRINTHISTORY",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNREARRANGEPLAN",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNREARRANGESETTING",
-      "tablespace": "WCS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNRESTORINGPLAN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNRESULT",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNRETRIEVALPLAN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNROLEHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNROLEMAPPINGHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSHORTAGEINFO",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTOCK",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTOCKHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTOCKTAKEPLANDETAIL",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTOCKTAKEPLANHEADER",
-      "tablespace": "WMS",
-      "totalRecords": 1
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTORAGEPLAN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTORAGEPLANDETAIL",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMS",
-      "tableName": "DNSTORAGEPLANHEADER",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "tableName": "DNHOSTDATAERROR",
+      "initialCount": 0,
+      "currentCount": 837,
+      "dailyGrowth": 419,
+      "monthlyGrowth": 12555,
+      "yearlyGrowth": 152753,
+      "tablespace": "WMS_HISTORY"
     },
     {
       "owner": "WMS",
       "tableName": "DNSYSTEMKVS",
-      "tablespace": "WMS",
-      "totalRecords": 22
+      "initialCount": 260,
+      "currentCount": 260,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DNTEMPITEM",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "tableName": "DMHOSTDATADEFINE",
+      "initialCount": 129,
+      "currentCount": 129,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DNTEMPRETRIEVALPLAN",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "MC",
-      "tableName": "DNTEXTSENDREQUEST",
-      "tablespace": "WCS",
-      "totalRecords": 0
+      "tableName": "DNPROCESSORDERPLANDETAIL",
+      "initialCount": 0,
+      "currentCount": 100,
+      "dailyGrowth": 50,
+      "monthlyGrowth": 1500,
+      "yearlyGrowth": 18250,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DNUSERACCESSHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
+      "tableName": "DMMOSAREA",
+      "initialCount": 90,
+      "currentCount": 90,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMENU",
+      "initialCount": 45,
+      "currentCount": 45,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMENUCONTENT",
+      "initialCount": 45,
+      "currentCount": 45,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMORDERLIMIT",
+      "initialCount": 41,
+      "currentCount": 41,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMROUTE",
+      "initialCount": 37,
+      "currentCount": 37,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMDEVICE",
+      "initialCount": 31,
+      "currentCount": 31,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTATUSCHANGERULE",
+      "initialCount": 31,
+      "currentCount": 31,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNTERMINALOPTIONKVS",
+      "initialCount": 30,
+      "currentCount": 30,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMFREESHELFAGC",
+      "initialCount": 21,
+      "currentCount": 21,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMMOVEDATACOUNTERAGC",
+      "initialCount": 21,
+      "currentCount": 21,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMWORKFLOW",
+      "initialCount": 14,
+      "currentCount": 14,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMPALLETIZATIONPATTERN",
+      "initialCount": 13,
+      "currentCount": 13,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCUSER",
+      "initialCount": 12,
+      "currentCount": 12,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMTERMINAL",
+      "initialCount": 11,
+      "currentCount": 11,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMWORKFLOWPATTERN",
+      "initialCount": 11,
+      "currentCount": 11,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNHOSTCOMMREQUEST",
+      "initialCount": 11,
+      "currentCount": 11,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMENUGROUP",
+      "initialCount": 10,
+      "currentCount": 10,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNHOSTCOMMHISTORY",
+      "initialCount": 0,
+      "currentCount": 10,
+      "dailyGrowth": 5,
+      "monthlyGrowth": 150,
+      "yearlyGrowth": 1825,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMLAMP",
+      "initialCount": 9,
+      "currentCount": 9,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMSOFTZONEPRIORITYAGC",
+      "initialCount": 9,
+      "currentCount": 9,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNPULLDOWNKVS",
+      "initialCount": 9,
+      "currentCount": 9,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCROLE",
+      "initialCount": 6,
+      "currentCount": 6,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMREPDEVICE",
+      "initialCount": 5,
+      "currentCount": 5,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMAREA",
+      "initialCount": 4,
+      "currentCount": 4,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMITEM",
+      "initialCount": 3,
+      "currentCount": 4,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 15,
+      "yearlyGrowth": 183,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTORAGEPLANDETAIL",
+      "initialCount": 0,
+      "currentCount": 4,
+      "dailyGrowth": 2,
+      "monthlyGrowth": 60,
+      "yearlyGrowth": 730,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMHARDSIZEAGC",
+      "initialCount": 3,
+      "currentCount": 3,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMSOFTZONEAGC",
+      "initialCount": 3,
+      "currentCount": 3,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMPALLETIZATIONLINE",
+      "initialCount": 2,
+      "currentCount": 2,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMWCS",
+      "initialCount": 2,
+      "currentCount": 2,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTORAGEPLAN",
+      "initialCount": 0,
+      "currentCount": 2,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 30,
+      "yearlyGrowth": 365,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCBASE",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMAISLEAGC",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMCONSIGNOR",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMEQUIPMENT",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMHARDZONEAGC",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMHARDZONEPRIORITYAGC",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMNOTIFICATION",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMWAREHOUSE",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMWRAPPINGMACHINE",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNDAILYINVSUMMARYDETAIL",
+      "initialCount": 0,
+      "currentCount": 1,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 15,
+      "yearlyGrowth": 183,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNDAILYINVSUMMARYHEADER",
+      "initialCount": 0,
+      "currentCount": 1,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 15,
+      "yearlyGrowth": 183,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNEMAILREQUEST",
+      "initialCount": 0,
+      "currentCount": 1,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 15,
+      "yearlyGrowth": 183,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNOPERATIONDAY",
+      "initialCount": 1,
+      "currentCount": 1,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNPROCESSORDERPLANHEADER",
+      "initialCount": 0,
+      "currentCount": 1,
+      "dailyGrowth": 1,
+      "monthlyGrowth": 15,
+      "yearlyGrowth": 183,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMESSAGE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMESSAGERECEIVER",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCMYMENU",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCOPERATIONDEFINE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCOPERATIONEQUIPMENTTYPE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DCUSERGADGET",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMCUSTOMER",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMDEVICECMC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMINPUTDEVICE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMITEMBCDATA",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMMONITOREDDEVICE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DMSTORAGEPATTERNAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNAUTOSTORAGEPLAN",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNAUTOSTORAGEPLANDETAIL",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNEVENTHISTORY",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_EVENTHISTORY"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNEXCEPTION",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNGADGETVALUES",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNHOSTCOMMSENDDETAIL",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNHOSTCOMMSENDHEADER",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNINVENTORYCHECK",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNINVENTORYRESULT",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_HISTORY"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNLABELREQUEST",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNLOAD",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNLOADBCDATA",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMERGECONTROLDATAAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMERGEORDERFCC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMERGERESULTFCC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMISSIONSTATUS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_HISTORY"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVEDATAAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVEORDERAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVEORDERFCC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVEORDERWMS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVERESULTAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVERESULTFCC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNMOVERESULTWMS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNPALLETSHIPPERHUMAP",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNPLACEKVS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNPRINTHISTORY",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNREADBCDATA",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNRETRIEVALPLAN",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNROLEHIST",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNROLEMAPPINGHIST",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSHORTAGE",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCK",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCKDETAIL",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCKHISTORY",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_HISTORY"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCKHISTORYDETAIL",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCKTAKEPLANDETAIL",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNSTOCKTAKEPLANHEADER",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNTABLEHISTORY",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_HISTORY"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNTEXTCMC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNUIINFOAGC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNUSERACCESS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNUSERACCESSARCH",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
       "tableName": "DNUSERHISTORY",
-      "tablespace": "WMS_LARGE",
-      "totalRecords": 0
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DNUSERSTATE",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "tableName": "DNUSEROPTIONKVS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNWCSKVS",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "CMN_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNWORKAS21CMC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
       "tableName": "DNWORKINFO",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
+    },
+    {
+      "owner": "WMS",
+      "tableName": "DNWORKINFOSETTING",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_HISTORY"
     },
     {
       "owner": "WMS",
       "tableName": "DNWORKLIST",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
       "owner": "WMS",
-      "tableName": "DVRESULTVIEW",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "tableName": "DNWORKREQUEST",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     },
     {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMACCESSNGSHELF",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMAISLE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMAREA",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMBANKSELECT",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMGROUPCONTROLLER",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMHARDZONE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMHARDZONERANGE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMLOADSIZE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMMACHINE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSHELF",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSOFTZONE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSOFTZONEPRIORITY",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSOFTZONERANGE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSTATION",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMSTATIONTYPE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMTERMINALAREA",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMWAREHOUSE",
-      "tablespace": "WMS",
-      "totalRecords": 0
-    },
-    {
-      "owner": "WMSTOOL",
-      "tableName": "TEMP_DMWIDTH",
-      "tablespace": "WMS",
-      "totalRecords": 0
+      "owner": "WMS",
+      "tableName": "DNWORKRESPONSECMC",
+      "initialCount": 0,
+      "currentCount": 0,
+      "dailyGrowth": 0,
+      "monthlyGrowth": 0,
+      "yearlyGrowth": 0,
+      "tablespace": "WMS_TRANSACTIONAL"
     }
   ],
   "profiles": [

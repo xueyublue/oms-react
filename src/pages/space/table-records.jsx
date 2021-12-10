@@ -75,23 +75,6 @@ const columns = [
     },
   },
   {
-    header: "Weekly Growth",
-    key: "weeklyGrowth",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 1000 * 7) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {formatNumberWithCommas(value)}
-        </Tag>
-      );
-    },
-  },
-  {
     header: "Monthly Growth",
     key: "monthlyGrowth",
     width: 120,
