@@ -35,7 +35,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
 
   const fetchData = async () => {
     axios
-      .get(`${baseUrl}/sessions/history`)
+      .get(`${baseUrl}/sessions/monitoring`)
       .then(({ data }) => {
         setData(data);
         setIsLoading(false);
