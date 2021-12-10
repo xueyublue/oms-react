@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Progress, Tag, Form, Row, Col, Tabs } from "antd";
-import { CheckCircleOutlined, ExclamationCircleOutlined, TableOutlined, AreaChartOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+  InfoCircleOutlined,
+  AreaChartOutlined,
+} from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
@@ -196,7 +201,7 @@ const Tablespace = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <TableOutlined />
+              <InfoCircleOutlined />
               Details
             </span>
           }

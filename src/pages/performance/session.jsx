@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import { TableOutlined, DashboardOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, DashboardOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
@@ -221,11 +221,11 @@ const Sessions = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <TableOutlined />
-              Table
+              <InfoCircleOutlined />
+              Details
             </span>
           }
-          key="table"
+          key="details"
         >
           {showDetail && (
             <SessionDetailModal sessionId={sessionId} show={showDetail} onCancel={() => setShowDetail(false)} />

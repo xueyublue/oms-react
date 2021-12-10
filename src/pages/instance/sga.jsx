@@ -3,7 +3,7 @@ import { Progress, Form, Row, Col, Tabs, Select } from "antd";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { withStyles } from "@mui/styles";
-import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, AreaChartOutlined } from "@ant-design/icons";
 import { formatNumberWithCommasAndDecimals, getCsvFileIndex } from "../../util/util";
 import Loading from "../../components/Loading";
 import ApiCallFailed from "../../components/ApiCallFailed";
@@ -115,11 +115,11 @@ const SgaConfigurations = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <TableOutlined />
-              Table
+              <InfoCircleOutlined />
+              Details
             </span>
           }
-          key="table"
+          key="details"
         >
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import { TableOutlined, AreaChartOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, AreaChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { useSnackbar } from "notistack";
@@ -143,7 +143,7 @@ const TopTables = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <TableOutlined />
+              <InfoCircleOutlined />
               Details
             </span>
           }
