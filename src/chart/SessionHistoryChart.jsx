@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Form, Switch } from "antd";
+import { Form, DatePicker } from "antd";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { useSnackbar } from "notistack";
@@ -10,6 +10,7 @@ import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
 import RefreshButton from "./../components/RefreshButton";
 import { API_FETCH_WAIT } from "./../util/constants";
+import moment from "moment";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -43,6 +44,7 @@ function SessionHistoryChart({ classes }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [historyDate, setHistoryDate] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
@@ -50,7 +52,7 @@ function SessionHistoryChart({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sessions/history`)
+        .get(`${baseUrl}/sessions/history`, { params: { date: historyDate } })
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
@@ -143,7 +145,13 @@ function SessionHistoryChart({ classes }) {
   return (
     <>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item />
+        <Form.Item label="History Date">
+          <DatePicker
+            defaultValue={moment()}
+            format="DD-MM-YYYY"
+            onChange={(date, dateString) => setHistoryDate(dateString)}
+          />
+        </Form.Item>
         <div className={classes.tableTools}>
           <Form.Item>
             <RefreshButton onClick={handleRefresh} />
