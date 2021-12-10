@@ -4,10 +4,12 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { useSnackbar } from "notistack";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { withStyles } from "@mui/styles";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
+import RefreshButton from "./../components/RefreshButton";
+import { API_FETCH_WAIT } from "./../util/constants";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -22,32 +24,53 @@ const getMaxValue = (data) => {
 };
 
 //-------------------------------------------------------------
+//* STYLES START
+//-------------------------------------------------------------
+const styles = {
+  root: {
+    width: "100%",
+  },
+  tableTools: {
+    position: "absolute",
+    right: 0,
+  },
+};
+
+//-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionHistoryChart() {
+function SessionHistoryChart({ classes }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const [form] = Form.useForm();
 
   const fetchData = async () => {
-    axios
-      .get(`${baseUrl}/sessions/history`)
-      .then(({ data }) => {
-        setData(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setData(null);
-        setIsLoading(false);
-        console.log(err);
-      });
+    setTimeout(() => {
+      axios
+        .get(`${baseUrl}/sessions/history`)
+        .then(({ data }) => {
+          setData(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setData(null);
+          setIsLoading(false);
+          console.log(err);
+        });
+    }, API_FETCH_WAIT);
   };
 
   useEffect(() => {
     fetchData();
   }, [baseUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleRefresh = () => {
+    setIsLoading(true);
+    fetchData();
+  };
 
   if (isLoading) return <Loading withinComponent />;
   if (!data) {
@@ -119,9 +142,17 @@ function SessionHistoryChart() {
 
   return (
     <>
+      <Form form={form} layout={"inline"} size={"middle"}>
+        <Form.Item />
+        <div className={classes.tableTools}>
+          <Form.Item>
+            <RefreshButton onClick={handleRefresh} />
+          </Form.Item>
+        </div>
+      </Form>
       <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 26 }} />
     </>
   );
 }
 
-export default SessionHistoryChart;
+export default withStyles(styles)(SessionHistoryChart);
