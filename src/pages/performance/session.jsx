@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs } from "antd";
-import { InfoCircleOutlined, DashboardOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, DashboardOutlined, HistoryOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { FcUndo } from "react-icons/fc";
 import { withStyles } from "@mui/styles";
@@ -12,7 +12,8 @@ import RefreshButton from "../../components/RefreshButton";
 import ExportButton from "../../components/ExportButton";
 import { getCsvFileIndex, getCsvHeaders } from "../../util/util";
 import { useSnackbar } from "notistack";
-import SessionChart from "../../chart/SessionChart";
+import SessionMonitoringChart from "../../chart/SessionMonitoringChart";
+import SessionHistoryChart from "../../chart/SessionHistoryChart";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import SessionDetailModal from "../../components/SessionDetailModal";
 import PageTable from "../../components/PageTable";
@@ -279,7 +280,20 @@ const Sessions = ({ classes }) => {
           key="monitoring"
         >
           <div style={{ height: height - 200 }}>
-            <SessionChart withinComponent />
+            <SessionMonitoringChart withinComponent />
+          </div>
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <HistoryOutlined />
+              History
+            </span>
+          }
+          key="history"
+        >
+          <div style={{ height: height - 200 }}>
+            <SessionHistoryChart withinComponent />
           </div>
         </TabPane>
       </Tabs>

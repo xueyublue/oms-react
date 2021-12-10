@@ -24,7 +24,7 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
+function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -162,4 +162,4 @@ function SessionChart({ titleDisplay, legendPosition, withinComponent }) {
   );
 }
 
-export default SessionChart;
+export default SessionHistoryChart;

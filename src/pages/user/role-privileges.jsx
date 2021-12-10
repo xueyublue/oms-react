@@ -17,7 +17,7 @@ import PageTable from "../../components/PageTable";
 const columns = [
   {
     header: "Role Name",
-    key: "role",
+    key: "roleName",
     width: 300,
     fixed: true,
   },
