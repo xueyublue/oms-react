@@ -28,7 +28,8 @@ const columns = [
   {
     header: "Table Name",
     key: "tableName",
-    width: 250,
+    width: 240,
+    fixed: true,
   },
   {
     header: "Initial Count",
