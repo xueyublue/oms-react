@@ -24,7 +24,7 @@ const getMaxValue = (data) => {
 //-------------------------------------------------------------
 //* COMPONENT START
 //-------------------------------------------------------------
-function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) {
+function SessionHistoryChart() {
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -97,27 +97,21 @@ function SessionHistoryChart({ titleDisplay, legendPosition, withinComponent }) 
   };
   const options = {
     plugins: {
-      title: { display: titleDisplay, text: "Sessions (every 10s)" },
       legend: {
-        position: legendPosition === null ? "top" : legendPosition,
+        position: "top",
       },
       datalabels: {
         display: false,
-        borderRadius: 4,
-        padding: 2,
       },
     },
     stepped: false,
-    animation: {
-      duration: 500,
-    },
     maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
         max: maxValue,
         ticks: {
-          stepSize: 10,
+          stepSize: 5,
         },
       },
     },

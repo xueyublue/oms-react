@@ -137,7 +137,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
         beginAtZero: true,
         max: maxValue,
         ticks: {
-          stepSize: 10,
+          stepSize: 5,
         },
       },
     },

@@ -293,7 +293,7 @@ const Sessions = ({ classes }) => {
           key="history"
         >
           <div style={{ height: height - 200 }}>
-            <SessionHistoryChart withinComponent />
+            <SessionHistoryChart />
           </div>
         </TabPane>
       </Tabs>
