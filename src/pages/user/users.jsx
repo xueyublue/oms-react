@@ -17,16 +17,29 @@ import PageTable from "../../components/PageTable";
 
 const columns = [
   {
+    header: "User ID",
+    key: "userId",
+    width: 100,
+    fixed: true,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (text) => (
+      <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
+        <span>{text}</span>
+      </div>
+    ),
+  },
+  {
     header: "User Name",
     key: "userName",
     width: 220,
     fixed: true,
   },
   {
-    header: "Status",
+    header: "Account Status",
     key: "accountStatus",
     width: 150,
     fixed: true,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
     renderCell: (status) => (
       <Tag
         color={status === "OPEN" ? "green" : "volcano"}
@@ -41,32 +54,32 @@ const columns = [
   {
     header: "Profile",
     key: "profile",
-    width: 150,
+    width: 120,
   },
   {
     header: "Default Tablespace",
     key: "defaultTablespace",
-    width: 200,
+    width: 180,
   },
   {
     header: "Temp Tablespace",
     key: "temporaryTablespace",
-    width: 150,
+    width: 120,
   },
   {
     header: "Created Date",
     key: "createdDate",
-    width: 170,
+    width: 160,
   },
   {
     header: "Expiry Date",
     key: "expiryDate",
-    width: 170,
+    width: 160,
   },
   {
     header: "Lock Date",
     key: "lockDate",
-    width: 170,
+    width: 160,
   },
   {
     header: "Last Login Date",

@@ -27,8 +27,8 @@ const columns = [
     ),
   },
   {
-    header: "Role",
-    key: "role",
+    header: "Role Name",
+    key: "roleName",
     width: 300,
   },
   {
