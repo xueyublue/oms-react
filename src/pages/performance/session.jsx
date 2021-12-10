@@ -279,7 +279,7 @@ const Sessions = ({ classes }) => {
           }
           key="monitoring"
         >
-          <div style={{ height: height - 200 }}>
+          <div style={{ height: height - 187 }}>
             <SessionMonitoringChart withinComponent />
           </div>
         </TabPane>
@@ -292,7 +292,7 @@ const Sessions = ({ classes }) => {
           }
           key="history"
         >
-          <div style={{ height: height - 200 }}>
+          <div style={{ height: height - 187 }}>
             <SessionHistoryChart />
           </div>
         </TabPane>

@@ -157,7 +157,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
           />
         </Form.Item>
       </Form>
-      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 26 }} />
+      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 25 }} />
     </>
   );
 }
