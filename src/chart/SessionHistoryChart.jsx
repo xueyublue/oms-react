@@ -92,7 +92,62 @@ function SessionHistoryChart({ classes }) {
     fetchData();
   };
 
-  if (isLoading) return <Loading withinComponent />;
+  const formUI = (
+    <Form form={form} layout={"inline"} size={"middle"}>
+      <Form.Item label="Date">
+        <DatePicker
+          allowClear={false}
+          defaultValue={moment()}
+          format={HISTORY_DATE_FORMAT}
+          onChange={(date, dateString) => {
+            setHistoryDate(dateString);
+            if (moment().format(HISTORY_DATE_FORMAT) !== dateString) setTimeRange([0, 24]);
+            else setTimeRange([moment().format("HH"), parseInt(moment().format("HH")) + 1]);
+          }}
+          dateRender={(current) => {
+            const style = {};
+            if (current.date() === 1) {
+              style.border = "1px solid #1890ff";
+              style.borderRadius = "50%";
+            }
+            return (
+              <div className="ant-picker-cell-inner" style={style}>
+                {current.date()}
+              </div>
+            );
+          }}
+        />
+      </Form.Item>
+      <Form.Item label="Time Range" style={{ width: width - 500 }}>
+        <Slider
+          value={timeRange}
+          onAfterChange={() => {
+            setIsLoading(true);
+            fetchData();
+          }}
+          onChange={(value) => setTimeRange(value)}
+          marks={getMarks()}
+          range={{ draggableTrack: true }}
+          min={0}
+          max={24}
+          defaultValue={timeRange}
+        />
+      </Form.Item>
+      <div className={classes.tableTools}>
+        <Form.Item>
+          <RefreshButton onClick={handleRefresh} />
+        </Form.Item>
+      </div>
+    </Form>
+  );
+
+  if (isLoading)
+    return (
+      <>
+        {formUI}
+        <Loading />
+      </>
+    );
   if (!data) {
     enqueueSnackbar("Failed to connect backend services. Please check the network connection.", {
       variant: "error",
@@ -160,52 +215,7 @@ function SessionHistoryChart({ classes }) {
 
   return (
     <>
-      <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="Date">
-          <DatePicker
-            allowClear={false}
-            defaultValue={moment()}
-            format={HISTORY_DATE_FORMAT}
-            onChange={(date, dateString) => {
-              setHistoryDate(dateString);
-              if (moment().format(HISTORY_DATE_FORMAT) !== dateString) setTimeRange([0, 24]);
-              else setTimeRange([moment().format("HH"), parseInt(moment().format("HH")) + 1]);
-            }}
-            dateRender={(current) => {
-              const style = {};
-              if (current.date() === 1) {
-                style.border = "1px solid #1890ff";
-                style.borderRadius = "50%";
-              }
-              return (
-                <div className="ant-picker-cell-inner" style={style}>
-                  {current.date()}
-                </div>
-              );
-            }}
-          />
-        </Form.Item>
-        <Form.Item label="Time Range" style={{ width: width - 500 }}>
-          <Slider
-            value={timeRange}
-            onAfterChange={() => {
-              setIsLoading(true);
-              fetchData();
-            }}
-            onChange={(value) => setTimeRange(value)}
-            marks={getMarks()}
-            range={{ draggableTrack: true }}
-            min={0}
-            max={24}
-            defaultValue={timeRange}
-          />
-        </Form.Item>
-        <div className={classes.tableTools}>
-          <Form.Item>
-            <RefreshButton onClick={handleRefresh} />
-          </Form.Item>
-        </div>
-      </Form>
+      {formUI}
       <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 45 }} />
     </>
   );
