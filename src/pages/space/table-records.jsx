@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Select, Tag, Tabs, Tooltip } from "antd";
-import { InfoCircleOutlined, AreaChartOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, AreaChartOutlined, RiseOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useSnackbar } from "notistack";
 import { FcUndo } from "react-icons/fc";
@@ -276,7 +276,7 @@ const TableRecords = ({ classes }) => {
         <TabPane
           tab={
             <span>
-              <AreaChartOutlined />
+              <RiseOutlined />
               Growth
             </span>
           }
