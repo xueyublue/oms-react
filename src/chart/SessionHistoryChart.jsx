@@ -32,7 +32,6 @@ const getMarks = () => {
   for (let index = 0; index <= 23; index++) {
     marks[index] = index;
   }
-  console.log(marks);
   return marks;
 };
 
@@ -56,6 +55,10 @@ function SessionHistoryChart({ classes }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [historyDate, setHistoryDate] = useState(moment().format(HISTORY_DATE_FORMAT));
+  const [timeRange, setTimeRange] = useState([
+    parseInt(moment().format("HH")) - 1 <= 0 ? 0 : parseInt(moment().format("HH")) - 1,
+    parseInt(moment().format("HH")) + 1 >= 23 ? 23 : parseInt(moment().format("HH")) + 1,
+  ]);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
@@ -64,7 +67,9 @@ function SessionHistoryChart({ classes }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sessions/history`, { params: { date: historyDate, format: HISTORY_DATE_FORMAT } })
+        .get(`${baseUrl}/sessions/history`, {
+          params: { date: historyDate, format: HISTORY_DATE_FORMAT, startTime: timeRange[0], endTime: timeRange[1] },
+        })
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
@@ -79,7 +84,7 @@ function SessionHistoryChart({ classes }) {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl, historyDate]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [baseUrl, historyDate, timeRange]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRefresh = () => {
     setHistoryDate(moment().format(HISTORY_DATE_FORMAT));
@@ -171,7 +176,14 @@ function SessionHistoryChart({ classes }) {
           />
         </Form.Item>
         <Form.Item label="Time Range" style={{ width: width - 500 }}>
-          <Slider marks={getMarks()} range={{ draggableTrack: true }} min={0} max={23} defaultValue={[0, 9]} />
+          <Slider
+            onAfterChange={(value) => setTimeRange(value)}
+            marks={getMarks()}
+            range={{ draggableTrack: true }}
+            min={0}
+            max={23}
+            defaultValue={timeRange}
+          />
         </Form.Item>
         <div className={classes.tableTools}>
           <Form.Item>
