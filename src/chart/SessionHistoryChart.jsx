@@ -84,7 +84,7 @@ function SessionHistoryChart({ classes }) {
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl, historyDate, timeRange]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [baseUrl, historyDate]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRefresh = () => {
     setHistoryDate(moment().format(HISTORY_DATE_FORMAT));
@@ -188,7 +188,11 @@ function SessionHistoryChart({ classes }) {
         <Form.Item label="Time Range" style={{ width: width - 500 }}>
           <Slider
             value={timeRange}
-            onAfterChange={(value) => setTimeRange(value)}
+            onAfterChange={() => {
+              setIsLoading(true);
+              fetchData();
+            }}
+            onChange={(value) => setTimeRange(value)}
             marks={getMarks()}
             range={{ draggableTrack: true }}
             min={0}
