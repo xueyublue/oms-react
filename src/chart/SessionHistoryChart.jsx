@@ -29,8 +29,10 @@ const HISTORY_DATE_FORMAT = "DD-MM-YYYY";
 
 const getMarks = () => {
   let marks = {};
-  for (let index = 0; index <= 23; index++) {
-    marks[index] = index;
+  for (let index = 0; index <= 24; index++) {
+    if (index < 12) marks[index] = index + ".am";
+    else if (index === 12) marks[index] = index + ".pm";
+    else marks[index] = index - 12 + ".pm";
   }
   return marks;
 };
@@ -55,10 +57,7 @@ function SessionHistoryChart({ classes }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [historyDate, setHistoryDate] = useState(moment().format(HISTORY_DATE_FORMAT));
-  const [timeRange, setTimeRange] = useState([
-    parseInt(moment().format("HH")) - 1 <= 0 ? 0 : parseInt(moment().format("HH")) - 1,
-    moment().format("HH"),
-  ]);
+  const [timeRange, setTimeRange] = useState([moment().format("HH"), parseInt(moment().format("HH")) + 1]);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
@@ -181,7 +180,7 @@ function SessionHistoryChart({ classes }) {
             marks={getMarks()}
             range={{ draggableTrack: true }}
             min={0}
-            max={23}
+            max={24}
             defaultValue={timeRange}
           />
         </Form.Item>
