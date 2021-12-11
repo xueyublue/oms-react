@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Form, DatePicker } from "antd";
+import { Form, DatePicker, Slider } from "antd";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import { useSnackbar } from "notistack";
@@ -11,6 +11,7 @@ import { BackendAPIContext } from "../context/BackendAPIContext";
 import RefreshButton from "./../components/RefreshButton";
 import { API_FETCH_WAIT } from "./../util/constants";
 import moment from "moment";
+import useWindowDimensions from "./../hooks/useWindowDimensions";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -49,6 +50,7 @@ function SessionHistoryChart({ classes }) {
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
+  const { width } = useWindowDimensions();
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -139,7 +141,7 @@ function SessionHistoryChart({ classes }) {
   return (
     <>
       <Form form={form} layout={"inline"} size={"middle"}>
-        <Form.Item label="History Date">
+        <Form.Item label="Date">
           <DatePicker
             allowClear={false}
             defaultValue={moment()}
@@ -159,13 +161,32 @@ function SessionHistoryChart({ classes }) {
             }}
           />
         </Form.Item>
+        <Form.Item label="Time Range" style={{ width: width - 500 }}>
+          <Slider
+            marks={{
+              0: "00:00",
+              3: "03:00",
+              6: "06:00",
+              9: "09:00",
+              12: "12:00",
+              15: "15:00",
+              18: "18:00",
+              21: "21:00",
+              24: "23:59",
+            }}
+            range={{ draggableTrack: true }}
+            min={0}
+            max={24}
+            defaultValue={[0, 9]}
+          />
+        </Form.Item>
         <div className={classes.tableTools}>
           <Form.Item>
             <RefreshButton onClick={handleRefresh} />
           </Form.Item>
         </div>
       </Form>
-      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 26 }} />
+      <Line data={dataSource} options={options} plugins={[ChartDataLabels]} style={{ paddingBottom: 45 }} />
     </>
   );
 }
