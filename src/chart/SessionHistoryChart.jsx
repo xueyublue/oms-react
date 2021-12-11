@@ -27,6 +27,15 @@ const getMaxValue = (data) => {
 
 const HISTORY_DATE_FORMAT = "DD-MM-YYYY";
 
+const getMarks = () => {
+  let marks = {};
+  for (let index = 0; index <= 23; index++) {
+    marks[index] = index;
+  }
+  console.log(marks);
+  return marks;
+};
+
 //-------------------------------------------------------------
 //* STYLES START
 //-------------------------------------------------------------
@@ -162,23 +171,7 @@ function SessionHistoryChart({ classes }) {
           />
         </Form.Item>
         <Form.Item label="Time Range" style={{ width: width - 500 }}>
-          <Slider
-            marks={{
-              0: "00:00",
-              3: "03:00",
-              6: "06:00",
-              9: "09:00",
-              12: "12:00",
-              15: "15:00",
-              18: "18:00",
-              21: "21:00",
-              24: "23:59",
-            }}
-            range={{ draggableTrack: true }}
-            min={0}
-            max={24}
-            defaultValue={[0, 9]}
-          />
+          <Slider marks={getMarks()} range={{ draggableTrack: true }} min={0} max={23} defaultValue={[0, 9]} />
         </Form.Item>
         <div className={classes.tableTools}>
           <Form.Item>
