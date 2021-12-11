@@ -32,6 +32,7 @@ const getMarks = () => {
   for (let index = 0; index <= 24; index++) {
     if (index < 12) marks[index] = index + ".am";
     else if (index === 12) marks[index] = index + ".pm";
+    else if (index === 24) marks[index] = "0.am";
     else marks[index] = index - 12 + ".pm";
   }
   return marks;
