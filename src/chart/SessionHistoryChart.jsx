@@ -159,7 +159,11 @@ function SessionHistoryChart({ classes }) {
             allowClear={false}
             defaultValue={moment()}
             format={HISTORY_DATE_FORMAT}
-            onChange={(date, dateString) => setHistoryDate(dateString)}
+            onChange={(date, dateString) => {
+              setHistoryDate(dateString);
+              if (moment().format(HISTORY_DATE_FORMAT) !== dateString) setTimeRange([0, 24]);
+              else setTimeRange([moment().format("HH"), parseInt(moment().format("HH")) + 1]);
+            }}
             dateRender={(current) => {
               const style = {};
               if (current.date() === 1) {
@@ -176,6 +180,7 @@ function SessionHistoryChart({ classes }) {
         </Form.Item>
         <Form.Item label="Time Range" style={{ width: width - 500 }}>
           <Slider
+            value={timeRange}
             onAfterChange={(value) => setTimeRange(value)}
             marks={getMarks()}
             range={{ draggableTrack: true }}
