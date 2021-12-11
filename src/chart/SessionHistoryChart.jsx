@@ -139,7 +139,13 @@ function SessionHistoryChart({ classes }) {
         display: false,
       },
     },
-    stepped: false,
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
+    borderWidth: 2,
+    stepped: true,
     maintainAspectRatio: false,
     scales: {
       y: {
