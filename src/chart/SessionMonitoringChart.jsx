@@ -29,7 +29,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
   const [pageLoad, setPageLoad] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [displayDataLabel, setDisplayDataLabel] = useState(false);
+  const [displayDataLabel, setDisplayDataLabel] = useState(true);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
