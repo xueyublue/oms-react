@@ -287,10 +287,10 @@ const Sessions = ({ classes }) => {
           tab={
             <span>
               <HistoryOutlined />
-              Daily History
+              History
             </span>
           }
-          key="daily-history"
+          key="history"
         >
           <div style={{ height: height - 187 }}>
             <SessionHistoryChart />
