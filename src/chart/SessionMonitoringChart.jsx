@@ -8,6 +8,7 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Loading from "../components/Loading";
 import ApiCallFailed from "../components/ApiCallFailed";
 import { BackendAPIContext } from "../context/BackendAPIContext";
+import useWindowDimensions from "./../hooks/useWindowDimensions";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -32,6 +33,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
+  const { width } = useWindowDimensions();
 
   const fetchData = async () => {
     axios
@@ -73,13 +75,19 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
 
   let maxValue = 100;
   if (data) maxValue = getMaxValue(data.total);
+  // decide display limit
+  const currentWidth = width - 220;
+  const pxUnit = 1650 / 60;
+  let length = currentWidth / pxUnit;
+  if (length >= data.labels.length) length = data.labels.length;
+
   const { labels, total, active, inactive } = data;
   const dataSource = {
-    labels: labels,
+    labels: labels.slice(labels.length - length, labels.length),
     datasets: [
       {
         label: `Total (${total[total.length - 1]})`,
-        data: total,
+        data: total.slice(total.length - length, total.length),
         fill: false,
         borderColor: "rgb(36, 209, 209)",
         tension: 0.3,
@@ -91,7 +99,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
       },
       {
         label: `Active (${active[active.length - 1]})`,
-        data: active,
+        data: active.slice(active.length - length, active.length),
         fill: false,
         borderColor: "rgb(253, 211, 100)",
         tension: 0.3,
@@ -103,7 +111,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
       },
       {
         label: `Inactive (${inactive[inactive.length - 1]})`,
-        data: inactive,
+        data: inactive.slice(inactive.length - length, inactive.length),
         fill: false,
         borderColor: "rgb(75, 122, 192)",
         tension: 0.3,
