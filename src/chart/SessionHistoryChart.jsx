@@ -12,6 +12,9 @@ import RefreshButton from "./../components/RefreshButton";
 import { API_FETCH_WAIT } from "./../util/constants";
 import moment from "moment";
 import useWindowDimensions from "./../hooks/useWindowDimensions";
+import { getCsvFileIndex } from "../util/util";
+import { getCsvHeaders } from "./../util/util";
+import ExportButton from "./../components/ExportButton";
 
 const getMaxValue = (data) => {
   let max = data[0];
@@ -118,7 +121,7 @@ function SessionHistoryChart({ classes }) {
           }}
         />
       </Form.Item>
-      <Form.Item label="Time Range" style={{ width: width - 500 }}>
+      <Form.Item label="Time Range" style={{ width: width - 530 }}>
         <Slider
           value={timeRange}
           onAfterChange={() => {
@@ -133,11 +136,16 @@ function SessionHistoryChart({ classes }) {
           defaultValue={timeRange}
         />
       </Form.Item>
-      <div className={classes.tableTools}>
-        <Form.Item>
-          <RefreshButton onClick={handleRefresh} />
-        </Form.Item>
-      </div>
+      <Form.Item style={{ marginLeft: "auto", marginRight: 0 }}>
+        <RefreshButton onClick={handleRefresh} />
+        <ExportButton
+          csvReport={{
+            data: [],
+            headers: getCsvHeaders([]),
+            filename: `OMS_SessionHistory_${getCsvFileIndex()}.csv`,
+          }}
+        />
+      </Form.Item>
     </Form>
   );
 
