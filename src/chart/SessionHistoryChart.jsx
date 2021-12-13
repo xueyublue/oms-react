@@ -13,7 +13,6 @@ import { API_FETCH_WAIT } from "./../util/constants";
 import moment from "moment";
 import useWindowDimensions from "./../hooks/useWindowDimensions";
 import { getCsvFileIndex } from "../util/util";
-import { getCsvHeaders } from "./../util/util";
 import ExportButton from "./../components/ExportButton";
 
 const getMaxValue = (data) => {
@@ -140,8 +139,13 @@ function SessionHistoryChart({ classes }) {
         <RefreshButton onClick={handleRefresh} />
         <ExportButton
           csvReport={{
-            data: [],
-            headers: getCsvHeaders([]),
+            data: !data || !data.table ? [] : data.table,
+            headers: [
+              { label: "Date/Time", key: "dateTime" },
+              { label: "Total", key: "total" },
+              { label: "Inactive", key: "inactive" },
+              { label: "Active", key: "active" },
+            ],
             filename: `OMS_SessionHistory_${getCsvFileIndex()}.csv`,
           }}
         />
