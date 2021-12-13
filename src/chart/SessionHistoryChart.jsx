@@ -146,7 +146,7 @@ function SessionHistoryChart({ classes }) {
               { label: "Inactive", key: "inactive" },
               { label: "Active", key: "active" },
             ],
-            filename: `OMS_SessionHistory_${getCsvFileIndex()}.csv`,
+            filename: `OMS_SessionHistory_${historyDate}_from${timeRange[0]}Hto${timeRange[1]}H.csv`,
           }}
         />
       </Form.Item>
