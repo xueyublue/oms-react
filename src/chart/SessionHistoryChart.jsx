@@ -58,7 +58,7 @@ function SessionHistoryChart({ classes }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [historyDate, setHistoryDate] = useState(moment().format(HISTORY_DATE_FORMAT));
-  const [timeRange, setTimeRange] = useState([moment().format("HH"), parseInt(moment().format("HH")) + 1]);
+  const [timeRange, setTimeRange] = useState([parseInt(moment().format("HH")), parseInt(moment().format("HH")) + 1]);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const [form] = Form.useForm();
