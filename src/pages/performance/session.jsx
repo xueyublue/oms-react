@@ -74,7 +74,7 @@ const Sessions = ({ classes }) => {
       fixed: true,
       renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
       renderCell: (text) => (
-        <div style={{ color: "#1890FF", width: "100%", textAlign: "center" }}>
+        <div style={{ color: "#1890FF", width: "100%", textAlign: "center", textDecoration: "underline" }}>
           <a
             href="#"
             onClick={() => {

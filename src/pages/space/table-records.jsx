@@ -20,6 +20,26 @@ import PageTable from "../../components/PageTable";
 
 const columns = [
   {
+    header: "Action",
+    key: "tableName",
+    width: 80,
+    fixed: true,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (text) => (
+      <div style={{ color: "#1890FF", width: "100%", textAlign: "center", textDecoration: "underline" }}>
+        <a
+          href="#"
+          onClick={() => {
+            // setSessionId(text);
+            // setShowDetail(true);
+          }}
+        >
+          History
+        </a>
+      </div>
+    ),
+  },
+  {
     header: "Owner",
     key: "owner",
     width: 120,
