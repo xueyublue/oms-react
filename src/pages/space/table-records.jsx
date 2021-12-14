@@ -245,7 +245,7 @@ const TableRecords = ({ classes }) => {
           key="details"
         >
           {showHistory && (
-            <TableRecordsHistoryModal sessionId={tableName} show={showHistory} onCancel={() => setShowHistory(false)} />
+            <TableRecordsHistoryModal tableName={tableName} show={showHistory} onCancel={() => setShowHistory(false)} />
           )}
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Owner" style={{ width: 200 }}>

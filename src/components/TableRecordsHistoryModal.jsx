@@ -7,31 +7,47 @@ import { API_FETCH_WAIT } from "../util/constants";
 import Loading from "./Loading";
 import ApiCallFailed from "./ApiCallFailed";
 import PageTable from "./PageTable";
+import { formatNumberWithCommas } from "./../util/util";
 
 const columns = [
   {
-    header: "Owner",
-    key: "owner",
-    width: 150,
+    header: "History Date",
+    key: "histDate",
+    width: 120,
   },
   {
-    header: "Type",
-    key: "type",
-    width: 180,
-    renderCell: (type) => (
-      <Tag
-        color={type === "TABLE" || type === "VIEW" ? "success" : "gold"}
-        key={type}
-        style={{ width: "100%", textAlign: "center" }}
-      >
-        {type}
-      </Tag>
-    ),
+    header: "Total Count",
+    key: "count",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 10000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
   },
   {
-    header: "Object",
-    key: "object",
-    width: 420,
+    header: "Daily Growth",
+    key: "dailyGrowth",
+    width: 120,
+    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+    renderCell: (value) => {
+      let style = "default";
+      if (value === 0) style = "default";
+      else if (value < 1000) style = "green";
+      else style = "gold";
+      return (
+        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      );
+    },
   },
 ];
 
@@ -49,7 +65,7 @@ const styles = {
 //-------------------------------------------------------------
 // COMPONENT START
 //-------------------------------------------------------------
-function TableRecordsHistoryModal({ classes, sessionId, show, onCancel }) {
+function TableRecordsHistoryModal({ classes, tableName, show, onCancel }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const { baseUrl } = useContext(BackendAPIContext);
@@ -57,7 +73,7 @@ function TableRecordsHistoryModal({ classes, sessionId, show, onCancel }) {
   const fetchData = async () => {
     setTimeout(() => {
       axios
-        .get(`${baseUrl}/sessions/${sessionId}`)
+        .get(`${baseUrl}/space/tablerecords/history`, { params: { owner: "WMS", tableName } })
         .then(({ data }) => {
           setData(data);
           setIsLoading(false);
@@ -80,7 +96,7 @@ function TableRecordsHistoryModal({ classes, sessionId, show, onCancel }) {
   return (
     <div className={classes.root}>
       <Modal
-        title="Session Accessing Objects"
+        title="Table Records History"
         visible={show}
         ononCancel={onCancel}
         width={800}
@@ -92,7 +108,7 @@ function TableRecordsHistoryModal({ classes, sessionId, show, onCancel }) {
       >
         <div className={classes.info}>
           <strong>
-            Owner: <Tag>{sessionId}</Tag> TableName: <Tag>{data.length}</Tag>
+            Owner: <Tag>WMS</Tag> TableName: <Tag>{tableName}</Tag>
           </strong>
         </div>
         <div className={classes.table}>
