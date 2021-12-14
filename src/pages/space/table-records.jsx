@@ -17,125 +17,7 @@ import TableRecordsCountChart from "../../chart/TableRecordsCountChart";
 import TableRecordsGrowthChart from "../../chart/TableRecordsGrowthChart";
 import useWindowDimensions from "./../../hooks/useWindowDimensions";
 import PageTable from "../../components/PageTable";
-
-const columns = [
-  {
-    header: "Action",
-    key: "tableName",
-    width: 80,
-    fixed: true,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (text) => (
-      <div style={{ color: "#1890FF", width: "100%", textAlign: "center", textDecoration: "underline" }}>
-        <a
-          href="#"
-          onClick={() => {
-            // setSessionId(text);
-            // setShowDetail(true);
-          }}
-        >
-          History
-        </a>
-      </div>
-    ),
-  },
-  {
-    header: "Owner",
-    key: "owner",
-    width: 120,
-    fixed: true,
-  },
-  {
-    header: "Table Name",
-    key: "tableName",
-    width: 240,
-    fixed: true,
-  },
-  {
-    header: "Initial Count",
-    key: "initialCount",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => (
-      <Tag color="default" key={value} style={{ width: "100%", textAlign: "right" }}>
-        {formatNumberWithCommas(value)}
-      </Tag>
-    ),
-  },
-  {
-    header: "Current Count",
-    key: "currentCount",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 10000) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {formatNumberWithCommas(value)}
-        </Tag>
-      );
-    },
-  },
-  {
-    header: "Daily Growth",
-    key: "dailyGrowth",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 1000) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {formatNumberWithCommas(value)}
-        </Tag>
-      );
-    },
-  },
-  {
-    header: "Monthly Growth",
-    key: "monthlyGrowth",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 1000 * 30) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {formatNumberWithCommas(value)}
-        </Tag>
-      );
-    },
-  },
-  {
-    header: "Yearly Growth",
-    key: "yearlyGrowth",
-    width: 120,
-    renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
-    renderCell: (value) => {
-      let style = "default";
-      if (value === 0) style = "default";
-      else if (value < 1000 * 365) style = "green";
-      else style = "gold";
-      return (
-        <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
-          {formatNumberWithCommas(value)}
-        </Tag>
-      );
-    },
-  },
-  {
-    header: "Tablespace Name",
-    key: "tablespace",
-    width: 250,
-  },
-];
+import TableRecordsHistoryModal from "../../components/TableRecordsHistoryModal";
 
 const getDistinctOwners = (data) => {
   if (!data) return null;
@@ -172,11 +54,132 @@ const TableRecords = ({ classes }) => {
   const [form] = Form.useForm();
   const [chartDisplayLimit, setChartDisplayLimit] = useState(30);
   const [owner, setOwner] = useState("All");
+  const [tableName, setTableName] = useState(null);
+  const [showHistory, setShowHistory] = useState(false);
   const ownerList = getDistinctOwners(data);
   const { baseUrl } = useContext(BackendAPIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { height } = useWindowDimensions();
   const tableHeight = height - 263;
+
+  const columns = [
+    {
+      header: "Action",
+      key: "tableName",
+      width: 80,
+      fixed: true,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (text) => (
+        <div style={{ color: "#1890FF", width: "100%", textAlign: "center", textDecoration: "underline" }}>
+          <a
+            href="#"
+            onClick={() => {
+              setTableName(text);
+              setShowHistory(true);
+            }}
+          >
+            History
+          </a>
+        </div>
+      ),
+    },
+    {
+      header: "Owner",
+      key: "owner",
+      width: 120,
+      fixed: true,
+    },
+    {
+      header: "Table Name",
+      key: "tableName",
+      width: 240,
+      fixed: true,
+    },
+    {
+      header: "Initial Count",
+      key: "initialCount",
+      width: 120,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (value) => (
+        <Tag color="default" key={value} style={{ width: "100%", textAlign: "right" }}>
+          {formatNumberWithCommas(value)}
+        </Tag>
+      ),
+    },
+    {
+      header: "Current Count",
+      key: "currentCount",
+      width: 120,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (value) => {
+        let style = "default";
+        if (value === 0) style = "default";
+        else if (value < 10000) style = "green";
+        else style = "gold";
+        return (
+          <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+            {formatNumberWithCommas(value)}
+          </Tag>
+        );
+      },
+    },
+    {
+      header: "Daily Growth",
+      key: "dailyGrowth",
+      width: 120,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (value) => {
+        let style = "default";
+        if (value === 0) style = "default";
+        else if (value < 1000) style = "green";
+        else style = "gold";
+        return (
+          <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+            {formatNumberWithCommas(value)}
+          </Tag>
+        );
+      },
+    },
+    {
+      header: "Monthly Growth",
+      key: "monthlyGrowth",
+      width: 120,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (value) => {
+        let style = "default";
+        if (value === 0) style = "default";
+        else if (value < 1000 * 30) style = "green";
+        else style = "gold";
+        return (
+          <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+            {formatNumberWithCommas(value)}
+          </Tag>
+        );
+      },
+    },
+    {
+      header: "Yearly Growth",
+      key: "yearlyGrowth",
+      width: 120,
+      renderHeader: (value) => <div style={{ textAlign: "center", width: "100%" }}>{value}</div>,
+      renderCell: (value) => {
+        let style = "default";
+        if (value === 0) style = "default";
+        else if (value < 1000 * 365) style = "green";
+        else style = "gold";
+        return (
+          <Tag color={style} key={value} style={{ width: "100%", textAlign: "right" }}>
+            {formatNumberWithCommas(value)}
+          </Tag>
+        );
+      },
+    },
+    {
+      header: "Tablespace Name",
+      key: "tablespace",
+      width: 250,
+    },
+  ];
 
   const fetchData = async () => {
     setTimeout(() => {
@@ -241,6 +244,9 @@ const TableRecords = ({ classes }) => {
           }
           key="details"
         >
+          {showHistory && (
+            <TableRecordsHistoryModal sessionId={tableName} show={showHistory} onCancel={() => setShowHistory(false)} />
+          )}
           <Form form={form} layout={"inline"} size={"middle"}>
             <Form.Item label="Owner" style={{ width: 200 }}>
               <Select value={owner} onChange={handleOwnerChange}>
