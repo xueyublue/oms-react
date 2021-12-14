@@ -120,7 +120,7 @@ function SessionHistoryChart({ classes }) {
           }}
         />
       </Form.Item>
-      <Form.Item label="Time Range" style={{ width: width - 530 }}>
+      <Form.Item label="Time Range" style={{ width: width - 535 }}>
         <Slider
           value={timeRange}
           onAfterChange={() => {
