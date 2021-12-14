@@ -156,6 +156,7 @@ function SessionMonitoringChart({ titleDisplay, legendPosition, withinComponent 
       <Form form={form} layout={"inline"} size={"middle"}>
         <Form.Item label="Display Data Labels" style={{ width: 200 }}>
           <Switch
+            checked={displayDataLabel}
             value={displayDataLabel}
             checkedChildren={<MdVisibility />}
             unCheckedChildren={<MdVisibilityOff />}
