@@ -10,7 +10,6 @@ import { API_FETCH_WAIT } from "./../../../util/constants";
 import ExplorerColumnsTab from "./ExplorerColumnsTab";
 import ExplorerSqlSourceTab from "./ExplorerSqlSourceTab";
 import ExplorerDataTab from "./ExplorerDataTab";
-import ExplorerIndexesTab from "./ExplorerIndexesTab";
 
 const { TabPane } = Tabs;
 

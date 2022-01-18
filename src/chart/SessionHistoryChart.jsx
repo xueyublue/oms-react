@@ -12,7 +12,6 @@ import RefreshButton from "./../components/RefreshButton";
 import { API_FETCH_WAIT } from "./../util/constants";
 import moment from "moment";
 import useWindowDimensions from "./../hooks/useWindowDimensions";
-import { getCsvFileIndex } from "../util/util";
 import ExportButton from "./../components/ExportButton";
 
 const getMaxValue = (data) => {
