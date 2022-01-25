@@ -60,6 +60,18 @@ const SQLWorkbench = ({ classes }) => {
           closable={false}
           tab={
             <span>
+              <MenuOutlined />
+              Explorer
+            </span>
+          }
+          key={"EXPLORER2"}
+        >
+          <ExplorerTab />
+        </TabPane>
+        <TabPane
+          closable={false}
+          tab={
+            <span>
               <FileSearchOutlined />
               SQL
             </span>
